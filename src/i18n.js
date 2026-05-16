@@ -3,7 +3,7 @@
  * All rights reserved.
  */
 
-import { initI18n } from '@gemsphere/i18n';
+import { initI18n } from '@GemSphere-AI/i18n';
 import en from './locales/en/common.json';
 
 /**

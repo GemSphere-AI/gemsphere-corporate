@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { Outlet } from 'react-router-dom';
-import { LightGlassmorphicTheme } from '@gemsphere/ui-kit';
+import { LightGlassmorphicTheme } from '@GemSphere-AI/ui-kit';
 
 const MainLayout = () => {
     return (

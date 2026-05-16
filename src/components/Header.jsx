@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Rocket, Sun, Moon } from 'lucide-react';
-import { AppLauncher } from '@gemsphere/ui-kit';
+import { AppLauncher } from '@GemSphere-AI/ui-kit';
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
