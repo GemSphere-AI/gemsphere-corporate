@@ -31,10 +31,16 @@ function App() {
             <Route path="contact" element={<Contact />} />
             
             {/* SEO Silo: Services */}
+            <Route path="services" element={<DetailPage type="service_list" />} />
             <Route path="services/:id" element={<DetailPage type="service" />} />
             
             {/* SEO Silo: Industries */}
+            <Route path="industries" element={<DetailPage type="industry_list" />} />
             <Route path="industries/:id" element={<DetailPage type="industry" />} />
+
+            {/* General Content */}
+            <Route path="products" element={<DetailPage type="product_list" />} />
+            <Route path="case-studies" element={<DetailPage type="case_study_list" />} />
             
             {/* Global Lead Engine: Programmatic SEO (177 Countries) */}
             <Route path="global/:countrySlug" element={<GlobalLanding />} />

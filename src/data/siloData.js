@@ -72,5 +72,39 @@ export const SILO_DATA = {
                 'Localized Payment Gateway Integration'
             ]
         }
+    },
+    product: {
+        'retail-pos': {
+            title: 'GemSphere Omni-Retail',
+            subtitle: 'Unified POS and E-commerce engine.',
+            description: 'A complete retail operating system that synchronizes physical stores with digital storefronts in real-time.',
+            features: ['Live Inventory Sync', 'Mobile POS', 'Omnichannel Orders']
+        },
+        'hospitality-suite': {
+            title: 'Hospitality Plus',
+            subtitle: 'Smart dining and reservation management.',
+            description: 'Digital-first hospitality tools for restaurants, hotels, and event spaces.',
+            features: ['Table Management', 'QR Ordering', 'Kitchen Display System']
+        },
+        'growth-crm': {
+            title: 'GemSphere CRM',
+            subtitle: 'Sales automation for high-growth teams.',
+            description: 'Close deals faster with AI-driven lead scoring and automated follow-up workflows.',
+            features: ['Pipeline Tracking', 'Lead Scoring', 'Automated Marketing']
+        }
+    },
+    case_study: {
+        'global-retail-chain': {
+            title: 'Global Retail Expansion',
+            subtitle: 'Scaling to 500+ stores across EMEA.',
+            description: 'How a leading retail giant used GemSphere to centralize operations and reduce inventory leakage by 30%.',
+            features: ['30% Less Leakage', '99% Inventory Accuracy', '2.5x Faster Checkouts']
+        },
+        'smart-restaurant-network': {
+            title: 'The Digital Dining Revolution',
+            subtitle: 'Digitizing 50+ upscale restaurants.',
+            description: 'Transforming the guest experience through contactless ordering and intelligent kitchen orchestration.',
+            features: ['40% Faster Turnovers', '20% Higher Average Bill', 'Zero Paper Waste']
+        }
     }
 };

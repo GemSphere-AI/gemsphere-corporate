@@ -7,9 +7,45 @@ import BookingForm from '../components/BookingForm';
 
 const DetailPage = ({ type }) => {
     const { id } = useParams();
-    const data = SILO_DATA[type]?.[id];
+    
+    // Handle Listing View if no ID provided or if type explicitly ends with _list
+    if (!id || type.endsWith('_list')) {
+        const category = type.replace('_list', '');
+        const items = Object.entries(SILO_DATA[category] || {}).map(([key, value]) => ({
+            id: key,
+            ...value
+        }));
 
-    if (!data) return <Navigate to="/" replace />;
+        return (
+            <div className="min-h-screen text-white relative overflow-hidden py-24">
+                <Helmet>
+                    <title>GemSphere {category.charAt(0).toUpperCase() + category.slice(1)}s | Global Enterprise Intelligence</title>
+                </Helmet>
+                <div className="container mx-auto px-6">
+                    <h1 className="text-5xl md:text-7xl font-black mb-16 tracking-tighter">
+                        Platform <span className="text-brand-cyan">{category.charAt(0).toUpperCase() + category.slice(1)}s.</span>
+                    </h1>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {items.map((item) => (
+                            <div 
+                                key={item.id} 
+                                onClick={() => window.location.href = `/${category}s/${item.id}`}
+                                className="glass-card p-10 cursor-pointer hover:scale-[1.02] transition-all group border-white/5"
+                            >
+                                <h3 className="text-2xl font-black mb-4 group-hover:text-brand-cyan transition-colors">{item.title}</h3>
+                                <p className="text-white/50 font-medium leading-relaxed mb-8">{item.subtitle}</p>
+                                <div className="flex items-center gap-2 text-brand-cyan font-black text-sm uppercase tracking-widest">
+                                    View Details <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    const data = SILO_DATA[type]?.[id];
 
     return (
         <div className="min-h-screen text-white relative overflow-hidden">
