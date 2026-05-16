@@ -1,0 +1,10 @@
+{
+  "nav": { "home": "Home", "about": "About", "contact": "Contact", "services": "Services", "industries": "Industries", "blog": "Blog", "getStarted": "Get Started", "learnMore": "Learn More" },
+  "home": { "heroTitle": "Transform Your Business with GemSphere", "heroSubtitle": "One unified ecosystem for modern businesses. Specialized solutions for Retail, Hospitality, CRM, and IT Services.", "ctaPrimary": "Start Free Trial", "ctaSecondary": "Watch Demo", "trustedBy": "Trusted by businesses worldwide", "whyChoose": "Why Choose GemSphere?", "products": "Our Products", "testimonials": "What Our Clients Say" },
+  "about": { "title": "About GemSphere", "mission": "Our Mission", "vision": "Our Vision", "team": "Our Team", "values": "Our Values" },
+  "contact": { "title": "Contact Us", "subtitle": "Get in touch with our team", "name": "Your Name", "email": "Your Email", "message": "Your Message", "send": "Send Message", "success": "Message sent successfully!", "office": "Our Office", "phone": "Phone", "emailLabel": "Email" },
+  "blog": { "title": "Blog", "readMore": "Read More", "published": "Published {{date}}", "author": "By {{name}}", "categories": "Categories", "search": "Search articles..." },
+  "global": { "title": "GemSphere in {{country}}", "description": "Enterprise solutions for businesses in {{country}}. Multi-currency, multi-language SaaS platform.", "localPartners": "Local Partners", "getStarted": "Get Started in {{country}}" },
+  "footer": { "brand": "GemSphere One", "description": "One unified ecosystem for modern businesses.", "quickLinks": "Quick Links", "support": "Support", "legal": "Legal", "privacyPolicy": "Privacy Policy", "termsConditions": "Terms & Conditions", "copyright": "© {{year}} GemSphere Technologies Pvt. Ltd. All rights reserved." },
+  "common": { "loading": "Loading...", "error": "Something went wrong", "learnMore": "Learn More", "getStarted": "Get Started", "contactUs": "Contact Us" }
+}

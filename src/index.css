@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-dark: #020617;
+  --color-brand-navy: #0f172a;
+  --color-brand-cyan: #00d4ff;
+  --color-brand-indigo: #1a237e;
+
+  --animate-gradient-x: gradient-x 15s ease infinite;
+  --animate-fade-in: fade-in 1s ease-out forwards;
+  --animate-slide-up: slide-up 0.8s ease-out forwards;
+
+  @keyframes gradient-x {
+    0%, 100% { background-size: 200% 200%; background-position: left center; }
+    50% { background-size: 200% 200%; background-position: right center; }
+  }
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes slide-up {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+}
+
+:root {
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #ffffff;
+  background-color: #020617;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark {
+  color-scheme: dark;
+  color: #ffffff;
+  background-color: #020617;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #020617;
+}
+
+#root {
+  width: 100%;
+}
+
+@utility glass-card {
+  @apply bg-white/5 backdrop-blur-[40px] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)];
+}
+
+@utility glass-header {
+  @apply bg-white/90 dark:bg-[rgba(15,23,42,0.8)] backdrop-blur-[12px] border-b border-black/5 dark:border-b-white/10;
+}
+
+@utility text-gradient {
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, var(--color-brand-cyan), var(--color-brand-indigo), var(--color-brand-cyan));
+  animation: var(--animate-gradient-x);
+}
+
+@utility btn-primary {
+  padding: 1rem 2rem;
+  background-color: var(--color-brand-cyan);
+  color: var(--color-brand-dark);
+  font-weight: 900;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  text-align: center;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@utility btn-secondary {
+  @apply py-4 px-8 bg-transparent text-slate-800 dark:text-white border-2 border-black/10 dark:border-white/20 font-black rounded-2xl backdrop-blur-md transition-all text-center hover:bg-black/5 hover:border-black/20 dark:hover:bg-white/5 dark:hover:border-white/40;
+}
