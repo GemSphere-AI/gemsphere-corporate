@@ -1,119 +1,175 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Rocket, Sun, Moon } from 'lucide-react';
-import { AppLauncher, getAbsoluteUrl } from '@GemSphere-AI/ui-kit';
+import { Menu, X, Rocket, ChevronDown, ChevronRight, Sun, Moon } from 'lucide-react';
+import { getAbsoluteUrl } from '@GemSphere-AI/ui-kit';
+import { motion, AnimatePresence } from 'framer-motion';
+import MegaMenu from './MegaMenu';
+import { LanguageSwitcher } from '@GemSphere-AI/i18n';
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-    const [darkMode, setDarkMode] = useState(false);
+    const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
-        
-        // Check initial theme
-        if (document.documentElement.classList.contains('dark')) {
-            setDarkMode(true);
-        }
-        
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const toggleTheme = () => {
-        if (darkMode) {
+    useEffect(() => {
+        // Initialize theme based on localStorage or system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setIsDarkMode(true);
+            document.documentElement.classList.add('dark');
+        } else {
+            setIsDarkMode(false);
             document.documentElement.classList.remove('dark');
-            setDarkMode(false);
+        }
+    }, []);
+
+    const toggleTheme = () => {
+        if (isDarkMode) {
+            document.documentElement.classList.remove('dark');
+            localStorage.theme = 'light';
+            setIsDarkMode(false);
         } else {
             document.documentElement.classList.add('dark');
-            setDarkMode(true);
+            localStorage.theme = 'dark';
+            setIsDarkMode(true);
         }
     };
 
     const navLinks = [
+        { name: 'Solutions', href: getAbsoluteUrl('/solutions') },
         { name: 'Services', href: getAbsoluteUrl('/services') },
         { name: 'Industries', href: getAbsoluteUrl('/industries') },
-        { name: 'Products', href: getAbsoluteUrl('/products') },
-        { name: 'Case Studies', href: getAbsoluteUrl('/case-studies') },
-        { name: 'About', href: getAbsoluteUrl('/about') },
+        { name: 'Company', href: getAbsoluteUrl('/about') },
     ];
 
     return (
-        <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'py-4 bg-white/70 backdrop-blur-2xl border-b border-slate-200 shadow-xl shadow-slate-200/20' : 'py-6 bg-transparent'}`}>
-            <div className="container mx-auto px-6 flex justify-between items-center">
-                {/* Logo */}
-                <a href={getAbsoluteUrl('/')} className="flex items-center gap-2 group">
-                    <div className="w-10 h-10 bg-brand-cyan rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-brand-cyan/20">
-                        <Rocket className="text-white fill-current" size={24} />
-                    </div>
-                    <span className="text-xl font-black tracking-tighter text-slate-900">GemSphere</span>
-                </a>
+        <>
+            <header 
+                className={`fixed top-0 left-0 w-full z-[60] transition-all duration-300 ${
+                    scrolled || megaMenuOpen 
+                    ? 'h-[80px] bg-brand-dark/80 backdrop-blur-xl border-b border-brand-border' 
+                    : 'h-[100px] bg-transparent'
+                }`}
+            >
+                <div className="container mx-auto px-6 h-full flex justify-between items-center max-w-7xl">
+                    {/* Logo */}
+                    <a href={getAbsoluteUrl('/')} className="flex items-center gap-3 group z-[70]">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-indigo flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-300">
+                            <Rocket className="text-pure-white fill-current" size={20} />
+                        </div>
+                        <span className="text-2xl font-black font-display tracking-tight text-text-primary group-hover:text-brand-cyan transition-colors">
+                            GemSphere
+                        </span>
+                    </a>
 
-                {/* Desktop Nav */}
-                <div className="hidden md:flex items-center gap-8">
-                    <nav className="flex items-center gap-8 mr-4">
-                         {navLinks.map((link) => (
-                              <a 
-                                  key={link.name} 
-                                  href={link.href} 
-                                  className="text-sm font-bold text-slate-600 hover:text-brand-cyan transition-colors"
-                              >
-                                  {link.name}
-                              </a>
-                         ))}
-                    </nav>
-                    
-                    <div className="flex items-center gap-4">
-                        <a 
-                            href={getAbsoluteUrl('/login')} 
-                            className="text-sm font-bold text-slate-600 hover:text-brand-cyan transition-colors whitespace-nowrap hidden lg:block"
+                    {/* Desktop Nav */}
+                    <div className="hidden lg:flex items-center h-full">
+                        <nav className="flex items-center h-full mr-6">
+                            {/* Mega Menu Trigger */}
+                            <button
+                                onClick={() => setMegaMenuOpen(!megaMenuOpen)}
+                                className={`flex items-center gap-1 h-full px-4 text-sm font-semibold transition-colors ${megaMenuOpen ? 'text-brand-cyan' : 'text-text-secondary hover:text-text-primary'}`}
+                            >
+                                Platform
+                                <ChevronDown size={14} className={`transition-transform duration-300 ${megaMenuOpen ? 'rotate-180' : ''}`} />
+                            </button>
+                            
+                            {navLinks.map((link) => (
+                                <a 
+                                    key={link.name} 
+                                    href={link.href} 
+                                    className="flex items-center h-full px-4 text-sm font-semibold text-text-secondary hover:text-text-primary transition-colors"
+                                >
+                                    {link.name}
+                                </a>
+                            ))}
+                        </nav>
+                        
+                        <div className="flex items-center gap-4">
+                            <LanguageSwitcher />
+                            <button 
+                                onClick={toggleTheme} 
+                                className="p-2 text-text-secondary hover:text-brand-cyan transition-colors rounded-full hover:bg-brand-border"
+                                aria-label="Toggle Theme"
+                            >
+                                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+                            </button>
+
+                            <a 
+                                href={getAbsoluteUrl('/login')} 
+                                className="text-sm font-semibold text-text-secondary hover:text-brand-cyan transition-colors px-2 py-2"
+                            >
+                                Sign In
+                            </a>
+                            <a href={getAbsoluteUrl('/contact')} className="btn-primary py-2 px-5 ml-2">
+                                Talk to Sales
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Mobile Toggle */}
+                    <div className="lg:hidden flex items-center gap-3 z-[70]">
+                        <button 
+                            onClick={toggleTheme} 
+                            className="p-2 text-text-secondary hover:text-brand-cyan transition-colors"
                         >
-                            Sign In
-                        </a>
-                        <a 
-                            href={getAbsoluteUrl('/register')} 
-                            className="text-sm font-bold text-slate-600 hover:text-brand-cyan transition-colors whitespace-nowrap hidden lg:block"
+                            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                        </button>
+                        <button 
+                            className="p-2 text-text-primary glass-subtle rounded-lg"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
-                            Join Ecosystem
-                        </a>
-                        <div className="h-6 w-px bg-slate-200 mx-2 hidden lg:block" />
-                        <a href={getAbsoluteUrl('/contact')} className="px-6 py-2.5 bg-brand-cyan text-white font-black rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-brand-cyan/20 whitespace-nowrap">
-                            Book a Demo
-                        </a>
-                        <AppLauncher />
+                            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                        </button>
                     </div>
                 </div>
+            </header>
 
-                {/* Mobile Toggle */}
-                <div className="md:hidden flex items-center gap-3">
-                    <AppLauncher />
-                    <button 
-                        className="p-2 text-slate-900 bg-slate-100 rounded-lg"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    >
-                        {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-                    </button>
-                </div>
+            {/* Desktop Mega Menu Dropdown */}
+            <div className="hidden lg:block">
+                <MegaMenu isOpen={megaMenuOpen} onClose={() => setMegaMenuOpen(false)} />
             </div>
 
             {/* Mobile Menu */}
-            {mobileMenuOpen && (
-                <div className="absolute top-full left-0 w-full bg-white border-b border-slate-200 p-8 flex flex-col gap-6 md:hidden animate-fade-in shadow-2xl">
-                    <nav className="flex flex-col gap-4">
-                        {navLinks.map((link) => (
-                            <a key={link.name} href={link.href} className="text-xl font-bold text-slate-900 border-b border-slate-50 pb-2">{link.name}</a>
-                        ))}
-                    </nav>
-                    <div className="flex flex-col gap-4 mt-4 pt-6 border-t border-slate-100">
-                        <div className="flex gap-4">
-                            <a href={getAbsoluteUrl('/login')} className="flex-1 py-4 text-center border-2 border-slate-100 text-slate-600 font-bold rounded-xl">Sign In</a>
-                            <a href={getAbsoluteUrl('/register')} className="flex-1 py-4 text-center border-2 border-slate-100 text-slate-600 font-bold rounded-xl">Join</a>
+            <AnimatePresence>
+                {mobileMenuOpen && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.2 }}
+                        className="fixed inset-0 z-50 bg-brand-dark pt-[100px] px-6 pb-6 flex flex-col overflow-y-auto lg:hidden"
+                    >
+                        <nav className="flex flex-col gap-2 mb-8">
+                            <a href="/products" className="py-4 text-2xl font-bold text-text-primary border-b border-brand-border flex justify-between items-center">
+                                Platform <ChevronRight size={20} className="text-brand-cyan" />
+                            </a>
+                            {navLinks.map((link) => (
+                                <a key={link.name} href={link.href} className="py-4 text-2xl font-bold text-text-primary border-b border-brand-border flex justify-between items-center">
+                                    {link.name} <ChevronRight size={20} className="text-brand-cyan opacity-0" />
+                                </a>
+                            ))}
+                        </nav>
+                        <div className="flex flex-col gap-4 mt-auto">
+                            <div className="flex justify-center mb-4">
+                                <LanguageSwitcher />
+                            </div>
+                            <a href={getAbsoluteUrl('/login')} className="w-full py-4 text-center border border-brand-border text-text-primary font-bold rounded-xl">
+                                Sign In
+                            </a>
+                            <a href={getAbsoluteUrl('/contact')} className="w-full py-4 text-center bg-brand-cyan text-[#0f172a] font-black rounded-xl">
+                                Talk to Sales
+                            </a>
                         </div>
-                        <a href={getAbsoluteUrl('/contact')} className="w-full text-center py-5 bg-brand-cyan text-white rounded-2xl font-black shadow-lg shadow-brand-cyan/30">Book a Demo</a>
-                    </div>
-                </div>
-            )}
-        </header>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     );
 };
 

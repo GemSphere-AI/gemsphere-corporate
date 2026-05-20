@@ -47,6 +47,10 @@ const DetailPage = ({ type }) => {
 
     const data = SILO_DATA[type]?.[id];
 
+    if (!data) {
+        return <Navigate to="/" replace />;
+    }
+
     return (
         <div className="min-h-screen text-white relative overflow-hidden">
             <Helmet>

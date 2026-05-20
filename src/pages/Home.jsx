@@ -1,284 +1,314 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
-    ArrowRight, Cpu, Globe, Layers, BarChart3, 
-    ChevronRight, Zap, Shield, Rocket, Heart, 
-    Database, Network, Infinity, Sparkles 
+    ArrowRight, Globe2, Layers, Cpu, Shield, 
+    Network, Server, Sparkles, Code2, LineChart, Brain
 } from 'lucide-react';
-import InteractiveGlobe from '../components/InteractiveGlobe';
-import ShootingStars from '../components/ShootingStars';
+import { getAbsoluteUrl } from '@GemSphere-AI/ui-kit';
 
-const FeatureCard = ({ icon: Icon, title, desc, delay }) => {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay }}
-            whileHover={{ y: -10, scale: 1.02 }}
-            className="p-8 rounded-[32px] bg-white border border-slate-100 shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-brand-cyan/10 transition-all group"
-        >
-            <div className="w-16 h-16 bg-brand-cyan/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Icon className="text-brand-cyan" size={32} />
-            </div>
-            <h3 className="text-2xl font-black mb-4 text-slate-900">{title}</h3>
-            <p className="text-slate-500 leading-relaxed font-medium">{desc}</p>
-        </motion.div>
-    );
-};
+import NeuralBackground from '../components/NeuralBackground';
+import AnimatedCounter from '../components/AnimatedCounter';
+import MagneticButton from '../components/MagneticButton';
+import ScrollReveal from '../components/ScrollReveal';
+import MarqueeRow from '../components/MarqueeRow';
+import SectionHeading from '../components/SectionHeading';
+import ProductCard from '../components/ProductCard';
+import WorldMap from '../components/WorldMap';
+import TestimonialCarousel from '../components/TestimonialCarousel';
+import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
 
 const Home = () => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
-    });
-
-    const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-    const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9]);
-
-    const springScroll = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-
     return (
-        <div ref={containerRef} className="min-h-screen bg-slate-50 text-slate-900 selection:bg-brand-cyan/30 overflow-hidden">
+        <div className="min-h-screen">
             <Helmet>
-                <title>GemSphere One | Engineering the Future of Global Business</title>
-                <meta name="description" content="Mission-critical AI solutions, multi-tenant cloud architectures, and global enterprise intelligence platforms." />
+                <title>GemSphere Technologies | Engineering Intelligent Digital Enterprises</title>
+                <meta name="description" content="Premium AI, Enterprise Software, and SaaS Transformation Partner. Serving global enterprise customers across 170+ countries with 28+ unified modules." />
             </Helmet>
 
-            {/* Cinematic 3D Background */}
-            <motion.div 
-                style={{ y: backgroundY }}
-                className="fixed inset-0 z-0 pointer-events-none"
-            >
-                <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-brand-indigo/10 rounded-full blur-[150px] animate-pulse" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] bg-brand-cyan/10 rounded-full blur-[180px]" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-            </motion.div>
-
-            <div className="relative z-10">
-                {/* HERO SECTION */}
-                <section className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-visible">
-                    {/* The Moving Globe - Absolute Centered Background */}
-                    <div className="absolute inset-0 z-0 opacity-80">
-                        <InteractiveGlobe />
-                    </div>
-
-                    <ShootingStars />
-
-                    <motion.div 
-                        style={{ opacity, scale }}
-                        className="max-w-6xl mx-auto text-center relative z-10"
-                    >
-                        <motion.div 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-cyan/5 border border-brand-cyan/10 text-brand-cyan font-black text-sm tracking-[3px] uppercase mb-12 shadow-sm"
-                        >
-                            <Sparkles size={16} /> The Intelligence Layer
-                        </motion.div>
+            {/* 1. CINEMATIC HERO SECTION */}
+            <section className="relative min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden">
+                <NeuralBackground />
+                
+                <div className="container mx-auto px-6 max-w-7xl relative z-10">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <ScrollReveal direction="up" delay={0.1}>
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-subtle text-text-primary text-xs font-semibold uppercase tracking-[0.2em] mb-8">
+                                <Sparkles size={14} className="text-brand-cyan" /> Unified Digital Enterprise Platform
+                            </div>
+                        </ScrollReveal>
                         
-                        <motion.h1 
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="text-6xl md:text-9xl font-black mb-12 tracking-tighter leading-none text-slate-900"
-                        >
-                            Global <br /> <span className="text-brand-cyan">Orchestration.</span>
-                        </motion.h1>
-                        
-                        <motion.p 
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                            className="text-xl md:text-3xl text-slate-500 mb-16 max-w-4xl mx-auto font-medium leading-tight"
-                        >
-                            We orchestrate the world's most complex supply chains with AI-driven precision, 
-                            military-grade security, and infinite scalability.
-                        </motion.p>
+                        <ScrollReveal direction="up" delay={0.2} stagger staggerDelay={0.05}>
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-display tracking-tight leading-[1.1] mb-8">
+                                Engineering Intelligent <br />
+                                <span className="text-gradient-animated">Digital Enterprises.</span>
+                            </h1>
+                        </ScrollReveal>
 
-                        <motion.div 
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.6 }}
-                            className="flex flex-col sm:grow-0 sm:flex-row gap-6 justify-center"
-                        >
-                            <button 
-                                onClick={() => window.location.href = '/login'}
-                                className="group px-10 py-5 bg-brand-cyan text-white font-black text-xl rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-brand-cyan/40 flex items-center gap-3"
-                            >
-                                Enter the Nexus <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-                            </button>
-                            <button 
-                                onClick={() => window.location.href = '/register'}
-                                className="px-10 py-5 bg-white text-slate-900 border-2 border-slate-100 font-black text-xl rounded-2xl hover:bg-slate-50 transition-all"
-                            >
-                                Join Ecosystem
-                            </button>
-                        </motion.div>
-                    </motion.div>
+                        <ScrollReveal direction="up" delay={0.3}>
+                            <p className="text-xl md:text-2xl text-text-secondary font-medium leading-relaxed mb-12 max-w-3xl mx-auto">
+                                The world's most advanced modular ecosystem for commerce, supply chain, finance, and AI operations at global scale.
+                            </p>
+                        </ScrollReveal>
 
-                    {/* Scroll Indicator */}
-                    <motion.div 
-                        animate={{ y: [0, 10, 0] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-30"
-                    >
-                        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center p-1">
-                            <div className="w-1 h-2 bg-white rounded-full" />
-                        </div>
-                    </motion.div>
-                </section>
-
-                {/* LIVE STATS TICKER */}
-                <section className="py-20 bg-white border-y border-slate-100 overflow-hidden relative">
-                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-                    <div className="max-w-7xl mx-auto px-6 relative z-10">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-                            {[
-                                { label: "Global Transactions", val: "$4.2B+", sub: "Annual Flow" },
-                                { label: "Active Nodes", val: "12,840", sub: "177 Countries" },
-                                { label: "AI Latency", val: "< 0.8ms", sub: "Real-time Edge" },
-                                { label: "Carbon Reduction", val: "22%", sub: "Net Impact" }
-                            ].map((stat, i) => (
-                                <motion.div 
-                                    key={i}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: i * 0.1 }}
-                                    className="text-center md:text-left"
+                        <ScrollReveal direction="up" delay={0.4}>
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                                <MagneticButton 
+                                    href="/contact" 
+                                    className="btn-primary w-full sm:w-auto text-lg px-8 py-4"
                                 >
-                                    <div className="text-4xl md:text-5xl font-black text-slate-900 mb-2 tracking-tighter">{stat.val}</div>
-                                    <div className="text-sm font-black text-brand-cyan uppercase tracking-widest mb-1">{stat.label}</div>
-                                    <div className="text-xs font-bold text-slate-400">{stat.sub}</div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                                    Book Enterprise Demo <ArrowRight size={20} />
+                                </MagneticButton>
+                                <MagneticButton 
+                                    href="/products" 
+                                    className="btn-secondary w-full sm:w-auto text-lg px-8 py-4"
+                                >
+                                    Explore Ecosystem
+                                </MagneticButton>
+                            </div>
+                        </ScrollReveal>
 
-                {/* FEATURE GRID */}
-                <section className="py-32 px-6 bg-white">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-24">
-                            <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-6 tracking-tight">Core Competencies.</h2>
-                            <p className="text-xl text-slate-500 max-w-2xl mx-auto">The engineering pillars that power GemSphere's global dominance.</p>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <FeatureCard 
-                                icon={Cpu} 
-                                title="AI Sourcing Nexus" 
-                                desc="Our proprietary neural network optimizes supply routes in sub-millisecond intervals, reacting to global market shifts instantly." 
-                                delay={0.1}
-                            />
-                            <FeatureCard 
-                                icon={Shield} 
-                                title="Sentinel Governance" 
-                                desc="Military-grade data isolation protocols for multi-tenant architectures, ensuring absolute data sovereignty for every enterprise." 
-                                delay={0.2}
-                            />
-                            <FeatureCard 
-                                icon={Layers} 
-                                title="Fluid Inventory" 
-                                desc="Atomic-level synchronization across 177+ countries, providing a single source of truth for global franchise networks." 
-                                delay={0.3}
-                            />
-                            <FeatureCard 
-                                icon={BarChart3} 
-                                title="Hyper-Ledger Billing" 
-                                desc="Automated high-volume reconciliation engines that settle millions of transactions with 99.999% precision." 
-                                delay={0.4}
-                            />
-                            <FeatureCard 
-                                icon={Zap} 
-                                title="Neural Analytics" 
-                                desc="Predictive business intelligence that identifies market opportunities before they manifest in conventional data." 
-                                delay={0.5}
-                            />
-                            <FeatureCard 
-                                icon={Database} 
-                                title="Compliance Shield" 
-                                desc="Automated regulatory adaptation that ensures your business stays compliant with local laws in every jurisdiction." 
-                                delay={0.6}
-                            />
-                        </div>
+                        {/* KPI Strip */}
+                        <ScrollReveal direction="up" delay={0.6} className="mt-20 pt-10 border-t border-brand-border">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-brand-border">
+                                {[
+                                    { val: '170+', label: 'Countries Served' },
+                                    { val: '28+', label: 'Enterprise Modules' },
+                                    { val: '99.99%', label: 'Uptime SLA' },
+                                    { val: '$4.2B+', label: 'Annual Flow' }
+                                ].map((kpi, i) => (
+                                    <div key={i} className="px-4">
+                                        <div className="text-3xl md:text-4xl font-black text-text-primary font-display mb-1">
+                                            <AnimatedCounter value={kpi.val} />
+                                        </div>
+                                        <div className="text-xs text-text-tertiary font-bold uppercase tracking-widest">
+                                            {kpi.label}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </ScrollReveal>
                     </div>
-                </section>
+                </div>
+                
+                {/* Scroll Indicator */}
+                <motion.div 
+                    animate={{ y: [0, 8, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50"
+                >
+                    <div className="w-5 h-8 border border-brand-border-hover rounded-full flex justify-center p-1">
+                        <div className="w-1 h-2 bg-text-primary rounded-full" />
+                    </div>
+                </motion.div>
+            </section>
 
-                {/* SUSTAINABLE FUTURE */}
-                <section className="py-32 px-6 bg-slate-50">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                            <motion.div
-                                initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1 }}
-                            >
-                                <h2 className="text-6xl font-black mb-12 text-slate-900 leading-none">A Vision for the <br /> <span className="text-brand-cyan">Whole World.</span></h2>
-                                <div className="space-y-12">
-                                    {[
-                                        { title: "Waste Reduction", desc: "Using AI to eliminate excess production, saving millions of tons of waste annually." },
-                                        { title: "Eco-Logistics", desc: "Smarter routing leads to a 40% reduction in logistics-related carbon emissions." },
-                                        { title: "Global Access", desc: "Providing enterprise-grade tools to small businesses in emerging economies." }
-                                    ].map((impact, i) => (
-                                        <div key={i} className="flex gap-6">
-                                            <div className="w-2 h-12 bg-brand-cyan rounded-full" />
+            {/* 2. TRUST MARQUEE */}
+            <section className="py-12 border-y border-brand-border glass-subtle backdrop-blur-md">
+                <div className="container mx-auto px-6 max-w-7xl mb-8 text-center">
+                    <p className="text-xs font-bold text-text-tertiary uppercase tracking-widest">
+                        Trusted by Fortune 500 Companies & Global Leaders
+                    </p>
+                </div>
+                <MarqueeRow speed={50}>
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                        <div key={i} className="text-2xl font-black text-text-muted opacity-50 mx-12 font-display uppercase tracking-widest">
+                            ENTERPRISE {i}
+                        </div>
+                    ))}
+                </MarqueeRow>
+            </section>
+
+            {/* 3. PRODUCT ECOSYSTEM SHOWCASE */}
+            <section className="section-padding relative">
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-cyan/5 rounded-full blur-[120px] -z-10" />
+                <div className="container mx-auto px-6 max-w-7xl">
+                    <SectionHeading 
+                        badge="The Ecosystem"
+                        title="28+ Enterprise Modules."
+                        titleHighlight="One Platform."
+                        subtitle={PRODUCT_ECOSYSTEM.stats.description}
+                    />
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {PRODUCT_ECOSYSTEM.categories.map((cat, i) => (
+                            <ScrollReveal key={cat.id} direction="up" delay={i * 0.1}>
+                                <ProductCard 
+                                    icon={cat.icon}
+                                    title={cat.name}
+                                    description={cat.description}
+                                    modules={cat.modules.map(m => m.name)}
+                                    onClick={() => window.location.href = `/products#${cat.id}`}
+                                />
+                            </ScrollReveal>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 4. AI SOLUTIONS SPOTLIGHT */}
+            <section className="section-padding bg-brand-deeper relative border-y border-brand-border overflow-hidden">
+                <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[800px] h-[800px] bg-brand-indigo/10 rounded-full blur-[150px] pointer-events-none" />
+                <div className="container mx-auto px-6 max-w-7xl relative z-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                        <div>
+                            <SectionHeading 
+                                align="left"
+                                badge="AI-First Architecture"
+                                title="Intelligence at the Core."
+                                subtitle="We don't just bolt on AI. GemSphere is built from the ground up with neural capabilities to automate, predict, and scale your operations autonomously."
+                            />
+                            
+                            <div className="space-y-8">
+                                {[
+                                    { icon: Brain, title: 'Autonomous Agents', desc: 'Deploy AI agents that execute complex multi-step workflows without human intervention.' },
+                                    { icon: LineChart, title: 'Predictive Insights', desc: 'Forecast demand, supply chain disruptions, and financial trends with 95%+ accuracy.' },
+                                    { icon: Shield, title: 'Enterprise Security', desc: 'Military-grade data isolation and SOC2 compliant model fine-tuning for your data privacy.' }
+                                ].map((feature, i) => (
+                                    <ScrollReveal key={i} direction="left" delay={i * 0.15}>
+                                        <div className="flex gap-6 group">
+                                            <div className="w-14 h-14 rounded-2xl glass-subtle flex items-center justify-center shrink-0 group-hover:bg-brand-indigo/10 group-hover:border-brand-indigo/30 transition-all duration-300">
+                                                <feature.icon className="text-brand-indigo group-hover:scale-110 transition-transform duration-300" size={24} />
+                                            </div>
                                             <div>
-                                                <h4 className="text-2xl font-black text-slate-900 mb-2">{impact.title}</h4>
-                                                <p className="text-lg text-slate-500 font-medium">{impact.desc}</p>
+                                                <h4 className="text-xl font-bold mb-2 text-text-primary">{feature.title}</h4>
+                                                <p className="text-text-secondary leading-relaxed">{feature.desc}</p>
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
-                            </motion.div>
+                                    </ScrollReveal>
+                                ))}
+                            </div>
                             
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1.2 }}
-                                className="relative aspect-square"
-                            >
-                                <div className="absolute inset-0 bg-brand-cyan/10 rounded-full blur-[100px] animate-pulse" />
-                                <div className="relative z-10 w-full h-full bg-white border border-slate-100 shadow-2xl rounded-[60px] flex items-center justify-center">
-                                    <div className="text-center">
-                                        <div className="w-64 h-64 mx-auto mb-8 opacity-60">
-                                            <InteractiveGlobe />
+                            <ScrollReveal direction="up" delay={0.4} className="mt-12">
+                                <a href="/ai-solutions" className="btn-secondary">
+                                    Explore AI Capabilities
+                                </a>
+                            </ScrollReveal>
+                        </div>
+                        
+                        <div className="relative">
+                            <ScrollReveal direction="right" delay={0.2}>
+                                <div className="aspect-square w-full max-w-lg mx-auto relative">
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-indigo/20 to-brand-cyan/20 rounded-[40px] rotate-3 blur-sm" />
+                                    <div className="absolute inset-0 bg-brand-card border border-brand-border rounded-[40px] flex items-center justify-center overflow-hidden">
+                                        {/* Abstract neural visual placeholder */}
+                                        <div className="absolute w-[150%] h-[150%] animate-spin-slow opacity-30 bg-[conic-gradient(from_90deg_at_50%_50%,#000000_0%,#6366f1_50%,#00d4ff_100%)]" />
+                                        <div className="absolute inset-[2px] bg-brand-card rounded-[38px] z-10 flex items-center justify-center p-12">
+                                            <div className="text-center z-20">
+                                                <Cpu size={64} className="text-brand-cyan mx-auto mb-6 opacity-80" />
+                                                <div className="text-2xl font-black font-display tracking-widest text-text-muted uppercase mb-2">Neural Core</div>
+                                                <div className="text-sm text-brand-cyan font-bold tracking-widest uppercase animate-pulse">Active</div>
+                                            </div>
                                         </div>
-                                        <h3 className="text-4xl font-black mb-2 text-slate-900">Sustainable</h3>
-                                        <p className="text-xl text-slate-400 uppercase tracking-[5px] font-bold">Future Engineering</p>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </ScrollReveal>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                {/* FINAL CTA */}
-                <section className="py-32 px-6 text-center bg-white">
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="bg-slate-900 max-w-4xl mx-auto p-16 md:p-24 rounded-[64px] shadow-2xl text-white"
-                    >
-                        <h2 className="text-4xl md:text-6xl font-black mb-8">Ready to evolve?</h2>
-                        <p className="text-xl md:text-2xl text-white/60 mb-12">
-                            Join the world's most advanced businesses in the GemSphere ecosystem.
+            {/* 5. GLOBAL PRESENCE */}
+            <section className="section-padding relative">
+                <div className="container mx-auto px-6 max-w-7xl">
+                    <div className="text-center mb-16">
+                        <SectionHeading 
+                            badge="Global Reach"
+                            title="Built for the World."
+                            subtitle="Supporting multinational enterprises across 170+ countries with localized compliance, taxation, and performance optimization."
+                        />
+                    </div>
+                    
+                    <div className="relative w-full max-w-5xl mx-auto aspect-[16/9] lg:aspect-[2/1] rounded-3xl overflow-hidden glass-card p-4 md:p-8 flex items-center justify-center">
+                        <WorldMap className="w-full h-full" />
+                    </div>
+                </div>
+            </section>
+
+            {/* 6. ENTERPRISE TRUST & TESTIMONIALS */}
+            <section className="section-padding bg-brand-deeper border-y border-brand-border">
+                <div className="container mx-auto px-6 max-w-7xl">
+                    <SectionHeading 
+                        badge="Customer Success"
+                        title="Trusted by Visionaries."
+                    />
+                    
+                    <div className="max-w-4xl mx-auto">
+                        <TestimonialCarousel testimonials={PRODUCT_ECOSYSTEM.testimonials} />
+                    </div>
+                </div>
+            </section>
+
+            {/* 7. INDUSTRY SOLUTIONS */}
+            <section className="section-padding relative">
+                <div className="container mx-auto px-6 max-w-7xl">
+                    <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+                        <SectionHeading 
+                            align="left"
+                            className="mb-0"
+                            badge="Solutions"
+                            title="Industry Expertise."
+                            subtitle="Pre-configured ecosystems tailored for the unique challenges of your vertical."
+                        />
+                        <a href="/industries" className="btn-ghost shrink-0 mb-2">
+                            View All Industries <ArrowRight size={16} />
+                        </a>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {PRODUCT_ECOSYSTEM.industries.map((ind, i) => (
+                            <ScrollReveal key={i} direction="up" delay={i * 0.1}>
+                                <a 
+                                    href={`/industries/${ind.slug}`}
+                                    className="group block glass-card p-8 rounded-2xl hover:border-brand-cyan/30 transition-all duration-300"
+                                >
+                                    <div className="flex justify-between items-start mb-12">
+                                        <div className="w-12 h-12 rounded-xl glass-subtle flex items-center justify-center text-text-primary group-hover:text-brand-cyan group-hover:scale-110 transition-all duration-300">
+                                            <ind.icon size={24} />
+                                        </div>
+                                        <div className="text-xs font-bold text-brand-cyan uppercase tracking-wider bg-brand-cyan/10 px-3 py-1 rounded-full">
+                                            {ind.stat}
+                                        </div>
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-text-primary mb-2">{ind.name}</h3>
+                                    <div className="text-sm font-semibold text-text-tertiary flex items-center gap-2 group-hover:text-text-primary transition-colors">
+                                        Explore Solution <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                    </div>
+                                </a>
+                            </ScrollReveal>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 8. FINAL CTA */}
+            <section className="py-24 md:py-32 relative overflow-hidden">
+                <div className="absolute inset-0 bg-brand-cyan/5" />
+                <div className="container mx-auto px-6 max-w-7xl relative z-10">
+                    <div className="glass-heavy border-brand-cyan/20 rounded-[40px] p-12 md:p-20 text-center relative overflow-hidden max-w-5xl mx-auto">
+                        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-cyan/20 rounded-full blur-[100px] -z-10" />
+                        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-indigo/20 rounded-full blur-[100px] -z-10" />
+                        
+                        <h2 className="text-4xl md:text-6xl font-black font-display tracking-tight text-text-primary mb-6">
+                            Ready to engineer your <br className="hidden md:block"/>
+                            <span className="text-gradient">digital future?</span>
+                        </h2>
+                        <p className="text-xl text-text-secondary mb-12 max-w-2xl mx-auto">
+                            Join the world's most advanced enterprises orchestrating their growth on the GemSphere platform.
                         </p>
-                        <button 
-                            onClick={() => window.location.href = '/login'}
-                            className="btn-primary px-16 py-6 text-2xl"
-                        >
-                            Request Core Access
-                        </button>
-                    </motion.div>
-                </section>
-            </div>
+                        
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                            <MagneticButton href="/contact" className="btn-primary w-full sm:w-auto text-lg px-10 py-5">
+                                Schedule Consultation
+                            </MagneticButton>
+                            <MagneticButton href="/products" className="btn-secondary w-full sm:w-auto text-lg px-10 py-5">
+                                Explore Products
+                            </MagneticButton>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </div>
     );
 };

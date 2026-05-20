@@ -1,93 +1,147 @@
 import React from 'react';
-import { Rocket, Share2, Globe, MessageSquare, Mail, Phone, MapPin } from 'lucide-react';
+import { Rocket, MapPin, Mail, Phone, ShieldCheck, Award, Building2 } from 'lucide-react';
+import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
 
 const Footer = () => {
-    const siloData = [
-        {
-            title: 'Services',
-            links: [
-                { name: 'AI & Machine Learning', href: '/services/ai-solutions' },
-                { name: 'Enterprise Software', href: '/services/software-development' },
-                { name: 'SaaS Product Development', href: '/services/saas-products' },
-                { name: 'CRM & ERP Solutions', href: '/services/crm-solutions' },
-                { name: 'UI/UX Design Systems', href: '/services/ui-ux-design' },
-            ]
-        },
-        {
-            title: 'Industries',
-            links: [
-                { name: 'Healthcare', href: '/industries/healthcare' },
-                { name: 'FinTech', href: '/industries/fintech' },
-                { name: 'E-commerce', href: '/industries/ecommerce' },
-                { name: 'Logistics & Supply Chain', href: '/industries/logistics' },
-                { name: 'Retail Tech', href: '/industries/retail' },
-            ]
-        },
-        {
-            title: 'Global Presence',
-            links: [
-                { name: 'Emerging Africa', href: '/global/kenya' },
-                { name: 'Western Europe', href: '/global/germany' },
-                { name: 'Americas Hub', href: '/global/usa' },
-                { name: 'Asia Pacific', href: '/global/singapore' },
-                { name: 'Middle East', href: '/global/uae' },
-            ]
-        }
-    ];
-
     return (
-        <footer className="bg-brand-dark pt-24 pb-12 border-t border-white/10 relative overflow-hidden">
+        <footer className="bg-brand-deeper pt-24 pb-12 border-t border-brand-border relative overflow-hidden">
             {/* Background Accent */}
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-cyan/5 rounded-full blur-[150px] -z-10" />
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-indigo/10 rounded-full blur-[150px] -z-10 pointer-events-none" />
             
-            <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
-                    {/* Brand Info */}
+            <div className="container mx-auto px-6 max-w-7xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-20">
+                    
+                    {/* Brand & Newsletter */}
                     <div className="lg:col-span-2">
-                        <div className="flex items-center gap-2 mb-6">
-                            <div className="w-8 h-8 bg-brand-cyan rounded-lg flex items-center justify-center">
-                                <Rocket className="text-brand-dark fill-current" size={18} />
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-indigo flex items-center justify-center shadow-[0_0_20px_rgba(0,212,255,0.2)]">
+                                <Rocket className="text-pure-white fill-current" size={20} />
                             </div>
-                            <span className="text-xl font-black tracking-tighter">GemSphere</span>
+                            <span className="text-2xl font-black font-display tracking-tight text-text-primary">GemSphere</span>
                         </div>
-                        <p className="text-white/50 text-sm leading-relaxed mb-8 max-w-sm">
-                            GemSphere Technologies is a global leader in AI-driven enterprise solutions. We help organizations scale by engineering the future of business intelligence.
+                        <p className="text-text-secondary text-sm leading-relaxed mb-8 max-w-sm">
+                            Engineering Intelligent Digital Enterprises. The unified platform for global commerce, supply chain, and AI operations.
                         </p>
-                        <div className="flex gap-4">
-                            {[Share2, Globe, MessageSquare].map((Icon, i) => (
-                                <a key={i} href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-brand-cyan hover:text-brand-dark transition-all">
-                                    <Icon size={18} />
-                                </a>
-                            ))}
+                        
+                        <div className="mb-8">
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-text-tertiary mb-3">Subscribe to Insights</h4>
+                            <div className="flex gap-2">
+                                <input 
+                                    type="email" 
+                                    placeholder="Enter your email" 
+                                    className="glass-subtle border-brand-border rounded-lg px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-brand-cyan w-full transition-colors"
+                                />
+                                <button className="bg-brand-cyan text-[#0f172a] px-4 py-2.5 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
+                                    Subscribe
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-3">
+                            {/* LinkedIn */}
+                            <a href="https://www.linkedin.com/company/gem-sphere-ai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            </a>
+                            {/* X (Twitter) */}
+                            <a href="https://x.com/GemSphereAI" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            </a>
+                            {/* Facebook */}
+                            <a href="https://www.facebook.com/people/GemSphere-AI/61581897367281/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                            </a>
+                            {/* Instagram */}
+                            <a href="https://www.instagram.com/gemsphereai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            </a>
                         </div>
                     </div>
 
-                    {/* Silo Links */}
-                    {siloData.map((silo, i) => (
-                        <div key={i}>
-                            <h4 className="text-sm font-black uppercase tracking-widest mb-6">{silo.title}</h4>
-                            <ul className="space-y-4">
-                                {silo.links.map((link, j) => (
-                                    <li key={j}>
-                                        <a href={link.href} className="text-sm text-white/40 hover:text-brand-cyan transition-colors">
-                                            {link.name}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
+                    {/* Platform Columns */}
+                    <div className="lg:col-span-1">
+                        <h4 className="text-sm font-bold text-text-primary mb-6">Platform</h4>
+                        <ul className="space-y-4">
+                            {PRODUCT_ECOSYSTEM.categories.slice(0, 5).map((cat, i) => (
+                                <li key={i}>
+                                    <a href={`/products#${cat.id}`} className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
+                                        {cat.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Solutions Column */}
+                    <div className="lg:col-span-1">
+                        <h4 className="text-sm font-bold text-text-primary mb-6">Solutions</h4>
+                        <ul className="space-y-4">
+                            {PRODUCT_ECOSYSTEM.industries.slice(0, 5).map((ind, i) => (
+                                <li key={i}>
+                                    <a href={`/industries/${ind.slug}`} className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
+                                        {ind.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Company Column */}
+                    <div className="lg:col-span-1">
+                        <h4 className="text-sm font-bold text-text-primary mb-6">Company</h4>
+                        <ul className="space-y-4">
+                            <li><a href="/about" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">About Us</a></li>
+                            <li><a href="/careers" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Careers</a></li>
+                            <li><a href="/contact" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Contact</a></li>
+                            <li><a href="/blog" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Blog</a></li>
+                            <li><a href="/partners" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Partners</a></li>
+                        </ul>
+                    </div>
+
+                    {/* Contact Info */}
+                    <div className="lg:col-span-1">
+                        <h4 className="text-sm font-bold text-text-primary mb-6">Get in Touch</h4>
+                        <ul className="space-y-4 text-sm text-text-secondary">
+                            <li className="flex gap-3">
+                                <MapPin size={18} className="text-brand-cyan shrink-0 mt-0.5" />
+                                <span>Garuda BHIVE Workspace,<br/>BTM Layout, Bengaluru,<br/>Karnataka 560076</span>
+                            </li>
+                            <li className="flex gap-3 items-center">
+                                <Mail size={18} className="text-brand-cyan shrink-0" />
+                                <a href="mailto:Contact@gemsphere.ai" className="hover:text-brand-cyan transition-colors">Contact@gemsphere.ai</a>
+                            </li>
+                            <li className="flex gap-3 items-center">
+                                <Phone size={18} className="text-brand-cyan shrink-0" />
+                                <a href="tel:+917892585801" className="hover:text-brand-cyan transition-colors">+91 7892585801</a>
+                            </li>
+                            <li className="flex gap-3 items-center">
+                                <Building2 size={18} className="text-brand-cyan shrink-0" />
+                                <span className="text-xs text-text-muted">CIN: U62011KA2025PTC211975</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div className="text-white/30 text-xs font-medium">
-                        © 2026 GemSphere Technologies Private Limited. All rights reserved.
+                {/* Trust Badges & Bottom */}
+                <div className="pt-8 border-t border-brand-border flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div className="flex gap-6 items-center">
+                        <div className="flex items-center gap-2 text-xs font-bold text-text-tertiary">
+                            <ShieldCheck size={16} /> SOC2 Type II Certified
+                        </div>
+                        <div className="flex items-center gap-2 text-xs font-bold text-text-tertiary">
+                            <Award size={16} /> ISO 27001
+                        </div>
                     </div>
-                    <div className="flex gap-8 text-xs font-bold text-white/50">
-                        <a href="/privacy" className="hover:text-white">Privacy Policy</a>
-                        <a href="/terms" className="hover:text-white">Terms of Service</a>
-                        <a href="/sitemap.xml" className="hover:text-white">Sitemap</a>
+                    
+                    <div className="flex flex-wrap gap-4 md:gap-6 text-xs font-semibold text-text-tertiary">
+                        <a href="/privacy" className="hover:text-brand-cyan transition-colors">Privacy Policy</a>
+                        <a href="/cookie-policy" className="hover:text-brand-cyan transition-colors">Cookie Policy</a>
+                        <a href="/terms" className="hover:text-brand-cyan transition-colors">Terms of Service</a>
+                        <a href="/security" className="hover:text-brand-cyan transition-colors">Security</a>
                     </div>
+                </div>
+                
+                <div className="mt-8 text-center text-xs text-text-muted">
+                    © {new Date().getFullYear()} GemSphere Technologies Private Limited. All rights reserved.
                 </div>
             </div>
         </footer>

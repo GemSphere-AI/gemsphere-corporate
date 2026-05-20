@@ -8,8 +8,16 @@ import './i18n';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Careers from './pages/Careers';
 
-// Silo Detail Page (Dynamic for Services & Industries)
+// Products & Solutions
+import Products from './pages/Products';
+import Solutions from './pages/Solutions';
+import AISolutions from './pages/AISolutions';
+import Services from './pages/Services';
+import Industries from './pages/Industries';
+
+// Dynamic Content Pages
 import DetailPage from './pages/DetailPage';
 
 // Blog Engine
@@ -20,6 +28,10 @@ import BlogPost from './pages/BlogPost';
 import RegionalLanding from './pages/RegionalLanding';
 import GlobalLanding from './pages/GlobalLanding';
 
+// Legal Pages
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import CookiePolicy from './pages/CookiePolicy';
+
 function App() {
   return (
     <HelmetProvider>
@@ -29,20 +41,21 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="careers" element={<Careers />} />
             
-            {/* SEO Silo: Services */}
-            <Route path="services" element={<DetailPage type="service_list" />} />
+            {/* New Ecosystem Pages */}
+            <Route path="products" element={<Products />} />
+            <Route path="solutions" element={<Solutions />} />
+            <Route path="ai-solutions" element={<AISolutions />} />
+            <Route path="services" element={<Services />} />
+            <Route path="industries" element={<Industries />} />
+            
+            {/* Dynamic Silos (Kept for SEO / Deep Linking) */}
             <Route path="services/:id" element={<DetailPage type="service" />} />
-            
-            {/* SEO Silo: Industries */}
-            <Route path="industries" element={<DetailPage type="industry_list" />} />
             <Route path="industries/:id" element={<DetailPage type="industry" />} />
-
-            {/* General Content */}
-            <Route path="products" element={<DetailPage type="product_list" />} />
             <Route path="case-studies" element={<DetailPage type="case_study_list" />} />
             
-            {/* Global Lead Engine: Programmatic SEO (177 Countries) */}
+            {/* Global Lead Engine */}
             <Route path="global/:countrySlug" element={<GlobalLanding />} />
             
             {/* Legacy redirect or direct landing */}
@@ -52,6 +65,10 @@ function App() {
             {/* Content Engine: Blog */}
             <Route path="blog" element={<BlogList />} />
             <Route path="blog/:id" element={<BlogPost />} />
+
+            {/* Legal Pages */}
+            <Route path="privacy" element={<PrivacyPolicy />} />
+            <Route path="cookie-policy" element={<CookiePolicy />} />
           </Route>
         </Routes>
       </Router>
