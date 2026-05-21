@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 
 import { Building2, ArrowRight } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
@@ -47,7 +48,7 @@ const Industries = () => {
                             const Icon = ind.icon;
                             return (
                                 <ScrollReveal key={i} direction="up" delay={i * 0.1}>
-                                    <a href={`/industries/${ind.slug}`} className="block glass-card rounded-[32px] p-8 h-full group hover:border-brand-cyan/30 transition-all duration-300">
+                                    <LocalizedLink href={`/industries/${ind.slug}`} className="block glass-card rounded-[32px] p-8 h-full group hover:border-brand-cyan/30 transition-all duration-300">
                                         <div className="flex justify-between items-start mb-12">
                                             <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-brand-cyan/20 group-hover:border-brand-cyan/30 group-hover:text-brand-cyan group-hover:scale-110 transition-all duration-300">
                                                 <Icon size={28} />
@@ -61,7 +62,7 @@ const Industries = () => {
                                         <div className="text-sm font-semibold text-text-tertiary flex items-center gap-2 group-hover:text-white transition-colors">
                                             Explore Use Cases <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                         </div>
-                                    </a>
+                                    </LocalizedLink>
                                 </ScrollReveal>
                             );
                         })}

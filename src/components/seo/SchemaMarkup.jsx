@@ -11,27 +11,3 @@ export default function SchemaMarkup({ schema }) {
   );
 }
 
-// Helper functions to generate specific schemas
-export const generateBreadcrumbSchema = (items) => ({
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": items.map((item, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "name": item.name,
-    "item": item.url
-  }))
-});
-
-export const generateProductSchema = (product) => ({
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": `GemSphere ${product.name}`,
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web, Cloud",
-  "description": product.description || product.desc,
-  "provider": {
-    "@type": "Organization",
-    "name": "GemSphere Technologies"
-  }
-});

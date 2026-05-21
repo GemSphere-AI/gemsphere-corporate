@@ -1,14 +1,16 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import LocalizedLink from '../components/LocalizedLink';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import ScrollReveal from '../components/ScrollReveal';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
 import Breadcrumbs from '../components/Breadcrumbs';
-import SchemaMarkup, { generateProductSchema } from '../components/seo/SchemaMarkup';
+import SchemaMarkup from '../components/seo/SchemaMarkup';
+import { generateProductSchema } from '../utils/schemaGenerators';
 import RelatedLinks from '../components/RelatedLinks';
+import TrustBadges from '../components/TrustBadges';
 
 export default function PillarPageTemplate({ type, slug }) {
     const dataList = type === 'Industry' ? PRODUCT_ECOSYSTEM.industries : PRODUCT_ECOSYSTEM.services;
@@ -18,8 +20,8 @@ export default function PillarPageTemplate({ type, slug }) {
     const Icon = data.icon || ArrowRight;
     const parentPath = type === 'Industry' ? 'industries' : 'services';
     const breadcrumbItems = [
-        { name: `${type}s`, url: `https://gemsphere.ai/${parentPath}` },
-        { name: data.name, url: `https://gemsphere.ai/${parentPath}/${data.slug}` }
+        { name: `${type}s`, url: `/${parentPath}` },
+        { name: data.name, url: `/${parentPath}/${data.slug}` }
     ];
 
     return (
@@ -47,13 +49,18 @@ export default function PillarPageTemplate({ type, slug }) {
                             {data.desc || `Enterprise-grade ${data.name.toLowerCase()} solutions powered by AI.`}
                         </p>
                         <div className="flex flex-wrap gap-4">
-                            <a href="/contact" className="btn-primary">
-                                Get Started
-                            </a>
+                            <LocalizedLink href="/contact" className="btn-primary">
+                                Schedule a Demo <ArrowRight size={18} className="ml-2 inline" />
+                            </LocalizedLink>
+                            <LocalizedLink href="/about" className="glass-subtle px-6 py-3 rounded-xl font-bold hover:bg-brand-border/50 transition-colors">
+                                Learn More
+                            </LocalizedLink>
                         </div>
                     </ScrollReveal>
                 </div>
             </section>
+            
+            <TrustBadges />
 
             {/* Content Section Placeholder */}
             <section className="py-24 bg-brand-dark/30 border-y border-brand-border relative">

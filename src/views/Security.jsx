@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 import ScrollReveal from '../components/ScrollReveal';
 
 const Security = () => {
@@ -56,7 +57,7 @@ const Security = () => {
                             <section className="glass-card p-8 rounded-2xl">
                                 <h2 className="text-xl font-bold text-text-primary mb-3">6. Report a Vulnerability</h2>
                                 <p className="mb-2">If you believe you have discovered a security vulnerability in our platform, please report it immediately.</p>
-                                <p>Email: <a href="mailto:security@gemsphere.ai" className="text-brand-cyan hover:underline">security@gemsphere.ai</a></p>
+                                <p>Email: <LocalizedLink href="mailto:security@gemsphere.ai" className="text-brand-cyan hover:underline">security@gemsphere.ai</LocalizedLink></p>
                             </section>
                         </ScrollReveal>
                     </div>

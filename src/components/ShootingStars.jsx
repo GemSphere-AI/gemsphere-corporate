@@ -11,9 +11,11 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ShootingStar = ({ id, onComplete }) => {
-    const startX = Math.random() * 100;
-    const startY = Math.random() * 50;
-    const duration = 1.5 + Math.random() * 1.5;
+    const [{ startX, startY, duration }] = useState(() => ({
+        startX: Math.random() * 100,
+        startY: Math.random() * 50,
+        duration: 1.5 + Math.random() * 1.5
+    }));
 
     return (
         <motion.div

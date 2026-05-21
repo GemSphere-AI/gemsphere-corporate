@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 import { ArrowRight } from 'lucide-react';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
 
@@ -34,7 +35,7 @@ export default function RelatedLinks({ type, currentId }) {
                         const Icon = item.icon || ArrowRight;
                         const link = `${basePath}/${item.id || item.slug}`;
                         return (
-                            <a 
+                            <LocalizedLink 
                                 key={idx} 
                                 href={link}
                                 className="glass-card p-6 group hover:-translate-y-1 transition-all duration-300 block"
@@ -50,7 +51,7 @@ export default function RelatedLinks({ type, currentId }) {
                                 <p className="text-sm text-text-muted line-clamp-2">
                                     {item.description || item.desc}
                                 </p>
-                            </a>
+                            </LocalizedLink>
                         );
                     })}
                 </div>

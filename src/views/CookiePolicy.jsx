@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 
 import ScrollReveal from '../components/ScrollReveal';
 
@@ -114,8 +115,8 @@ const CookiePolicy = () => {
                             <section className="glass-card p-8 rounded-2xl">
                                 <h2 className="text-xl font-bold text-text-primary mb-3">6. Contact Us</h2>
                                 <p className="mb-2">If you have questions about our use of cookies, contact us at:</p>
-                                <p>Email: <a href="mailto:Contact@gemsphere.ai" className="text-brand-cyan hover:underline">Contact@gemsphere.ai</a></p>
-                                <p>Phone: <a href="tel:+917892585801" className="text-brand-cyan hover:underline">+91 7892585801</a></p>
+                                <p>Email: <LocalizedLink href="mailto:Contact@gemsphere.ai" className="text-brand-cyan hover:underline">Contact@gemsphere.ai</LocalizedLink></p>
+                                <p>Phone: <LocalizedLink href="tel:+917892585801" className="text-brand-cyan hover:underline">+91 7892585801</LocalizedLink></p>
                             </section>
                         </ScrollReveal>
                     </div>

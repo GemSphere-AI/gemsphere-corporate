@@ -1,14 +1,16 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import LocalizedLink from '../components/LocalizedLink';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import ScrollReveal from '../components/ScrollReveal';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
 import Breadcrumbs from '../components/Breadcrumbs';
-import SchemaMarkup, { generateProductSchema } from '../components/seo/SchemaMarkup';
+import SchemaMarkup from '../components/seo/SchemaMarkup';
+import { generateProductSchema } from '../utils/schemaGenerators';
 import RelatedLinks from '../components/RelatedLinks';
+import TrustBadges from '../components/TrustBadges';
 
 export default function ProductCategory({ categoryId }) {
     const category = PRODUCT_ECOSYSTEM.categories.find(c => c.id === categoryId);
@@ -16,8 +18,8 @@ export default function ProductCategory({ categoryId }) {
 
     const Icon = category.icon;
     const breadcrumbItems = [
-        { name: 'Products', url: 'https://gemsphere.ai/products' },
-        { name: category.name, url: `https://gemsphere.ai/products/${category.id}` }
+        { name: 'Products', url: '/products' },
+        { name: category.name, url: `/products/${category.id}` }
     ];
 
     return (
@@ -45,16 +47,18 @@ export default function ProductCategory({ categoryId }) {
                             {category.description}
                         </p>
                         <div className="flex flex-wrap gap-4">
-                            <a href="/contact" className="btn-primary">
-                                Get a Demo
-                            </a>
-                            <a href="/contact" className="btn-secondary">
-                                Contact Sales
-                            </a>
+                            <LocalizedLink href="/contact" className="btn-primary">
+                                Schedule a Demo <ArrowRight size={18} className="ml-2 inline" />
+                            </LocalizedLink>
+                            <LocalizedLink href="/about" className="glass-subtle px-6 py-3 rounded-xl font-bold hover:bg-brand-border/50 transition-colors">
+                                View Architecture
+                            </LocalizedLink>
                         </div>
                     </ScrollReveal>
                 </div>
             </section>
+
+            <TrustBadges />
 
             {/* Modules Grid */}
             <section className="py-24 bg-brand-dark/30 border-y border-brand-border relative">
@@ -106,9 +110,9 @@ export default function ProductCategory({ categoryId }) {
                         <p className="text-lg text-text-secondary mb-10">
                             Join the world's most advanced enterprises orchestrating their operations on GemSphere.
                         </p>
-                        <a href="/contact" className="btn-primary inline-flex">
+                        <LocalizedLink href="/contact" className="btn-primary inline-flex">
                             Talk to an Expert
-                        </a>
+                        </LocalizedLink>
                     </ScrollReveal>
                 </div>
             </section>

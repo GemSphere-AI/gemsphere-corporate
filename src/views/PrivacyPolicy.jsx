@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 
 import ScrollReveal from '../components/ScrollReveal';
 
@@ -27,7 +28,7 @@ const PrivacyPolicy = () => {
                         <ScrollReveal direction="up" delay={0.1}>
                             <section>
                                 <h2 className="text-xl font-bold text-text-primary mb-3">1. Introduction</h2>
-                                <p>GemSphere Technologies Private Limited ("GemSphere AI," "we," "our," or "us") operates the website <a href="https://www.gemsphere.ai" className="text-brand-cyan hover:underline">www.gemsphere.ai</a>. This Privacy Policy explains how we collect, use, share, and protect your personal information when you visit our website or use our services.</p>
+                                <p>GemSphere Technologies Private Limited ("GemSphere AI," "we," "our," or "us") operates the website <LocalizedLink href="https://www.gemsphere.ai" className="text-brand-cyan hover:underline">www.gemsphere.ai</LocalizedLink>. This Privacy Policy explains how we collect, use, share, and protect your personal information when you visit our website or use our services.</p>
                             </section>
                         </ScrollReveal>
 
@@ -109,8 +110,8 @@ const PrivacyPolicy = () => {
                                 <p className="mb-2">If you have questions about this Privacy Policy, contact us at:</p>
                                 <p><strong className="text-text-primary">GemSphere Technologies Private Limited</strong></p>
                                 <p>Garuda BHIVE Workspace, BTM Layout, Bengaluru, Karnataka 560076</p>
-                                <p>Email: <a href="mailto:Contact@gemsphere.ai" className="text-brand-cyan hover:underline">Contact@gemsphere.ai</a></p>
-                                <p>Phone: <a href="tel:+917892585801" className="text-brand-cyan hover:underline">+91 7892585801</a></p>
+                                <p>Email: <LocalizedLink href="mailto:Contact@gemsphere.ai" className="text-brand-cyan hover:underline">Contact@gemsphere.ai</LocalizedLink></p>
+                                <p>Phone: <LocalizedLink href="tel:+917892585801" className="text-brand-cyan hover:underline">+91 7892585801</LocalizedLink></p>
                                 <p className="text-text-muted text-xs mt-3">CIN: U62011KA2025PTC211975</p>
                             </section>
                         </ScrollReveal>

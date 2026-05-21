@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
@@ -54,9 +55,9 @@ const Solutions = () => {
                                         <h3 className="text-2xl font-bold text-text-primary mb-4">{ind.name}</h3>
                                         
                                         <div className="mt-auto pt-8">
-                                            <a href={`/industries/${ind.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-brand-indigo hover:text-text-primary transition-colors">
+                                            <LocalizedLink href={`/industries/${ind.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-brand-indigo hover:text-text-primary transition-colors">
                                                 View Solution <ArrowRight size={16} />
-                                            </a>
+                                            </LocalizedLink>
                                         </div>
                                     </div>
                                 </ScrollReveal>

@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 import { useParams, redirect } from 'next/navigation';
 
 import { Globe2, Building, Phone, ArrowRight } from 'lucide-react';
@@ -76,9 +77,9 @@ const GlobalLanding = () => {
                         <p className="text-sm text-white/50 font-bold mb-4">
                             Looking for localized services in {country.name}? Our global implementation team features experts who understand the unique compliance and technical needs of the {country.region} market.
                         </p>
-                        <a href="/services" className="text-brand-cyan font-black hover:underline flex items-center gap-2">
+                        <LocalizedLink href="/services" className="text-brand-cyan font-black hover:underline flex items-center gap-2">
                             View All Enterprise Services <ArrowRight size={14} />
-                        </a>
+                        </LocalizedLink>
                     </div>
                 </div>
 

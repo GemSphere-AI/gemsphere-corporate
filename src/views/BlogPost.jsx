@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 import { useParams, redirect } from 'next/navigation';
 
 import { BLOG_POSTS } from '../data/blogData';
@@ -26,9 +27,9 @@ const BlogPost = () => {
         <article className="container mx-auto px-6 py-12 max-w-4xl">
 
 
-            <a href="/blog" className="inline-flex items-center gap-2 text-brand-cyan font-bold mb-12 hover:gap-3 transition-all">
+            <LocalizedLink href="/blog" className="inline-flex items-center gap-2 text-brand-cyan font-bold mb-12 hover:gap-3 transition-all">
                 <ArrowLeft size={18} /> Back to Blog
-            </a>
+            </LocalizedLink>
 
             <div className="mb-12">
                 <div className="flex items-center gap-4 mb-8">
@@ -71,7 +72,7 @@ const BlogPost = () => {
                     Stay ahead of the curve. Learn how GemSphere can help you implement these technologies in your own organization.
                 </p>
                 <div className="flex justify-center gap-4">
-                    <a href="/contact" className="btn-primary">Book a Consultation</a>
+                    <LocalizedLink href="/contact" className="btn-primary">Book a Consultation</LocalizedLink>
                 </div>
             </div>
         </article>

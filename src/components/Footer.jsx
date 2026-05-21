@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 import { Rocket, MapPin, Mail, Phone, ShieldCheck, Award, Building2 } from 'lucide-react';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
 
@@ -48,21 +49,21 @@ const Footer = () => {
 
                         <div className="flex gap-3">
                             {/* LinkedIn */}
-                            <a href="https://www.linkedin.com/company/gem-sphere-ai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                            <LocalizedLink href="https://www.linkedin.com/company/gem-sphere-ai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                            </a>
+                            </LocalizedLink>
                             {/* X (Twitter) */}
-                            <a href="https://x.com/GemSphereAI" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                            <LocalizedLink href="https://x.com/GemSphereAI" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                            </a>
+                            </LocalizedLink>
                             {/* Facebook */}
-                            <a href="https://www.facebook.com/people/GemSphere-AI/61581897367281/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                            <LocalizedLink href="https://www.facebook.com/people/GemSphere-AI/61581897367281/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                            </a>
+                            </LocalizedLink>
                             {/* Instagram */}
-                            <a href="https://www.instagram.com/gemsphereai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                            <LocalizedLink href="https://www.instagram.com/gemsphereai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                            </a>
+                            </LocalizedLink>
                         </div>
                     </div>
 
@@ -72,9 +73,9 @@ const Footer = () => {
                         <ul className="space-y-4">
                             {PRODUCT_ECOSYSTEM.categories.slice(0, 5).map((cat, i) => (
                                 <li key={i}>
-                                    <a href={`/products#${cat.id}`} className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
+                                    <LocalizedLink href={`/products#${cat.id}`} className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
                                         {cat.name}
-                                    </a>
+                                    </LocalizedLink>
                                 </li>
                             ))}
                         </ul>
@@ -86,9 +87,9 @@ const Footer = () => {
                         <ul className="space-y-4">
                             {PRODUCT_ECOSYSTEM.industries.slice(0, 5).map((ind, i) => (
                                 <li key={i}>
-                                    <a href={`/industries/${ind.slug}`} className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
+                                    <LocalizedLink href={`/industries/${ind.slug}`} className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
                                         {ind.name}
-                                    </a>
+                                    </LocalizedLink>
                                 </li>
                             ))}
                         </ul>
@@ -98,11 +99,11 @@ const Footer = () => {
                     <div className="lg:col-span-1">
                         <h4 className="text-sm font-bold text-text-primary mb-6">Company</h4>
                         <ul className="space-y-4">
-                            <li><a href="/about" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">About Us</a></li>
-                            <li><a href="/careers" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Careers</a></li>
-                            <li><a href="/contact" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Contact</a></li>
-                            <li><a href="/blog" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Blog</a></li>
-                            <li><a href="/partners" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Partners</a></li>
+                            <li><LocalizedLink href="/about" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">About Us</LocalizedLink></li>
+                            <li><LocalizedLink href="/careers" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Careers</LocalizedLink></li>
+                            <li><LocalizedLink href="/contact" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Contact</LocalizedLink></li>
+                            <li><LocalizedLink href="/blog" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Blog</LocalizedLink></li>
+                            <li><LocalizedLink href="/partners" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Partners</LocalizedLink></li>
                         </ul>
                     </div>
 
@@ -116,11 +117,11 @@ const Footer = () => {
                             </li>
                             <li className="flex gap-3 items-center">
                                 <Mail size={18} className="text-brand-cyan shrink-0" />
-                                <a href="mailto:Contact@gemsphere.ai" className="hover:text-brand-cyan transition-colors">Contact@gemsphere.ai</a>
+                                <LocalizedLink href="mailto:Contact@gemsphere.ai" className="hover:text-brand-cyan transition-colors">Contact@gemsphere.ai</LocalizedLink>
                             </li>
                             <li className="flex gap-3 items-center">
                                 <Phone size={18} className="text-brand-cyan shrink-0" />
-                                <a href="tel:+917892585801" className="hover:text-brand-cyan transition-colors">+91 7892585801</a>
+                                <LocalizedLink href="tel:+917892585801" className="hover:text-brand-cyan transition-colors">+91 7892585801</LocalizedLink>
                             </li>
                             <li className="flex gap-3 items-center">
                                 <Building2 size={18} className="text-brand-cyan shrink-0" />
@@ -142,10 +143,10 @@ const Footer = () => {
                     </div>
                     
                     <div className="flex flex-wrap gap-4 md:gap-6 text-xs font-semibold text-text-tertiary">
-                        <a href="/privacy" className="hover:text-brand-cyan transition-colors">Privacy Policy</a>
-                        <a href="/cookie-policy" className="hover:text-brand-cyan transition-colors">Cookie Policy</a>
-                        <a href="/terms" className="hover:text-brand-cyan transition-colors">Terms of Service</a>
-                        <a href="/security" className="hover:text-brand-cyan transition-colors">Security</a>
+                        <LocalizedLink href="/privacy" className="hover:text-brand-cyan transition-colors">Privacy Policy</LocalizedLink>
+                        <LocalizedLink href="/cookie-policy" className="hover:text-brand-cyan transition-colors">Cookie Policy</LocalizedLink>
+                        <LocalizedLink href="/terms" className="hover:text-brand-cyan transition-colors">Terms of Service</LocalizedLink>
+                        <LocalizedLink href="/security" className="hover:text-brand-cyan transition-colors">Security</LocalizedLink>
                     </div>
                 </div>
                 

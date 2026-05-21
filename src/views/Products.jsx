@@ -20,7 +20,15 @@ import MagneticButton from '../components/MagneticButton';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
 
 const Products = () => {
-    const [activeTab, setActiveTab] = useState(PRODUCT_ECOSYSTEM.categories[0].id);
+    const [activeTab, setActiveTab] = useState(() => {
+        if (typeof window !== 'undefined' && window.location.hash) {
+            const hash = window.location.hash.replace('#', '');
+            if (PRODUCT_ECOSYSTEM.categories.find(c => c.id === hash)) {
+                return hash;
+            }
+        }
+        return PRODUCT_ECOSYSTEM.categories[0].id;
+    });
 
     // Handle deep linking via hash
     useEffect(() => {
@@ -28,7 +36,6 @@ const Products = () => {
         if (hash) {
             const id = hash.replace('#', '');
             if (PRODUCT_ECOSYSTEM.categories.find(c => c.id === id)) {
-                setActiveTab(id);
                 // Smooth scroll to tabs section
                 document.getElementById('ecosystem-tabs')?.scrollIntoView({ behavior: 'smooth' });
             }

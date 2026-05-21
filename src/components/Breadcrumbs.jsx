@@ -1,12 +1,13 @@
 "use client";
 
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 import { ChevronRight, Home } from 'lucide-react';
-import { generateBreadcrumbSchema } from './seo/SchemaMarkup';
+import { generateBreadcrumbSchema } from '../utils/schemaGenerators';
 
 export default function Breadcrumbs({ items }) {
   const schema = generateBreadcrumbSchema(
-    [{ name: 'Home', url: 'https://gemsphere.ai' }, ...items]
+    [{ name: 'Home', url: '/' }, ...items]
   );
 
   return (
@@ -18,9 +19,9 @@ export default function Breadcrumbs({ items }) {
       <nav aria-label="Breadcrumb" className="mb-8">
         <ol className="flex items-center space-x-2 text-sm text-text-muted">
           <li>
-            <a href="/" className="hover:text-brand-cyan transition-colors flex items-center">
+            <LocalizedLink href="/" className="hover:text-brand-cyan transition-colors flex items-center">
               <Home size={14} className="mr-1" /> Home
-            </a>
+            </LocalizedLink>
           </li>
           {items.map((item, index) => {
             const isLast = index === items.length - 1;
@@ -32,9 +33,9 @@ export default function Breadcrumbs({ items }) {
                     {item.name}
                   </span>
                 ) : (
-                  <a href={item.url} className="hover:text-brand-cyan transition-colors">
+                  <LocalizedLink href={item.url} className="hover:text-brand-cyan transition-colors">
                     {item.name}
-                  </a>
+                  </LocalizedLink>
                 )}
               </li>
             );

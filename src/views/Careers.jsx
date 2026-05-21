@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 
 import { Code2, Heart, Zap, Globe, ArrowRight, Laptop, Clock, Coffee } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
@@ -112,9 +113,9 @@ const Careers = () => {
 
                     <div className="mt-16 text-center">
                         <p className="text-text-secondary mb-6">Don't see a perfect fit? We're always looking for exceptional talent.</p>
-                        <a href="mailto:careers@gemsphere.ai" className="inline-flex items-center gap-2 text-brand-cyan font-bold hover:text-white transition-colors">
+                        <LocalizedLink href="mailto:careers@gemsphere.ai" className="inline-flex items-center gap-2 text-brand-cyan font-bold hover:text-white transition-colors">
                             Send us your resume <ArrowRight size={16} />
-                        </a>
+                        </LocalizedLink>
                     </div>
                 </div>
             </section>

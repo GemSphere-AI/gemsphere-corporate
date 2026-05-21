@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 import { useParams, redirect } from 'next/navigation';
 
 import { SILO_DATA } from '../data/siloData';
@@ -124,9 +125,9 @@ const DetailPage = ({ type }) => {
                             <p className="text-sm text-white/50 mb-6 font-medium">
                                 Ready to scale? Our solution architects are available for a detailed technical consultation.
                             </p>
-                            <a href="mailto:solutions@gemsphere.ai" className="text-brand-cyan font-black hover:underline flex items-center gap-2">
+                            <LocalizedLink href="mailto:solutions@gemsphere.ai" className="text-brand-cyan font-black hover:underline flex items-center gap-2">
                                 solutions@gemsphere.ai <ArrowRight size={14} />
-                            </a>
+                            </LocalizedLink>
                         </div>
                     </div>
                 </div>

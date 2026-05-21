@@ -52,8 +52,7 @@ const WorldMap = ({ className = '' }) => {
     // Generate curved path between two hubs
     const arcPath = (from, to) => {
         const dx = to.cx - from.cx;
-        const dy = to.cy - from.cy;
-        const mx = (from.cx + to.cx) / 2;
+                const mx = (from.cx + to.cx) / 2;
         const my = (from.cy + to.cy) / 2 - Math.abs(dx) * 0.18;
         return `M${from.cx},${from.cy} Q${mx},${my} ${to.cx},${to.cy}`;
     };

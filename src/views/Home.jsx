@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -9,14 +9,13 @@
 "use client";
 
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 
 import { motion } from 'framer-motion';
 import { 
     ArrowRight, Globe2, Layers, Bot, Shield, 
     Network, Server, Sparkles, Code2, LineChart, Brain
 } from 'lucide-react';
-import { getAbsoluteUrl } from '@GemSphere-AI/ui-kit';
-
 import NeuralBackground from '../components/NeuralBackground';
 import AnimatedCounter from '../components/AnimatedCounter';
 import MagneticButton from '../components/MagneticButton';
@@ -55,7 +54,7 @@ const Home = () => {
                         </ScrollReveal>
                         
                         <ScrollReveal direction="up" delay={0.2} stagger staggerDelay={0.05}>
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-display tracking-tight leading-[1.1] mb-8">
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-display tracking-tight leading-[1.1] mb-8 text-text-primary">
                                 Engineering Intelligent <br />
                                 <span className="text-gradient-animated">Digital Enterprises.</span>
                             </h1>
@@ -218,9 +217,9 @@ const Home = () => {
                             </div>
                             
                             <ScrollReveal direction="up" delay={0.4} className="mt-12">
-                                <a href="/ai-solutions" className="btn-secondary">
+                                <LocalizedLink href="/ai-solutions" className="btn-secondary">
                                     Explore AI Capabilities
-                                </a>
+                                </LocalizedLink>
                             </ScrollReveal>
                         </div>
                         
@@ -299,15 +298,15 @@ const Home = () => {
                             title="Industry Expertise."
                             subtitle="Pre-configured ecosystems tailored for the unique challenges of your vertical."
                         />
-                        <a href="/industries" className="btn-ghost shrink-0 mb-2">
+                        <LocalizedLink href="/industries" className="btn-ghost shrink-0 mb-2">
                             View All Industries <ArrowRight size={16} />
-                        </a>
+                        </LocalizedLink>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {PRODUCT_ECOSYSTEM.industries.map((ind, i) => (
                             <ScrollReveal key={i} direction="up" delay={i * 0.1}>
-                                <a 
+                                <LocalizedLink 
                                     href={`/industries/${ind.slug}`}
                                     className="group block glass-card p-8 rounded-2xl hover:border-brand-cyan/30 transition-all duration-300"
                                 >
@@ -323,7 +322,7 @@ const Home = () => {
                                     <div className="text-sm font-semibold text-text-tertiary flex items-center gap-2 group-hover:text-text-primary transition-colors">
                                         Explore Solution <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                     </div>
-                                </a>
+                                </LocalizedLink>
                             </ScrollReveal>
                         ))}
                     </div>

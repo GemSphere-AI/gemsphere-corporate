@@ -28,9 +28,7 @@ const MagneticButton = ({ children, className = '', onClick, href, as = 'button'
     };
 
     const Tag = href ? 'a' : as;
-    const isMotionTag = Tag === 'button' || Tag === 'a';
-
-    const MotionTag = Tag === 'a' ? motion.a : motion.button;
+        const MotionTag = Tag === 'a' ? motion.a : motion.button;
 
     return (
         <MotionTag

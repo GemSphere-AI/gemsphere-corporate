@@ -9,6 +9,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 import { Menu, X, Rocket, ChevronDown, ChevronRight, Sun, Moon } from 'lucide-react';
 import { getAbsoluteUrl } from '@GemSphere-AI/ui-kit';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -68,14 +69,14 @@ const Header = () => {
             >
                 <div className="container mx-auto px-6 h-full flex justify-between items-center max-w-7xl">
                     {/* Logo */}
-                    <a href="/" className="flex items-center gap-3 group z-[70]">
+                    <LocalizedLink href="/" className="flex items-center gap-3 group z-[70]">
                         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-indigo flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-300">
                             <Rocket className="text-pure-white fill-current" size={20} />
                         </div>
                         <span className="text-2xl font-black font-display tracking-tight text-text-primary group-hover:text-brand-cyan transition-colors">
                             GemSphere
                         </span>
-                    </a>
+                    </LocalizedLink>
 
                     {/* Desktop Nav */}
                     <div className="hidden lg:flex items-center h-full">
@@ -90,13 +91,13 @@ const Header = () => {
                             </button>
                             
                             {navLinks.map((link) => (
-                                <a 
+                                <LocalizedLink 
                                     key={link.name} 
                                     href={link.href} 
                                     className="flex items-center h-full px-4 text-sm font-semibold text-text-secondary hover:text-text-primary transition-colors"
                                 >
                                     {link.name}
-                                </a>
+                                </LocalizedLink>
                             ))}
                         </nav>
                         
@@ -110,15 +111,15 @@ const Header = () => {
                                 {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
                             </button>
 
-                            <a 
+                            <LocalizedLink 
                                 href="/login" 
                                 className="text-sm font-semibold text-text-secondary hover:text-brand-cyan transition-colors px-2 py-2"
                             >
                                 Sign In
-                            </a>
-                            <a href="/contact" className="btn-primary py-2 px-5 ml-2">
+                            </LocalizedLink>
+                            <LocalizedLink href="/contact" className="btn-primary py-2 px-5 ml-2">
                                 Talk to Sales
-                            </a>
+                            </LocalizedLink>
                         </div>
                     </div>
 
@@ -156,25 +157,25 @@ const Header = () => {
                         className="fixed inset-0 z-50 bg-brand-dark pt-[100px] px-6 pb-6 flex flex-col overflow-y-auto lg:hidden"
                     >
                         <nav className="flex flex-col gap-2 mb-8">
-                            <a href="/products" className="py-4 text-2xl font-bold text-text-primary border-b border-brand-border flex justify-between items-center">
+                            <LocalizedLink href="/products" className="py-4 text-2xl font-bold text-text-primary border-b border-brand-border flex justify-between items-center">
                                 Platform <ChevronRight size={20} className="text-brand-cyan" />
-                            </a>
+                            </LocalizedLink>
                             {navLinks.map((link) => (
-                                <a key={link.name} href={link.href} className="py-4 text-2xl font-bold text-text-primary border-b border-brand-border flex justify-between items-center">
+                                <LocalizedLink key={link.name} href={link.href} className="py-4 text-2xl font-bold text-text-primary border-b border-brand-border flex justify-between items-center">
                                     {link.name} <ChevronRight size={20} className="text-brand-cyan opacity-0" />
-                                </a>
+                                </LocalizedLink>
                             ))}
                         </nav>
                         <div className="flex flex-col gap-4 mt-auto">
                             <div className="flex justify-center mb-4">
                                 <LanguageSwitcher />
                             </div>
-                            <a href="/login" className="w-full py-4 text-center border border-brand-border text-text-primary font-bold rounded-xl">
+                            <LocalizedLink href="/login" className="w-full py-4 text-center border border-brand-border text-text-primary font-bold rounded-xl">
                                 Sign In
-                            </a>
-                            <a href="/contact" className="w-full py-4 text-center bg-brand-cyan text-[#0f172a] font-black rounded-xl">
+                            </LocalizedLink>
+                            <LocalizedLink href="/contact" className="w-full py-4 text-center bg-brand-cyan text-[#0f172a] font-black rounded-xl">
                                 Talk to Sales
-                            </a>
+                            </LocalizedLink>
                         </div>
                     </motion.div>
                 )}

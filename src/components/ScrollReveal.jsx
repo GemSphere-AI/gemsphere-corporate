@@ -42,7 +42,7 @@ const ScrollReveal = ({
                 transition={{ staggerChildren: staggerDelay, delayChildren: delay }}
                 className={className}
             >
-                {React.Children.map(children, (child, i) => (
+                {React.Children.map(children, (child) => (
                     <motion.div
                         variants={variants}
                         transition={{

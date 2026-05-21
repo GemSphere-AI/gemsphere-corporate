@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 
 import { BLOG_POSTS } from '../data/blogData';
 import { ArrowRight, Calendar, Bookmark } from 'lucide-react';
@@ -26,7 +27,7 @@ const BlogList = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {BLOG_POSTS.map((post) => (
-                    <a 
+                    <LocalizedLink 
                         key={post.id} 
                         href={`/blog/${post.id}`}
                         className="glass-card flex flex-col group hover:-translate-y-2 transition-all overflow-hidden"
@@ -49,7 +50,7 @@ const BlogList = () => {
                             <span className="text-xs font-black uppercase text-white/60">Read Full Article</span>
                             <ArrowRight size={16} className="text-brand-cyan group-hover:translate-x-1 transition-transform" />
                         </div>
-                    </a>
+                    </LocalizedLink>
                 ))}
             </div>
         </div>

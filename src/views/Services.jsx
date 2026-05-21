@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 
 import { Code2, Cloud, Terminal, Shield, ArrowRight, Server, Zap, CheckCircle2 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
@@ -43,9 +44,9 @@ const Services = () => {
                                     <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-brand-cyan transition-colors">{service.name}</h3>
                                     <p className="text-text-secondary mb-8 flex-grow">{service.desc}</p>
                                     <div className="pt-6 border-t border-white/5">
-                                        <a href={`/services/${service.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-brand-cyan hover:text-white transition-colors">
+                                        <LocalizedLink href={`/services/${service.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-brand-cyan hover:text-white transition-colors">
                                             Learn More <ArrowRight size={16} />
-                                        </a>
+                                        </LocalizedLink>
                                     </div>
                                 </div>
                             </ScrollReveal>

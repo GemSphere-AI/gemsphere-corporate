@@ -8,6 +8,7 @@
  */
 "use client";
 import React, { useState } from 'react';
+import LocalizedLink from '../components/LocalizedLink';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ArrowRight, Zap, Shield, Globe } from 'lucide-react';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
@@ -109,7 +110,7 @@ const MegaMenu = ({ isOpen, onClose }) => {
                                                 {category.modules.map((mod, idx) => {
                                                     const ModIcon = mod.icon;
                                                     return (
-                                                        <a 
+                                                        <LocalizedLink 
                                                             key={idx} 
                                                             href={`/products#${activeCategory}`}
                                                             className="group flex gap-4 p-3 -m-3 rounded-xl transition-colors"
@@ -127,7 +128,7 @@ const MegaMenu = ({ isOpen, onClose }) => {
                                                                     {mod.desc}
                                                                 </div>
                                                             </div>
-                                                        </a>
+                                                        </LocalizedLink>
                                                     );
                                                 })}
                                             </div>
@@ -138,9 +139,9 @@ const MegaMenu = ({ isOpen, onClose }) => {
                                                     <span className="flex items-center gap-2"><Shield size={14} className="text-brand-indigo"/> SOC2 & GDPR Compliant</span>
                                                     <span className="flex items-center gap-2"><Globe size={14} className="text-brand-violet"/> Multi-Region</span>
                                                 </div>
-                                                <a href="/products" onClick={onClose} className="text-sm font-bold text-brand-cyan hover:text-text-primary flex items-center gap-2 transition-colors">
+                                                <LocalizedLink href="/products" onClick={onClose} className="text-sm font-bold text-brand-cyan hover:text-text-primary flex items-center gap-2 transition-colors">
                                                     Explore All Modules <ArrowRight size={16} />
-                                                </a>
+                                                </LocalizedLink>
                                             </div>
                                         </motion.div>
                                     </AnimatePresence>
