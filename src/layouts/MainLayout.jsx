@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -8,11 +8,9 @@
  */
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { ThemeProvider, CssBaseline } from '@mui/material';
+import { ThemeProvider, CssBaseline, Button } from '@mui/material';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
-import { LightGlassmorphicTheme } from '@GemSphere-AI/ui-kit';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { LightGlassmorphicTheme, PlatformHeader, PlatformFooter } from '@GemSphere-AI/ui-kit';
 import TrustBadges from '../components/TrustBadges';
 
 
@@ -51,6 +49,23 @@ const MainLayout = ({ children }) => {
         window.scrollTo(0, 0);
     }, [pathname]);
 
+    // Construct Nav Items for the shared PlatformHeader
+    const navItems = (
+        <>
+            <Button component="a" href="/solutions" sx={{ color: 'text.secondary', fontWeight: 600 }}>Solutions</Button>
+            <Button component="a" href="/services" sx={{ color: 'text.secondary', fontWeight: 600 }}>Services</Button>
+            <Button component="a" href="/industries" sx={{ color: 'text.secondary', fontWeight: 600 }}>Industries</Button>
+            <Button component="a" href="/about" sx={{ color: 'text.secondary', fontWeight: 600 }}>Company</Button>
+        </>
+    );
+
+    const actionItems = (
+        <>
+            <Button component="a" href="/login" sx={{ color: 'text.secondary', fontWeight: 700 }}>Sign In</Button>
+            <Button component="a" href="/contact" variant="contained" sx={{ borderRadius: '10px', fontWeight: 800, ml: 1 }}>Talk to Sales</Button>
+        </>
+    );
+
     return (
         <ThemeProvider theme={LightGlassmorphicTheme}>
             <CssBaseline />
@@ -76,7 +91,11 @@ const MainLayout = ({ children }) => {
             />
 
             <div className="flex flex-col min-h-screen relative overflow-hidden bg-transparent">
-                <Header />
+                <PlatformHeader 
+                    tenantName="GemSphere" 
+                    navItems={navItems}
+                    actionItems={actionItems}
+                />
 
                 {/* Page Transitions Wrapper */}
                 <main className="flex-grow relative z-10 pt-[100px]">
@@ -94,7 +113,7 @@ const MainLayout = ({ children }) => {
                 </main>
 
                 <TrustBadges />
-                <Footer />
+                <PlatformFooter tenantName="GemSphere" />
             </div>
         </ThemeProvider>
     );

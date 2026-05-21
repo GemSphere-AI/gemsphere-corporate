@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -7,7 +7,7 @@
  * file, via any medium, is strictly prohibited.
  */
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import MainLayout from './layouts/MainLayout';
 import './i18n';
@@ -40,6 +40,13 @@ import GlobalLanding from './views/GlobalLanding';
 import PrivacyPolicy from './views/PrivacyPolicy';
 import CookiePolicy from './views/CookiePolicy';
 
+const ExternalRedirect = ({ to }) => {
+  React.useEffect(() => {
+    window.location.href = to;
+  }, [to]);
+  return null;
+};
+
 function App() {
   return (
     <React.Fragment>
@@ -47,6 +54,10 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
+            
+            {/* Redirect any locale prefixed login to root login */}
+            <Route path=":lang/login" element={<ExternalRedirect to="/login" />} />
+            <Route path=":lang/register" element={<ExternalRedirect to="/register" />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="careers" element={<Careers />} />

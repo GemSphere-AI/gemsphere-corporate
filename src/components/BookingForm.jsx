@@ -355,9 +355,9 @@ const BookingForm = ({ countryContext = '' }) => {
                                 onFocus={() => setFocusedField('companySize')} onBlur={() => setFocusedField(null)}
                                 className={selectClasses}
                             >
-                                <option value="" disabled className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">Select size...</option>
+                                <option value="" disabled>Select size...</option>
                                 {COMPANY_SIZES.map(s => (
-                                    <option key={s.value} value={s.value} className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">{s.label}</option>
+                                    <option key={s.value} value={s.value}>{s.label}</option>
                                 ))}
                             </select>
                             <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#94a3b8] dark:text-[#64748b] pointer-events-none" />
@@ -377,14 +377,14 @@ const BookingForm = ({ countryContext = '' }) => {
                                 onFocus={() => setFocusedField('region')} onBlur={() => setFocusedField(null)}
                                 className={selectClasses}
                             >
-                                <option value="US" className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">USA & Canada</option>
-                                <option value="UK" className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">UK & Europe</option>
-                                <option value="UAE" className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">UAE & Middle East</option>
-                                <option value="IN" className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">India & South Asia</option>
-                                <option value="APAC" className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">Asia Pacific</option>
-                                <option value="LATAM" className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">Latin America</option>
-                                <option value="AF" className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">Africa</option>
-                                <option value="Global" className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">Other / Global</option>
+                                <option value="US">USA & Canada</option>
+                                <option value="UK">UK & Europe</option>
+                                <option value="UAE">UAE & Middle East</option>
+                                <option value="IN">India & South Asia</option>
+                                <option value="APAC">Asia Pacific</option>
+                                <option value="LATAM">Latin America</option>
+                                <option value="AF">Africa</option>
+                                <option value="Global">Other / Global</option>
                             </select>
                             <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#94a3b8] dark:text-[#64748b] pointer-events-none" />
                         </div>
@@ -399,9 +399,9 @@ const BookingForm = ({ countryContext = '' }) => {
                                 onFocus={() => setFocusedField('budget')} onBlur={() => setFocusedField(null)}
                                 className={selectClasses}
                             >
-                                <option value="" className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">Prefer not to say</option>
+                                <option value="">Prefer not to say</option>
                                 {BUDGET_RANGES.map(b => (
-                                    <option key={b.value} value={b.value} className="bg-white dark:bg-[#0f172a] text-[#0f172a] dark:text-[#f8fafc]">{b.label}</option>
+                                    <option key={b.value} value={b.value}>{b.label}</option>
                                 ))}
                             </select>
                             <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#94a3b8] dark:text-[#64748b] pointer-events-none" />
