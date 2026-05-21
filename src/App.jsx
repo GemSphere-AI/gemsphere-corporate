@@ -1,40 +1,48 @@
+﻿/*
+ * Copyright (c) 2026 GemSphere Technologies Private Limited.
+ * All rights reserved.
+ *
+ * This source code is proprietary and confidential.
+ * Unauthorized copying, modification, distribution, or use of this
+ * file, via any medium, is strictly prohibited.
+ */
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+
 import MainLayout from './layouts/MainLayout';
 import './i18n';
 
 // Core Pages
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Careers from './pages/Careers';
+import Home from './views/Home';
+import About from './views/About';
+import Contact from './views/Contact';
+import Careers from './views/Careers';
 
 // Products & Solutions
-import Products from './pages/Products';
-import Solutions from './pages/Solutions';
-import AISolutions from './pages/AISolutions';
-import Services from './pages/Services';
-import Industries from './pages/Industries';
+import Products from './views/Products';
+import Solutions from './views/Solutions';
+import AISolutions from './views/AISolutions';
+import Services from './views/Services';
+import Industries from './views/Industries';
 
 // Dynamic Content Pages
-import DetailPage from './pages/DetailPage';
+import DetailPage from './views/DetailPage';
 
 // Blog Engine
-import BlogList from './pages/BlogList';
-import BlogPost from './pages/BlogPost';
+import BlogList from './views/BlogList';
+import BlogPost from './views/BlogPost';
 
 // Regional Landings
-import RegionalLanding from './pages/RegionalLanding';
-import GlobalLanding from './pages/GlobalLanding';
+import RegionalLanding from './views/RegionalLanding';
+import GlobalLanding from './views/GlobalLanding';
 
 // Legal Pages
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import CookiePolicy from './pages/CookiePolicy';
+import PrivacyPolicy from './views/PrivacyPolicy';
+import CookiePolicy from './views/CookiePolicy';
 
 function App() {
   return (
-    <HelmetProvider>
+    <React.Fragment>
       <Router basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<MainLayout />}>
@@ -72,7 +80,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
-    </HelmetProvider>
+    </React.Fragment>
   );
 }
 

@@ -1,13 +1,23 @@
+﻿/*
+ * Copyright (c) 2026 GemSphere Technologies Private Limited.
+ * All rights reserved.
+ *
+ * This source code is proprietary and confidential.
+ * Unauthorized copying, modification, distribution, or use of this
+ * file, via any medium, is strictly prohibited.
+ */
 import React, { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { LightGlassmorphicTheme } from '@GemSphere-AI/ui-kit';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import TrustBadges from '../components/TrustBadges';
 
-const MainLayout = () => {
-    const location = useLocation();
+
+const MainLayout = ({ children }) => {
+    const pathname = usePathname();
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
         stiffness: 100,
@@ -16,6 +26,7 @@ const MainLayout = () => {
     });
 
     const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
+    const [isDark, setIsDark] = useState(false);
     
     // Custom cursor glow follower
     useEffect(() => {
@@ -26,55 +37,63 @@ const MainLayout = () => {
         return () => window.removeEventListener('mousemove', updateCursor);
     }, []);
 
+    // Theme detection for cursor glow
+    useEffect(() => {
+        const check = () => setIsDark(document.documentElement.classList.contains('dark'));
+        check();
+        const obs = new MutationObserver(check);
+        obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+        return () => obs.disconnect();
+    }, []);
+
     // Scroll to top on route change
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [location.pathname]);
+    }, [pathname]);
 
     return (
         <ThemeProvider theme={LightGlassmorphicTheme}>
             <CssBaseline />
             
-            {/* Custom Cursor Glow (only visible on desktop) */}
+            {/* Ambient Background Base */}
+            <div className="fixed inset-0 bg-brand-light dark:bg-[#06080F] transition-colors duration-500 -z-50" />
+
+            {/* Dynamic Cursor Glow (only visible on dark mode) */}
             <div 
-                className="pointer-events-none fixed inset-0 z-50 mix-blend-screen hidden lg:block"
+                className="fixed w-[600px] h-[600px] rounded-full pointer-events-none transition-opacity duration-500 blur-[120px] -z-40 mix-blend-screen"
                 style={{
-                    background: `radial-gradient(600px circle at ${cursorPos.x}px ${cursorPos.y}px, rgba(0,212,255,0.06), transparent 40%)`
+                    background: 'radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, rgba(99, 102, 241, 0.05) 40%, transparent 70%)',
+                    left: cursorPos.x - 300,
+                    top: cursorPos.y - 300,
+                    opacity: isDark ? 1 : 0
                 }}
             />
 
-            {/* Top Progress Bar */}
+            {/* Global Top Progress Bar */}
             <motion.div
-                className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-cyan to-brand-indigo z-[100] origin-left"
+                className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-cyan via-brand-indigo to-brand-magenta transform-origin-0 z-[100]"
                 style={{ scaleX }}
             />
 
-            <div className="flex flex-col min-h-screen relative overflow-hidden bg-brand-dark">
-                
-                {/* Global Background Ambient Layers */}
-                <div className="fixed inset-0 pointer-events-none z-0">
-                    <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-brand-indigo/10 rounded-full blur-[150px] animate-pulse-glow" />
-                    <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-brand-cyan/5 rounded-full blur-[150px]" />
-                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03]" />
-                </div>
-
+            <div className="flex flex-col min-h-screen relative overflow-hidden bg-transparent">
                 <Header />
 
                 {/* Page Transitions Wrapper */}
                 <main className="flex-grow relative z-10 pt-[100px]">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={location.pathname}
+                            key={pathname}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                         >
-                            <Outlet />
+                            {children}
                         </motion.div>
                     </AnimatePresence>
                 </main>
 
+                <TrustBadges />
                 <Footer />
             </div>
         </ThemeProvider>

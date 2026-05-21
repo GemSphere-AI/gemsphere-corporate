@@ -1,3 +1,11 @@
+﻿/*
+ * Copyright (c) 2026 GemSphere Technologies Private Limited.
+ * All rights reserved.
+ *
+ * This source code is proprietary and confidential.
+ * Unauthorized copying, modification, distribution, or use of this
+ * file, via any medium, is strictly prohibited.
+ */
 import {
     ShoppingCart, Package, ClipboardList, Warehouse, BarChart3, Tag, Gift, Heart,
     Truck, Building, Ship, Users, FileSearch, TrendingUp, PackageCheck, MapPin,
@@ -115,42 +123,17 @@ export const PRODUCT_ECOSYSTEM = {
     stats: {
         totalModules: '40+',
         tagline: '40+ Enterprise Modules. One Unified Digital Ecosystem.',
-        description: 'A modular, composable platform architecture where every module works independently and integrates seamlessly — giving enterprises the freedom to adopt at their own pace.',
+        description: 'A modular, composable platform architecture where every module works independently and integrates seamlessly Ã¢â‚¬â€ giving enterprises the freedom to adopt at their own pace.',
     },
 
-    testimonials: [
-        {
-            quote: "GemSphere's unified platform eliminated our need for 12 separate vendors. The integration depth is unmatched.",
-            name: "Sarah Chen",
-            role: "CTO",
-            company: "TechVenture Holdings"
-        },
-        {
-            quote: "We deployed the Commerce and Supply Chain modules across 15 countries in under 6 months. The scalability is extraordinary.",
-            name: "Michael Okoye",
-            role: "VP Engineering",
-            company: "GlobalRetail Inc."
-        },
-        {
-            quote: "The AI Platform module transformed our customer support with a 40% reduction in resolution time. Enterprise AI done right.",
-            name: "Priya Sharma",
-            role: "Director of Innovation",
-            company: "FinServ Partners"
-        },
-        {
-            quote: "What impressed us most was the modularity — we started with CRM and billing, and expanded to the full suite within a year.",
-            name: "James Richardson",
-            role: "COO",
-            company: "NexGen Solutions"
-        }
-    ],
+    testimonials: [],
 
     industries: [
-        { name: 'Retail & Commerce', icon: ShoppingCart, slug: 'retail', stat: '500+ Stores' },
+        { name: 'Retail & Commerce', icon: ShoppingCart, slug: 'retail', stat: 'Omnichannel' },
         { name: 'Healthcare', icon: Heart, slug: 'healthcare', stat: 'HIPAA Compliant' },
-        { name: 'FinTech', icon: CreditCard, slug: 'fintech', stat: '$4.2B+ Processed' },
-        { name: 'Logistics', icon: Truck, slug: 'logistics', stat: '170+ Countries' },
-        { name: 'Hospitality', icon: Building, slug: 'hospitality', stat: '50+ Chains' },
+        { name: 'FinTech', icon: CreditCard, slug: 'fintech', stat: 'PCI DSS Ready' },
+        { name: 'Logistics', icon: Truck, slug: 'logistics', stat: 'Multi-Region' },
+        { name: 'Hospitality', icon: Building, slug: 'hospitality', stat: 'Multi-Property' },
         { name: 'Manufacturing', icon: Settings, slug: 'manufacturing', stat: 'Industry 4.0' },
     ],
 

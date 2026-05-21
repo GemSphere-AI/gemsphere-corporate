@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2026 GemSphere Technologies Private Limited.
+ * All rights reserved.
+ *
+ * This source code is proprietary and confidential.
+ * Unauthorized copying, modification, distribution, or use of this
+ * file, via any medium, is strictly prohibited.
+ */
+"use client";
 import React from 'react';
 import { Rocket, MapPin, Mail, Phone, ShieldCheck, Award, Building2 } from 'lucide-react';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
@@ -125,10 +134,10 @@ const Footer = () => {
                 <div className="pt-8 border-t border-brand-border flex flex-col md:flex-row justify-between items-center gap-6">
                     <div className="flex gap-6 items-center">
                         <div className="flex items-center gap-2 text-xs font-bold text-text-tertiary">
-                            <ShieldCheck size={16} /> SOC2 Type II Certified
+                            <ShieldCheck size={16} /> GDPR Aligned
                         </div>
                         <div className="flex items-center gap-2 text-xs font-bold text-text-tertiary">
-                            <Award size={16} /> ISO 27001
+                            <Award size={16} /> Encrypted Storage
                         </div>
                     </div>
                     
@@ -141,7 +150,7 @@ const Footer = () => {
                 </div>
                 
                 <div className="mt-8 text-center text-xs text-text-muted">
-                    © {new Date().getFullYear()} GemSphere Technologies Private Limited. All rights reserved.
+                    &copy; 2026 GemSphere Technologies Private Limited. All rights reserved.
                 </div>
             </div>
         </footer>

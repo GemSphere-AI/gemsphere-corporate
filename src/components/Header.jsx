@@ -1,3 +1,13 @@
+﻿/*
+ * Copyright (c) 2026 GemSphere Technologies Private Limited.
+ * All rights reserved.
+ *
+ * This source code is proprietary and confidential.
+ * Unauthorized copying, modification, distribution, or use of this
+ * file, via any medium, is strictly prohibited.
+ */
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Rocket, ChevronDown, ChevronRight, Sun, Moon } from 'lucide-react';
 import { getAbsoluteUrl } from '@GemSphere-AI/ui-kit';
@@ -41,10 +51,10 @@ const Header = () => {
     };
 
     const navLinks = [
-        { name: 'Solutions', href: getAbsoluteUrl('/solutions') },
-        { name: 'Services', href: getAbsoluteUrl('/services') },
-        { name: 'Industries', href: getAbsoluteUrl('/industries') },
-        { name: 'Company', href: getAbsoluteUrl('/about') },
+        { name: 'Solutions', href: '/solutions' },
+        { name: 'Services', href: '/services' },
+        { name: 'Industries', href: '/industries' },
+        { name: 'Company', href: '/about' },
     ];
 
     return (
@@ -58,7 +68,7 @@ const Header = () => {
             >
                 <div className="container mx-auto px-6 h-full flex justify-between items-center max-w-7xl">
                     {/* Logo */}
-                    <a href={getAbsoluteUrl('/')} className="flex items-center gap-3 group z-[70]">
+                    <a href="/" className="flex items-center gap-3 group z-[70]">
                         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-indigo flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-300">
                             <Rocket className="text-pure-white fill-current" size={20} />
                         </div>
@@ -101,12 +111,12 @@ const Header = () => {
                             </button>
 
                             <a 
-                                href={getAbsoluteUrl('/login')} 
+                                href="/login" 
                                 className="text-sm font-semibold text-text-secondary hover:text-brand-cyan transition-colors px-2 py-2"
                             >
                                 Sign In
                             </a>
-                            <a href={getAbsoluteUrl('/contact')} className="btn-primary py-2 px-5 ml-2">
+                            <a href="/contact" className="btn-primary py-2 px-5 ml-2">
                                 Talk to Sales
                             </a>
                         </div>
@@ -159,10 +169,10 @@ const Header = () => {
                             <div className="flex justify-center mb-4">
                                 <LanguageSwitcher />
                             </div>
-                            <a href={getAbsoluteUrl('/login')} className="w-full py-4 text-center border border-brand-border text-text-primary font-bold rounded-xl">
+                            <a href="/login" className="w-full py-4 text-center border border-brand-border text-text-primary font-bold rounded-xl">
                                 Sign In
                             </a>
-                            <a href={getAbsoluteUrl('/contact')} className="w-full py-4 text-center bg-brand-cyan text-[#0f172a] font-black rounded-xl">
+                            <a href="/contact" className="w-full py-4 text-center bg-brand-cyan text-[#0f172a] font-black rounded-xl">
                                 Talk to Sales
                             </a>
                         </div>

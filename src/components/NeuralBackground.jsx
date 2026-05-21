@@ -1,5 +1,20 @@
-import React, { useRef, useEffect, useState } from 'react';
+﻿/*
+ * Copyright (c) 2026 GemSphere Technologies Private Limited.
+ * All rights reserved.
+ *
+ * This source code is proprietary and confidential.
+ * Unauthorized copying, modification, distribution, or use of this
+ * file, via any medium, is strictly prohibited.
+ */
+"use client";
 
+import React, { useRef, useEffect } from 'react';
+
+/**
+ * NeuralBackground Ã¢â‚¬â€ Theme-aware particle canvas with mouse-reactive connections.
+ * Dark mode: cyan particles on dark space.
+ * Light mode: indigo/violet particles on light gradient mesh.
+ */
 const NeuralBackground = ({ className = '', particleCount = 80, connectionDistance = 120, mouseInfluence = 150 }) => {
     const canvasRef = useRef(null);
     const animationRef = useRef(null);
@@ -12,6 +27,9 @@ const NeuralBackground = ({ className = '', particleCount = 80, connectionDistan
         const ctx = canvas.getContext('2d');
         
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Theme detection
+        const getIsDark = () => document.documentElement.classList.contains('dark');
 
         const resize = () => {
             const dpr = window.devicePixelRatio || 1;
@@ -52,8 +70,20 @@ const NeuralBackground = ({ className = '', particleCount = 80, connectionDistan
             const h = r.height;
             ctx.clearRect(0, 0, w, h);
 
+            const isDark = getIsDark();
             const particles = particlesRef.current;
             const mouse = mouseRef.current;
+
+            // Ã¢â€â‚¬Ã¢â€â‚¬ Theme-aware colors Ã¢â€â‚¬Ã¢â€â‚¬
+            // Dark: cyan particles | Light: indigo/violet particles
+            const particleR = isDark ? 0 : 99;
+            const particleG = isDark ? 212 : 102;
+            const particleB = isDark ? 255 : 241;
+
+            // Mouse proximity highlight colors
+            const mouseHighlightR = isDark ? 0 : 139;
+            const mouseHighlightG = isDark ? 212 : 92;
+            const mouseHighlightB = isDark ? 255 : 246;
 
             // Update & draw particles
             for (let i = 0; i < particles.length; i++) {
@@ -63,7 +93,7 @@ const NeuralBackground = ({ className = '', particleCount = 80, connectionDistan
                     p.x += p.vx;
                     p.y += p.vy;
 
-                    // Mouse influence
+                    // Mouse influence Ã¢â‚¬â€ works in BOTH themes
                     const mdx = mouse.x - p.x;
                     const mdy = mouse.y - p.y;
                     const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
@@ -84,10 +114,30 @@ const NeuralBackground = ({ className = '', particleCount = 80, connectionDistan
                     if (p.y > h) p.y = 0;
                 }
 
+                // Enhanced opacity near mouse
+                let drawOpacity = p.opacity;
+                const mdx2 = mouse.x - p.x;
+                const mdy2 = mouse.y - p.y;
+                const mDist2 = Math.sqrt(mdx2 * mdx2 + mdy2 * mdy2);
+                const isNearMouse = mDist2 < mouseInfluence * 1.5;
+                
+                if (isNearMouse) {
+                    drawOpacity = Math.min(1, p.opacity + (1 - mDist2 / (mouseInfluence * 1.5)) * 0.6);
+                }
+
+                // Light mode gets higher base opacity for visibility
+                const baseOpacityMultiplier = isDark ? 1 : 1.8;
+                const finalOpacity = Math.min(1, drawOpacity * baseOpacityMultiplier);
+
                 // Draw particle
                 ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 212, 255, ${p.opacity})`;
+                ctx.arc(p.x, p.y, isNearMouse ? p.radius * 1.5 : p.radius, 0, Math.PI * 2);
+
+                if (isNearMouse) {
+                    ctx.fillStyle = `rgba(${mouseHighlightR}, ${mouseHighlightG}, ${mouseHighlightB}, ${finalOpacity})`;
+                } else {
+                    ctx.fillStyle = `rgba(${particleR}, ${particleG}, ${particleB}, ${finalOpacity})`;
+                }
                 ctx.fill();
 
                 // Draw connections
@@ -98,12 +148,33 @@ const NeuralBackground = ({ className = '', particleCount = 80, connectionDistan
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < connectionDistance) {
-                        const alpha = (1 - dist / connectionDistance) * 0.15;
+                        // Enhance connections near mouse
+                        let connectionAlpha = (1 - dist / connectionDistance) * 0.15;
+                        
+                        const midX = (p.x + p2.x) / 2;
+                        const midY = (p.y + p2.y) / 2;
+                        const midDx = mouse.x - midX;
+                        const midDy = mouse.y - midY;
+                        const midDist = Math.sqrt(midDx * midDx + midDy * midDy);
+                        
+                        if (midDist < mouseInfluence * 1.5) {
+                            connectionAlpha = (1 - dist / connectionDistance) * 0.4;
+                        }
+
+                        // Light mode gets higher connection opacity
+                        connectionAlpha *= isDark ? 1 : 2.2;
+
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`;
-                        ctx.lineWidth = 0.5;
+                        
+                        if (midDist < mouseInfluence) {
+                            ctx.strokeStyle = `rgba(${mouseHighlightR}, ${mouseHighlightG}, ${mouseHighlightB}, ${connectionAlpha})`;
+                            ctx.lineWidth = 0.8;
+                        } else {
+                            ctx.strokeStyle = `rgba(${particleR}, ${particleG}, ${particleB}, ${connectionAlpha})`;
+                            ctx.lineWidth = 0.5;
+                        }
                         ctx.stroke();
                     }
                 }
@@ -126,7 +197,7 @@ const NeuralBackground = ({ className = '', particleCount = 80, connectionDistan
         <canvas
             ref={canvasRef}
             className={`absolute inset-0 w-full h-full pointer-events-auto ${className}`}
-            style={{ opacity: 0.6 }}
+            style={{ opacity: 0.7 }}
         />
     );
 };
