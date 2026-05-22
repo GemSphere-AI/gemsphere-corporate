@@ -47,9 +47,10 @@ const AISolutions = () => {
                             <p className="text-xl text-text-secondary leading-relaxed max-w-3xl mx-auto mb-10">
                                 Move beyond basic chatbots. GemSphere's AI Platform integrates deep neural networks with your operational data to predict outcomes and execute complex workflows without human intervention.
                             </p>
-                            <MagneticButton href="/contact" className="btn-primary">
+                            <MagneticButton href="/demo" className="btn-primary">
                                 Request AI Sandbox Access <ArrowRight size={18} />
                             </MagneticButton>
+
                         </div>
                     </ScrollReveal>
                 </div>
@@ -94,7 +95,7 @@ const AISolutions = () => {
                                     Your data is your IP. Our AI models are deployed in single-tenant isolated environments ensuring zero data leakage to public models.
                                 </p>
                                 <ul className="space-y-4 mb-8">
-                                    {['SOC2 Type II Certified', 'GDPR Compliant', 'HIPAA Compliant Infrastructure', 'Zero-Data-Retention Policies', 'Role-Based Inference Access'].map((item, i) => (
+                                    {['Zero-Trust Security', 'GDPR Compliant', 'HIPAA Compliant Infrastructure', 'Zero-Data-Retention Policies', 'Role-Based Inference Access'].map((item, i) => (
                                         <li key={i} className="flex items-center gap-3 text-white font-semibold">
                                             <CheckCircle2 className="text-brand-violet" size={20} /> {item}
                                         </li>

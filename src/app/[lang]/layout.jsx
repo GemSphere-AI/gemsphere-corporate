@@ -131,6 +131,23 @@ export default async function RootLayout({ children, params }) {
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
+              
+              var consent = 'denied';
+              try {
+                var stored = localStorage.getItem('gemsphere-cookie-consent');
+                if (stored) {
+                  var parsed = JSON.parse(stored);
+                  if (parsed.analytics) consent = 'granted';
+                }
+              } catch(e) {}
+              
+              gtag('consent', 'default', {
+                'analytics_storage': consent,
+                'ad_storage': consent,
+                'ad_user_data': consent,
+                'ad_personalization': consent
+              });
+              
               gtag('js', new Date());
               gtag('config', 'G-XXXXXXXXXX', {
                 page_path: window.location.pathname,

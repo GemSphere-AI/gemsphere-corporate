@@ -83,8 +83,8 @@ const Careers = () => {
 
                     <div className="space-y-4">
                         {[
-                            { role: 'Senior AI Researcher', team: 'AI Platform', loc: 'Remote / Bangalore', type: 'Full-time' },
-                            { role: 'Staff Backend Engineer (Go/Rust)', team: 'Core Infrastructure', loc: 'Remote / Bangalore', type: 'Full-time' },
+                            { role: 'Senior AI Researcher', team: 'AI Platform', loc: 'Remote / Bengaluru', type: 'Full-time' },
+                            { role: 'Staff Backend Engineer (Go/Rust)', team: 'Core Infrastructure', loc: 'Remote / Bengaluru', type: 'Full-time' },
                             { role: 'Lead Frontend Engineer', team: 'Commerce Platform', loc: 'Remote', type: 'Full-time' },
                             { role: 'Enterprise Solutions Architect', team: 'Sales Engineering', loc: 'Remote / London', type: 'Full-time' },
                             { role: 'Product Manager, Supply Chain', team: 'Product', loc: 'Remote', type: 'Full-time' }

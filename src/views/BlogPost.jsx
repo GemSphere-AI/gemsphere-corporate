@@ -72,7 +72,8 @@ const BlogPost = () => {
                     Stay ahead of the curve. Learn how GemSphere can help you implement these technologies in your own organization.
                 </p>
                 <div className="flex justify-center gap-4">
-                    <LocalizedLink href="/contact" className="btn-primary">Book a Consultation</LocalizedLink>
+                    <LocalizedLink href="/demo" className="btn-primary">Book a Consultation</LocalizedLink>
+
                 </div>
             </div>
         </article>

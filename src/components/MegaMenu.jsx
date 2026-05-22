@@ -136,7 +136,7 @@ const MegaMenu = ({ isOpen, onClose }) => {
                                             <div className="mt-auto pt-8 border-t border-brand-border flex items-center justify-between">
                                                 <div className="flex gap-6 text-xs font-semibold text-text-tertiary">
                                                     <span className="flex items-center gap-2"><Zap size={14} className="text-brand-cyan"/> API-First</span>
-                                                    <span className="flex items-center gap-2"><Shield size={14} className="text-brand-indigo"/> SOC2 & GDPR Compliant</span>
+                                                    <span className="flex items-center gap-2"><Shield size={14} className="text-brand-indigo"/> GDPR Compliant</span>
                                                     <span className="flex items-center gap-2"><Globe size={14} className="text-brand-violet"/> Multi-Region</span>
                                                 </div>
                                                 <LocalizedLink href="/products" onClick={onClose} className="text-sm font-bold text-brand-cyan hover:text-text-primary flex items-center gap-2 transition-colors">

@@ -49,20 +49,24 @@ const Footer = () => {
 
                         <div className="flex gap-3">
                             {/* LinkedIn */}
-                            <LocalizedLink href="https://www.linkedin.com/company/gem-sphere-ai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                            <LocalizedLink href="https://www.linkedin.com/company/gem-sphere-ai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#0077b5]/10 border border-[#0077b5]/30 text-[#0077b5] hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] hover:shadow-[0_0_15px_rgba(0,119,181,0.4)] transition-all duration-300">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                             </LocalizedLink>
                             {/* X (Twitter) */}
-                            <LocalizedLink href="https://x.com/GemSphereAI" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                            <LocalizedLink href="https://x.com/GemSphereAI" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 border border-white/20 text-white hover:bg-white hover:text-black hover:border-white hover:shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all duration-300">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                             </LocalizedLink>
                             {/* Facebook */}
-                            <LocalizedLink href="https://www.facebook.com/people/GemSphere-AI/61581897367281/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                            <LocalizedLink href="https://www.facebook.com/people/GemSphere-AI/61581897367281/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#1877f2]/10 border border-[#1877f2]/30 text-[#1877f2] hover:bg-[#1877f2] hover:text-white hover:border-[#1877f2] hover:shadow-[0_0_15px_rgba(24,119,242,0.4)] transition-all duration-300">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                             </LocalizedLink>
                             {/* Instagram */}
-                            <LocalizedLink href="https://www.instagram.com/gemsphereai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-text-secondary hover:bg-brand-cyan hover:text-[#0f172a] hover:border-brand-cyan transition-all duration-300">
+                            <LocalizedLink href="https://www.instagram.com/gemsphereai/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#e1306c]/10 border border-[#e1306c]/30 text-[#e1306c] hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:to-[#ee2a7b] hover:text-white hover:border-[#ee2a7b] hover:shadow-[0_0_15px_rgba(238,42,123,0.4)] transition-all duration-300">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            </LocalizedLink>
+                            {/* Blog (Blogger) */}
+                            <LocalizedLink href="https://gemsphereai.blogspot.com/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#ff5722]/10 border border-[#ff5722]/30 text-[#ff5722] hover:bg-[#ff5722] hover:text-white hover:border-[#ff5722] hover:shadow-[0_0_15px_rgba(255,87,34,0.4)] transition-all duration-300">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.21 0H3.79C1.7 0 0 1.7 0 3.79v16.42C0 22.3 1.7 24 3.79 24h16.42c2.09 0 3.79-1.7 3.79-3.79V3.79C24 1.7 22.3 0 20.21 0zM17.41 15.65c0 1.48-1.2 2.68-2.68 2.68H9.27c-1.48 0-2.68-1.2-2.68-2.68v-3.25c0-1.48 1.2-2.68 2.68-2.68h5.46c1.48 0 2.68 1.2 2.68 2.68v3.25zm0-7.3c0 1.48-1.2 2.68-2.68 2.68H9.27c-1.48 0-2.68-1.2-2.68-2.68V6.15c0-1.48 1.2-2.68 2.68-2.68h5.46c1.48 0 2.68 1.2 2.68 2.68v2.2z"/></svg>
                             </LocalizedLink>
                         </div>
                     </div>

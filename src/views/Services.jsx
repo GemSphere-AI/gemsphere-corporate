@@ -87,9 +87,10 @@ const Services = () => {
                     <p className="text-lg text-text-secondary mb-10">
                         Our solution architects are ready to review your current architecture and propose a high-performance roadmap.
                     </p>
-                    <MagneticButton href="/contact" className="btn-primary px-8 py-4 text-lg">
+                    <MagneticButton href="/demo" className="btn-primary px-8 py-4 text-lg">
                         Book Technical Consultation
                     </MagneticButton>
+
                 </div>
             </section>
         </div>

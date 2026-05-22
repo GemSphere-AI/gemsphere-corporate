@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -22,7 +22,7 @@ const HUBS = [
     { id: 'eu', name: 'EUROPE', cx: 400, cy: 110, stat: '38+', label: 'Countries', color: '#6366f1' },
     { id: 'me', name: 'MIDDLE EAST', cx: 490, cy: 190, stat: '12+', label: 'Countries', color: '#10b981' },
     { id: 'af', name: 'AFRICA', cx: 420, cy: 260, stat: '24+', label: 'Countries', color: '#f59e0b' },
-    { id: 'sa', name: 'SOUTH ASIA', cx: 580, cy: 220, stat: 'HQ', label: 'Bangalore', color: '#8b5cf6' },
+    { id: 'sa', name: 'SOUTH ASIA', cx: 580, cy: 220, stat: 'HQ', label: 'Bengaluru', color: '#8b5cf6' },
     { id: 'ap', name: 'ASIA PACIFIC', cx: 670, cy: 180, stat: '35+', label: 'Countries', color: '#f43f5e' },
 ];
 
@@ -222,7 +222,7 @@ const WorldMap = ({ className = '' }) => {
                         }}
                     >
                         <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                        Global HQ Bangalore
+                        Global HQ Bengaluru
                     </div>
                 </motion.div>
             </div>

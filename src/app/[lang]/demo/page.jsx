@@ -6,13 +6,13 @@
  * Unauthorized copying, modification, distribution, or use of this
  * file, via any medium, is strictly prohibited.
  */
-import Security from '../../../views/Security';
+import Demo from '../../../views/Demo';
 
 export const metadata = {
-  title: 'Enterprise Security — GDPR & Zero-Trust Architecture',
-  description: "Learn about GemSphere's military-grade security architecture, GDPR adherence, zero-trust networking, and enterprise data protection measures.",
+  title: 'Book a Free Demo — Request Custom Walkthrough',
+  description: 'Book a free personalized demo of GemSphere modules. Walk through our AI, commerce, supply chain, and custom solution architectures with our solution engineers.',
 };
 
 export default function Page() {
-    return <Security />;
+  return <Demo />;
 }

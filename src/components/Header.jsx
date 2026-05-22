@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -117,8 +117,14 @@ const Header = () => {
                             >
                                 Sign In
                             </LocalizedLink>
-                            <LocalizedLink href="/contact" className="btn-primary py-2 px-5 ml-2">
+                            <LocalizedLink 
+                                href="/contact" 
+                                className="text-sm font-semibold text-text-secondary hover:text-brand-cyan transition-colors px-2 py-2 ml-2"
+                            >
                                 Talk to Sales
+                            </LocalizedLink>
+                            <LocalizedLink href="/register" className="btn-primary py-2 px-5 ml-2">
+                                Free Trial
                             </LocalizedLink>
                         </div>
                     </div>
@@ -170,11 +176,14 @@ const Header = () => {
                             <div className="flex justify-center mb-4">
                                 <LanguageSwitcher />
                             </div>
-                            <LocalizedLink href="/login" className="w-full py-4 text-center border border-brand-border text-text-primary font-bold rounded-xl">
+                            <LocalizedLink href="/login" className="w-full py-3 text-center border border-brand-border text-text-primary font-bold rounded-xl">
                                 Sign In
                             </LocalizedLink>
-                            <LocalizedLink href="/contact" className="w-full py-4 text-center bg-brand-cyan text-[#0f172a] font-black rounded-xl">
+                            <LocalizedLink href="/contact" className="w-full py-3 text-center border border-brand-border text-text-primary font-bold rounded-xl">
                                 Talk to Sales
+                            </LocalizedLink>
+                            <LocalizedLink href="/register" className="w-full py-3 text-center bg-brand-cyan text-[#0f172a] font-black rounded-xl">
+                                Free Trial
                             </LocalizedLink>
                         </div>
                     </motion.div>

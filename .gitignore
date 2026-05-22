@@ -28,3 +28,8 @@ Thumbs.db
 # Diff and Patch files
 *.diff
 *.patch
+
+# Next.js build directories
+.next/
+out/
+

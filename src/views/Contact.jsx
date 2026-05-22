@@ -107,11 +107,11 @@ const Contact = () => {
                                         </div>
                                         <div>
                                             <h4 className="text-base font-bold text-white">Visit our Global HQ</h4>
-                                            <p className="text-xs text-brand-indigo font-semibold">Bangalore, India</p>
+                                            <p className="text-xs text-brand-indigo font-semibold">Bengaluru, India</p>
                                         </div>
                                     </div>
                                     <p className="text-text-secondary text-sm">
-                                        We operate globally with our headquarters in Bangalore (India) and a regional office in Dubai (UAE), alongside remote teams across 15+ timezones.
+                                        We operate globally with our physical headquarters in Bengaluru (India), alongside distributed sales and engineering teams operating across the globe.
                                     </p>
                                 </div>
                             </ScrollReveal>

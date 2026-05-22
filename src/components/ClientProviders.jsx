@@ -17,6 +17,7 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from '../i18n';
 import Header from './Header';
 import Footer from './Footer';
+import CookieConsent from './CookieConsent';
 
 export default function ClientProviders({ children }) {
     const pathname = usePathname();
@@ -97,6 +98,7 @@ export default function ClientProviders({ children }) {
                     </main>
 
                     <Footer />
+                    <CookieConsent />
                 </div>
             </I18nextProvider>
         </ThemeProvider>

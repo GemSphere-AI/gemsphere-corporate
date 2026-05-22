@@ -69,17 +69,18 @@ const Home = () => {
                         <ScrollReveal direction="up" delay={0.4}>
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                                 <MagneticButton 
-                                    href="/contact" 
+                                    href="/register" 
                                     className="btn-primary w-full sm:w-auto text-lg px-8 py-4"
                                 >
-                                    Book Enterprise Demo <ArrowRight size={20} />
+                                    Start Free Trial <ArrowRight size={20} />
                                 </MagneticButton>
                                 <MagneticButton 
-                                    href="/products" 
+                                    href="/demo" 
                                     className="btn-secondary w-full sm:w-auto text-lg px-8 py-4"
                                 >
-                                    Explore Ecosystem
+                                    Book Free Demo
                                 </MagneticButton>
+
                             </div>
                         </ScrollReveal>
 
@@ -129,7 +130,7 @@ const Home = () => {
                 <div className="flex flex-col gap-6">
                     {/* Capabilities Row */}
                     <MarqueeRow speed={50}>
-                        {['Multi-Tenant Architecture', 'API-First Design', 'SOC2 & GDPR Compliant', 'Real-Time Analytics', 'AI-Powered Workflows', 'Cloud-Native Infrastructure', 'Multi-Currency Support', 'Role-Based Access Control'].map((cap, i) => (
+                        {['Multi-Tenant Architecture', 'API-First Design', 'GDPR Compliant', 'Real-Time Analytics', 'AI-Powered Workflows', 'Cloud-Native Infrastructure', 'Multi-Currency Support', 'Role-Based Access Control'].map((cap, i) => (
                             <div key={i} className="text-sm font-bold text-text-muted opacity-60 mx-10 font-display uppercase tracking-widest whitespace-nowrap">
                                 {cap}
                             </div>
@@ -200,7 +201,7 @@ const Home = () => {
                                 {[
                                     { icon: Brain, title: 'Autonomous Agents', desc: 'Deploy AI agents that execute complex multi-step workflows without human intervention.' },
                                     { icon: LineChart, title: 'Predictive Insights', desc: 'Forecast demand, supply chain disruptions, and financial trends with advanced ML models.' },
-                                    { icon: Shield, title: 'Enterprise Security', desc: 'Military-grade data isolation and SOC2 & GDPR compliant model fine-tuning for your data privacy.' }
+                                    { icon: Shield, title: 'Enterprise Security', desc: 'Military-grade data isolation and GDPR compliant model fine-tuning for your data privacy.' }
                                 ].map((feature, i) => (
                                     <ScrollReveal key={i} direction="left" delay={i * 0.15}>
                                         <div className="flex gap-6 group">
@@ -346,12 +347,13 @@ const Home = () => {
                         </p>
                         
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                            <MagneticButton href="/contact" className="btn-primary w-full sm:w-auto text-lg px-10 py-5">
-                                Schedule Consultation
+                            <MagneticButton href="/register" className="btn-primary w-full sm:w-auto text-lg px-10 py-5">
+                                Start Free Trial
                             </MagneticButton>
-                            <MagneticButton href="/products" className="btn-secondary w-full sm:w-auto text-lg px-10 py-5">
-                                Explore Products
+                            <MagneticButton href="/demo" className="btn-secondary w-full sm:w-auto text-lg px-10 py-5">
+                                Book Free Demo
                             </MagneticButton>
+
                         </div>
                     </div>
                 </div>

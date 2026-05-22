@@ -73,9 +73,10 @@ const Solutions = () => {
                     <p className="text-lg text-text-secondary mb-10">
                         Our platform is vertical-agnostic at its core. We can configure a custom ecosystem for any complex enterprise requirement.
                     </p>
-                    <MagneticButton href="/contact" className="btn-primary px-8 py-4 text-lg">
+                    <MagneticButton href="/demo" className="btn-primary px-8 py-4 text-lg">
                         Discuss Custom Solutions
                     </MagneticButton>
+
                 </div>
             </section>
         </div>

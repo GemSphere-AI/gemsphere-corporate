@@ -62,7 +62,8 @@ const MainLayout = ({ children }) => {
     const actionItems = (
         <>
             <Button component="a" href="/login" sx={{ color: 'text.secondary', fontWeight: 700 }}>Sign In</Button>
-            <Button component="a" href="/contact" variant="contained" sx={{ borderRadius: '10px', fontWeight: 800, ml: 1 }}>Talk to Sales</Button>
+            <Button component="a" href="/contact" sx={{ color: 'text.secondary', fontWeight: 700, ml: 1 }}>Talk to Sales</Button>
+            <Button component="a" href="/register" variant="contained" sx={{ borderRadius: '10px', fontWeight: 800, ml: 1 }}>Free Trial</Button>
         </>
     );
 

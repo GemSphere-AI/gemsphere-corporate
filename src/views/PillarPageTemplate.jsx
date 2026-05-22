@@ -49,9 +49,10 @@ export default function PillarPageTemplate({ type, slug }) {
                             {data.desc || `Enterprise-grade ${data.name.toLowerCase()} solutions powered by AI.`}
                         </p>
                         <div className="flex flex-wrap gap-4">
-                            <LocalizedLink href="/contact" className="btn-primary">
+                            <LocalizedLink href="/demo" className="btn-primary">
                                 Schedule a Demo <ArrowRight size={18} className="ml-2 inline" />
                             </LocalizedLink>
+
                             <LocalizedLink href="/about" className="glass-subtle px-6 py-3 rounded-xl font-bold hover:bg-brand-border/50 transition-colors">
                                 Learn More
                             </LocalizedLink>

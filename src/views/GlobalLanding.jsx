@@ -33,7 +33,7 @@ const GlobalLanding = () => {
 
     // India HQ as global contact point (User Request)
     const contactInfo = {
-        office: 'HSR Layout, Bangalore, India',
+        office: 'Garuda BHIVE Workspace, BTM Layout, Bengaluru, Karnataka 560076, India',
         phone: '+91 80 XXXX XXXX',
         email: 'global-sales@gemsphere.ai'
     };

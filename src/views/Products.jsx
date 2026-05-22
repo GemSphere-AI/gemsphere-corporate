@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -65,9 +65,10 @@ const Products = () => {
                             <p className="text-xl text-text-secondary mb-10 leading-relaxed max-w-3xl mx-auto">
                                 30+ enterprise capabilities built on a shared data model. Adopt what you need today, seamlessly scale to full capabilities tomorrow.
                             </p>
-                            <MagneticButton href="/contact" className="btn-primary">
+                            <MagneticButton href="/demo" className="btn-primary">
                                 Speak to an Architect <ArrowRight size={18} />
                             </MagneticButton>
+
                         </div>
                     </ScrollReveal>
                 </div>
@@ -168,9 +169,10 @@ const Products = () => {
                     <p className="text-lg text-text-secondary mb-10">
                         Our platform is highly composable. Connect with our solution engineers to map out your specific enterprise requirements.
                     </p>
-                    <MagneticButton href="/contact" className="btn-primary px-8 py-4 text-lg">
+                    <MagneticButton href="/demo" className="btn-primary px-8 py-4 text-lg">
                         Talk to our Enterprise Architect
                     </MagneticButton>
+
                 </div>
             </section>
         </div>

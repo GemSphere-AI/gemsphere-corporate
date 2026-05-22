@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -88,12 +88,11 @@ const About = () => {
                         <ScrollReveal direction="left">
                             <div className="glass-card p-10 rounded-[32px] border-brand-cyan/20 relative overflow-hidden h-full">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/10 rounded-full blur-[50px]" />
-                                <Building className="text-brand-cyan mb-6" size={40} />
-                                <h3 className="text-3xl font-bold text-text-primary mb-2">Dubai</h3>
-                                <p className="text-brand-cyan font-semibold mb-6">EMEA & Regional Office</p>
-                                <p className="text-text-secondary">
-                                    Dubai Internet City<br />
-                                    Dubai, United Arab Emirates
+                                <Globe className="text-brand-cyan mb-6" size={40} />
+                                <h3 className="text-3xl font-bold text-text-primary mb-2">Distributed Teams</h3>
+                                <p className="text-brand-cyan font-semibold mb-6">Global Sales & Engineering</p>
+                                <p className="text-text-secondary leading-relaxed">
+                                    Our sales and engineering teams operate across the globe to deliver continuous support and innovation, serving customers in every timezone.
                                 </p>
                             </div>
                         </ScrollReveal>
@@ -101,12 +100,13 @@ const About = () => {
                         <ScrollReveal direction="right">
                             <div className="glass-card p-10 rounded-[32px] border-brand-indigo/20 relative overflow-hidden h-full">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand-indigo/10 rounded-full blur-[50px]" />
-                                <Code2 className="text-brand-indigo mb-6" size={40} />
-                                <h3 className="text-3xl font-bold text-text-primary mb-2">Bangalore (HQ)</h3>
-                                <p className="text-brand-indigo font-semibold mb-6">Global Headquarters & Engineering Center</p>
-                                <p className="text-text-secondary">
-                                    HSR Layout<br />
-                                    Bangalore, India
+                                <Building className="text-brand-indigo mb-6" size={40} />
+                                <h3 className="text-3xl font-bold text-text-primary mb-2">Bengaluru (HQ)</h3>
+                                <p className="text-brand-indigo font-semibold mb-6">Global Headquarters & Physical Office</p>
+                                <p className="text-text-secondary leading-relaxed">
+                                    Garuda BHIVE Workspace,<br />
+                                    BTM Layout, Bengaluru,<br />
+                                    Karnataka 560076, India
                                 </p>
                             </div>
                         </ScrollReveal>

@@ -17,13 +17,13 @@ const RegionalLanding = ({ region }) => {
         'UAE': {
             title: 'GemSphere UAE | Leading AI & IT Partner in the Middle East',
             description: 'Enabling digital transformation for enterprises in Dubai, Abu Dhabi, and the wider UAE. Specialized in Arabic NLP and regional logistics automation.',
-            office: 'Business Bay, Dubai, UAE',
+            office: 'Distributed Sales & Engineering',
             phone: '+971 4 XXX XXXX'
         },
         'India': {
             title: 'GemSphere India | Scalable IT & Software Engineering Hub',
             description: 'Building world-class software and AI solutions from the heart of India. Serving global startups and domestic industry leaders.',
-            office: 'HSR Layout, Bangalore, India',
+            office: 'Garuda BHIVE Workspace, BTM Layout, Bengaluru, Karnataka 560076',
             phone: '+91 80 XXXX XXXX'
         }
     }[region];

@@ -47,9 +47,10 @@ export default function ProductCategory({ categoryId }) {
                             {category.description}
                         </p>
                         <div className="flex flex-wrap gap-4">
-                            <LocalizedLink href="/contact" className="btn-primary">
+                            <LocalizedLink href="/demo" className="btn-primary">
                                 Schedule a Demo <ArrowRight size={18} className="ml-2 inline" />
                             </LocalizedLink>
+
                             <LocalizedLink href="/about" className="glass-subtle px-6 py-3 rounded-xl font-bold hover:bg-brand-border/50 transition-colors">
                                 View Architecture
                             </LocalizedLink>
@@ -110,9 +111,10 @@ export default function ProductCategory({ categoryId }) {
                         <p className="text-lg text-text-secondary mb-10">
                             Join the world's most advanced enterprises orchestrating their operations on GemSphere.
                         </p>
-                        <LocalizedLink href="/contact" className="btn-primary inline-flex">
+                        <LocalizedLink href="/demo" className="btn-primary inline-flex">
                             Talk to an Expert
                         </LocalizedLink>
+
                     </ScrollReveal>
                 </div>
             </section>

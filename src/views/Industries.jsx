@@ -37,9 +37,10 @@ const Industries = () => {
                             <p className="text-xl text-text-secondary leading-relaxed max-w-3xl mx-auto mb-10">
                                 True digital transformation requires deep domain expertise. We build industry-specific ecosystems that solve the unique operational and compliance challenges of your vertical.
                             </p>
-                            <MagneticButton href="/contact" className="btn-primary px-8 py-4 text-lg">
+                            <MagneticButton href="/demo" className="btn-primary px-8 py-4 text-lg">
                                 Speak to an Industry Expert
                             </MagneticButton>
+
                         </div>
                     </ScrollReveal>
 
@@ -76,9 +77,10 @@ const Industries = () => {
                     <p className="text-lg text-text-secondary mb-10">
                         Our modular architecture allows us to rapidly configure solutions for new verticals while maintaining enterprise-grade security and performance.
                     </p>
-                    <MagneticButton href="/contact" className="btn-secondary px-8 py-4 text-lg">
+                    <MagneticButton href="/demo" className="btn-secondary px-8 py-4 text-lg">
                         Discuss Your Requirements
                     </MagneticButton>
+
                 </div>
             </section>
         </div>

@@ -16,7 +16,9 @@ import './i18n';
 import Home from './views/Home';
 import About from './views/About';
 import Contact from './views/Contact';
+import Demo from './views/Demo';
 import Careers from './views/Careers';
+
 
 // Products & Solutions
 import Products from './views/Products';
@@ -60,7 +62,9 @@ function App() {
             <Route path=":lang/register" element={<ExternalRedirect to="/register" />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="demo" element={<Demo />} />
             <Route path="careers" element={<Careers />} />
+
             
             {/* New Ecosystem Pages */}
             <Route path="products" element={<Products />} />
