@@ -12,11 +12,11 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 /**
- * Premium World Map Ã¢â‚¬â€ Uses high-fidelity external SVG for recognizable geography.
+ * Premium World Map — Uses high-fidelity external SVG for recognizable geography.
  * Theme-aware with animated data-flow connections, pulsing hubs, and floating labels.
  */
 
-// Ã¢â€â‚¬Ã¢â€â‚¬ Hub Regions mapped to the 784x458 grid Ã¢â€â‚¬Ã¢â€â‚¬
+// ── Hub Regions mapped to the 784x458 grid ──
 const HUBS = [
     { id: 'na', name: 'AMERICAS', cx: 160, cy: 130, stat: '45+', label: 'Countries', color: '#00d4ff' },
     { id: 'eu', name: 'EUROPE', cx: 400, cy: 110, stat: '38+', label: 'Countries', color: '#6366f1' },
@@ -61,7 +61,7 @@ const WorldMap = ({ className = '' }) => {
         <div className={`relative w-full overflow-hidden ${className}`}>
             <div className="relative w-full aspect-[784/458] max-w-5xl mx-auto">
 
-                {/* Ã¢â€â‚¬Ã¢â€â‚¬ HIGH FIDELITY MAP MASK Ã¢â€â‚¬Ã¢â€â‚¬ */}
+                {/* ── HIGH FIDELITY MAP MASK ── */}
                 <div
                     className="absolute inset-0 transition-colors duration-700 ease-in-out"
                     style={{
@@ -78,7 +78,7 @@ const WorldMap = ({ className = '' }) => {
                     }}
                 />
 
-                {/* Ã¢â€â‚¬Ã¢â€â‚¬ OVERLAY SVG FOR HUBS & CONNECTIONS Ã¢â€â‚¬Ã¢â€â‚¬ */}
+                {/* ── OVERLAY SVG FOR HUBS & CONNECTIONS ── */}
                 <svg
                     viewBox="0 0 784 458"
                     className="absolute inset-0 w-full h-full pointer-events-none"
@@ -106,7 +106,7 @@ const WorldMap = ({ className = '' }) => {
                     {/* Equator line */}
                     <line x1="0" y1="280" x2="784" y2="280" stroke={p.grid} strokeWidth="1" strokeDasharray="6 4" opacity="0.6" />
 
-                    {/* Ã¢â€â‚¬Ã¢â€â‚¬ CONNECTION ARCS Ã¢â€â‚¬Ã¢â€â‚¬ */}
+                    {/* ── CONNECTION ARCS ── */}
                     {CONNECTIONS.map(([a, b], i) => {
                         const from = HUBS[a], to = HUBS[b];
                         const path = arcPath(from, to);
@@ -134,7 +134,7 @@ const WorldMap = ({ className = '' }) => {
                         );
                     })}
 
-                    {/* Ã¢â€â‚¬Ã¢â€â‚¬ HUB NODES Ã¢â€â‚¬Ã¢â€â‚¬ */}
+                    {/* ── HUB NODES ── */}
                     {HUBS.map((hub, i) => (
                         <g key={hub.id}>
                             {/* Pulse ring 1 */}
@@ -161,7 +161,7 @@ const WorldMap = ({ className = '' }) => {
                     ))}
                 </svg>
 
-                {/* Ã¢â€â‚¬Ã¢â€â‚¬ FLOATING LABELS (HTML overlay for crisp text) Ã¢â€â‚¬Ã¢â€â‚¬ */}
+                {/* ── FLOATING LABELS (HTML overlay for crisp text) ── */}
                 {HUBS.map((hub, i) => {
                     const leftPct = (hub.cx / 784) * 100;
                     const topPct = ((hub.cy + 22) / 458) * 100;
@@ -199,7 +199,7 @@ const WorldMap = ({ className = '' }) => {
                     );
                 })}
 
-                {/* Ã¢â€â‚¬Ã¢â€â‚¬ HQ MARKER Ã¢â€â‚¬Ã¢â€â‚¬ */}
+                {/* ── HQ MARKER ── */}
                 <motion.div
                     className="absolute pointer-events-none"
                     style={{

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -11,7 +11,7 @@
 import React, { useRef, useEffect } from 'react';
 
 /**
- * NeuralBackground Ã¢â‚¬â€ Theme-aware particle canvas with mouse-reactive connections.
+ * NeuralBackground — Theme-aware particle canvas with mouse-reactive connections.
  * Dark mode: cyan particles on dark space.
  * Light mode: indigo/violet particles on light gradient mesh.
  */
@@ -74,7 +74,7 @@ const NeuralBackground = ({ className = '', particleCount = 80, connectionDistan
             const particles = particlesRef.current;
             const mouse = mouseRef.current;
 
-            // Ã¢â€â‚¬Ã¢â€â‚¬ Theme-aware colors Ã¢â€â‚¬Ã¢â€â‚¬
+            // ── Theme-aware colors ──
             // Dark: cyan particles | Light: indigo/violet particles
             const particleR = isDark ? 0 : 99;
             const particleG = isDark ? 212 : 102;
@@ -93,7 +93,7 @@ const NeuralBackground = ({ className = '', particleCount = 80, connectionDistan
                     p.x += p.vx;
                     p.y += p.vy;
 
-                    // Mouse influence Ã¢â‚¬â€ works in BOTH themes
+                    // Mouse influence — works in BOTH themes
                     const mdx = mouse.x - p.x;
                     const mdy = mouse.y - p.y;
                     const mDist = Math.sqrt(mdx * mdx + mdy * mdy);

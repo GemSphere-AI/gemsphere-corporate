@@ -29,8 +29,8 @@ const Header = () => {
     }, []);
 
     useEffect(() => {
-        // Initialize theme based on localStorage or system preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        // Initialize theme based on localStorage, defaulting to light mode
+        if (localStorage.theme === 'dark') {
             setIsDarkMode(true);
             document.documentElement.classList.add('dark');
         } else {

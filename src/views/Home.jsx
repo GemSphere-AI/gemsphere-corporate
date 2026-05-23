@@ -35,7 +35,7 @@ const Home = () => {
             <section className="relative min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden">
                 <NeuralBackground />
                 
-                {/* Gradient Mesh Orbs Ã¢â‚¬â€ premium floating gradients for both themes */}
+                {/* Gradient Mesh Orbs — premium floating gradients for both themes */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden -z-0" aria-hidden="true">
                     <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full opacity-20 dark:opacity-10 blur-[100px] animate-float"
                          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.5) 0%, rgba(139,92,246,0.3) 50%, transparent 70%)' }} />
@@ -141,7 +141,7 @@ const Home = () => {
                     <MarqueeRow speed={60} reverse={true}>
                         {PRODUCT_ECOSYSTEM.industries.map((industry, i) => (
                             <div key={i} className="text-sm font-bold text-brand-cyan/60 mx-10 font-display uppercase tracking-widest whitespace-nowrap">
-                                âœ¦ {industry.name}
+                                ✦ {industry.name}
                             </div>
                         ))}
                     </MarqueeRow>
@@ -273,7 +273,7 @@ const Home = () => {
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                         {[
-                            { title: 'Modular by Design', desc: 'Start with what you need today. Add modules seamlessly as your business grows Ã¢â‚¬â€ no rip-and-replace migrations.' },
+                            { title: 'Modular by Design', desc: 'Start with what you need today. Add modules seamlessly as your business grows — no rip-and-replace migrations.' },
                             { title: 'Single Data Model', desc: 'All 30+ capabilities share one unified data layer. No more data silos, sync issues, or brittle integrations.' },
                             { title: 'Global-Ready', desc: 'Multi-currency, multi-language, and multi-region compliance built into every module from day one.' },
                         ].map((item, i) => (

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -123,7 +123,7 @@ export const PRODUCT_ECOSYSTEM = {
     stats: {
         totalModules: '40+',
         tagline: '40+ Enterprise Modules. One Unified Digital Ecosystem.',
-        description: 'A modular, composable platform architecture where every module works independently and integrates seamlessly Ã¢â‚¬â€ giving enterprises the freedom to adopt at their own pace.',
+        description: 'A modular, composable platform architecture where every module works independently and integrates seamlessly — giving enterprises the freedom to adopt at their own pace.',
     },
 
     testimonials: [],

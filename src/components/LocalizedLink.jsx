@@ -17,9 +17,9 @@ export default function LocalizedLink({ href, children, className, ...props }) {
     
     let localizedHref = href;
     if (typeof href === 'string' && href.startsWith('/')) {
-        // Prevent double prefixing if somehow already prefixed
-        if (!href.startsWith(`/${lang}`)) {
-            // Special case for root
+        const globalRoutes = ['/login', '/register', '/super-admin', '/forgot-password', '/reset-password', '/onboarding', '/retail', '/crm', '/marketing', '/booking'];
+        const isGlobal = globalRoutes.some(route => href.startsWith(route));
+        if (!isGlobal && !href.startsWith(`/${lang}`)) {
             localizedHref = href === '/' ? `/${lang}` : `/${lang}${href}`;
         }
     }

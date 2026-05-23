@@ -12,6 +12,7 @@ import { ThemeProvider, CssBaseline, Button } from '@mui/material';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { LightGlassmorphicTheme, PlatformHeader, PlatformFooter } from '@GemSphere-AI/ui-kit';
 import TrustBadges from '../components/TrustBadges';
+import LocalizedLink from '../components/LocalizedLink';
 
 
 const MainLayout = ({ children }) => {
@@ -52,17 +53,17 @@ const MainLayout = ({ children }) => {
     // Construct Nav Items for the shared PlatformHeader
     const navItems = (
         <>
-            <Button component="a" href="/solutions" sx={{ color: 'text.secondary', fontWeight: 600 }}>Solutions</Button>
-            <Button component="a" href="/services" sx={{ color: 'text.secondary', fontWeight: 600 }}>Services</Button>
-            <Button component="a" href="/industries" sx={{ color: 'text.secondary', fontWeight: 600 }}>Industries</Button>
-            <Button component="a" href="/about" sx={{ color: 'text.secondary', fontWeight: 600 }}>Company</Button>
+            <Button component={LocalizedLink} href="/solutions" sx={{ color: 'text.secondary', fontWeight: 600 }}>Solutions</Button>
+            <Button component={LocalizedLink} href="/services" sx={{ color: 'text.secondary', fontWeight: 600 }}>Services</Button>
+            <Button component={LocalizedLink} href="/industries" sx={{ color: 'text.secondary', fontWeight: 600 }}>Industries</Button>
+            <Button component={LocalizedLink} href="/about" sx={{ color: 'text.secondary', fontWeight: 600 }}>Company</Button>
         </>
     );
 
     const actionItems = (
         <>
             <Button component="a" href="/login" sx={{ color: 'text.secondary', fontWeight: 700 }}>Sign In</Button>
-            <Button component="a" href="/contact" sx={{ color: 'text.secondary', fontWeight: 700, ml: 1 }}>Talk to Sales</Button>
+            <Button component={LocalizedLink} href="/contact" sx={{ color: 'text.secondary', fontWeight: 700, ml: 1 }}>Talk to Sales</Button>
             <Button component="a" href="/register" variant="contained" sx={{ borderRadius: '10px', fontWeight: 800, ml: 1 }}>Free Trial</Button>
         </>
     );
