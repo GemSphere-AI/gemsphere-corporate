@@ -77,7 +77,7 @@ const Footer = () => {
                         <ul className="space-y-4">
                             {PRODUCT_ECOSYSTEM.categories.slice(0, 5).map((cat, i) => (
                                 <li key={i}>
-                                    <LocalizedLink href={`/products#${cat.id}`} className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
+                                    <LocalizedLink href={`/products/${cat.id}`} className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
                                         {cat.name}
                                     </LocalizedLink>
                                 </li>

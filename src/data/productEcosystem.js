@@ -150,3 +150,16 @@ export const PRODUCT_ECOSYSTEM = {
 export const getTotalModuleCount = () => {
     return PRODUCT_ECOSYSTEM.categories.reduce((acc, cat) => acc + cat.modules.length, 0);
 };
+
+export const slugify = (text) => {
+    return text
+        .toString()
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, '-')
+        .replace(/&/g, 'and')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+};

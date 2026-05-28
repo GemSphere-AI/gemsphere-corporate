@@ -11,7 +11,7 @@ import React, { useState } from 'react';
 import LocalizedLink from '../components/LocalizedLink';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ArrowRight, Zap, Shield, Globe } from 'lucide-react';
-import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
+import { PRODUCT_ECOSYSTEM, slugify } from '../data/productEcosystem';
 
 const MegaMenu = ({ isOpen, onClose }) => {
     const [activeCategory, setActiveCategory] = useState(PRODUCT_ECOSYSTEM.categories[0].id);
@@ -112,7 +112,7 @@ const MegaMenu = ({ isOpen, onClose }) => {
                                                     return (
                                                         <LocalizedLink 
                                                             key={idx} 
-                                                            href={`/products#${activeCategory}`}
+                                                            href={`/products/${slugify(mod.name)}`}
                                                             className="group flex gap-4 p-3 -m-3 rounded-xl transition-colors"
                                                             style={{ ':hover': { background: 'var(--interactive-bg-hover)' } }}
                                                             onClick={onClose}

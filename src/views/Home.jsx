@@ -176,7 +176,7 @@ const Home = () => {
                                     title={cat.name}
                                     description={cat.description}
                                     modules={cat.modules.map(m => m.name)}
-                                    onClick={() => window.location.href = `/products#${cat.id}`}
+                                    onClick={() => window.location.href = `/products/${cat.id}`}
                                 />
                             </ScrollReveal>
                         ))}

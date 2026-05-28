@@ -12,7 +12,7 @@ import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
-import { LightGlassmorphicTheme } from '@GemSphere-AI/ui-kit';
+import { LightGlassmorphicTheme, DarkGlassmorphicTheme } from '@GemSphere-AI/ui-kit';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../i18n';
 import Header from './Header';
@@ -52,7 +52,7 @@ export default function ClientProviders({ children }) {
     }, [pathname]);
 
     return (
-        <ThemeProvider theme={LightGlassmorphicTheme}>
+        <ThemeProvider theme={isDark ? DarkGlassmorphicTheme : LightGlassmorphicTheme}>
             <CssBaseline />
             <I18nextProvider i18n={i18n}>
                 <div 
