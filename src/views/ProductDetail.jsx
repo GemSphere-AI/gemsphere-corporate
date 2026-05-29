@@ -8,130 +8,54 @@
  */
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import LocalizedLink from '../components/LocalizedLink';
-import { ArrowRight, CheckCircle2, ShieldCheck, Zap, Globe2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldCheck, Zap, Globe2, Monitor } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import ScrollReveal from '../components/ScrollReveal';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SchemaMarkup from '../components/seo/SchemaMarkup';
-import { generateProductSchema } from '../utils/schemaGenerators';
+import { generateProductSchema, generateFAQSchema } from '../utils/schemaGenerators';
 import RelatedLinks from '../components/RelatedLinks';
 import TrustBadges from '../components/TrustBadges';
 import { PRODUCT_ECOSYSTEM, slugify } from '../data/productEcosystem';
-
-// Custom rich features mapping for key modules
-const RICH_MODULES_DATA = {
-    'crm-platform': {
-        title: "GemSphere CRM",
-        subtitle: "Sales intelligence and pipeline automation for global teams",
-        features: [
-            "AI-Powered Lead Scoring & Routing",
-            "Interactive Sales Pipelines & Deal Stages",
-            "Omnichannel Email & SMS Outreach Campaigns",
-            "Unified 360° Customer Profile Matrix",
-            "Advanced Activity Timelines & Reminders",
-            "Real-time Revenue & Performance Analytics"
-        ]
-    },
-    'crm': {
-        title: "GemSphere CRM",
-        subtitle: "Sales intelligence and pipeline automation for global teams",
-        features: [
-            "AI-Powered Lead Scoring & Routing",
-            "Interactive Sales Pipelines & Deal Stages",
-            "Omnichannel Email & SMS Outreach Campaigns",
-            "Unified 360° Customer Profile Matrix",
-            "Advanced Activity Timelines & Reminders",
-            "Real-time Revenue & Performance Analytics"
-        ]
-    },
-    'e-commerce-platform': {
-        title: "GemSphere Commerce",
-        subtitle: "Unified storefronts, inventory, and POS operations",
-        features: [
-            "Real-time Global Inventory Sync across Locations",
-            "Headless Storefront APIs for custom Web & Mobile Apps",
-            "Dynamic Promotion & Discount Orchestration Engine",
-            "Multi-Currency & Localized Tax Compliance",
-            "Unified Checkout & Cart Operations",
-            "Automated Sourcing & Purchase Order Management"
-        ]
-    },
-    'retail': {
-        title: "GemSphere Retail",
-        subtitle: "Unified storefronts, inventory, and POS operations",
-        features: [
-            "Real-time Global Inventory Sync across Locations",
-            "Headless Storefront APIs for custom Web & Mobile Apps",
-            "Dynamic Promotion & Discount Orchestration Engine",
-            "Multi-Currency & Localized Tax Compliance",
-            "Unified Checkout & Cart Operations",
-            "Automated Sourcing & Purchase Order Management"
-        ]
-    },
-    'billing-platform': {
-        title: "GemSphere Billing",
-        subtitle: "Flexible billing orchestration and subscription engines",
-        features: [
-            "Dynamic Subscription Lifecycle Manager",
-            "Multi-Gateway Payment Integration & Reconciliations",
-            "Automated Invoicing & E-receipt Dispatches",
-            "Usage-Based / Metered Billing Schemes",
-            "Dunning Management & Failed Payment Recoveries",
-            "Strict Financial Auditing & GL Sync"
-        ]
-    },
-    'billing': {
-        title: "GemSphere Billing",
-        subtitle: "Flexible billing orchestration and subscription engines",
-        features: [
-            "Dynamic Subscription Lifecycle Manager",
-            "Multi-Gateway Payment Integration & Reconciliations",
-            "Automated Invoicing & E-receipt Dispatches",
-            "Usage-Based / Metered Billing Schemes",
-            "Dunning Management & Failed Payment Recoveries",
-            "Strict Financial Auditing & GL Sync"
-        ]
-    },
-    'pos-system': {
-        title: "GemSphere Smart POS",
-        subtitle: "Fast checkout and mall-wide cash desk management",
-        features: [
-            "Offline Checkout Support with Local Cache Sync",
-            "Thermal Printers & Cash Drawer System Drivers",
-            "Barcode & QR Code Scanning SKU Registry",
-            "Multi-Tender Payments & Cashier Session Management",
-            "Interactive Digital Receipts & Mall Audits",
-            "Loyalty Points Redemption at Checkout Desk"
-        ]
-    },
-    'booking': {
-        title: "GemSphere Hospitality & Booking",
-        subtitle: "Smart table reservations, dining, and kitchen orchestration",
-        features: [
-            "Digital Restaurant Table Reservations & Seat Planners",
-            "QR Code Tableside Ordering & Menu Catalogs",
-            "Kitchen Display System (KDS) Ticketing Sync",
-            "Multi-Property Reservation Centralizer",
-            "Billing Integration with Split Tender Support",
-            "VIP Guests & Diet Preference Catalogs"
-        ]
-    }
-};
+import { RICH_MODULES_DATA } from '../data/moduleDescriptions';
+import { parseCompositeSlug, getSEOContent, PRODUCTS_MAP, INDUSTRIES_MAP, COUNTRIES_MAP, COMPETITORS_MAP } from '../data/seoRegistry';
 
 export default function ProductDetail({ slug }) {
-    // Find the category or module
+    const [activeFaqIndex, setActiveFaqIndex] = useState(null);
+    
+    // Parse composite slug
+    const parsing = parseCompositeSlug(slug);
+    const isProgrammatic = parsing.type !== 'unknown';
+    
+    let resolvedSlug = slug;
+    if (isProgrammatic) {
+        const p = parsing.product;
+        if (p === 'crm-software') resolvedSlug = 'crm';
+        else if (p === 'restaurant-pos') resolvedSlug = 'booking';
+        else if (p === 'hotel-management-software') resolvedSlug = 'booking';
+        else if (p === 'booking-software' || p === 'reservation-software') resolvedSlug = 'booking';
+        else if (p === 'iam-platform' || p === 'identity-management') resolvedSlug = 'identity-and-access';
+        else if (p === 'supply-chain-management') resolvedSlug = 'supply-chain-management';
+        else if (p === 'erp') resolvedSlug = 'erp-system';
+        else if (p === 'hrms') resolvedSlug = 'identity-and-access';
+        else if (p === 'helpdesk') resolvedSlug = 'notification-engine';
+        else if (p === 'ai-chatbot') resolvedSlug = 'ai-chatbots';
+        else resolvedSlug = p;
+    }
+
+    // Find the category or module using resolvedSlug
     let category = null;
     let module = null;
 
     // Direct check for category
-    category = PRODUCT_ECOSYSTEM.categories.find(c => c.id === slug);
+    category = PRODUCT_ECOSYSTEM.categories.find(c => c.id === resolvedSlug);
 
     if (!category) {
         // Find which category holds the module matching this slug
         for (const cat of PRODUCT_ECOSYSTEM.categories) {
-            const foundMod = cat.modules.find(m => slugify(m.name) === slug);
+            const foundMod = cat.modules.find(m => slugify(m.name) === resolvedSlug);
             if (foundMod) {
                 category = cat;
                 module = foundMod;
@@ -142,26 +66,35 @@ export default function ProductDetail({ slug }) {
 
     // Direct check for aliases if still not found
     if (!category) {
-        if (slug === 'crm') {
+        if (resolvedSlug === 'crm') {
             category = PRODUCT_ECOSYSTEM.categories.find(c => c.id === 'operations');
             module = category.modules.find(m => m.name === 'CRM Platform');
-        } else if (slug === 'retail') {
+        } else if (resolvedSlug === 'retail') {
             category = PRODUCT_ECOSYSTEM.categories.find(c => c.id === 'commerce');
             module = category.modules.find(m => m.name === 'E-commerce Platform');
-        } else if (slug === 'billing') {
+        } else if (resolvedSlug === 'billing') {
             category = PRODUCT_ECOSYSTEM.categories.find(c => c.id === 'finance');
             module = category.modules.find(m => m.name === 'Billing Platform');
-        } else if (slug === 'booking') {
+        } else if (resolvedSlug === 'booking') {
             category = PRODUCT_ECOSYSTEM.categories.find(c => c.id === 'commerce');
-            module = category.modules.find(m => m.name === 'POS System'); // Fallback or mapping
+            module = { name: 'Booking & Reservations', icon: Monitor, desc: 'Enterprise room reservations, restaurant table planners, and appointment booking apps' };
         }
     }
 
     if (!category) return null;
 
+    let moduleKey = resolvedSlug;
+    if (resolvedSlug === 'crm') moduleKey = 'crm-platform';
+    else if (resolvedSlug === 'retail') moduleKey = 'e-commerce-platform';
+    else if (resolvedSlug === 'billing') moduleKey = 'billing-platform';
+    else if (resolvedSlug === 'booking') moduleKey = 'booking';
+
     const Icon = module ? module.icon : category.icon;
-    const displayName = module ? (RICH_MODULES_DATA[slug]?.title || `GemSphere ${module.name}`) : `GemSphere ${category.name}`;
-    const displaySubtitle = module ? (RICH_MODULES_DATA[slug]?.subtitle || module.desc) : category.description;
+    
+    // Fetch custom content overrides for Programmatic SEO pages
+    const seoContent = isProgrammatic ? getSEOContent(slug) : null;
+    const displayName = isProgrammatic ? seoContent.h1 : (module ? (RICH_MODULES_DATA[moduleKey]?.title || `GemSphere ${module.name}`) : `GemSphere ${category.name}`);
+    const displaySubtitle = isProgrammatic ? seoContent.description : (module ? (RICH_MODULES_DATA[moduleKey]?.subtitle || module.desc) : category.description);
     
     const breadcrumbItems = [
         { name: 'Products', url: '/products' },
@@ -171,7 +104,7 @@ export default function ProductDetail({ slug }) {
         breadcrumbItems.push({ name: module.name, url: `/products/${slug}` });
     }
 
-    const customFeatures = RICH_MODULES_DATA[slug]?.features || (module ? [
+    const customFeatures = RICH_MODULES_DATA[moduleKey]?.features || (module ? [
         `${module.name} Core Engine & API Access`,
         "Real-time Enterprise Synchronization Layer",
         "Granular Role-Based Access Control",
@@ -185,9 +118,45 @@ export default function ProductDetail({ slug }) {
         "Real-Time Activity Timelines & Logging"
     ]);
 
+    const faqs = isProgrammatic ? seoContent.faqs : (RICH_MODULES_DATA[moduleKey]?.faqs || []);
+
+    // Map standard slugs to programmatic product keys
+    const standardToProgrammaticProductMap = {
+        'crm': 'crm-software',
+        'growth-crm': 'crm-software',
+        'retail': 'retail-management',
+        'retail-pos': 'retail-management',
+        'hospitality-suite': 'restaurant-pos',
+        'booking': 'restaurant-pos',
+        'billing': 'erp',
+        'identity-and-access': 'iam-platform',
+        'supply-chain-management': 'supply-chain-management',
+        'erp-system': 'erp',
+        'notification-engine': 'helpdesk',
+        'ai-chatbots': 'ai-chatbot'
+    };
+
+    let productKeyForComparison = parsing.product;
+    if (!isProgrammatic) {
+        productKeyForComparison = standardToProgrammaticProductMap[resolvedSlug] || resolvedSlug;
+    }
+
+    // Resolve dynamic competitor link for the product
+    let compareLink = `/products/${slug}`;
+    if (productKeyForComparison) {
+        const competitorKeys = Object.keys(COMPETITORS_MAP);
+        const matchedCompKey = competitorKeys.find(key => COMPETITORS_MAP[key].product === productKeyForComparison);
+        if (matchedCompKey) {
+            compareLink = `/compare/gemsphere-vs-${matchedCompKey}`;
+        }
+    }
+
     return (
         <div className="min-h-screen bg-brand-dark transition-colors duration-300">
             <SchemaMarkup schema={generateProductSchema({ name: displayName, description: displaySubtitle })} />
+            {faqs && faqs.length > 0 && (
+                <SchemaMarkup schema={generateFAQSchema(faqs)} />
+            )}
             
             {/* Background Accent Mesh Orbs (Matches home page animations) */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden="true">
@@ -213,9 +182,7 @@ export default function ProductDetail({ slug }) {
                         <h1 className="text-5xl md:text-7xl font-black font-display tracking-tight text-text-primary mb-8 max-w-4xl leading-tight">
                             {displayName}
                         </h1>
-                        <p className="text-xl text-text-secondary leading-relaxed max-w-2xl mb-10">
-                            {displaySubtitle}
-                        </p>
+                        <p className="text-xl text-text-secondary leading-relaxed max-w-2xl mb-10" dangerouslySetInnerHTML={{ __html: displaySubtitle }} />
                         <div className="flex flex-wrap gap-4">
                             <LocalizedLink href="/demo" className="btn-primary flex items-center justify-center">
                                 Schedule a Demo <ArrowRight size={18} className="ml-2" />
@@ -227,7 +194,7 @@ export default function ProductDetail({ slug }) {
                     </ScrollReveal>
                 </div>
             </section>
-
+            
             <TrustBadges />
 
             {/* Main Content Layout */}
@@ -273,6 +240,84 @@ export default function ProductDetail({ slug }) {
                                     <span className="flex items-center gap-2"><Globe2 size={14} className="text-brand-cyan"/> Global Multi-Tenant Node</span>
                                 </div>
                             </ScrollReveal>
+
+                            {/* Programmatic SEO Dynamic Internal Linking Grid */}
+                            {isProgrammatic && (
+                                <ScrollReveal className="mt-12 border-t border-brand-border/50 pt-10">
+                                    <h4 className="text-xl font-bold mb-6 text-text-primary">Related Enterprise Setup Configurations</h4>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <LocalizedLink 
+                                            href={`/products/${parsing.product}`}
+                                            className="glass-card p-4 flex justify-between items-center border-brand-border/40 hover:border-brand-cyan/40 transition-colors"
+                                        >
+                                            <span className="text-text-secondary text-sm font-semibold">Core Product: <strong className="text-brand-cyan">{PRODUCTS_MAP[parsing.product]?.name}</strong></span>
+                                            <ArrowRight size={16} className="text-brand-cyan" />
+                                        </LocalizedLink>
+
+                                        {parsing.industry && (
+                                            <LocalizedLink 
+                                                href={`/industries/${parsing.industry}`}
+                                                className="glass-card p-4 flex justify-between items-center border-brand-border/40 hover:border-brand-cyan/40 transition-colors"
+                                            >
+                                                <span className="text-text-secondary text-sm font-semibold">Industry Focus: <strong className="text-brand-cyan">{INDUSTRIES_MAP[parsing.industry]?.name}</strong></span>
+                                                <ArrowRight size={16} className="text-brand-cyan" />
+                                            </LocalizedLink>
+                                        )}
+
+                                        {parsing.country && (
+                                            <LocalizedLink 
+                                                href={`/products/${parsing.product}`}
+                                                className="glass-card p-4 flex justify-between items-center border-brand-border/40 hover:border-brand-cyan/40 transition-colors"
+                                            >
+                                                <span className="text-text-secondary text-sm font-semibold">Regional Compliance: <strong className="text-brand-cyan">{COUNTRIES_MAP[parsing.country]?.name}</strong></span>
+                                                <ArrowRight size={16} className="text-brand-cyan" />
+                                            </LocalizedLink>
+                                        )}
+
+                                        <LocalizedLink 
+                                            href={compareLink}
+                                            className="glass-card p-4 flex justify-between items-center border-brand-border/40 hover:border-brand-cyan/40 transition-colors"
+                                        >
+                                            <span className="text-text-secondary text-sm font-semibold">Compare Options: <strong className="text-brand-cyan">GemSphere vs Alternatives</strong></span>
+                                            <ArrowRight size={16} className="text-brand-cyan" />
+                                        </LocalizedLink>
+                                    </div>
+                                </ScrollReveal>
+                            )}
+
+                            {faqs && faqs.length > 0 && (
+                                <ScrollReveal className="mt-16 border-t border-brand-border/50 pt-12">
+                                    <h3 className="text-3xl font-black mb-8 text-text-primary">Frequently Asked Questions</h3>
+                                    <div className="space-y-4">
+                                        {faqs.map((faq, idx) => {
+                                            const isOpen = activeFaqIndex === idx;
+                                            return (
+                                                <div 
+                                                    key={idx}
+                                                    className="glass-card border-brand-border/50 overflow-hidden transition-all duration-300 hover:border-brand-cyan/30"
+                                                >
+                                                    <button
+                                                        onClick={() => setActiveFaqIndex(isOpen ? null : idx)}
+                                                        className="w-full px-6 py-5 text-left flex justify-between items-center gap-4 hover:bg-brand-border/20 transition-colors"
+                                                    >
+                                                        <span className="font-bold text-text-primary text-lg">{faq.q || faq.question}</span>
+                                                        <span className={`text-brand-cyan transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+                                                        </span>
+                                                    </button>
+                                                    <div 
+                                                        className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-48 border-t border-brand-border/30' : 'max-h-0'}`}
+                                                    >
+                                                        <div className="px-6 py-5 text-text-secondary leading-relaxed bg-brand-dark/20">
+                                                            {faq.a || faq.answer}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </ScrollReveal>
+                            )}
                         </div>
 
                         {/* Right Column: Sticky CTA Card */}
@@ -290,6 +335,11 @@ export default function ProductDetail({ slug }) {
                                         <LocalizedLink href="/demo" className="btn-primary w-full flex items-center justify-center py-4 font-bold">
                                             Schedule a Demo <ArrowRight size={18} className="ml-2" />
                                         </LocalizedLink>
+                                        {compareLink && compareLink !== `/products/${slug}` && (
+                                            <LocalizedLink href={compareLink} className="glass-subtle w-full flex items-center justify-center py-3 font-bold border border-brand-border/40 mt-3 rounded-xl hover:bg-brand-border/60 transition-colors">
+                                                Compare Options <ArrowRight size={16} className="ml-2" />
+                                            </LocalizedLink>
+                                        )}
                                     </div>
                                 </ScrollReveal>
                             </div>

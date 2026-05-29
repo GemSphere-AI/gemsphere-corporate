@@ -16,16 +16,6 @@ export const metadata = {
   },
   description: 'GemSphere Technologies is a global AI-powered enterprise software company delivering 28+ unified digital platform modules across Commerce, Supply Chain, Finance, Operations, AI, and Collaboration for 170+ countries.',
   metadataBase: new URL('https://gemsphere.ai'),
-  alternates: {
-    canonical: '/',
-    languages: {
-      'en-US': '/en-us',
-      'en-GB': '/en-gb',
-      'en-AE': '/en-ae',
-      'en-IN': '/en-in',
-      'de-DE': '/de-de',
-    },
-  },
   keywords: [
     'enterprise software', 'digital transformation', 'AI platform',
     'commerce platform', 'supply chain management', 'ERP software',

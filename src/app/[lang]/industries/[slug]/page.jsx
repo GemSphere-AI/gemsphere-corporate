@@ -8,6 +8,7 @@
  */
 import PillarPageTemplate from '../../../../views/PillarPageTemplate';
 import { PRODUCT_ECOSYSTEM } from '../../../../data/productEcosystem';
+import { SILO_DATA } from '../../../../data/siloData';
 
 export function generateStaticParams() {
     return PRODUCT_ECOSYSTEM.industries.map((ind) => ({
@@ -19,9 +20,10 @@ export async function generateMetadata({ params }) {
     const { slug } = await params;
     const ind = PRODUCT_ECOSYSTEM.industries.find(i => i.slug === slug);
     if (!ind) return { title: 'Industry Solutions | GemSphere Technologies' };
+    const siloDetails = SILO_DATA.industry[slug];
     return {
-        title: `${ind.name} Industry Solutions | GemSphere`,
-        description: ind.desc
+        title: `${siloDetails?.title || ind.name} Industry Solutions | GemSphere`,
+        description: siloDetails?.description || `Enterprise-grade ${ind.name.toLowerCase()} solutions powered by AI.`
     };
 }
 

@@ -26,3 +26,19 @@ export const generateProductSchema = (product) => ({
     "name": "GemSphere Technologies"
   }
 });
+
+export const generateFAQSchema = (faqs) => {
+  if (!faqs || !Array.isArray(faqs) || faqs.length === 0) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question || faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer || faq.a
+      }
+    }))
+  };
+};

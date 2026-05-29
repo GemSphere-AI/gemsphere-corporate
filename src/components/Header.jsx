@@ -30,7 +30,8 @@ const Header = () => {
 
     useEffect(() => {
         // Initialize theme based on localStorage, defaulting to light mode
-        if (localStorage.theme === 'dark') {
+        const savedMode = localStorage.theme || localStorage.getItem('gemsphere-ui-theme-mode');
+        if (savedMode === 'dark') {
             setIsDarkMode(true);
             document.documentElement.classList.add('dark');
         } else {
@@ -43,10 +44,12 @@ const Header = () => {
         if (isDarkMode) {
             document.documentElement.classList.remove('dark');
             localStorage.theme = 'light';
+            localStorage.setItem('gemsphere-ui-theme-mode', 'light');
             setIsDarkMode(false);
         } else {
             document.documentElement.classList.add('dark');
             localStorage.theme = 'dark';
+            localStorage.setItem('gemsphere-ui-theme-mode', 'dark');
             setIsDarkMode(true);
         }
     };

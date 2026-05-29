@@ -1,4 +1,5 @@
-import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
+import { PRODUCT_ECOSYSTEM, slugify } from '../data/productEcosystem';
+import { generateCompositeSlugs } from '../data/seoRegistry';
 
 export const dynamic = 'force-static';
 
@@ -26,15 +27,28 @@ export default function sitemap() {
   ];
 
   const dynamicRoutes = [
-    ...PRODUCT_ECOSYSTEM.categories.map((c) => ({
-      path: `/products/${c.id}`, changeFreq: 'monthly', priority: 0.85,
-    })),
+    ...PRODUCT_ECOSYSTEM.categories.flatMap((c) => [
+      { path: `/products/${c.id}`, changeFreq: 'monthly', priority: 0.85 },
+      ...c.modules.map((m) => ({
+        path: `/products/${slugify(m.name)}`, changeFreq: 'monthly', priority: 0.80
+      }))
+    ]),
     ...PRODUCT_ECOSYSTEM.industries.map((i) => ({
       path: `/industries/${i.slug}`, changeFreq: 'monthly', priority: 0.8,
     })),
     ...PRODUCT_ECOSYSTEM.services.map((s) => ({
       path: `/services/${s.slug}`, changeFreq: 'monthly', priority: 0.8,
     })),
+    // Programmatic SEO composite routes
+    ...generateCompositeSlugs('products').map((slugStr) => ({
+      path: `/products/${slugStr}`, changeFreq: 'weekly', priority: 0.75
+    })),
+    ...generateCompositeSlugs('services').map((slugStr) => ({
+      path: `/services/${slugStr}`, changeFreq: 'weekly', priority: 0.75
+    })),
+    ...generateCompositeSlugs('comparisons').map((slugStr) => ({
+      path: `/compare/${slugStr}`, changeFreq: 'weekly', priority: 0.75
+    }))
   ];
 
   const allRoutes = [...staticRoutes, ...dynamicRoutes];

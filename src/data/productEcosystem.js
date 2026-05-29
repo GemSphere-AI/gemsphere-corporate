@@ -130,7 +130,7 @@ export const PRODUCT_ECOSYSTEM = {
 
     industries: [
         { name: 'Retail & Commerce', icon: ShoppingCart, slug: 'retail', stat: 'Omnichannel' },
-        { name: 'Healthcare', icon: Heart, slug: 'healthcare', stat: 'HIPAA Compliant' },
+        { name: 'Healthcare', icon: Heart, slug: 'healthcare', stat: 'HIPAA Ready' },
         { name: 'FinTech', icon: CreditCard, slug: 'fintech', stat: 'PCI DSS Ready' },
         { name: 'Logistics', icon: Truck, slug: 'logistics', stat: 'Multi-Region' },
         { name: 'Hospitality', icon: Building, slug: 'hospitality', stat: 'Multi-Property' },

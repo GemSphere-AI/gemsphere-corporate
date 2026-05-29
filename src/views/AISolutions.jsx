@@ -95,7 +95,7 @@ const AISolutions = () => {
                                     Your data is your IP. Our AI models are deployed in single-tenant isolated environments ensuring zero data leakage to public models.
                                 </p>
                                 <ul className="space-y-4 mb-8">
-                                    {['Zero-Trust Security', 'GDPR Compliant', 'HIPAA Compliant Infrastructure', 'Zero-Data-Retention Policies', 'Role-Based Inference Access'].map((item, i) => (
+                                    {['Zero-Trust Security', 'GDPR Compliant', 'HIPAA-Ready Architecture', 'Zero-Data-Retention Policies', 'Role-Based Inference Access'].map((item, i) => (
                                         <li key={i} className="flex items-center gap-3 text-white font-semibold">
                                             <CheckCircle2 className="text-brand-violet" size={20} /> {item}
                                         </li>

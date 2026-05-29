@@ -113,11 +113,24 @@ const BookingForm = ({ countryContext = '' }) => {
         jobTitle: '',
         company: '',
         companySize: '',
-        region: countryContext || 'US',
+        region: countryContext || 'United States',
         services: [],
         budgetRange: '',
-        message: countryContext ? `Interested in solutions specifically for ${countryContext}.` : ''
+        message: countryContext ? `Interested in solutions specifically for ${countryContext}.` : '',
+        targetTenant: ''
     });
+
+    React.useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            const queryTenant = params.get('tenant') || params.get('ref');
+            const envTenant = process.env.NEXT_PUBLIC_TARGET_TENANT || '';
+            const resolved = queryTenant || envTenant;
+            if (resolved) {
+                setFormData(prev => ({ ...prev, targetTenant: resolved }));
+            }
+        }
+    }, []);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -149,7 +162,7 @@ const BookingForm = ({ countryContext = '' }) => {
                 ).join(', ')
             };
 
-            const response = await fetch('/api/public/leads/demo-request', {
+            const response = await fetch('/api/v1/public/leads/demo-request', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -230,10 +243,13 @@ const BookingForm = ({ countryContext = '' }) => {
                 <motion.button
                     onClick={() => {
                         setSubmitted(false);
+                        const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+                        const queryTenant = params ? (params.get('tenant') || params.get('ref')) : '';
+                        const envTenant = process.env.NEXT_PUBLIC_TARGET_TENANT || '';
                         setFormData({
                             name: '', email: '', phone: '', jobTitle: '', company: '',
-                            companySize: '', region: countryContext || 'US', services: [],
-                            budgetRange: '', message: ''
+                            companySize: '', region: countryContext || 'United States', services: [],
+                            budgetRange: '', message: '', targetTenant: queryTenant || envTenant
                         });
                     }}
                     className="text-[#007da0] hover:text-[#005f7a] dark:text-brand-cyan dark:hover:text-brand-cyan/80 font-bold text-sm hover:underline underline-offset-4"
@@ -365,10 +381,10 @@ const BookingForm = ({ countryContext = '' }) => {
                     </div>
                 </div>
 
-                {/* ── Row 4: Region + Budget ── */}
+                {/* ── Row 4: Country / Region + Budget ── */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label className={labelClasses}>Region *</label>
+                        <label className={labelClasses}>Country / Region *</label>
                         <div className="relative">
                             <span className={`${iconClasses} ${focusedField === 'region' ? 'text-[#008ba8] dark:text-brand-cyan' : 'text-[#94a3b8] dark:text-[#64748b]'}`}><Globe2 size={16} /></span>
                             <select
@@ -377,13 +393,19 @@ const BookingForm = ({ countryContext = '' }) => {
                                 onFocus={() => setFocusedField('region')} onBlur={() => setFocusedField(null)}
                                 className={selectClasses}
                             >
-                                <option value="US">USA & Canada</option>
-                                <option value="UK">UK & Europe</option>
-                                <option value="UAE">UAE & Middle East</option>
-                                <option value="IN">India & South Asia</option>
-                                <option value="APAC">Asia Pacific</option>
-                                <option value="LATAM">Latin America</option>
-                                <option value="AF">Africa</option>
+                                <option value="United States">United States</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="India">India</option>
+                                <option value="United Arab Emirates">United Arab Emirates</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Australia">Australia</option>
+                                <option value="Singapore">Singapore</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Netherlands">Netherlands</option>
+                                <option value="Saudi Arabia">Saudi Arabia</option>
+                                <option value="Japan">Japan</option>
+                                <option value="South Africa">South Africa</option>
+                                <option value="France">France</option>
                                 <option value="Global">Other / Global</option>
                             </select>
                             <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#94a3b8] dark:text-[#64748b] pointer-events-none" />
