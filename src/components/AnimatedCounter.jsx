@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -18,6 +18,7 @@ const AnimatedCounter = ({ value, suffix = '', prefix = '', duration = 2, classN
 
     // Parse numeric value from string like "$4.2B+" or "170+"
     const numericStr = String(value).replace(/[^0-9.]/g, '');
+    const hasNumbers = numericStr.length > 0;
     const targetNum = parseFloat(numericStr) || 0;
     const hasDecimal = numericStr.includes('.');
     const decimalPlaces = hasDecimal ? numericStr.split('.')[1]?.length || 0 : 0;
@@ -28,7 +29,7 @@ const AnimatedCounter = ({ value, suffix = '', prefix = '', duration = 2, classN
     const autoSuffix = valueStr.match(/[^0-9.]*$/)?.[0] || '';
 
     useEffect(() => {
-        if (!isInView) return;
+        if (!isInView || !hasNumbers) return;
 
         let startTime = null;
         const animate = (timestamp) => {
@@ -45,9 +46,23 @@ const AnimatedCounter = ({ value, suffix = '', prefix = '', duration = 2, classN
         };
 
         requestAnimationFrame(animate);
-    }, [isInView, targetNum, duration]);
+    }, [isInView, targetNum, duration, hasNumbers]);
 
     const formatted = hasDecimal ? displayValue.toFixed(decimalPlaces) : Math.floor(displayValue).toLocaleString();
+
+    if (!hasNumbers) {
+        return (
+            <motion.span
+                ref={ref}
+                className={className}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5 }}
+            >
+                {value}
+            </motion.span>
+        );
+    }
 
     return (
         <motion.span

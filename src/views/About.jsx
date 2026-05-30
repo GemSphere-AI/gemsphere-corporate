@@ -55,7 +55,7 @@ const About = () => {
                             { icon: Target, title: 'Outcome-Driven', desc: "We don't just write code; we engineer business outcomes that drive real-world impact and ROI." },
                             { icon: Shield, title: 'Enterprise Security', desc: "Mission-critical systems require mission-critical security. It's baked into our DNA from day one." },
                             { icon: Zap, title: 'High Performance', desc: "Latency is the enemy of scale. Our architectures are optimized for extreme throughput and efficiency." },
-                            { icon: Globe, title: 'Global Mindset', desc: "With a footprint across 170+ countries, we build software that respects local nuance while scaling globally." },
+                            { icon: Globe, title: 'Global Mindset', desc: "Available globally in all countries, we build software that respects local nuance while scaling globally." },
                             { icon: Brain, title: 'AI-First Approach', desc: "Every modern enterprise should be powered by predictive intelligence. We make that a reality." },
                             { icon: Award, title: 'Excellence in Craft', desc: "Clean code, resilient architectures, and stunning UI. We take immense pride in what we build." }
                         ].map((value, i) => {
