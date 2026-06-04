@@ -1,0 +1,88 @@
+# Deploy Corporate Site to GitHub Pages
+# Copyright © 2026 GemSphere Technologies Private Limited.
+# All rights reserved.
+
+name: Deploy Corporate Site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**'
+      - '.github/workflows/deploy-corporate-pages.yml'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Select Branch to Deploy'
+        required: true
+        default: 'main'
+        type: choice
+        options:
+          - main
+          - dev
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Parent Repo
+        uses: actions/checkout@v4
+        with:
+          repository: GemSphere-AI/gemsphere-platform
+          token: ${{ secrets.PAT_TOKEN }}
+          path: .
+
+      - name: Checkout Shared Packages
+        uses: actions/checkout@v4
+        with:
+          repository: GemSphere-AI/gemsphere-shared-ui
+          token: ${{ secrets.PAT_TOKEN }}
+          path: shared
+
+      - name: Checkout Corporate Site Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch || github.ref_name }}
+          token: ${{ secrets.PAT_TOKEN }}
+          path: products/Corporate
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build Corporate Site
+        run: npm run build:corporate
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: products/Corporate/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
