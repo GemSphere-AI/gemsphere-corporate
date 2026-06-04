@@ -16,6 +16,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import MegaMenu from './MegaMenu';
 import { LanguageSwitcher } from '@GemSphere-AI/i18n';
 import { useTranslation } from 'react-i18next';
+import { LOGIN_URL, REGISTER_URL } from '../utils/apiConfig';
+
 
 const Header = () => {
     const { t } = useTranslation();
@@ -66,20 +68,27 @@ const Header = () => {
     return (
         <>
             <header 
-                className={`fixed top-0 left-0 w-full z-[60] transition-all duration-300 ${
+                className={`fixed top-0 left-0 w-full z-[60] transition-all duration-500 ${
                     scrolled || megaMenuOpen 
-                    ? 'h-[80px] bg-brand-dark/80 backdrop-blur-xl border-b border-brand-border' 
+                    ? 'h-[80px] bg-gradient-to-b from-[#ffffff]/95 to-[#ffffff]/90 dark:from-[#0a0f1e]/95 dark:to-[#030712]/90 backdrop-blur-2xl border-b border-brand-cyan/20 shadow-[0_10px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.35)]' 
                     : 'h-[100px] bg-transparent'
                 }`}
             >
-                <div className="container mx-auto px-6 h-full flex justify-between items-center max-w-7xl">
+                {/* Top glowing gradient accent line */}
+                {(scrolled || megaMenuOpen) && (
+                    <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-brand-cyan via-brand-indigo to-brand-rose animate-gradient-x z-[70]" />
+                )}
+                
+                <div className="container mx-auto px-6 h-full flex justify-between items-center max-w-7xl relative">
                     {/* Logo */}
                     <LocalizedLink href="/" className="flex items-center gap-3 group z-[70]">
-                        <div className="w-10 h-10 rounded-xl overflow-hidden bg-white dark:bg-brand-navy flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all duration-300 relative border border-brand-border/30 p-1.5">
+                        <div className="w-10 h-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 relative">
+                            {/* Logo Glow */}
+                            <div className="absolute inset-0 bg-brand-cyan/25 rounded-full filter blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             <img 
                                 src="/logo-icon.png" 
                                 alt="GemSphere" 
-                                className="w-full h-full object-contain" 
+                                className="w-full h-full object-contain relative z-10" 
                             />
                         </div>
                         <div className="flex flex-col">
@@ -98,19 +107,21 @@ const Header = () => {
                             {/* Mega Menu Trigger */}
                             <button
                                 onClick={() => setMegaMenuOpen(!megaMenuOpen)}
-                                className={`flex items-center gap-1 h-full px-4 text-sm font-semibold transition-colors ${megaMenuOpen ? 'text-brand-cyan' : 'text-text-secondary hover:text-text-primary'}`}
+                                className={`flex items-center gap-1 h-full px-4 text-sm font-semibold transition-colors relative group/link ${megaMenuOpen ? 'text-brand-cyan' : 'text-text-secondary hover:text-brand-cyan'}`}
                             >
                                 {t('nav.platform', 'Platform')}
                                 <ChevronDown size={14} className={`transition-transform duration-300 ${megaMenuOpen ? 'rotate-180' : ''}`} />
+                                <span className={`absolute bottom-0 left-4 right-4 h-[2px] bg-brand-cyan transition-transform duration-300 origin-center ${megaMenuOpen ? 'scale-x-100' : 'scale-x-0 group-hover/link:scale-x-100'}`} />
                             </button>
                             
                             {navLinks.map((link) => (
                                 <LocalizedLink 
                                     key={link.name} 
                                     href={link.href} 
-                                    className="flex items-center h-full px-4 text-sm font-semibold text-text-secondary hover:text-text-primary transition-colors"
+                                    className="flex items-center h-full px-4 text-sm font-semibold text-text-secondary hover:text-brand-cyan transition-colors relative group/link"
                                 >
                                     {link.name}
+                                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-brand-cyan scale-x-0 group-hover/link:scale-x-100 transition-transform duration-300 origin-center" />
                                 </LocalizedLink>
                             ))}
                         </nav>
@@ -126,7 +137,7 @@ const Header = () => {
                             </button>
  
                             <LocalizedLink 
-                                href="/login" 
+                                href={LOGIN_URL} 
                                 className="text-sm font-semibold text-text-secondary hover:text-brand-cyan transition-colors px-2 py-2"
                             >
                                 {t('nav.signIn', 'Sign In')}
@@ -137,7 +148,7 @@ const Header = () => {
                             >
                                 {t('nav.contactSales', 'Talk to Sales')}
                             </LocalizedLink>
-                            <LocalizedLink href="/register" className="btn-primary py-2 px-5 ml-2">
+                            <LocalizedLink href={REGISTER_URL} className="btn-primary py-2 px-5 ml-2">
                                 {t('nav.getStarted', 'Free Trial')}
                             </LocalizedLink>
                         </div>
@@ -190,13 +201,13 @@ const Header = () => {
                             <div className="flex justify-center mb-4">
                                 <LanguageSwitcher />
                             </div>
-                            <LocalizedLink href="/login" className="w-full py-3 text-center border border-brand-border text-text-primary font-bold rounded-xl">
+                            <LocalizedLink href={LOGIN_URL} className="w-full py-3 text-center border border-brand-border text-text-primary font-bold rounded-xl">
                                 {t('nav.signIn', 'Sign In')}
                             </LocalizedLink>
                             <LocalizedLink href="/contact" className="w-full py-3 text-center border border-brand-border text-text-primary font-bold rounded-xl">
                                 {t('nav.contactSales', 'Talk to Sales')}
                             </LocalizedLink>
-                            <LocalizedLink href="/register" className="w-full py-3 text-center bg-brand-cyan text-[#0f172a] font-black rounded-xl">
+                            <LocalizedLink href={REGISTER_URL} className="w-full py-3 text-center bg-brand-cyan text-[#0f172a] font-black rounded-xl">
                                 {t('nav.getStarted', 'Free Trial')}
                             </LocalizedLink>
                         </div>

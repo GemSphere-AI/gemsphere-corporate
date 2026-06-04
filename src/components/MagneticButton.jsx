@@ -11,6 +11,8 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
+import { GLOBAL_ROUTES } from '../utils/apiConfig';
+
 
 const MagneticButton = ({ children, className = '', onClick, href, as = 'button', strength = 0.3, ...props }) => {
     const ref = useRef(null);
@@ -20,7 +22,7 @@ const MagneticButton = ({ children, className = '', onClick, href, as = 'button'
 
     let localizedHref = href;
     if (typeof href === 'string' && href.startsWith('/')) {
-        const globalRoutes = ['/login', '/register', '/super-admin', '/forgot-password', '/reset-password', '/onboarding', '/retail', '/crm', '/marketing', '/booking'];
+        const globalRoutes = GLOBAL_ROUTES;
         const isGlobal = globalRoutes.some(route => href.startsWith(route));
         if (!isGlobal && !href.startsWith(`/${lang}`)) {
             localizedHref = href === '/' ? `/${lang}` : `/${lang}${href}`;

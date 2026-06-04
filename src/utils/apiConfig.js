@@ -14,7 +14,7 @@
 
 // 1. CONFIGURE BASE API DOMAIN HERE
 // Toggle between gemsphere.ai, gemsphere.in, localhost, or environment variables
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.gemsphere.ai';
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.gemsphere.in';
 
 // 2. CONFIGURE DEFAULT TENANT IDENTIFIER HERE
 // Specifies which tenant target gets associated with public form leads / requests
@@ -45,3 +45,21 @@ export const getEndpointUrl = (name) => {
     }
     return `${API_BASE_URL}${path}`;
 };
+
+// 4. CONFIGURE PLATFORM URLS (DYNAMIC OR STATIC)
+export const LOGIN_URL = '/login';
+export const REGISTER_URL = '/register';
+
+export const GLOBAL_ROUTES = [
+    '/login',
+    '/register',
+    '/super-admin',
+    '/forgot-password',
+    '/reset-password',
+    '/onboarding',
+    '/retail',
+    '/crm',
+    '/marketing',
+    '/booking'
+];
+

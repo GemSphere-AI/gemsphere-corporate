@@ -9,6 +9,8 @@
 "use client";
 import React from 'react';
 import LocalizedLink from '../components/LocalizedLink';
+import { LOGIN_URL } from '../utils/apiConfig';
+
 
 import { Mail, Phone, MapPin, MessageSquare, ArrowRight, Building2, Globe2, Zap, Users, Clock } from 'lucide-react';
 import dynamic from 'next/dynamic';
@@ -75,7 +77,7 @@ const Contact = () => {
                                         title: 'Technical Support', 
                                         desc: '24/7 support for existing enterprise platform clients.', 
                                         action: 'Go to Support Portal',
-                                        link: '/login'
+                                        link: LOGIN_URL
                                     },
                                     { 
                                         icon: Globe2, 

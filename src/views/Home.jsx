@@ -10,6 +10,8 @@
 
 import React from 'react';
 import LocalizedLink from '../components/LocalizedLink';
+import { REGISTER_URL } from '../utils/apiConfig';
+
 
 import { motion } from 'framer-motion';
 import { 
@@ -80,7 +82,7 @@ const Home = () => {
                         <ScrollReveal direction="up" delay={0.4}>
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                                 <MagneticButton 
-                                    href="/register" 
+                                    href={REGISTER_URL} 
                                     className="btn-primary w-full sm:w-auto text-lg px-8 py-4"
                                 >
                                     {t('home.ctaPrimary', 'Start Free Trial')} <ArrowRight size={20} />
@@ -391,7 +393,7 @@ const Home = () => {
                         </p>
                         
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                            <MagneticButton href="/register" className="btn-primary w-full sm:w-auto text-lg px-10 py-5">
+                            <MagneticButton href={REGISTER_URL} className="btn-primary w-full sm:w-auto text-lg px-10 py-5">
                                 Start Free Trial
                             </MagneticButton>
                             <MagneticButton href="/demo" className="btn-secondary w-full sm:w-auto text-lg px-10 py-5">

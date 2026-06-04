@@ -69,6 +69,8 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build Corporate Site
+        env:
+          NEXT_PUBLIC_BASE_PATH: /gemsphere-corporate
         run: npm run build:corporate
 
       - name: Upload Artifact

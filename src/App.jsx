@@ -10,7 +10,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import MainLayout from './layouts/MainLayout';
+import { LOGIN_URL, REGISTER_URL } from './utils/apiConfig';
 import './i18n';
+
 
 // Core Pages
 import Home from './views/Home';
@@ -58,8 +60,8 @@ function App() {
             <Route index element={<Home />} />
             
             {/* Redirect any locale prefixed login to root login */}
-            <Route path=":lang/login" element={<ExternalRedirect to="/login" />} />
-            <Route path=":lang/register" element={<ExternalRedirect to="/register" />} />
+            <Route path=":lang/login" element={<ExternalRedirect to={LOGIN_URL} />} />
+            <Route path=":lang/register" element={<ExternalRedirect to={REGISTER_URL} />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="demo" element={<Demo />} />

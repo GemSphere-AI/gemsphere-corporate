@@ -13,6 +13,8 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { LightGlassmorphicTheme, PlatformHeader, PlatformFooter } from '@GemSphere-AI/ui-kit';
 import TrustBadges from '../components/TrustBadges';
 import LocalizedLink from '../components/LocalizedLink';
+import { LOGIN_URL, REGISTER_URL } from '../utils/apiConfig';
+
 
 
 const MainLayout = ({ children }) => {
@@ -62,9 +64,9 @@ const MainLayout = ({ children }) => {
 
     const actionItems = (
         <>
-            <Button component="a" href="/login" sx={{ color: 'text.secondary', fontWeight: 700 }}>Sign In</Button>
+            <Button component="a" href={LOGIN_URL} sx={{ color: 'text.secondary', fontWeight: 700 }}>Sign In</Button>
             <Button component={LocalizedLink} href="/contact" sx={{ color: 'text.secondary', fontWeight: 700, ml: 1 }}>Talk to Sales</Button>
-            <Button component="a" href="/register" variant="contained" sx={{ borderRadius: '10px', fontWeight: 800, ml: 1 }}>Free Trial</Button>
+            <Button component="a" href={REGISTER_URL} variant="contained" sx={{ borderRadius: '10px', fontWeight: 800, ml: 1 }}>Free Trial</Button>
         </>
     );
 

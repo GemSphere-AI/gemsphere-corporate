@@ -26,7 +26,7 @@ const Footer = () => {
                     {/* Brand & Newsletter */}
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-xl overflow-hidden bg-white dark:bg-brand-navy flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.2)] relative border border-brand-border p-1.5">
+                            <div className="w-10 h-10 flex items-center justify-center relative">
                                 <img 
                                     src="/logo-icon.png" 
                                     alt="GemSphere" 

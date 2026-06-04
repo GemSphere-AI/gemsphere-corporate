@@ -10,6 +10,8 @@
 
 import React from 'react';
 import { useParams } from 'next/navigation';
+import { GLOBAL_ROUTES } from '../utils/apiConfig';
+
 
 export default function LocalizedLink({ href, children, className, ...props }) {
     const params = useParams();
@@ -17,7 +19,7 @@ export default function LocalizedLink({ href, children, className, ...props }) {
     
     let localizedHref = href;
     if (typeof href === 'string' && href.startsWith('/')) {
-        const globalRoutes = ['/login', '/register', '/super-admin', '/forgot-password', '/reset-password', '/onboarding', '/retail', '/crm', '/marketing', '/booking'];
+        const globalRoutes = GLOBAL_ROUTES;
         const isGlobal = globalRoutes.some(route => href.startsWith(route));
         if (!isGlobal && !href.startsWith(`/${lang}`)) {
             localizedHref = href === '/' ? `/${lang}` : `/${lang}${href}`;
