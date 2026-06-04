@@ -47,8 +47,8 @@ export const getEndpointUrl = (name) => {
 };
 
 // 4. CONFIGURE PLATFORM URLS (DYNAMIC OR STATIC)
-export const LOGIN_URL = '/login';
-export const REGISTER_URL = '/register';
+export const LOGIN_URL = 'https://gemsphere.in/login';
+export const REGISTER_URL = 'https://gemsphere.in/register';
 
 export const GLOBAL_ROUTES = [
     '/login',

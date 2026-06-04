@@ -19,37 +19,11 @@ const nextConfig = {
   },
   ...(isDev && {
     async redirects() {
-      const devHost = process.env.DEV_REDIRECT_HOST || 'http://localhost';
       return [
         {
           source: '/',
           destination: '/en-us',
           permanent: true,
-        },
-        {
-          source: '/login',
-          destination: `${devHost}/login`,
-          permanent: false,
-        },
-        {
-          source: '/register',
-          destination: `${devHost}/register`,
-          permanent: false,
-        },
-        {
-          source: '/forgot-password',
-          destination: `${devHost}/forgot-password`,
-          permanent: false,
-        },
-        {
-          source: '/reset-password',
-          destination: `${devHost}/reset-password`,
-          permanent: false,
-        },
-        {
-          source: '/onboarding',
-          destination: `${devHost}/onboarding`,
-          permanent: false,
         },
       ];
     },
