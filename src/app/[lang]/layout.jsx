@@ -86,6 +86,8 @@ export function generateStaticParams() {
 }
 
 import FloatingCTA from '../../components/FloatingCTA';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp';
+
 
 export default async function RootLayout({ children, params }) {
   const { lang } = await params;
@@ -154,6 +156,8 @@ export default async function RootLayout({ children, params }) {
         <ClientProviders>
           {children}
           <FloatingCTA />
+          <FloatingWhatsApp />
+
         </ClientProviders>
       </body>
     </html>

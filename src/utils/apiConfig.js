@@ -49,6 +49,8 @@ export const getEndpointUrl = (name) => {
 // 4. CONFIGURE PLATFORM URLS (DYNAMIC OR STATIC)
 export const LOGIN_URL = 'https://gemsphere.in/login';
 export const REGISTER_URL = 'https://gemsphere.in/register';
+export const WHATSAPP_LINK = 'https://wa.me/917892585801'; // Replace with company's WhatsApp number
+
 
 export const GLOBAL_ROUTES = [
     '/login',
