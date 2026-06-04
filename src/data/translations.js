@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -15,5 +15,14 @@ export const TRANSLATIONS = {
         ctaServices: 'Explore Global Solutions',
         officeTitle: 'Global Hub Headquarters',
         supportTitle: 'Regional Support'
+    },
+    de: {
+        globalTitle: 'Unternehmenssoftware & E-Commerce-Transformation in',
+        globalSubtitle: 'Der globale Standard für die digitale Transformation in',
+        globalDescription: 'GemSphere Technologies unterstützt Unternehmen und Scale-Ups mit geschäftskritischen KI-Lösungen, autonomen Systemen und prädiktiver Intelligenz. Wir schließen die Lücke zwischen regionalem Potenzial und globaler Skalierung.',
+        ctaDemo: 'Erste Schritte mit Unternehmenslösungen',
+        ctaServices: 'Globale Lösungen erkunden',
+        officeTitle: 'Globaler Hauptsitz',
+        supportTitle: 'Regionaler Support'
     }
 };

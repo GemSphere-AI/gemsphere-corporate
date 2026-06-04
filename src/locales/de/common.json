@@ -1,0 +1,94 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "services": "Dienstleistungen",
+    "industries": "Branchen",
+    "blog": "Blog",
+    "getStarted": "Kostenlose Testversion",
+    "learnMore": "Mehr erfahren",
+    "platform": "Plattform",
+    "signIn": "Anmelden",
+    "contactSales": "Vertrieb kontaktieren"
+  },
+  "home": {
+    "heroTitle": "Intelligente digitale Unternehmen entwickeln.",
+    "heroSubtitle": "Das fortschrittlichste modulare Ökosystem für Handel, Lieferkette, Finanzen und KI-Operationen auf globaler Ebene.",
+    "ctaPrimary": "Kostenlose Testversion",
+    "ctaSecondary": "Kostenlose Demo buchen",
+    "trustedBy": "Weltweit von Unternehmen geschätzt",
+    "whyChoose": "Warum GemSphere?",
+    "products": "Unsere Produkte",
+    "testimonials": "Erfolgsgeschichten",
+    "testimonialsBadge": "Erfolgsgeschichten",
+    "testimonialsTitle": "Geschätzt von modernen Unternehmen.",
+    "testimonialsSubtitle": "Erfahren Sie, wie Unternehmen weltweit ihre Abläufe mit GemSphere skalieren.",
+    "heroBadge": "Einheitliche digitale Unternehmensplattform",
+    "submitTestimonial": "Erfahrung teilen",
+    "submitTestimonialHeader": "Erfahrungsbericht schreiben",
+    "testimonialDescription": "Teilen Sie Ihr ehrliches technisches Feedback zu GemSphere-Produkten.",
+    "labelRating": "Bewertung",
+    "labelRole": "Berufsbezeichnung / Rolle",
+    "labelCompany": "Name des Unternehmens",
+    "labelQuote": "Ihr Erfahrungsbericht",
+    "buttonSubmitting": "Wird gesendet...",
+    "buttonSubmit": "Erfahrungsbericht senden",
+    "successSubmitTitle": "Vielen Dank!",
+    "submitSuccessMsg": "Ihr Erfahrungsbericht wurde erfolgreich gesendet."
+  },
+  "about": {
+    "title": "Über GemSphere",
+    "mission": "Unsere Mission",
+    "vision": "Unsere Vision",
+    "team": "Unser Team",
+    "values": "Unsere Werte"
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Treten Sie mit unserem Team in Verbindung",
+    "name": "Ihr Name",
+    "email": "Ihre E-Mail",
+    "message": "Ihre Nachricht",
+    "send": "Nachricht senden",
+    "success": "Nachricht erfolgreich gesendet!",
+    "office": "Unser Büro",
+    "phone": "Telefon",
+    "emailLabel": "E-Mail"
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Weiterlesen",
+    "published": "Veröffentlicht am {{date}}",
+    "author": "Von {{name}}",
+    "categories": "Kategorien",
+    "search": "Artikel suchen..."
+  },
+  "global": {
+    "title": "GemSphere in {{country}}",
+    "description": "Enterprise-Lösungen für Unternehmen in {{country}}. Mehrwährungs- und mehrsprachige SaaS-Plattform.",
+    "localPartners": "Lokale Partner",
+    "getStarted": "Jetzt starten in {{country}}"
+  },
+  "footer": {
+    "brand": "GemSphere",
+    "description": "Intelligente digitale Unternehmen entwickeln. Die einheitliche Plattform für globalen Handel, Lieferkette und KI-Operationen.",
+    "quickLinks": "Schnelllinks",
+    "support": "Support",
+    "legal": "Rechtliches",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsConditions": "Nutzungsbedingungen",
+    "copyright": "© {{year}} GemSphere Technologies Pvt. Ltd. Alle Rechte vorbehalten.",
+    "subscribe": "Insights abonnieren",
+    "subscribePlaceholder": "E-Mail-Adresse eingeben",
+    "subscribeButton": "Abonnieren",
+    "getInTouch": "Kontakt aufnehmen"
+  },
+  "common": {
+    "loading": "Wird geladen...",
+    "error": "Etwas ist schiefgelaufen",
+    "learnMore": "Mehr erfahren",
+    "getStarted": "Loslegen",
+    "contactUs": "Kontakt"
+  }
+}

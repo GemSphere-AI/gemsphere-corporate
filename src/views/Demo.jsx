@@ -8,7 +8,11 @@
  */
 "use client";
 import React from 'react';
-import BookingForm from '../components/BookingForm';
+import dynamic from 'next/dynamic';
+const BookingForm = dynamic(() => import('../components/BookingForm'), {
+  ssr: false,
+  loading: () => <div className="w-full min-h-[500px] bg-brand-border/10 animate-pulse rounded-[32px]" />
+});
 import ScrollReveal from '../components/ScrollReveal';
 
 const Demo = () => {

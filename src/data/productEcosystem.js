@@ -126,7 +126,26 @@ export const PRODUCT_ECOSYSTEM = {
         description: 'A modular, composable platform architecture where every module works independently and integrates seamlessly — giving enterprises the freedom to adopt at their own pace.',
     },
 
-    testimonials: [],
+    testimonials: [
+        {
+            quote: "GemSphere transformed our retail operations. By uniting our POS, inventory, and billing under a single multi-tenant platform, we reduced overhead costs by 35% in less than 6 months.",
+            name: "Sophia Chen",
+            role: "Chief Technology Officer",
+            company: "Lumina Retail Group"
+        },
+        {
+            quote: "The single data model and strict DDD architectures eliminated our integration headaches. The transition from legacy microservices to GemSphere's composable core was seamless.",
+            name: "Marcus Vance",
+            role: "VP of Engineering",
+            company: "Apex Supply Chain"
+        },
+        {
+            quote: "GemSphere's custom AI solutions allowed us to deploy predictive customer intelligence inside secure, single-tenant boundaries, respecting our compliance policies completely.",
+            name: "Dr. Amira Yusuf",
+            role: "Director of AI Research",
+            company: "Vanguard Health Systems"
+        }
+    ],
 
     industries: [
         { name: 'Retail & Commerce', icon: ShoppingCart, slug: 'retail', stat: 'Omnichannel' },

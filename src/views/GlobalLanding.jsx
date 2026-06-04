@@ -14,10 +14,15 @@ import { useParams, redirect } from 'next/navigation';
 import { Globe2, Building, Phone, ArrowRight } from 'lucide-react';
 import { COUNTRIES } from '../data/countries';
 import { TRANSLATIONS } from '../data/translations';
-import BookingForm from '../components/BookingForm';
+import dynamic from 'next/dynamic';
+const BookingForm = dynamic(() => import('../components/BookingForm'), {
+  ssr: false,
+  loading: () => <div className="w-full min-h-[500px] bg-brand-border/10 animate-pulse rounded-[32px]" />
+});
 
 const GlobalLanding = () => {
-    const { countrySlug } = useParams();
+    const params = useParams();
+    const lang = params?.lang || 'en-us';
     
     // Find country in database
     const country = COUNTRIES.find(c => c.slug === countrySlug);
@@ -28,8 +33,8 @@ const GlobalLanding = () => {
         return null;
     }
 
-    // For now, use English (en) as core locale unless we have a specific match
-    const strings = TRANSLATIONS.en; 
+    // Load translations dynamically
+    const strings = lang.startsWith('de') ? (TRANSLATIONS.de || TRANSLATIONS.en) : TRANSLATIONS.en; 
 
     // India HQ as global contact point (User Request)
     const contactInfo = {

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -8,10 +8,23 @@
  */
 import React from 'react';
 
-export const metadata = {
+export async function generateMetadata({ params }) {
+  const { lang } = await params;
+  return {
     title: 'Terms of Service | GemSphere Technologies',
-    description: 'Read the Terms of Service for using GemSphere Technologies products and services.'
-};
+    description: 'Read the Terms of Service for using GemSphere Technologies products and services.',
+    alternates: {
+      canonical: `/${lang}/terms`,
+      languages: {
+        'en-us': `/en-us/terms`,
+        'en-gb': `/en-gb/terms`,
+        'en-ae': `/en-ae/terms`,
+        'en-in': `/en-in/terms`,
+        'de-de': `/de-de/terms`,
+      }
+    }
+  };
+}
 
 export default function TermsOfService() {
     return (

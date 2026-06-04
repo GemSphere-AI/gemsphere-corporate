@@ -15,8 +15,10 @@ import { getAbsoluteUrl } from '@GemSphere-AI/ui-kit';
 import { motion, AnimatePresence } from 'framer-motion';
 import MegaMenu from './MegaMenu';
 import { LanguageSwitcher } from '@GemSphere-AI/i18n';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
+    const { t } = useTranslation();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [megaMenuOpen, setMegaMenuOpen] = useState(false);
@@ -55,10 +57,10 @@ const Header = () => {
     };
 
     const navLinks = [
-        { name: 'Solutions', href: '/solutions' },
-        { name: 'Services', href: '/services' },
-        { name: 'Industries', href: '/industries' },
-        { name: 'Company', href: '/about' },
+        { name: t('nav.solutions', 'Solutions'), href: '/solutions' },
+        { name: t('nav.services', 'Services'), href: '/services' },
+        { name: t('nav.industries', 'Industries'), href: '/industries' },
+        { name: t('nav.about', 'Company'), href: '/about' },
     ];
 
     return (
@@ -73,12 +75,21 @@ const Header = () => {
                 <div className="container mx-auto px-6 h-full flex justify-between items-center max-w-7xl">
                     {/* Logo */}
                     <LocalizedLink href="/" className="flex items-center gap-3 group z-[70]">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-indigo flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-300">
-                            <Rocket className="text-pure-white fill-current" size={20} />
+                        <div className="w-10 h-10 rounded-xl overflow-hidden bg-white dark:bg-brand-navy flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all duration-300 relative border border-brand-border/30 p-1.5">
+                            <img 
+                                src="/logo-icon.png" 
+                                alt="GemSphere" 
+                                className="w-full h-full object-contain" 
+                            />
                         </div>
-                        <span className="text-2xl font-black font-display tracking-tight text-text-primary group-hover:text-brand-cyan transition-colors">
-                            GemSphere
-                        </span>
+                        <div className="flex flex-col">
+                            <span className="text-xl font-black font-display tracking-tight text-[#0f172a] dark:text-[#f8fafc] transition-colors leading-none">
+                                Gem<span className="text-blue-600 dark:text-blue-400">Sphere</span>
+                            </span>
+                            <span className="text-[7.5px] font-extrabold uppercase tracking-widest text-text-muted mt-1 leading-none transition-colors">
+                                Engineering the Future of Business
+                            </span>
+                        </div>
                     </LocalizedLink>
 
                     {/* Desktop Nav */}
@@ -89,7 +100,7 @@ const Header = () => {
                                 onClick={() => setMegaMenuOpen(!megaMenuOpen)}
                                 className={`flex items-center gap-1 h-full px-4 text-sm font-semibold transition-colors ${megaMenuOpen ? 'text-brand-cyan' : 'text-text-secondary hover:text-text-primary'}`}
                             >
-                                Platform
+                                {t('nav.platform', 'Platform')}
                                 <ChevronDown size={14} className={`transition-transform duration-300 ${megaMenuOpen ? 'rotate-180' : ''}`} />
                             </button>
                             
@@ -113,21 +124,21 @@ const Header = () => {
                             >
                                 {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
                             </button>
-
+ 
                             <LocalizedLink 
                                 href="/login" 
                                 className="text-sm font-semibold text-text-secondary hover:text-brand-cyan transition-colors px-2 py-2"
                             >
-                                Sign In
+                                {t('nav.signIn', 'Sign In')}
                             </LocalizedLink>
                             <LocalizedLink 
                                 href="/contact" 
                                 className="text-sm font-semibold text-text-secondary hover:text-brand-cyan transition-colors px-2 py-2 ml-2"
                             >
-                                Talk to Sales
+                                {t('nav.contactSales', 'Talk to Sales')}
                             </LocalizedLink>
                             <LocalizedLink href="/register" className="btn-primary py-2 px-5 ml-2">
-                                Free Trial
+                                {t('nav.getStarted', 'Free Trial')}
                             </LocalizedLink>
                         </div>
                     </div>
@@ -167,7 +178,7 @@ const Header = () => {
                     >
                         <nav className="flex flex-col gap-2 mb-8">
                             <LocalizedLink href="/products" className="py-4 text-2xl font-bold text-text-primary border-b border-brand-border flex justify-between items-center">
-                                Platform <ChevronRight size={20} className="text-brand-cyan" />
+                                {t('nav.platform', 'Platform')} <ChevronRight size={20} className="text-brand-cyan" />
                             </LocalizedLink>
                             {navLinks.map((link) => (
                                 <LocalizedLink key={link.name} href={link.href} className="py-4 text-2xl font-bold text-text-primary border-b border-brand-border flex justify-between items-center">
@@ -180,13 +191,13 @@ const Header = () => {
                                 <LanguageSwitcher />
                             </div>
                             <LocalizedLink href="/login" className="w-full py-3 text-center border border-brand-border text-text-primary font-bold rounded-xl">
-                                Sign In
+                                {t('nav.signIn', 'Sign In')}
                             </LocalizedLink>
                             <LocalizedLink href="/contact" className="w-full py-3 text-center border border-brand-border text-text-primary font-bold rounded-xl">
-                                Talk to Sales
+                                {t('nav.contactSales', 'Talk to Sales')}
                             </LocalizedLink>
                             <LocalizedLink href="/register" className="w-full py-3 text-center bg-brand-cyan text-[#0f172a] font-black rounded-xl">
-                                Free Trial
+                                {t('nav.getStarted', 'Free Trial')}
                             </LocalizedLink>
                         </div>
                     </motion.div>

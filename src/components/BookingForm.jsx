@@ -16,6 +16,8 @@ import {
     Shield, Clock, Sparkles, ArrowRight
 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
+import { getEndpointUrl, DEFAULT_TENANT } from '../utils/apiConfig';
+import { queueOfflineSubmission } from '../utils/offlineSync';
 
 const SERVICE_OPTIONS = [
     { id: 'ecommerce-supply-chain', label: 'E-commerce & Supply Chain', icon: '🛒' },
@@ -117,15 +119,15 @@ const BookingForm = ({ countryContext = '' }) => {
         services: [],
         budgetRange: '',
         message: countryContext ? `Interested in solutions specifically for ${countryContext}.` : '',
-        targetTenant: ''
+        targetTenant: '',
+        website_honey: ''
     });
 
     React.useEffect(() => {
         if (typeof window !== 'undefined') {
             const params = new URLSearchParams(window.location.search);
-            const queryTenant = params.get('tenant') || params.get('ref');
-            const envTenant = process.env.NEXT_PUBLIC_TARGET_TENANT || '';
-            const resolved = queryTenant || envTenant;
+            const queryTenant = params.get('tenant') || params.get('ref') || '';
+            const resolved = queryTenant || DEFAULT_TENANT;
             if (resolved) {
                 setFormData(prev => ({ ...prev, targetTenant: resolved }));
             }
@@ -154,26 +156,42 @@ const BookingForm = ({ countryContext = '' }) => {
         }
 
         setLoading(true);
-        try {
-            const payload = {
-                ...formData,
-                interestedService: formData.services.map(id =>
-                    SERVICE_OPTIONS.find(s => s.id === id)?.label
-                ).join(', ')
-            };
+        const payload = {
+            ...formData,
+            interestedService: formData.services.map(id =>
+                SERVICE_OPTIONS.find(s => s.id === id)?.label
+            ).join(', ')
+        };
 
-            const response = await fetch('/api/v1/public/leads/demo-request', {
+        try {
+            const endpoint = getEndpointUrl('demoRequest');
+            const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-            const result = await response.json();
-            if (result.success) {
+            
+            if (response.ok) {
+                const result = await response.json();
+                if (result.success) {
+                    setSubmitted(true);
+                    toast.success('Demo request received!');
+                } else {
+                    toast.error(result.message || 'Failed to submit request.');
+                }
+            } else if (response.status >= 500 || response.status === 0) {
+                queueOfflineSubmission(endpoint, payload, 'demoRequest');
                 setSubmitted(true);
-                toast.success('Demo request received!');
+                toast.success('Demo request received (offline sync active)!');
+            } else {
+                const result = await response.json().catch(() => ({}));
+                toast.error(result.message || 'Failed to submit request.');
             }
         } catch (error) {
-            toast.error('Failed to submit request. Please try again.');
+            console.warn('Network error. Saving submission offline.', error);
+            queueOfflineSubmission(getEndpointUrl('demoRequest'), payload, 'demoRequest');
+            setSubmitted(true);
+            toast.success('Demo request received (offline sync active)!');
         } finally {
             setLoading(false);
         }
@@ -245,11 +263,10 @@ const BookingForm = ({ countryContext = '' }) => {
                         setSubmitted(false);
                         const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
                         const queryTenant = params ? (params.get('tenant') || params.get('ref')) : '';
-                        const envTenant = process.env.NEXT_PUBLIC_TARGET_TENANT || '';
                         setFormData({
                             name: '', email: '', phone: '', jobTitle: '', company: '',
                             companySize: '', region: countryContext || 'United States', services: [],
-                            budgetRange: '', message: '', targetTenant: queryTenant || envTenant
+                            budgetRange: '', message: '', targetTenant: queryTenant || DEFAULT_TENANT
                         });
                     }}
                     className="text-[#007da0] hover:text-[#005f7a] dark:text-brand-cyan dark:hover:text-brand-cyan/80 font-bold text-sm hover:underline underline-offset-4"
@@ -290,6 +307,17 @@ const BookingForm = ({ countryContext = '' }) => {
             </div>
 
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+                {/* Honeypot field for bot spam protection */}
+                <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                    <input
+                        type="text"
+                        name="website_honey"
+                        value={formData.website_honey}
+                        onChange={handleChange}
+                        tabIndex={-1}
+                        autoComplete="off"
+                    />
+                </div>
 
                 {/* ── Row 1: Name + Email ── */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

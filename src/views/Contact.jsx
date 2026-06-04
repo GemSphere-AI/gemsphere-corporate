@@ -11,7 +11,11 @@ import React from 'react';
 import LocalizedLink from '../components/LocalizedLink';
 
 import { Mail, Phone, MapPin, MessageSquare, ArrowRight, Building2, Globe2, Zap, Users, Clock } from 'lucide-react';
-import BookingForm from '../components/BookingForm';
+import dynamic from 'next/dynamic';
+const BookingForm = dynamic(() => import('../components/BookingForm'), {
+  ssr: false,
+  loading: () => <div className="w-full min-h-[500px] bg-brand-border/10 animate-pulse rounded-[32px]" />
+});
 import ScrollReveal from '../components/ScrollReveal';
 
 const Contact = () => {

@@ -175,9 +175,9 @@ export default function ProductDetail({ slug }) {
                             <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-brand-cyan/20 text-brand-cyan shadow-lg shadow-brand-cyan/10">
                                 <Icon size={24} />
                             </div>
-                            <h2 className="text-sm font-bold tracking-widest uppercase text-brand-cyan">
+                            <span className="text-sm font-bold tracking-widest uppercase text-brand-cyan">
                                 {module ? `${category.name} Module` : `Enterprise Category`}
-                            </h2>
+                            </span>
                         </div>
                         <h1 className="text-5xl md:text-7xl font-black font-display tracking-tight text-text-primary mb-8 max-w-4xl leading-tight">
                             {displayName}
@@ -203,7 +203,7 @@ export default function ProductDetail({ slug }) {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
                         
                         {/* Left Column: Capabilities Grid */}
-                        <div className="lg:col-span-7">
+                        <main className="lg:col-span-7">
                             <ScrollReveal>
                                 <SectionHeading 
                                     align="left"
@@ -318,10 +318,10 @@ export default function ProductDetail({ slug }) {
                                     </div>
                                 </ScrollReveal>
                             )}
-                        </div>
+                        </main>
 
                         {/* Right Column: Sticky CTA Card */}
-                        <div className="lg:col-span-5 relative">
+                        <aside className="lg:col-span-5 relative">
                             <div className="sticky top-32">
                                 <ScrollReveal delay={0.2}>
                                     <div className="glass-heavy p-8 border-brand-cyan/20 rounded-[32px] shadow-2xl text-center">
@@ -343,7 +343,7 @@ export default function ProductDetail({ slug }) {
                                     </div>
                                 </ScrollReveal>
                             </div>
-                        </div>
+                        </aside>
 
                     </div>
                 </div>

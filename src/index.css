@@ -190,7 +190,7 @@
 /* ── GLOBAL RESET & BASE ───────────────────────────────── */
 
 :root {
-  font-family: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-inter), var(--font-outfit), system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   font-weight: 400;
   color-scheme: light;
@@ -257,7 +257,7 @@ body {
 /* ── TYPOGRAPHY SCALE ──────────────────────────────────── */
 
 .font-display {
-  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  font-family: var(--font-outfit), var(--font-inter), system-ui, sans-serif;
 }
 
 /* ── GLASSMORPHISM UTILITIES ───────────────────────────── */

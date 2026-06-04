@@ -8,10 +8,23 @@
  */
 import Services from '../../../views/Services';
 
-export const metadata = {
-  title: 'Enterprise Services — Development, Cloud & DevOps',
-  description: "Accelerate your transformation with GemSphere's professional services: software development, cloud engineering, DevOps, data analytics, and AI/ML consulting.",
-};
+export async function generateMetadata({ params }) {
+  const { lang } = await params;
+  return {
+    title: 'Enterprise Services — Development, Cloud & DevOps',
+    description: "Accelerate your transformation with GemSphere's professional services: software development, cloud engineering, DevOps, data analytics, and AI/ML consulting.",
+    alternates: {
+      canonical: `/${lang}/services`,
+      languages: {
+        'en-us': `/en-us/services`,
+        'en-gb': `/en-gb/services`,
+        'en-ae': `/en-ae/services`,
+        'en-in': `/en-in/services`,
+        'de-de': `/de-de/services`,
+      }
+    }
+  };
+}
 
 export default function Page() {
   return <Services />;

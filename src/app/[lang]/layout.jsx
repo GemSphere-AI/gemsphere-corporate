@@ -8,8 +8,25 @@
  */
 import '../../index.css';
 import ClientProviders from '../../components/ClientProviders';
+import { generateOrganizationSchema, generateWebSiteSchema } from '../../utils/schemaGenerators';
+import { Inter, Outfit } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+  variable: '--font-outfit',
+});
 
 export const metadata = {
+  applicationName: 'GemSphere Technologies',
   title: {
     default: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
     template: '%s | GemSphere Technologies',
@@ -73,49 +90,27 @@ import FloatingCTA from '../../components/FloatingCTA';
 export default async function RootLayout({ children, params }) {
   const { lang } = await params;
   return (
-    <html lang={lang}>
+    <html lang={lang} className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
         
         {/* Organization Schema Injection */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "GemSphere Technologies Private Limited",
-              "alternateName": "GemSphere",
-              "url": "https://gemsphere.ai",
-              "description": "Premium AI + Enterprise Software + SaaS Transformation Partner.",
-              "foundingDate": "2024",
-              "numberOfEmployees": {
-                "@type": "QuantitativeValue",
-                "value": "50+"
-              },
-              "areaServed": "Worldwide",
-              "knowsAbout": [
-                "Enterprise Software Development",
-                "Artificial Intelligence",
-                "Cloud Engineering",
-                "Supply Chain Management",
-                "E-Commerce Platforms",
-                "SaaS Product Development"
-              ],
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "contactType": "Sales",
-                "email": "sales@gemsphere.ai",
-                "availableLanguage": "English"
-              }
-            })
+            __html: JSON.stringify(generateOrganizationSchema())
+          }}
+        />
+
+        {/* WebSite Schema Injection */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateWebSiteSchema())
           }}
         />
 
         {/* Google Analytics 4 */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EWTL1GRQG"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -139,15 +134,12 @@ export default async function RootLayout({ children, params }) {
               });
               
               gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX', {
+              gtag('config', 'G-4EWTL1GRQG', {
                 page_path: window.location.pathname,
               });
             `,
           }}
         />
-        
-        {/* Google Search Console Verification */}
-        <meta name="google-site-verification" content="YOUR_VERIFICATION_STRING_HERE" />
       </head>
       <body>
         <ClientProviders>

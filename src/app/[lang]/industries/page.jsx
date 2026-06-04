@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 GemSphere Technologies Private Limited.
  * All rights reserved.
  *
@@ -8,10 +8,23 @@
  */
 import Industries from '../../../views/Industries';
 
-export const metadata = {
-  title: 'Industry Solutions — Retail, Healthcare, Fintech & More',
-  description: 'See how GemSphere Technologies powers digital transformation across Retail, Healthcare, Fintech, Manufacturing, Logistics, Education, and Government sectors.',
-};
+export async function generateMetadata({ params }) {
+  const { lang } = await params;
+  return {
+    title: 'Industry Solutions — Retail, Healthcare, Fintech & More',
+    description: 'See how GemSphere Technologies powers digital transformation across Retail, Healthcare, Fintech, Manufacturing, Logistics, Education, and Government sectors.',
+    alternates: {
+      canonical: `/${lang}/industries`,
+      languages: {
+        'en-us': `/en-us/industries`,
+        'en-gb': `/en-gb/industries`,
+        'en-ae': `/en-ae/industries`,
+        'en-in': `/en-in/industries`,
+        'de-de': `/de-de/industries`,
+      }
+    }
+  };
+}
 
 export default function Page() {
   return <Industries />;

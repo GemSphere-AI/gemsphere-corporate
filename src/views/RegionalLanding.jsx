@@ -10,7 +10,11 @@
 import React from 'react';
 
 import { MapPin, Globe2, Phone, Building } from 'lucide-react';
-import BookingForm from '../components/BookingForm';
+import dynamic from 'next/dynamic';
+const BookingForm = dynamic(() => import('../components/BookingForm'), {
+  ssr: false,
+  loading: () => <div className="w-full min-h-[500px] bg-brand-border/10 animate-pulse rounded-[32px]" />
+});
 
 const RegionalLanding = ({ region }) => {
     const regionalData = {

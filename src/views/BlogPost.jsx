@@ -12,7 +12,9 @@ import LocalizedLink from '../components/LocalizedLink';
 import { useParams, redirect } from 'next/navigation';
 
 import { BLOG_POSTS } from '../data/blogData';
-import { Calendar, User, ArrowLeft, Share2 } from 'lucide-react';
+import { Calendar, ArrowLeft, Share2 } from 'lucide-react';
+import SchemaMarkup from '../components/seo/SchemaMarkup';
+import { generateBlogPostingSchema } from '../utils/schemaGenerators';
 
 const BlogPost = () => {
     const { id } = useParams();
@@ -25,7 +27,7 @@ const BlogPost = () => {
 
     return (
         <article className="container mx-auto px-6 py-12 max-w-4xl">
-
+            <SchemaMarkup schema={generateBlogPostingSchema(post)} />
 
             <LocalizedLink href="/blog" className="inline-flex items-center gap-2 text-brand-cyan font-bold mb-12 hover:gap-3 transition-all">
                 <ArrowLeft size={18} /> Back to Blog
@@ -36,9 +38,12 @@ const BlogPost = () => {
                     <span className="px-3 py-1 rounded bg-brand-cyan/20 text-brand-cyan text-xs font-black uppercase tracking-widest">
                         {post.category}
                     </span>
-                    <span className="flex items-center gap-2 text-sm text-white/50 font-bold uppercase tracking-wider">
+                    <time 
+                        dateTime={new Date(post.date).toISOString().split('T')[0]} 
+                        className="flex items-center gap-2 text-sm text-white/50 font-bold uppercase tracking-wider"
+                    >
                         <Calendar size={16} /> {post.date}
-                    </span>
+                    </time>
                 </div>
                 
                 <h1 className="text-4xl md:text-6xl font-black mb-10 leading-tight">
@@ -73,7 +78,6 @@ const BlogPost = () => {
                 </p>
                 <div className="flex justify-center gap-4">
                     <LocalizedLink href="/demo" className="btn-primary">Book a Consultation</LocalizedLink>
-
                 </div>
             </div>
         </article>

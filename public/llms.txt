@@ -1,0 +1,26 @@
+# GemSphere Technologies
+
+> https://gemsphere.ai
+
+GemSphere Technologies is a next-generation enterprise-grade software and AI platform provider. We build unified, composable digital ecosystems spanning commerce, logistics, finance, business operations, and custom AI development.
+
+## Core Products & Solutions
+
+- [Commerce & Retail](https://gemsphere.ai/products/e-commerce-platform) - Omnichannel POS, payment processing, cataloging, promotions, and marketplace platforms.
+- [Supply Chain & Logistics](https://gemsphere.ai/products/supply-chain-management) - Strategic sourcing, warehouse management (WMS), route optimization (TMS), and demand planning.
+- [Finance & Accounting](https://gemsphere.ai/products/accounting-engine) - Multi-tenant billing engines, general ledger, global tax compliance, and automated reconciliation.
+- [Operations & Marketing](https://gemsphere.ai/products/crm-platform) - Enterprise Resource Planning (ERP), CRM systems, lead routing, and workflow automation.
+- [AI & Analytics](https://gemsphere.ai/products/predictive-analytics) - Custom conversational agents, recommendation engines, and predictive analytics.
+- [Platform Services](https://gemsphere.ai/products/api-gateway) - API gateways, single sign-on (SSO/IAM), audit logging, and global search services.
+
+## Professional Services
+
+- [AI & Machine Learning Solutions](https://gemsphere.ai/services/ai-solutions) - Fine-tuning proprietary/open-source LLMs, building NLP pipelines, and computer vision models.
+- [Enterprise Software Engineering](https://gemsphere.ai/services/software-development) - High-performance backend architectures built on Domain-Driven Design (DDD) principles.
+- [Cloud & Multi-Cloud Engineering](https://gemsphere.ai/services/cloud-engineering) - Multi-cloud setup, container orchestration, CI/CD pipelines, and DevOps automation.
+- [SaaS Product Engineering](https://gemsphere.ai/services/saas-products) - Designing secure, multi-tenant software architectures with logical/physical boundaries.
+
+## Key Technical Specs
+- **Architecture**: Composable microservices with single-tenant secure boundaries for AI workloads.
+- **Compliance**: HIPAA ready, PCI-DSS ready, GDPR compliant.
+- **DDD Standards**: Enforced bounded contexts separating core domains like Billing, Orders, and Identity.

@@ -9,7 +9,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useParams } from 'next/navigation';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { LightGlassmorphicTheme, DarkGlassmorphicTheme } from '@GemSphere-AI/ui-kit';
@@ -18,9 +18,22 @@ import i18n from '../i18n';
 import Header from './Header';
 import Footer from './Footer';
 import CookieConsent from './CookieConsent';
+import { syncOfflineSubmissions } from '../utils/offlineSync';
 
 export default function ClientProviders({ children }) {
     const pathname = usePathname();
+    const params = useParams();
+    const lang = params?.lang;
+
+    useEffect(() => {
+        if (lang) {
+            const mappedLang = lang.startsWith('de') ? 'de-de' : 'en-us';
+            if (i18n.language !== mappedLang) {
+                i18n.changeLanguage(mappedLang);
+            }
+        }
+    }, [lang]);
+
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
         stiffness: 100,
@@ -50,6 +63,23 @@ export default function ClientProviders({ children }) {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
+
+    // Offline submission background sync
+    useEffect(() => {
+        // Run sync on initial load
+        syncOfflineSubmissions();
+
+        // Listen for browser recovering internet connection
+        window.addEventListener('online', syncOfflineSubmissions);
+        
+        // Polling retry every 30 seconds
+        const syncInterval = setInterval(syncOfflineSubmissions, 30000);
+
+        return () => {
+            window.removeEventListener('online', syncOfflineSubmissions);
+            clearInterval(syncInterval);
+        };
+    }, []);
 
     return (
         <ThemeProvider theme={isDark ? DarkGlassmorphicTheme : LightGlassmorphicTheme}>

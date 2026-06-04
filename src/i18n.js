@@ -5,15 +5,21 @@
 
 import { initI18n } from '@GemSphere-AI/i18n';
 import en from './locales/en/common.json';
+import de from './locales/de/common.json';
 
 /**
  * Initialize i18n for the Corporate product.
- * Starts with English only; add more imports as translations are provided.
  */
 const i18n = initI18n({
     defaultNS: 'common',
     resources: {
         en: { common: en },
+        'en-us': { common: en },
+        'en-gb': { common: en },
+        'en-ae': { common: en },
+        'en-in': { common: en },
+        de: { common: de },
+        'de-de': { common: de },
     },
 });
 

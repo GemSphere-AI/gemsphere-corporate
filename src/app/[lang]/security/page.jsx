@@ -8,10 +8,23 @@
  */
 import Security from '../../../views/Security';
 
-export const metadata = {
-  title: 'Enterprise Security — GDPR & Zero-Trust Architecture',
-  description: "Learn about GemSphere's military-grade security architecture, GDPR adherence, zero-trust networking, and enterprise data protection measures.",
-};
+export async function generateMetadata({ params }) {
+  const { lang } = await params;
+  return {
+    title: 'Enterprise Security — GDPR & Zero-Trust Architecture',
+    description: "Learn about GemSphere's military-grade security architecture, GDPR adherence, zero-trust networking, and enterprise data protection measures.",
+    alternates: {
+      canonical: `/${lang}/security`,
+      languages: {
+        'en-us': `/en-us/security`,
+        'en-gb': `/en-gb/security`,
+        'en-ae': `/en-ae/security`,
+        'en-in': `/en-in/security`,
+        'de-de': `/de-de/security`,
+      }
+    }
+  };
+}
 
 export default function Page() {
     return <Security />;

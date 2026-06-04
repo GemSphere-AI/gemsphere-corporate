@@ -8,10 +8,23 @@
  */
 import AISolutions from '../../../views/AISolutions';
 
-export const metadata = {
-  title: 'AI Solutions — Intelligent Automation & Machine Learning',
-  description: "Explore GemSphere's enterprise AI capabilities: intelligent automation, predictive analytics, NLP, computer vision, and ML-powered business workflows.",
-};
+export async function generateMetadata({ params }) {
+  const { lang } = await params;
+  return {
+    title: 'AI Solutions — Intelligent Automation & Machine Learning',
+    description: "Explore GemSphere's enterprise AI capabilities: intelligent automation, predictive analytics, NLP, computer vision, and ML-powered business workflows.",
+    alternates: {
+      canonical: `/${lang}/ai-solutions`,
+      languages: {
+        'en-us': `/en-us/ai-solutions`,
+        'en-gb': `/en-gb/ai-solutions`,
+        'en-ae': `/en-ae/ai-solutions`,
+        'en-in': `/en-in/ai-solutions`,
+        'de-de': `/de-de/ai-solutions`,
+      }
+    }
+  };
+}
 
 export default function Page() {
   return <AISolutions />;

@@ -11,8 +11,10 @@ import React from 'react';
 import LocalizedLink from '../components/LocalizedLink';
 import { Rocket, MapPin, Mail, Phone, ShieldCheck, Award, Building2 } from 'lucide-react';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+    const { t } = useTranslation();
     return (
         <footer className="bg-brand-deeper pt-24 pb-12 border-t border-brand-border relative overflow-hidden">
             {/* Background Accent */}
@@ -24,25 +26,31 @@ const Footer = () => {
                     {/* Brand & Newsletter */}
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-indigo flex items-center justify-center shadow-[0_0_20px_rgba(0,212,255,0.2)]">
-                                <Rocket className="text-pure-white fill-current" size={20} />
+                            <div className="w-10 h-10 rounded-xl overflow-hidden bg-white dark:bg-brand-navy flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.2)] relative border border-brand-border p-1.5">
+                                <img 
+                                    src="/logo-icon.png" 
+                                    alt="GemSphere" 
+                                    className="w-full h-full object-contain" 
+                                />
                             </div>
-                            <span className="text-2xl font-black font-display tracking-tight text-text-primary">GemSphere</span>
+                            <span className="text-2xl font-black font-display tracking-tight text-text-primary">
+                                Gem<span className="text-blue-600 dark:text-blue-400">Sphere</span>
+                            </span>
                         </div>
                         <p className="text-text-secondary text-sm leading-relaxed mb-8 max-w-sm">
-                            Engineering Intelligent Digital Enterprises. The unified platform for global commerce, supply chain, and AI operations.
+                            {t('footer.description', 'Engineering Intelligent Digital Enterprises. The unified platform for global commerce, supply chain, and AI operations.')}
                         </p>
                         
                         <div className="mb-8">
-                            <h4 className="text-xs font-bold uppercase tracking-widest text-text-tertiary mb-3">Subscribe to Insights</h4>
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-text-tertiary mb-3">{t('footer.subscribe', 'Subscribe to Insights')}</h4>
                             <div className="flex gap-2">
                                 <input 
                                     type="email" 
-                                    placeholder="Enter your email" 
+                                    placeholder={t('footer.subscribePlaceholder', 'Enter your email')} 
                                     className="glass-subtle border-brand-border rounded-lg px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-brand-cyan w-full transition-colors"
                                 />
                                 <button className="bg-brand-cyan text-[#0f172a] px-4 py-2.5 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
-                                    Subscribe
+                                    {t('footer.subscribeButton', 'Subscribe')}
                                 </button>
                             </div>
                         </div>
@@ -73,7 +81,7 @@ const Footer = () => {
 
                     {/* Platform Columns */}
                     <div className="lg:col-span-1">
-                        <h4 className="text-sm font-bold text-text-primary mb-6">Platform</h4>
+                        <h4 className="text-sm font-bold text-text-primary mb-6">{t('nav.platform', 'Platform')}</h4>
                         <ul className="space-y-4">
                             {PRODUCT_ECOSYSTEM.categories.slice(0, 5).map((cat, i) => (
                                 <li key={i}>
@@ -87,7 +95,7 @@ const Footer = () => {
 
                     {/* Solutions Column */}
                     <div className="lg:col-span-1">
-                        <h4 className="text-sm font-bold text-text-primary mb-6">Solutions</h4>
+                        <h4 className="text-sm font-bold text-text-primary mb-6">{t('nav.solutions', 'Solutions')}</h4>
                         <ul className="space-y-4">
                             {PRODUCT_ECOSYSTEM.industries.slice(0, 5).map((ind, i) => (
                                 <li key={i}>
@@ -101,19 +109,18 @@ const Footer = () => {
 
                     {/* Company Column */}
                     <div className="lg:col-span-1">
-                        <h4 className="text-sm font-bold text-text-primary mb-6">Company</h4>
+                        <h4 className="text-sm font-bold text-text-primary mb-6">{t('nav.about', 'Company')}</h4>
                         <ul className="space-y-4">
-                            <li><LocalizedLink href="/about" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">About Us</LocalizedLink></li>
-                            <li><LocalizedLink href="/careers" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Careers</LocalizedLink></li>
-                            <li><LocalizedLink href="/contact" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Contact</LocalizedLink></li>
-                            <li><LocalizedLink href="/blog" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Blog</LocalizedLink></li>
-                            <li><LocalizedLink href="/partners" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">Partners</LocalizedLink></li>
+                            <li><LocalizedLink href="/about" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">{t('nav.about', 'About Us')}</LocalizedLink></li>
+                            <li><LocalizedLink href="/careers" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">{t('nav.careers', 'Careers')}</LocalizedLink></li>
+                            <li><LocalizedLink href="/contact" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">{t('nav.contact', 'Contact')}</LocalizedLink></li>
+                            <li><LocalizedLink href="/blog" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">{t('nav.blog', 'Blog')}</LocalizedLink></li>
                         </ul>
                     </div>
 
                     {/* Contact Info */}
                     <div className="lg:col-span-1">
-                        <h4 className="text-sm font-bold text-text-primary mb-6">Get in Touch</h4>
+                        <h4 className="text-sm font-bold text-text-primary mb-6">{t('footer.getInTouch', 'Get in Touch')}</h4>
                         <ul className="space-y-4 text-sm text-text-secondary">
                             <li className="flex gap-3">
                                 <MapPin size={18} className="text-brand-cyan shrink-0 mt-0.5" />
@@ -147,15 +154,15 @@ const Footer = () => {
                     </div>
                     
                     <div className="flex flex-wrap gap-4 md:gap-6 text-xs font-semibold text-text-tertiary">
-                        <LocalizedLink href="/privacy" className="hover:text-brand-cyan transition-colors">Privacy Policy</LocalizedLink>
-                        <LocalizedLink href="/cookie-policy" className="hover:text-brand-cyan transition-colors">Cookie Policy</LocalizedLink>
-                        <LocalizedLink href="/terms" className="hover:text-brand-cyan transition-colors">Terms of Service</LocalizedLink>
-                        <LocalizedLink href="/security" className="hover:text-brand-cyan transition-colors">Security</LocalizedLink>
+                        <LocalizedLink href="/privacy" className="hover:text-brand-cyan transition-colors">{t('footer.privacyPolicy', 'Privacy Policy')}</LocalizedLink>
+                        <LocalizedLink href="/cookie-policy" className="hover:text-brand-cyan transition-colors">{t('footer.cookiePolicy', 'Cookie Policy')}</LocalizedLink>
+                        <LocalizedLink href="/terms" className="hover:text-brand-cyan transition-colors">{t('footer.termsConditions', 'Terms of Service')}</LocalizedLink>
+                        <LocalizedLink href="/security" className="hover:text-brand-cyan transition-colors">{t('nav.security', 'Security')}</LocalizedLink>
                     </div>
                 </div>
                 
                 <div className="mt-8 text-center text-xs text-text-muted">
-                    &copy; 2026 GemSphere Technologies Private Limited. All rights reserved.
+                    {t('footer.copyright', '© 2026 GemSphere Technologies Private Limited. All rights reserved.', { year: 2026 })}
                 </div>
             </div>
         </footer>

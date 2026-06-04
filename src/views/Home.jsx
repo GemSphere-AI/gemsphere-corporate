@@ -23,13 +23,25 @@ import ScrollReveal from '../components/ScrollReveal';
 import MarqueeRow from '../components/MarqueeRow';
 import SectionHeading from '../components/SectionHeading';
 import ProductCard from '../components/ProductCard';
-import WorldMap from '../components/WorldMap';
-import TestimonialCarousel from '../components/TestimonialCarousel';
+import dynamic from 'next/dynamic';
+
+const WorldMap = dynamic(() => import('../components/WorldMap'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full min-h-[400px] bg-brand-border/10 animate-pulse rounded-3xl" />
+});
+
+const TestimonialCarousel = dynamic(() => import('../components/TestimonialCarousel'), {
+  ssr: false,
+  loading: () => <div className="w-full h-[300px] bg-brand-border/10 animate-pulse rounded-3xl" />
+});
+
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+    const { t } = useTranslation();
     return (
-        <div className="min-h-screen">
+        <main className="min-h-screen">
 
             {/* 1. CINEMATIC HERO SECTION */}
             <section className="relative min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden">
@@ -49,20 +61,19 @@ const Home = () => {
                     <div className="max-w-4xl mx-auto text-center">
                         <ScrollReveal direction="up" delay={0.1}>
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-subtle text-text-primary text-xs font-semibold uppercase tracking-[0.2em] mb-8">
-                                <Sparkles size={14} className="text-brand-cyan" /> Unified Digital Enterprise Platform
+                                <Sparkles size={14} className="text-brand-cyan" /> {t('nav.platform', 'Unified Digital Enterprise Platform')}
                             </div>
                         </ScrollReveal>
                         
                         <ScrollReveal direction="up" delay={0.2} stagger staggerDelay={0.05}>
                             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-display tracking-tight leading-[1.1] mb-8 text-text-primary">
-                                Engineering Intelligent <br />
-                                <span className="text-gradient-animated">Digital Enterprises.</span>
+                                <span className="text-gradient-animated block">{t('home.heroTitle', 'Engineering Intelligent Digital Enterprises.')}</span>
                             </h1>
                         </ScrollReveal>
 
                         <ScrollReveal direction="up" delay={0.3}>
                             <p className="text-xl md:text-2xl text-text-secondary font-medium leading-relaxed mb-12 max-w-3xl mx-auto">
-                                The world's most advanced modular ecosystem for commerce, supply chain, finance, and AI operations at global scale.
+                                {t('home.heroSubtitle', "The world's most advanced modular ecosystem for commerce, supply chain, finance, and AI operations at global scale.")}
                             </p>
                         </ScrollReveal>
 
@@ -72,13 +83,13 @@ const Home = () => {
                                     href="/register" 
                                     className="btn-primary w-full sm:w-auto text-lg px-8 py-4"
                                 >
-                                    Start Free Trial <ArrowRight size={20} />
+                                    {t('home.ctaPrimary', 'Start Free Trial')} <ArrowRight size={20} />
                                 </MagneticButton>
                                 <MagneticButton 
                                     href="/demo" 
                                     className="btn-secondary w-full sm:w-auto text-lg px-8 py-4"
                                 >
-                                    Book Free Demo
+                                    {t('home.ctaSecondary', 'Book Free Demo')}
                                 </MagneticButton>
 
                             </div>
@@ -226,17 +237,36 @@ const Home = () => {
                         
                         <div className="relative">
                             <ScrollReveal direction="right" delay={0.2}>
-                                <div className="aspect-square w-full max-w-lg mx-auto relative">
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-indigo/20 to-brand-cyan/20 rounded-[40px] rotate-3 blur-sm" />
-                                    <div className="absolute inset-0 bg-brand-card border border-brand-border rounded-[40px] flex items-center justify-center overflow-hidden">
-                                        {/* Abstract neural visual placeholder */}
-                                        <div className="absolute w-[150%] h-[150%] animate-spin-slow opacity-30 bg-[conic-gradient(from_90deg_at_50%_50%,#000000_0%,#6366f1_50%,#00d4ff_100%)]" />
-                                        <div className="absolute inset-[2px] bg-brand-card rounded-[38px] z-10 flex items-center justify-center p-12">
-                                            <div className="text-center z-20">
-                                                <Bot size={64} className="text-brand-cyan mx-auto mb-6 opacity-80" />
-                                                <div className="text-2xl font-black font-display tracking-widest text-text-muted uppercase mb-2">Custom AI Models</div>
-                                                <div className="text-sm text-brand-cyan font-bold tracking-widest uppercase animate-pulse">Deployed</div>
-                                            </div>
+                                <div className="aspect-square w-full max-w-lg mx-auto relative group">
+                                    {/* Glowing aura background */}
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-indigo/30 via-brand-cyan/20 to-purple-500/30 rounded-[40px] rotate-3 blur-md group-hover:rotate-6 transition-transform duration-500" />
+                                    
+                                    <div className="absolute inset-0 bg-brand-card border border-brand-border/60 hover:border-brand-cyan/40 rounded-[40px] flex items-center justify-center overflow-hidden transition-colors duration-300">
+                                        {/* High-fidelity generated image */}
+                                        <img 
+                                            src="/neural_engine_spotlight.png" 
+                                            alt="GemSphere Neural Network Engine" 
+                                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                        />
+                                        
+                                        {/* Premium overlay metrics cards */}
+                                        <div className="absolute top-6 left-6 z-20 glass-heavy rounded-2xl p-4 border border-white/10 shadow-2xl backdrop-blur-md animate-float">
+                                            <div className="text-[10px] font-bold text-brand-cyan uppercase tracking-widest mb-1">Active Agents</div>
+                                            <div className="text-lg font-black text-white font-display">1,402 <span className="text-xs text-emerald-400 font-semibold font-sans">+12%</span></div>
+                                        </div>
+
+                                        <div className="absolute bottom-6 right-6 z-20 glass-heavy rounded-2xl p-4 border border-white/10 shadow-2xl backdrop-blur-md">
+                                            <div className="text-[10px] font-bold text-brand-indigo dark:text-brand-cyan uppercase tracking-widest mb-1">Model Latency</div>
+                                            <div className="text-lg font-black text-white font-display">8.4ms</div>
+                                        </div>
+
+                                        {/* Subtle overlay gradient */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-brand-card/90 via-transparent to-transparent z-10 opacity-60" />
+                                        
+                                        {/* Floating Title */}
+                                        <div className="absolute bottom-6 left-6 z-20">
+                                            <div className="text-xs font-bold text-brand-cyan uppercase tracking-widest mb-1 animate-pulse">Neural Engine Core</div>
+                                            <h4 className="text-lg font-extrabold text-white tracking-wide font-display">GemSphere AI v2.4</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -330,6 +360,20 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* 7.5 TESTIMONIALS */}
+            <section className="py-24 bg-brand-dark/50 border-t border-brand-border relative overflow-hidden">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-indigo/5 rounded-full blur-[120px] pointer-events-none" />
+                <div className="container mx-auto px-6 max-w-7xl relative z-10">
+                    <SectionHeading 
+                        align="center"
+                        badge={t('home.testimonialsBadge', 'Success Stories')}
+                        title={t('home.testimonialsTitle', 'Trusted by Modern Enterprises.')}
+                        subtitle={t('home.testimonialsSubtitle', 'See how organizations around the globe scale their operations using GemSphere.')}
+                    />
+                    <TestimonialCarousel testimonials={PRODUCT_ECOSYSTEM.testimonials} className="mt-16 max-w-4xl mx-auto" />
+                </div>
+            </section>
+
             {/* 8. FINAL CTA */}
             <section className="py-24 md:py-32 relative overflow-hidden">
                 <div className="absolute inset-0 bg-brand-cyan/5" />
@@ -359,7 +403,7 @@ const Home = () => {
                 </div>
             </section>
 
-        </div>
+        </main>
     );
 };
 
