@@ -33,3 +33,9 @@ Thumbs.db
 .next/
 out/
 
+# Generated URL lists and reports
+urls_production.txt
+urls_local.txt
+urls_clickable.html
+url_validation_report.txt
+

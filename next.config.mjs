@@ -1,8 +1,18 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const isDev = process.env.NODE_ENV === 'development';
+
+// Check if building for a custom domain (indicated by CNAME file in public directory)
+const hasCname = fs.existsSync(path.join(__dirname, 'public', 'CNAME'));
 
 // Dynamically determine base path for GitHub Pages deployments
 let basePath = process.env.NEXT_PUBLIC_BASE_PATH || undefined;
-if (!isDev && !basePath && process.env.GITHUB_REPOSITORY) {
+if (!isDev && !basePath && !hasCname && process.env.GITHUB_REPOSITORY) {
   const repoName = process.env.GITHUB_REPOSITORY.split('/')[1];
   // If building on GitHub Actions for the gemsphere-corporate repository (or any sub-repository other than monorepo)
   if (repoName && repoName !== 'gemsphere-platform') {
