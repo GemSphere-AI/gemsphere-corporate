@@ -12,7 +12,9 @@ const hasCname = fs.existsSync(path.join(__dirname, 'public', 'CNAME'));
 
 // Dynamically determine base path for GitHub Pages deployments
 let basePath = process.env.NEXT_PUBLIC_BASE_PATH || undefined;
-if (!isDev && !basePath && !hasCname && process.env.GITHUB_REPOSITORY) {
+if (hasCname) {
+  basePath = undefined;
+} else if (!isDev && !basePath && process.env.GITHUB_REPOSITORY) {
   const repoName = process.env.GITHUB_REPOSITORY.split('/')[1];
   // If building on GitHub Actions for the gemsphere-corporate repository (or any sub-repository other than monorepo)
   if (repoName && repoName !== 'gemsphere-platform') {
