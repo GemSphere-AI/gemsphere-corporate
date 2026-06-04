@@ -11,6 +11,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import { GLOBAL_ROUTES } from '../utils/apiConfig';
 
 
@@ -41,8 +42,7 @@ const MagneticButton = ({ children, className = '', onClick, href, as = 'button'
         setPosition({ x: 0, y: 0 });
     };
 
-    const Tag = href ? 'a' : as;
-    const MotionTag = Tag === 'a' ? motion.a : motion.button;
+    const MotionTag = href ? motion(Link) : motion.button;
 
     return (
         <MotionTag

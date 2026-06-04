@@ -1,10 +1,20 @@
-/** @type {import('next').NextConfig} */
 const isDev = process.env.NODE_ENV === 'development';
+
+// Dynamically determine base path for GitHub Pages deployments
+let basePath = process.env.NEXT_PUBLIC_BASE_PATH || undefined;
+if (!isDev && !basePath && process.env.GITHUB_REPOSITORY) {
+  const repoName = process.env.GITHUB_REPOSITORY.split('/')[1];
+  // If building on GitHub Actions for the gemsphere-corporate repository (or any sub-repository other than monorepo)
+  if (repoName && repoName !== 'gemsphere-platform') {
+    basePath = `/${repoName}`;
+  }
+}
 
 const nextConfig = {
   output: isDev ? undefined : 'export',
-  distDir: 'dist',
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || undefined,
+  distDir: isDev ? '.next' : 'dist',
+  basePath: basePath,
+  trailingSlash: true,
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
@@ -22,7 +32,7 @@ const nextConfig = {
       return [
         {
           source: '/',
-          destination: '/en-us',
+          destination: '/en-us/',
           permanent: true,
         },
       ];

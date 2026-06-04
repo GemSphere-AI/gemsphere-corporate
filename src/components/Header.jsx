@@ -82,7 +82,7 @@ const Header = () => {
                 <div className="container mx-auto px-6 h-full flex justify-between items-center max-w-7xl relative">
                     {/* Logo */}
                     <LocalizedLink href="/" className="flex items-center gap-3 group z-[70]">
-                        <div className="w-10 h-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 relative">
+                        <div className="w-11 h-11 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 relative">
                             {/* Logo Glow */}
                             <div className="absolute inset-0 bg-brand-cyan/25 rounded-full filter blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             <img 
@@ -92,11 +92,11 @@ const Header = () => {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-xl font-black font-display tracking-tight text-[#0f172a] dark:text-[#f8fafc] transition-colors leading-none">
+                            <span className="text-2xl font-black font-display tracking-tight text-[#0f172a] dark:text-[#f8fafc] transition-colors leading-none">
                                 Gem<span className="text-blue-600 dark:text-blue-400">Sphere</span>
                             </span>
-                            <span className="text-[7.5px] font-extrabold uppercase tracking-widest text-text-muted mt-1 leading-none transition-colors">
-                                Engineering the Future of Business
+                            <span className="text-[9px] font-black uppercase tracking-[0.15em] text-gradient-animated mt-1.5 leading-none">
+                                Technology That Transforms
                             </span>
                         </div>
                     </LocalizedLink>

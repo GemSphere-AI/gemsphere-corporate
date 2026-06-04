@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import { GLOBAL_ROUTES } from '../utils/apiConfig';
 
 
@@ -27,8 +28,8 @@ export default function LocalizedLink({ href, children, className, ...props }) {
     }
     
     return (
-        <a href={localizedHref} className={className} {...props}>
+        <Link href={localizedHref} className={className} {...props}>
             {children}
-        </a>
+        </Link>
     );
 }
