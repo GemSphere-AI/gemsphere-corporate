@@ -28,10 +28,9 @@ const Footer = () => {
                         <div className="flex items-center gap-3 mb-6">
                             <div className="w-12 h-12 flex items-center justify-center relative">
                                 <img 
-                                    src="/logo-icon.png" 
+                                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/logo-icon.png`} 
                                     alt="GemSphere" 
                                     className="w-full h-full object-contain" 
-                                
                                 />
                             </div>
                             <span className="text-3xl font-black font-display tracking-tight text-text-primary">

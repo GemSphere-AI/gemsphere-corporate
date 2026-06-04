@@ -86,7 +86,7 @@ const Header = () => {
                             {/* Logo Glow */}
                             <div className="absolute inset-0 bg-brand-cyan/25 rounded-full filter blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             <img 
-                                src="/logo-icon.png" 
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/logo-icon.png`} 
                                 alt="GemSphere" 
                                 className="w-full h-full object-contain relative z-10" 
                             />

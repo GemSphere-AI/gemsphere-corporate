@@ -66,8 +66,8 @@ const WorldMap = ({ className = '' }) => {
                     className="absolute inset-0 transition-colors duration-700 ease-in-out"
                     style={{
                         backgroundColor: isDark ? '#0f2942' : '#dbeafe', // Dark blue vs Light blue landmass
-                        maskImage: "url('/world-map.svg')",
-                        WebkitMaskImage: "url('/world-map.svg')",
+                        maskImage: `url('${process.env.NEXT_PUBLIC_BASE_PATH || ''}/world-map.svg')`,
+                        WebkitMaskImage: `url('${process.env.NEXT_PUBLIC_BASE_PATH || ''}/world-map.svg')`,
                         maskSize: "contain",
                         WebkitMaskSize: "contain",
                         maskRepeat: "no-repeat",

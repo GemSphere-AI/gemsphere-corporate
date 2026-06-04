@@ -27,6 +27,9 @@ const nextConfig = {
     unoptimized: true,
     formats: ['image/avif', 'image/webp'],
   },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath || '',
+  },
   ...(isDev && {
     async redirects() {
       return [

@@ -14,7 +14,7 @@
 
 // 1. CONFIGURE BASE API DOMAIN HERE
 // Toggle between gemsphere.ai, gemsphere.in, localhost, or environment variables
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.gemsphere.in';
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://gemsphere.in';
 
 // 2. CONFIGURE DEFAULT TENANT IDENTIFIER HERE
 // Specifies which tenant target gets associated with public form leads / requests

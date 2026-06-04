@@ -246,7 +246,7 @@ const Home = () => {
                                     <div className="absolute inset-0 bg-brand-card border border-brand-border/60 hover:border-brand-cyan/40 rounded-[40px] flex items-center justify-center overflow-hidden transition-colors duration-300">
                                         {/* High-fidelity generated image */}
                                         <img 
-                                            src="/neural_engine_spotlight.png" 
+                                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/neural_engine_spotlight.png`} 
                                             alt="GemSphere Neural Network Engine" 
                                             className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                                         />
