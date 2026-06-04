@@ -140,6 +140,15 @@ export default async function RootLayout({ children, params }) {
             `,
           }}
         />
+        {/* Microsoft Customer Connect chatbot script */}
+        <script
+          type="text/javascript"
+          src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js"
+          id="chatbot"
+          environmentId="d0804337-75d7-e516-874e-c28f97bb5ed0"
+          crossOrigin="anonymous"
+          async
+        />
       </head>
       <body>
         <ClientProviders>

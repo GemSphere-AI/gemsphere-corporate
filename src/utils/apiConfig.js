@@ -63,3 +63,22 @@ export const GLOBAL_ROUTES = [
     '/booking'
 ];
 
+/**
+ * Programmatically triggers the Microsoft Customer Connect Teams chat widget
+ */
+export const triggerTeamsChat = (e) => {
+    if (e && typeof e.preventDefault === 'function') {
+        e.preventDefault();
+    }
+    if (typeof window !== 'undefined') {
+        const btn = document.querySelector('.chatclient-button');
+        if (btn) {
+            btn.click();
+        } else {
+            // Fallback: if script is not fully loaded, redirect to support contact
+            window.location.href = '/contact/';
+        }
+    }
+};
+
+

@@ -16,7 +16,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import MegaMenu from './MegaMenu';
 import { LanguageSwitcher } from '@GemSphere-AI/i18n';
 import { useTranslation } from 'react-i18next';
-import { LOGIN_URL, REGISTER_URL } from '../utils/apiConfig';
+import { LOGIN_URL, REGISTER_URL, triggerTeamsChat } from '../utils/apiConfig';
 
 
 const Header = () => {
@@ -142,12 +142,12 @@ const Header = () => {
                             >
                                 {t('nav.signIn', 'Sign In')}
                             </LocalizedLink>
-                            <LocalizedLink 
-                                href="/contact" 
-                                className="text-sm font-semibold text-text-secondary hover:text-brand-cyan transition-colors px-2 py-2 ml-2"
+                            <button 
+                                onClick={triggerTeamsChat}
+                                className="text-sm font-semibold text-text-secondary hover:text-brand-cyan transition-colors px-2 py-2 ml-2 cursor-pointer bg-transparent border-none outline-none"
                             >
-                                {t('nav.contactSales', 'Talk to Sales')}
-                            </LocalizedLink>
+                                {t('nav.contactSales', 'Talk to Teams')}
+                            </button>
                             <LocalizedLink href={REGISTER_URL} className="btn-primary py-2 px-5 ml-2">
                                 {t('nav.getStarted', 'Free Trial')}
                             </LocalizedLink>
@@ -204,9 +204,12 @@ const Header = () => {
                             <LocalizedLink href={LOGIN_URL} className="w-full py-3 text-center border border-brand-border text-text-primary font-bold rounded-xl">
                                 {t('nav.signIn', 'Sign In')}
                             </LocalizedLink>
-                            <LocalizedLink href="/contact" className="w-full py-3 text-center border border-brand-border text-text-primary font-bold rounded-xl">
-                                {t('nav.contactSales', 'Talk to Sales')}
-                            </LocalizedLink>
+                            <button 
+                                onClick={triggerTeamsChat}
+                                className="w-full py-3 text-center border border-brand-border text-text-primary font-bold rounded-xl cursor-pointer bg-transparent outline-none"
+                            >
+                                {t('nav.contactSales', 'Talk to Teams')}
+                            </button>
                             <LocalizedLink href={REGISTER_URL} className="w-full py-3 text-center bg-brand-cyan text-[#0f172a] font-black rounded-xl">
                                 {t('nav.getStarted', 'Free Trial')}
                             </LocalizedLink>
