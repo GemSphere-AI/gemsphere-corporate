@@ -9,13 +9,16 @@
 "use client";
 import React from 'react';
 import LocalizedLink from '../components/LocalizedLink';
-import { useParams, redirect } from 'next/navigation';
+import { useParams, useRouter, redirect } from 'next/navigation';
 
 import { SILO_DATA } from '../data/siloData';
 import { CheckCircle2, ArrowRight, Zap } from 'lucide-react';
 
 const DetailPage = ({ type }) => {
-    const { id } = useParams();
+    const params = useParams();
+    const router = useRouter();
+    const id = params?.id;
+    const lang = params?.lang || 'en-us';
     
     // Handle Listing View if no ID provided or if type explicitly ends with _list
     if (!id || type.endsWith('_list')) {
@@ -36,7 +39,7 @@ const DetailPage = ({ type }) => {
                         {items.map((item) => (
                             <div 
                                 key={item.id} 
-                                onClick={() => window.location.href = `/${category}s/${item.id}`}
+                                onClick={() => router.push(`/${lang}/${category}s/${item.id}`)}
                                 className="glass-card p-10 cursor-pointer hover:scale-[1.02] transition-all group border-brand-border"
                             >
                                 <h3 className="text-2xl font-black mb-4 group-hover:text-brand-cyan transition-colors text-text-primary">{item.title}</h3>

@@ -11,6 +11,7 @@
 import React from 'react';
 import LocalizedLink from '../components/LocalizedLink';
 import { REGISTER_URL } from '../utils/apiConfig';
+import { useParams, useRouter } from 'next/navigation';
 
 
 import { motion } from 'framer-motion';
@@ -25,6 +26,9 @@ import ScrollReveal from '../components/ScrollReveal';
 import MarqueeRow from '../components/MarqueeRow';
 import SectionHeading from '../components/SectionHeading';
 import ProductCard from '../components/ProductCard';
+import ClientLogos from '../components/ClientLogos';
+import InlineLeadCapture from '../components/InlineLeadCapture';
+import FAQSection from '../components/FAQSection';
 import dynamic from 'next/dynamic';
 
 const WorldMap = dynamic(() => import('../components/WorldMap'), {
@@ -42,6 +46,9 @@ import { useTranslation } from 'react-i18next';
 
 const Home = () => {
     const { t } = useTranslation();
+    const params = useParams();
+    const router = useRouter();
+    const lang = params?.lang || 'en-us';
     return (
         <main className="min-h-screen">
 
@@ -60,64 +67,96 @@ const Home = () => {
                 </div>
 
                 <div className="container mx-auto px-6 max-w-7xl relative z-10">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <ScrollReveal direction="up" delay={0.1}>
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-subtle text-text-primary text-xs font-semibold uppercase tracking-[0.2em] mb-8">
-                                <Sparkles size={14} className="text-brand-cyan" /> {t('nav.platform', 'Unified Digital Enterprise Platform')}
-                            </div>
-                        </ScrollReveal>
-                        
-                        <ScrollReveal direction="up" delay={0.2} stagger staggerDelay={0.05}>
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-display tracking-tight leading-[1.1] mb-8 text-text-primary">
-                                <span className="text-gradient-animated block">{t('home.heroTitle', 'Engineering Intelligent Digital Enterprises.')}</span>
-                            </h1>
-                        </ScrollReveal>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                        {/* Hero Text Content */}
+                        <div className="lg:col-span-7 text-left flex flex-col items-start">
+                            <ScrollReveal direction="up" delay={0.1}>
+                                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-subtle text-text-primary text-xs font-semibold uppercase tracking-[0.2em] mb-8">
+                                    <Sparkles size={14} className="text-brand-cyan" /> {t('nav.platform', 'Unified Digital Enterprise Platform')}
+                                </div>
+                            </ScrollReveal>
+                            
+                            <ScrollReveal direction="up" delay={0.2} stagger staggerDelay={0.05}>
+                                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black font-display tracking-tight leading-[1.1] mb-6 text-text-primary">
+                                    <span className="text-gradient-animated block">{t('home.heroTitle', 'Engineering Intelligent Digital Enterprises.')}</span>
+                                </h1>
+                            </ScrollReveal>
 
-                        <ScrollReveal direction="up" delay={0.3}>
-                            <p className="text-xl md:text-2xl text-text-secondary font-medium leading-relaxed mb-12 max-w-3xl mx-auto">
-                                {t('home.heroSubtitle', "The world's most advanced modular ecosystem for commerce, supply chain, finance, and AI operations at global scale.")}
-                            </p>
-                        </ScrollReveal>
+                            <ScrollReveal direction="up" delay={0.3}>
+                                <p className="text-lg md:text-xl text-text-secondary font-medium leading-relaxed mb-8 max-w-2xl">
+                                    {t('home.heroSubtitle', "The world's most advanced modular ecosystem for commerce, supply chain, finance, and AI operations at global scale.")}
+                                </p>
+                            </ScrollReveal>
 
-                        <ScrollReveal direction="up" delay={0.4}>
-                            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                                <MagneticButton 
-                                    href={REGISTER_URL} 
-                                    className="btn-primary w-full sm:w-auto text-lg px-8 py-4"
-                                >
-                                    {t('home.ctaPrimary', 'Start Free Trial')} <ArrowRight size={20} />
-                                </MagneticButton>
-                                <MagneticButton 
-                                    href="/demo" 
-                                    className="btn-secondary w-full sm:w-auto text-lg px-8 py-4"
-                                >
-                                    {t('home.ctaSecondary', 'Book Free Demo')}
-                                </MagneticButton>
+                            <ScrollReveal direction="up" delay={0.4}>
+                                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+                                    <MagneticButton 
+                                        href={REGISTER_URL} 
+                                        className="btn-primary text-base px-6 py-3.5 flex items-center justify-center gap-2"
+                                    >
+                                        Start Building Free <ArrowRight size={18} />
+                                    </MagneticButton>
+                                    <MagneticButton 
+                                        href="/demo" 
+                                        className="btn-secondary text-base px-6 py-3.5 flex items-center justify-center"
+                                    >
+                                        See It In Action
+                                    </MagneticButton>
+                                </div>
+                                
+                                {/* Micro social proof */}
+                                <p className="text-xs text-text-tertiary font-semibold mt-4 flex flex-wrap items-center gap-2">
+                                    <span>⭐ Rated 4.9/5 by enterprise teams</span>
+                                    <span className="text-text-muted">•</span>
+                                    <span>🔒 No credit card required</span>
+                                    <span className="text-text-muted">•</span>
+                                    <span>⚡ Setup in 5 minutes</span>
+                                </p>
+                            </ScrollReveal>
+                        </div>
 
-                            </div>
-                        </ScrollReveal>
-
-                        {/* KPI Strip */}
-                        <ScrollReveal direction="up" delay={0.6} className="mt-20 pt-10 border-t border-brand-border">
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-brand-border">
-                                {[
-                                    { val: 'Global', label: 'Countries Served' },
-                                    { val: '30+', label: 'Enterprise Capabilities' },
-                                    { val: '99.99%', label: 'Uptime SLA' },
-                                    { val: '24/7', label: 'Global Support' }
-                                ].map((kpi, i) => (
-                                    <div key={i} className="px-4">
-                                        <div className="text-3xl md:text-4xl font-black text-text-primary font-display mb-1">
-                                            <AnimatedCounter value={kpi.val} />
-                                        </div>
-                                        <div className="text-xs text-text-tertiary font-bold uppercase tracking-widest">
-                                            {kpi.label}
-                                        </div>
+                        {/* Hero Product Screenshot Column */}
+                        <div className="lg:col-span-5 relative">
+                            <ScrollReveal direction="right" delay={0.3}>
+                                <div className="relative aspect-[4/3] w-full max-w-lg mx-auto group">
+                                    {/* Glowing aura background */}
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-cyan/20 via-brand-indigo/30 to-purple-500/20 rounded-[24px] rotate-2 blur-lg group-hover:rotate-4 transition-transform duration-500" />
+                                    
+                                    <div className="absolute inset-0 bg-brand-card border border-brand-border/60 hover:border-brand-cyan/40 rounded-[24px] flex items-center justify-center overflow-hidden shadow-2xl transition-colors duration-300">
+                                        <img 
+                                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/hero_dashboard_mockup.png`} 
+                                            alt="GemSphere Dashboard Mockup" 
+                                            className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700"
+                                        />
+                                        
+                                        {/* Subtle overlay gradient */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-brand-card/30 via-transparent to-transparent z-10 pointer-events-none" />
                                     </div>
-                                ))}
-                            </div>
-                        </ScrollReveal>
+                                </div>
+                            </ScrollReveal>
+                        </div>
                     </div>
+
+                    {/* KPI Strip */}
+                    <ScrollReveal direction="up" delay={0.5} className="mt-20 pt-10 border-t border-brand-border">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-brand-border">
+                            {[
+                                { val: 'Global', label: 'Countries Served' },
+                                { val: '30+', label: 'Enterprise Capabilities' },
+                                { val: '99.99%', label: 'Uptime SLA' },
+                                { val: '24/7', label: 'Global Support' }
+                            ].map((kpi, i) => (
+                                <div key={i} className="px-4">
+                                    <div className="text-3xl md:text-4xl font-black text-text-primary font-display mb-1">
+                                        <AnimatedCounter value={kpi.val} />
+                                    </div>
+                                    <div className="text-xs text-text-tertiary font-bold uppercase tracking-widest">
+                                        {kpi.label}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </ScrollReveal>
                 </div>
                 
                 {/* Scroll Indicator */}
@@ -131,6 +170,8 @@ const Home = () => {
                     </div>
                 </motion.div>
             </section>
+
+            <ClientLogos />
 
             {/* 2. CAPABILITIES, INDUSTRIES, & CLIENTS STRIPS */}
             <section className="py-16 border-y border-brand-border glass-subtle backdrop-blur-md overflow-hidden">
@@ -189,7 +230,7 @@ const Home = () => {
                                     title={cat.name}
                                     description={cat.description}
                                     modules={cat.modules.map(m => m.name)}
-                                    onClick={() => window.location.href = `/products/${cat.id}`}
+                                    onClick={() => router.push(`/${lang}/products/${cat.id}`)}
                                 />
                             </ScrollReveal>
                         ))}
@@ -277,6 +318,8 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+
+            <InlineLeadCapture />
 
             {/* 5. GLOBAL PRESENCE */}
             <section className="section-padding relative">
@@ -375,6 +418,8 @@ const Home = () => {
                     <TestimonialCarousel testimonials={PRODUCT_ECOSYSTEM.testimonials} className="mt-16 max-w-4xl mx-auto" />
                 </div>
             </section>
+
+            <FAQSection />
 
             {/* 8. FINAL CTA */}
             <section className="py-24 md:py-32 relative overflow-hidden">

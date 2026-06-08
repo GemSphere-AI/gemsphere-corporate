@@ -197,7 +197,7 @@ const NeuralBackground = ({ className = '', particleCount = 80, connectionDistan
         <canvas
             ref={canvasRef}
             className={`absolute inset-0 w-full h-full pointer-events-auto ${className}`}
-            style={{ opacity: 0.7 }}
+            style={{ opacity: 0.7, willChange: 'transform, opacity', transform: 'translate3d(0,0,0)' }}
         />
     );
 };

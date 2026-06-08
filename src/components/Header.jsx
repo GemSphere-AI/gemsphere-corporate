@@ -25,11 +25,35 @@ const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [megaMenuOpen, setMegaMenuOpen] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [headerTop, setHeaderTop] = useState(0);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    useEffect(() => {
+        const updateHeaderTop = () => {
+            const bar = document.getElementById('announcement-bar');
+            if (bar && bar.offsetHeight > 0) {
+                setHeaderTop(bar.offsetHeight);
+            } else {
+                setHeaderTop(0);
+            }
+        };
+
+        updateHeaderTop();
+        window.addEventListener('resize', updateHeaderTop);
+        window.addEventListener('announcementDismissed', updateHeaderTop);
+
+        const timer = setTimeout(updateHeaderTop, 150);
+
+        return () => {
+            window.removeEventListener('resize', updateHeaderTop);
+            window.removeEventListener('announcementDismissed', updateHeaderTop);
+            clearTimeout(timer);
+        };
     }, []);
 
     useEffect(() => {
@@ -68,11 +92,12 @@ const Header = () => {
     return (
         <>
             <header 
-                className={`fixed top-0 left-0 w-full z-[60] transition-all duration-500 ${
+                className={`fixed left-0 w-full z-[60] transition-all duration-500 ${
                     scrolled || megaMenuOpen 
                     ? 'h-[80px] bg-gradient-to-b from-[#ffffff]/95 to-[#ffffff]/90 dark:from-[#0a0f1e]/95 dark:to-[#030712]/90 backdrop-blur-2xl border-b border-brand-cyan/20 shadow-[0_10px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.35)]' 
                     : 'h-[100px] bg-transparent'
                 }`}
+                style={{ top: `${headerTop}px` }}
             >
                 {/* Top glowing gradient accent line */}
                 {(scrolled || megaMenuOpen) && (
@@ -148,7 +173,19 @@ const Header = () => {
                             >
                                 {t('nav.contactSales', 'Talk to Teams')}
                             </button>
-                            <LocalizedLink href={REGISTER_URL} className="btn-primary py-2 px-5 ml-2">
+                            {scrolled && (
+                                <LocalizedLink href="/demo" className="text-sm font-semibold text-brand-cyan hover:text-pure-white hover:bg-brand-cyan/10 transition-all duration-300 px-4 py-2 border border-brand-cyan/30 rounded-xl animate-fade-in">
+                                    Book Demo
+                                </LocalizedLink>
+                            )}
+                            <LocalizedLink 
+                                href={REGISTER_URL} 
+                                className={`py-2 px-5 ml-2 transition-all duration-300 ${
+                                    scrolled 
+                                    ? 'btn-primary shadow-[0_0_15px_rgba(0,212,255,0.4)] hover:shadow-[0_0_25px_rgba(0,212,255,0.6)] animate-pulse-glow' 
+                                    : 'btn-primary'
+                                }`}
+                            >
                                 {t('nav.getStarted', 'Free Trial')}
                             </LocalizedLink>
                         </div>

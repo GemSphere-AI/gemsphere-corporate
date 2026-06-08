@@ -7,6 +7,7 @@
  * file, via any medium, is strictly prohibited.
  */
 import '../../index.css';
+import Script from 'next/script';
 import ClientProviders from '../../components/ClientProviders';
 import { generateOrganizationSchema, generateWebSiteSchema } from '../../utils/schemaGenerators';
 import { Inter, Outfit } from 'next/font/google';
@@ -87,6 +88,9 @@ export function generateStaticParams() {
 
 import FloatingCTA from '../../components/FloatingCTA';
 import FloatingWhatsApp from '../../components/FloatingWhatsApp';
+import AnnouncementBar from '../../components/AnnouncementBar';
+import ExitIntentPopup from '../../components/ExitIntentPopup';
+import GoogleAnalytics from '../../components/GoogleAnalytics';
 
 
 export default async function RootLayout({ children, params }) {
@@ -111,9 +115,14 @@ export default async function RootLayout({ children, params }) {
           }}
         />
 
-        {/* Google Analytics 4 */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EWTL1GRQG"></script>
-        <script
+        {/* Google Analytics 4 — loaded via next/script for proper hydration */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-4EWTL1GRQG"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -143,21 +152,22 @@ export default async function RootLayout({ children, params }) {
           }}
         />
         {/* Microsoft Customer Connect chatbot script */}
-        <script
-          type="text/javascript"
+        <Script
           src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js"
           id="chatbot"
-          environmentId="d0804337-75d7-e516-874e-c28f97bb5ed0"
+          strategy="lazyOnload"
+          data-environment-id="d0804337-75d7-e516-874e-c28f97bb5ed0"
           crossOrigin="anonymous"
-          async
         />
       </head>
       <body>
         <ClientProviders>
+          <GoogleAnalytics />
+          <AnnouncementBar />
           {children}
           <FloatingCTA />
           <FloatingWhatsApp />
-
+          <ExitIntentPopup />
         </ClientProviders>
       </body>
     </html>

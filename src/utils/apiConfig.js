@@ -78,7 +78,14 @@ export const triggerTeamsChat = (e) => {
             btn.click();
         } else {
             // Fallback: if script is not fully loaded, redirect to support contact
-            window.location.href = '/contact/';
+            let lang = 'en-us';
+            const pathParts = window.location.pathname.split('/');
+            const possibleLang = pathParts[1];
+            const supportedLangs = ['en-us', 'en-gb', 'en-ae', 'en-in', 'de-de'];
+            if (supportedLangs.includes(possibleLang)) {
+                lang = possibleLang;
+            }
+            window.location.href = `/${lang}/contact/`;
         }
     }
 };
