@@ -96,3 +96,19 @@ export const syncOfflineSubmissions = async () => {
         localStorage.removeItem(OFFLINE_QUEUE_KEY);
     }
 };
+
+/**
+ * Returns true if there are queued offline submissions in localStorage
+ * @returns {boolean}
+ */
+export const hasOfflineSubmissions = () => {
+    if (typeof window === 'undefined') return false;
+    try {
+        const stored = localStorage.getItem(OFFLINE_QUEUE_KEY);
+        if (!stored) return false;
+        const queue = JSON.parse(stored);
+        return Array.isArray(queue) && queue.length > 0;
+    } catch (e) {
+        return false;
+    }
+};

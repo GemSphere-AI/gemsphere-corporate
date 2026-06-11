@@ -79,7 +79,21 @@ export const COUNTRIES_MAP = {
   'oman': { name: 'Oman', currency: 'OMR', symbol: 'OMR', compliance: 'MTCIT Regulations' },
   'singapore': { name: 'Singapore', currency: 'SGD', symbol: 'S$', compliance: 'PDPA' },
   'malaysia': { name: 'Malaysia', currency: 'MYR', symbol: 'RM', compliance: 'PDPA 2010' },
-  'india': { name: 'India', currency: 'INR', symbol: '₹', compliance: 'DPDP Act 2023' }
+  'india': { name: 'India', currency: 'INR', symbol: '₹', compliance: 'DPDP Act 2023' },
+  'japan': { name: 'Japan', currency: 'JPY', symbol: '¥', compliance: 'APPI' },
+  'south-korea': { name: 'South Korea', currency: 'KRW', symbol: '₩', compliance: 'PIPA' },
+  'south-africa': { name: 'South Africa', currency: 'ZAR', symbol: 'R', compliance: 'POPIA' },
+  'brazil': { name: 'Brazil', currency: 'BRL', symbol: 'R$', compliance: 'LGPD' },
+  'mexico': { name: 'Mexico', currency: 'MXN', symbol: '$', compliance: 'LFPDPPP' },
+  'spain': { name: 'Spain', currency: 'EUR', symbol: '€', compliance: 'AEPD & EU GDPR' },
+  'italy': { name: 'Italy', currency: 'EUR', symbol: '€', compliance: 'GPDP & EU GDPR' },
+  'israel': { name: 'Israel', currency: 'ILS', symbol: '₪', compliance: 'PPA' },
+  'hong-kong': { name: 'Hong Kong', currency: 'HKD', symbol: 'HK$', compliance: 'PDPO' },
+  'vietnam': { name: 'Vietnam', currency: 'VND', symbol: '₫', compliance: 'PDPD' },
+  'indonesia': { name: 'Indonesia', currency: 'IDR', symbol: 'Rp', compliance: 'PDP Law' },
+  'philippines': { name: 'Philippines', currency: 'PHP', symbol: '₱', compliance: 'DPA 2012' },
+  'egypt': { name: 'Egypt', currency: 'EGP', symbol: 'EGP', compliance: 'PDPL' },
+  'turkey': { name: 'Turkey', currency: 'TRY', symbol: '₺', compliance: 'KVKK' }
 };
 
 // 15 Enterprise Services
@@ -99,6 +113,70 @@ export const SERVICES_MAP = {
   'application-modernization': { name: 'Application Modernization', desc: 'Refactoring outdated codebases into performant web applications.' },
   'performance-optimization': { name: 'Performance Optimization', desc: 'System speed auditing, query caching, and scale benchmarks.' },
   'architecture-consulting': { name: 'Architecture Consulting', desc: 'Advising on system blueprints, database configurations, and SSO security.' }
+};
+
+// High-Value Target Countries for SEO localization
+export const HIGH_VALUE_COUNTRIES = [
+  'usa',
+  'united-kingdom',
+  'uae',
+  'singapore',
+  'india',
+  'canada',
+  'australia'
+];
+
+// Product to Industry operational relevance matrices
+export const PRODUCT_INDUSTRY_RELATIONS = {
+  'crm-software': ['finance', 'retail', 'real-estate', 'insurance', 'professional-services'],
+  'restaurant-pos': ['hospitality'],
+  'hotel-management-software': ['hospitality', 'travel'],
+  'booking-software': ['healthcare', 'hospitality', 'professional-services', 'travel', 'real-estate'],
+  'reservation-software': ['hospitality', 'travel'],
+  'iam-platform': ['finance', 'healthcare', 'government', 'telecommunications'],
+  'identity-management': ['finance', 'healthcare', 'government', 'telecommunications'],
+  'assessment-platform': ['education', 'professional-services', 'government'],
+  'online-examination-software': ['education', 'government'],
+  'supply-chain-management': ['logistics', 'manufacturing', 'wholesale', 'retail'],
+  'erp': ['manufacturing', 'retail', 'wholesale', 'logistics', 'construction'],
+  'hrms': ['professional-services', 'retail', 'healthcare', 'manufacturing', 'finance'],
+  'inventory-management': ['retail', 'wholesale', 'manufacturing', 'logistics', 'hospitality'],
+  'warehouse-management': ['logistics', 'wholesale', 'manufacturing', 'retail'],
+  'procurement-management': ['manufacturing', 'construction', 'government', 'wholesale'],
+  'visitor-management': ['government', 'healthcare', 'finance', 'professional-services'],
+  'helpdesk': ['telecommunications', 'retail', 'finance', 'professional-services'],
+  'ai-chatbot': ['retail', 'finance', 'healthcare', 'telecommunications', 'travel'],
+  'collaboration-platform': ['professional-services', 'finance', 'education', 'construction'],
+  'email-platform': ['retail', 'finance', 'travel', 'hospitality', 'professional-services'],
+  'learning-management-system': ['education', 'professional-services', 'healthcare', 'government'],
+  'franchise-management': ['retail', 'hospitality', 'wholesale'],
+  'retail-management': ['retail', 'wholesale'],
+  'billing-software': ['finance', 'retail', 'wholesale', 'professional-services', 'telecommunications'],
+  'invoice-software': ['finance', 'retail', 'wholesale', 'professional-services', 'telecommunications'],
+  'accounting-software': ['finance', 'retail', 'wholesale', 'professional-services', 'construction'],
+  'healthcare-management': ['healthcare'],
+  'project-management': ['professional-services', 'construction', 'manufacturing', 'real-estate'],
+  'asset-management': ['logistics', 'manufacturing', 'government', 'telecommunications', 'finance'],
+  'fleet-management': ['logistics', 'travel', 'construction', 'wholesale', 'manufacturing']
+};
+
+// Service to Industry operational relevance matrices
+export const SERVICE_INDUSTRY_RELATIONS = {
+  'custom-software-development': ['finance', 'healthcare', 'retail', 'manufacturing'],
+  'enterprise-application-development': ['finance', 'healthcare', 'government', 'manufacturing'],
+  'saas-development': ['professional-services', 'finance', 'retail', 'healthcare'],
+  'product-engineering': ['telecommunications', 'finance', 'retail', 'professional-services'],
+  'microservices-development': ['finance', 'telecommunications', 'retail', 'logistics'],
+  'cloud-consulting': ['finance', 'telecommunications', 'healthcare', 'government'],
+  'cloud-migration': ['finance', 'telecommunications', 'healthcare', 'government'],
+  'api-development': ['finance', 'retail', 'telecommunications', 'professional-services'],
+  'api-integration': ['finance', 'retail', 'telecommunications', 'professional-services'],
+  'devops-consulting': ['finance', 'telecommunications', 'retail', 'professional-services'],
+  'ai-consulting': ['finance', 'healthcare', 'retail', 'telecommunications'],
+  'managed-services': ['healthcare', 'finance', 'government', 'professional-services'],
+  'application-modernization': ['finance', 'government', 'healthcare', 'manufacturing'],
+  'performance-optimization': ['finance', 'telecommunications', 'retail', 'logistics'],
+  'architecture-consulting': ['finance', 'healthcare', 'government', 'telecommunications']
 };
 
 // Competitor Battlecards Mappings (Focused on Customization, Composable Architecture, and Integrations - No Price)
@@ -196,7 +274,6 @@ export function parseCompositeSlug(slug) {
   return { type: 'unknown' };
 }
 
-// Generate all combinations for sitemaps and Static Params
 export function generateCompositeSlugs(type = 'products') {
   const params = [];
   const pKeys = Object.keys(PRODUCTS_MAP);
@@ -208,27 +285,39 @@ export function generateCompositeSlugs(type = 'products') {
   if (type === 'products') {
     // 1. Core Products (27)
     pKeys.forEach(p => params.push(p));
-    // 2. Products for Industry (27 * 15 = 405)
+    // 2. Products for Industry (filtered by operational relevance matrix)
     pKeys.forEach(p => {
-      iKeys.forEach(i => params.push(`${p}-for-${i}`));
+      const allowedIndustries = PRODUCT_INDUSTRY_RELATIONS[p] || [];
+      iKeys.forEach(i => {
+        if (allowedIndustries.includes(i)) {
+          params.push(`${p}-for-${i}`);
+        }
+      });
     });
-    // 3. Products in Country (27 * 20 = 540)
+    // 3. Products in Country (all countries globally)
     pKeys.forEach(p => {
       cKeys.forEach(c => {
         params.push(`${p}-in-${c}`);
-        params.push(`${p}-for-${c}-market`); // market variation (540)
+        params.push(`${p}-for-${c}-market`); // market variation
       });
     });
   } else if (type === 'services') {
     // 1. Core Services (15)
     sKeys.forEach(s => params.push(s));
-    // 2. Services for Industry (15 * 15 = 225)
+    // 2. Services for Industry (filtered by operational relevance matrix)
     sKeys.forEach(s => {
-      iKeys.forEach(i => params.push(`${s}-for-${i}`));
+      const allowedIndustries = SERVICE_INDUSTRY_RELATIONS[s] || [];
+      iKeys.forEach(i => {
+        if (allowedIndustries.includes(i)) {
+          params.push(`${s}-for-${i}`);
+        }
+      });
     });
-    // 3. Services in Country (15 * 20 = 300)
+    // 3. Services in Country (all countries globally)
     sKeys.forEach(s => {
-      cKeys.forEach(c => params.push(`${s}-in-${c}`));
+      cKeys.forEach(c => {
+        params.push(`${s}-in-${c}`);
+      });
     });
   } else if (type === 'comparisons') {
     // 1. Competitor Comparisons (17)
@@ -260,7 +349,7 @@ export function getSEOContent(slug) {
     const comp = COMPETITORS_MAP[parsing.competitor];
     const p = PRODUCTS_MAP[parsing.product];
     title = `GemSphere vs ${comp.name} | Custom ${p.name} Alternative`;
-    desc = `Compare GemSphere vs ${comp.name}. Explore the benefits of composable API-first architecture, dedicated tenant isolation, and custom workflows.`;
+    desc = `Compare GemSphere vs ${comp.name}. Explore the benefits of composable API-first architecture, dedicated tenant isolation, and custom workflows. Request a custom sandbox trial today!`;
     h1 = `GemSphere vs ${comp.name}`;
     primaryKeyword = `gemsphere vs ${comp.name.toLowerCase()}`;
     secondaryKeywords = [`${comp.name.toLowerCase()} alternative`, `custom ${p.name.toLowerCase()} alternative`, `${p.name.toLowerCase()} comparison`];
@@ -279,7 +368,7 @@ export function getSEOContent(slug) {
   else if (parsing.type === 'product-core') {
     const p = PRODUCTS_MAP[parsing.product];
     title = `${p.name} | Enterprise SaaS Platform | GemSphere`;
-    desc = `${p.desc} Custom workflows, flexible configurations, and API-first SaaS database architecture.`;
+    desc = `${p.desc} Custom workflows, flexible configurations, and API-first SaaS database architecture. Calculate your ROI and book a developer demo.`;
     h1 = `GemSphere ${p.name}`;
     primaryKeyword = p.name.toLowerCase();
     secondaryKeywords = [`custom ${primaryKeyword}`, `enterprise ${primaryKeyword}`, `white-label ${primaryKeyword}`];
@@ -293,7 +382,7 @@ export function getSEOContent(slug) {
     const p = PRODUCTS_MAP[parsing.product];
     const ind = INDUSTRIES_MAP[parsing.industry];
     title = `${p.name} for ${ind.name} | Custom Business Software`;
-    desc = `Optimize your ${ind.name.toLowerCase()} operations with GemSphere ${p.name}. Enforce ${ind.compliance}. Custom workflows and full integration support.`;
+    desc = `Optimize your ${ind.name.toLowerCase()} operations with GemSphere ${p.name}. Enforce ${ind.compliance}. Custom workflows and full integration support. Book a discovery call today.`;
     h1 = `${p.name} Built for ${ind.name}`;
     primaryKeyword = `${p.name.toLowerCase()} for ${parsing.industry}`;
     secondaryKeywords = [`${primaryKeyword} software`, `custom ${p.name.toLowerCase()} for ${parsing.industry}`, `${ind.name.toLowerCase()} management software`];
@@ -308,7 +397,7 @@ export function getSEOContent(slug) {
     const c = COUNTRIES_MAP[parsing.country];
     const currencyStr = `${c.symbol} (${c.currency})`;
     title = `${p.name} Platform in ${c.name} | Custom Software`;
-    desc = `Deploy enterprise-grade ${p.name} in ${c.name}. Fully localized tax billing, ${c.compliance} security parameters, and currency setups.`;
+    desc = `Deploy enterprise-grade ${p.name} in ${c.name}. Fully localized tax billing, ${c.compliance} security parameters, and currency setups. Calculate pricing today.`;
     h1 = `${p.name} for the ${c.name} Market`;
     primaryKeyword = `${p.name.toLowerCase()} in ${c.name.toLowerCase()}`;
     secondaryKeywords = [`${p.name.toLowerCase()} software ${c.name.toLowerCase()}`, `${c.name.toLowerCase()} localized ${p.name.toLowerCase()}`];
@@ -321,7 +410,7 @@ export function getSEOContent(slug) {
   else if (parsing.type === 'service-core') {
     const s = SERVICES_MAP[parsing.service];
     title = `${s.name} | Enterprise Engineering Services`;
-    desc = `${s.desc} Scale your platforms, automate deployments, and modernise software architectures with GemSphere solutions.`;
+    desc = `${s.desc} Scale your platforms, automate deployments, and modernise software architectures with GemSphere solutions. Request a consultation.`;
     h1 = s.name;
     primaryKeyword = s.name.toLowerCase();
     secondaryKeywords = [`enterprise ${primaryKeyword}`, `custom ${primaryKeyword}`, `outsource ${primaryKeyword}`];
@@ -335,7 +424,7 @@ export function getSEOContent(slug) {
     const s = SERVICES_MAP[parsing.service];
     const ind = INDUSTRIES_MAP[parsing.industry];
     title = `${s.name} for ${ind.name} Niche | GemSphere`;
-    desc = `Accelerate digital transformation in ${ind.name.toLowerCase()} with custom ${s.name} services. Aligned with ${ind.compliance}.`;
+    desc = `Accelerate digital transformation in ${ind.name.toLowerCase()} with custom ${s.name} services. Aligned with ${ind.compliance}. Talk to our solutions architects today.`;
     h1 = `${s.name} for ${ind.name}`;
     primaryKeyword = `${s.name.toLowerCase()} for ${parsing.industry}`;
     faqs = [
@@ -347,7 +436,7 @@ export function getSEOContent(slug) {
     const s = SERVICES_MAP[parsing.service];
     const c = COUNTRIES_MAP[parsing.country];
     title = `${s.name} Services in ${c.name} | GemSphere`;
-    desc = `Outsource custom ${s.name.toLowerCase()} in ${c.name}. Professional local engineers, localized delivery teams, and compliance with ${c.compliance}.`;
+    desc = `Outsource custom ${s.name.toLowerCase()} in ${c.name}. Professional local engineers, localized delivery teams, and compliance with ${c.compliance}. Get a custom proposal.`;
     h1 = `${s.name} in ${c.name}`;
     primaryKeyword = `${s.name.toLowerCase()} in ${c.name.toLowerCase()}`;
     faqs = [

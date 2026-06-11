@@ -13,8 +13,6 @@ import { useParams, redirect } from 'next/navigation';
 
 import { BLOG_POSTS } from '../data/blogData';
 import { Calendar, ArrowLeft, Share2 } from 'lucide-react';
-import SchemaMarkup from '../components/seo/SchemaMarkup';
-import { generateBlogPostingSchema } from '../utils/schemaGenerators';
 
 const BlogPost = () => {
     const { id } = useParams();
@@ -27,7 +25,7 @@ const BlogPost = () => {
 
     return (
         <article className="container mx-auto px-6 py-12 max-w-4xl">
-            <SchemaMarkup schema={generateBlogPostingSchema(post)} />
+            
 
             <LocalizedLink href="/blog" className="inline-flex items-center gap-2 text-brand-cyan font-bold mb-12 hover:gap-3 transition-all">
                 <ArrowLeft size={18} /> Back to Blog

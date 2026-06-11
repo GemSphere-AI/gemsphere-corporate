@@ -7,8 +7,6 @@ import SectionHeading from '../components/SectionHeading';
 import ScrollReveal from '../components/ScrollReveal';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
 import Breadcrumbs from '../components/Breadcrumbs';
-import SchemaMarkup from '../components/seo/SchemaMarkup';
-import { generateProductSchema } from '../utils/schemaGenerators';
 import RelatedLinks from '../components/RelatedLinks';
 import TrustBadges from '../components/TrustBadges';
 
@@ -24,7 +22,6 @@ export default function ProductCategory({ categoryId }) {
 
     return (
         <div className="min-h-screen">
-            <SchemaMarkup schema={generateProductSchema(category)} />
             
             {/* Hero Section */}
             <section className="pt-32 pb-20 relative overflow-hidden">

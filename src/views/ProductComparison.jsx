@@ -28,8 +28,6 @@ import {
 import SectionHeading from '../components/SectionHeading';
 import ScrollReveal from '../components/ScrollReveal';
 import Breadcrumbs from '../components/Breadcrumbs';
-import SchemaMarkup from '../components/seo/SchemaMarkup';
-import { generateProductSchema, generateFAQSchema } from '../utils/schemaGenerators';
 import TrustBadges from '../components/TrustBadges';
 import { COMPETITORS_MAP, PRODUCTS_MAP, getSEOContent } from '../data/seoRegistry';
 
@@ -81,14 +79,7 @@ export default function ProductComparison({ competitorKey }) {
 
   return (
     <div className="min-h-screen bg-brand-dark transition-colors duration-300">
-      {/* Schema Injection */}
-      <SchemaMarkup schema={generateProductSchema({ 
-        name: `GemSphere vs ${compInfo.name} Technical Comparison`, 
-        description: seoContent.description 
-      })} />
-      {seoContent.faqs && seoContent.faqs.length > 0 && (
-        <SchemaMarkup schema={generateFAQSchema(seoContent.faqs)} />
-      )}
+      
 
       {/* Floating mesh accents */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden="true">

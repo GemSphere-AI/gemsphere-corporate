@@ -7,13 +7,10 @@
 # file, via any medium, is strictly prohibited.
 #
 
-.git
-.gitignore
-node_modules
-**/node_modules
-.next
-**/.next
-.cache
-**/.cache
-build
-distDir
+# Ignore everything by default
+*
+
+# Whitelist only the production runtime files
+!nginx.corporate.conf
+!dist
+!dist/**

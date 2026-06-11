@@ -49,15 +49,7 @@ export const generateWebSiteSchema = () => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "GemSphere Technologies",
-    "url": baseUrl,
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": `${baseUrl}/search?q={search_term_string}`
-      },
-      "query-input": "required name=search_term_string"
-    }
+    "url": baseUrl
   };
 };
 

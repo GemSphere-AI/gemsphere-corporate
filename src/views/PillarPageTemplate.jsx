@@ -7,10 +7,8 @@ import SectionHeading from '../components/SectionHeading';
 import ScrollReveal from '../components/ScrollReveal';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
 import { SILO_DATA } from '../data/siloData';
-import Breadcrumbs from '../components/Breadcrumbs';
-import SchemaMarkup from '../components/seo/SchemaMarkup';
-import { generateProductSchema, generateFAQSchema } from '../utils/schemaGenerators';
 import RelatedLinks from '../components/RelatedLinks';
+import Breadcrumbs from '../components/Breadcrumbs';
 import TrustBadges from '../components/TrustBadges';
 import { parseCompositeSlug, getSEOContent, SERVICES_MAP, INDUSTRIES_MAP, COUNTRIES_MAP, COMPETITORS_MAP } from '../data/seoRegistry';
 
@@ -96,10 +94,6 @@ export default function PillarPageTemplate({ type, slug }) {
 
     return (
         <div className="min-h-screen bg-brand-dark transition-colors duration-300">
-            <SchemaMarkup schema={generateProductSchema({ name: displayName, description: description })} />
-            {faqs && faqs.length > 0 && (
-                <SchemaMarkup schema={generateFAQSchema(faqs)} />
-            )}
             
             {/* Hero Section */}
             <section className="pt-32 pb-20 relative overflow-hidden">

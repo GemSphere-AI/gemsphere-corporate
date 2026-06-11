@@ -3,9 +3,6 @@ import { generateCompositeSlugs } from '../data/seoRegistry';
 
 export const dynamic = 'force-static';
 
-const LOCALES = ['en-us', 'en-gb', 'en-ae', 'en-in', 'de-de'];
-const DEFAULT_LOCALE = 'en-us';
-
 // Segment sitemaps into index categories to respect Google's best practices
 export async function generateSitemaps() {
   return [
@@ -72,17 +69,11 @@ export default function sitemap({ id }) {
     }));
   }
 
-  return routes.flatMap((route) =>
-    LOCALES.map((locale) => ({
-      url: `${baseUrl}/${locale}${route.path}`,
-      lastModified: buildDate,
-      changeFrequency: route.changeFreq,
-      priority: locale === DEFAULT_LOCALE ? route.priority : route.priority * 0.9,
-      alternates: {
-        languages: Object.fromEntries(
-          LOCALES.map((l) => [l, `${baseUrl}/${l}${route.path}`])
-        ),
-      },
-    }))
-  );
+  return routes.map((route) => ({
+    url: `${baseUrl}${route.path}`,
+    lastModified: buildDate,
+    changeFrequency: route.changeFreq,
+    priority: route.priority,
+  }));
 }
+

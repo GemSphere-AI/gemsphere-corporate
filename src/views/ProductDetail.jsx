@@ -14,8 +14,6 @@ import { ArrowRight, CheckCircle2, ShieldCheck, Zap, Globe2, Monitor } from 'luc
 import SectionHeading from '../components/SectionHeading';
 import ScrollReveal from '../components/ScrollReveal';
 import Breadcrumbs from '../components/Breadcrumbs';
-import SchemaMarkup from '../components/seo/SchemaMarkup';
-import { generateProductSchema, generateFAQSchema } from '../utils/schemaGenerators';
 import RelatedLinks from '../components/RelatedLinks';
 import TrustBadges from '../components/TrustBadges';
 import { PRODUCT_ECOSYSTEM, slugify } from '../data/productEcosystem';
@@ -153,10 +151,6 @@ export default function ProductDetail({ slug }) {
 
     return (
         <div className="min-h-screen bg-brand-dark transition-colors duration-300">
-            <SchemaMarkup schema={generateProductSchema({ name: displayName, description: displaySubtitle })} />
-            {faqs && faqs.length > 0 && (
-                <SchemaMarkup schema={generateFAQSchema(faqs)} />
-            )}
             
             {/* Background Accent Mesh Orbs (Matches home page animations) */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden="true">

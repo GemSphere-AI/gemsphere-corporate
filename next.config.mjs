@@ -42,17 +42,6 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath || '',
   },
-  ...(isDev && {
-    async redirects() {
-      return [
-        {
-          source: '/',
-          destination: '/en-us/',
-          permanent: true,
-        },
-      ];
-    },
-  }),
 };
 
 export default nextConfig;

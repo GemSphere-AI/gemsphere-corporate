@@ -18,7 +18,7 @@ import i18n from '../i18n';
 import Header from './Header';
 import Footer from './Footer';
 import CookieConsent from './CookieConsent';
-import { syncOfflineSubmissions } from '../utils/offlineSync';
+import { syncOfflineSubmissions, hasOfflineSubmissions } from '../utils/offlineSync';
 
 export default function ClientProviders({ children }) {
     const pathname = usePathname();
@@ -27,7 +27,7 @@ export default function ClientProviders({ children }) {
 
     useEffect(() => {
         if (lang) {
-            const mappedLang = lang.startsWith('de') ? 'de-de' : 'en-us';
+            const mappedLang = lang;
             if (i18n.language !== mappedLang) {
                 i18n.changeLanguage(mappedLang);
             }
@@ -72,12 +72,17 @@ export default function ClientProviders({ children }) {
         // Listen for browser recovering internet connection
         window.addEventListener('online', syncOfflineSubmissions);
         
-        // Polling retry every 30 seconds
-        const syncInterval = setInterval(syncOfflineSubmissions, 30000);
+        // Polling retry every 30 seconds (only if queue is not empty)
+        let syncInterval = null;
+        if (hasOfflineSubmissions()) {
+            syncInterval = setInterval(syncOfflineSubmissions, 30000);
+        }
 
         return () => {
             window.removeEventListener('online', syncOfflineSubmissions);
-            clearInterval(syncInterval);
+            if (syncInterval) {
+                clearInterval(syncInterval);
+            }
         };
     }, []);
 
@@ -108,7 +113,7 @@ export default function ClientProviders({ children }) {
                              style={{ background: isDark ? 'rgba(0,212,255,0.05)' : 'rgba(0,212,255,0.06)' }} />
                         <div className="absolute top-[30%] right-[20%] w-[40vw] h-[40vw] rounded-full blur-[180px]"
                              style={{ background: isDark ? 'rgba(139,92,246,0.04)' : 'rgba(139,92,246,0.06)', animation: 'float 12s ease-in-out infinite' }} />
-                        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: isDark ? "url('https://www.transparenttextures.com/patterns/carbon-fibre.png')" : 'none' }} />
+                        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: isDark ? "url('/textures/carbon-fibre.png')" : 'none' }} />
                     </div>
 
                     <Header />

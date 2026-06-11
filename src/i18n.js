@@ -14,12 +14,7 @@ const i18n = initI18n({
     defaultNS: 'common',
     resources: {
         en: { common: en },
-        'en-us': { common: en },
-        'en-gb': { common: en },
-        'en-ae': { common: en },
-        'en-in': { common: en },
-        de: { common: de },
-        'de-de': { common: de },
+        'en-us': { common: en }
     },
 });
 

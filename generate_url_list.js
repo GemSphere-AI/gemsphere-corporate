@@ -14,7 +14,7 @@ import { generateCompositeSlugs } from './src/data/seoRegistry.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const LOCALES = ['en-us', 'en-gb', 'en-ae', 'en-in', 'de-de'];
+const LOCALES = ['en-us'];
 const PROD_BASE = 'https://gemsphere.ai';
 const LOCAL_BASE = 'http://localhost:3000';
 
@@ -59,23 +59,21 @@ function main() {
     const allUrlsLocal = [];
     const categoriesData = {};
 
-    // Multiply by locales
+    // Compile under root (no language sub-paths)
     for (const [category, routePaths] of Object.entries(paths)) {
         categoriesData[category] = [];
         routePaths.forEach(routePath => {
-            LOCALES.forEach(locale => {
-                const prodUrl = `${PROD_BASE}/${locale}${routePath}/`;
-                const localUrl = `${LOCAL_BASE}/${locale}${routePath}/`;
+            const prodUrl = `${PROD_BASE}${routePath}/`;
+            const localUrl = `${LOCAL_BASE}${routePath}/`;
 
-                allUrlsProd.push(prodUrl);
-                allUrlsLocal.push(localUrl);
+            allUrlsProd.push(prodUrl);
+            allUrlsLocal.push(localUrl);
 
-                categoriesData[category].push({
-                    locale,
-                    path: routePath,
-                    prodUrl,
-                    localUrl
-                });
+            categoriesData[category].push({
+                locale: 'en-us',
+                path: routePath,
+                prodUrl,
+                localUrl
             });
         });
     }
