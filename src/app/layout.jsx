@@ -155,6 +155,7 @@ export default async function RootLayout({ children, params }) {
           strategy="lazyOnload"
           environmentId="d0804337-75d7-e516-874e-c28f97bb5ed0"
           data-environment-id="d0804337-75d7-e516-874e-c28f97bb5ed0"
+          data-hide-chat-button="true"
           crossOrigin="anonymous"
         />
       </head>

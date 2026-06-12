@@ -73,32 +73,51 @@ export const triggerTeamsChat = (e) => {
         e.preventDefault();
     }
     if (typeof window !== 'undefined') {
+        // 1. Try Microsoft Omnichannel Live Chat SDK
+        const sdk = window.Microsoft?.Omnichannel?.LiveChatWidget?.SDK;
+        if (sdk && typeof sdk.startChat === 'function') {
+            try {
+                sdk.startChat();
+                return;
+            } catch (err) {
+                console.error("SDK startChat failed, falling back:", err);
+            }
+        }
+
+        // 2. Try default chatclient-button click
         const btn = document.querySelector('.chatclient-button');
         if (btn) {
             btn.click();
-        } else {
-            // If the script is registered but not fully initialized/loaded yet, poll for the button
-            const script = document.getElementById('chatbot');
-            if (script && !window.__teamsChatLoading) {
-                window.__teamsChatLoading = true;
-                let attempts = 0;
-                const interval = setInterval(() => {
-                    const retryBtn = document.querySelector('.chatclient-button');
-                    attempts++;
-                    if (retryBtn) {
-                        clearInterval(interval);
-                        window.__teamsChatLoading = false;
-                        retryBtn.click();
-                    } else if (attempts >= 15) { // Try for 3 seconds (15 * 200ms)
-                        clearInterval(interval);
-                        window.__teamsChatLoading = false;
-                        window.location.href = '/contact/';
+            return;
+        }
+
+        // 3. If neither is available, poll for either SDK or button initialization
+        if (!window.__teamsChatLoading) {
+            window.__teamsChatLoading = true;
+            let attempts = 0;
+            const interval = setInterval(() => {
+                attempts++;
+                const currentSdk = window.Microsoft?.Omnichannel?.LiveChatWidget?.SDK;
+                const currentBtn = document.querySelector('.chatclient-button');
+
+                if (currentSdk && typeof currentSdk.startChat === 'function') {
+                    clearInterval(interval);
+                    window.__teamsChatLoading = false;
+                    try {
+                        currentSdk.startChat();
+                    } catch (err) {
+                        console.error(err);
                     }
-                }, 200);
-            } else if (!window.__teamsChatLoading) {
-                // If script doesn't exist at all, fallback immediately
-                window.location.href = '/contact/';
-            }
+                } else if (currentBtn) {
+                    clearInterval(interval);
+                    window.__teamsChatLoading = false;
+                    currentBtn.click();
+                } else if (attempts >= 15) { // 3 seconds
+                    clearInterval(interval);
+                    window.__teamsChatLoading = false;
+                    window.location.href = '/contact/';
+                }
+            }, 200);
         }
     }
 };
