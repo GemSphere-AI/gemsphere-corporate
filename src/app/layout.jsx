@@ -161,11 +161,6 @@ export default async function RootLayout({ children, params }) {
       <body>
         <ClientProviders>
           <GoogleAnalytics />
-          <AnnouncementBar 
-            message="Tired of software integration headaches? Experience the unified power of GemSphere Commerce and Hospitality."
-            ctaText="Schedule a Call"
-            ctaHref="/demo?select=gemsphere-commerce,gemsphere-hospitality"
-          />
           {children}
           <FloatingCTA />
           <FloatingWhatsApp />

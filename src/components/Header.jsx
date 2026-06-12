@@ -98,7 +98,7 @@ const Header = () => {
                     ? 'h-[80px] bg-gradient-to-b from-[#ffffff]/95 to-[#ffffff]/90 dark:from-[#0a0f1e]/95 dark:to-[#030712]/90 backdrop-blur-2xl border-b border-brand-cyan/20 shadow-[0_10px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.35)]' 
                     : 'h-[100px] bg-transparent'
                 }`}
-                style={{ top: `${headerTop}px` }}
+                style={{ top: `${scrolled ? 0 : headerTop}px` }}
             >
                 {/* Top glowing gradient accent line */}
                 {(scrolled || megaMenuOpen) && (

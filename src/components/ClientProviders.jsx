@@ -15,6 +15,7 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { LightGlassmorphicTheme, DarkGlassmorphicTheme } from '@GemSphere-AI/ui-kit';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../i18n';
+import AnnouncementBar from './AnnouncementBar';
 import Header from './Header';
 import Footer from './Footer';
 import CookieConsent from './CookieConsent';
@@ -116,6 +117,11 @@ export default function ClientProviders({ children }) {
                         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: isDark ? "url('/textures/carbon-fibre.png')" : 'none' }} />
                     </div>
 
+                    <AnnouncementBar 
+                      message="Tired of software integration headaches? Experience the unified power of GemSphere Commerce and Hospitality."
+                      ctaText="Schedule a Call"
+                      ctaHref="/demo?select=gemsphere-commerce,gemsphere-hospitality"
+                    />
                     <Header />
 
                     <main className="flex-grow relative z-10 pt-[100px]">

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://gemsphere.ai/sitemap/pages.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://gemsphere.ai/sitemap/products.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://gemsphere.ai/sitemap/services.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://gemsphere.ai/sitemap/comparisons.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://gemsphere.ai/sitemap/geo.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://gemsphere.ai/sitemap/guides.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://gemsphere.ai/sitemap/industries.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://gemsphere.ai/sitemap/blog.xml</loc>
+  </sitemap>
+</sitemapindex>

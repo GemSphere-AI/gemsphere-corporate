@@ -1,0 +1,74 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: Anthropic-ai
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: CCBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: meta-externalagent
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://gemsphere.ai/sitemap.xml
