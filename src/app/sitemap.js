@@ -97,7 +97,29 @@ export default function sitemap({ id }) {
     }));
   }
 
-  return routes.map((route) => ({
+  // Deduplicate routes and enforce trailing slash formatting (matching trailingSlash: true in next.config)
+  const uniqueRoutes = [];
+  const seenPaths = new Set();
+
+  for (const route of routes) {
+    let cleanPath = route.path;
+    if (cleanPath !== '') {
+      if (!cleanPath.startsWith('/')) cleanPath = '/' + cleanPath;
+      if (!cleanPath.endsWith('/')) cleanPath = cleanPath + '/';
+    } else {
+      cleanPath = '/';
+    }
+
+    if (!seenPaths.has(cleanPath)) {
+      seenPaths.add(cleanPath);
+      uniqueRoutes.push({
+        ...route,
+        path: cleanPath,
+      });
+    }
+  }
+
+  return uniqueRoutes.map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified: buildDate,
     changeFrequency: route.changeFreq,
