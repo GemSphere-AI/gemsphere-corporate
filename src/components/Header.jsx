@@ -17,11 +17,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import MegaMenu from './MegaMenu';
 import { LanguageSwitcher } from '@GemSphere-AI/i18n';
 import { useTranslation } from 'react-i18next';
+import { usePathname } from 'next/navigation';
 import { LOGIN_URL, REGISTER_URL, triggerTeamsChat } from '../utils/apiConfig';
 
 
 const Header = () => {
     const { t } = useTranslation();
+    const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [megaMenuOpen, setMegaMenuOpen] = useState(false);
@@ -90,18 +92,20 @@ const Header = () => {
         { name: t('nav.about', 'Company'), href: '/about' },
     ];
 
+    const isHome = pathname === '/' || pathname === '/en-us' || pathname === '/en-us/' || pathname === '/de-de' || pathname === '/de-de/';
+
     return (
         <>
             <header 
                 className={`fixed left-0 w-full z-[60] transition-all duration-500 ${
-                    scrolled || megaMenuOpen 
+                    (!isHome || scrolled || megaMenuOpen)
                     ? 'h-[80px] bg-gradient-to-b from-[#ffffff]/95 to-[#ffffff]/90 dark:from-[#0a0f1e]/95 dark:to-[#030712]/90 backdrop-blur-2xl border-b border-brand-cyan/20 shadow-[0_10px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.35)]' 
                     : 'h-[100px] bg-transparent'
                 }`}
                 style={{ top: `${scrolled ? 0 : headerTop}px` }}
             >
                 {/* Top glowing gradient accent line */}
-                {(scrolled || megaMenuOpen) && (
+                {(!isHome || scrolled || megaMenuOpen) && (
                     <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-brand-cyan via-brand-indigo to-brand-rose animate-gradient-x z-[70]" />
                 )}
                 

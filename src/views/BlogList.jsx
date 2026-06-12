@@ -11,6 +11,7 @@ import React, { useState, useMemo } from 'react';
 import LocalizedLink from '../components/LocalizedLink';
 import { BLOG_POSTS } from '../data/blogData';
 import { ArrowRight, Calendar, Search, Mail, Sparkles, Check } from 'lucide-react';
+import { submitLead } from '../utils/leadCapture';
 
 const CATEGORIES = [
     'All',
@@ -61,9 +62,16 @@ const BlogList = () => {
 
     const hasMore = filteredPosts.length > gridPosts.length + (featuredPost ? 1 : 0);
 
-    const handleSubscribe = (e) => {
+    const handleSubscribe = async (e) => {
         e.preventDefault();
         if (!email) return;
+
+        // Submit lead to backend / local offline queue
+        await submitLead({
+            email,
+            source: 'blog-sidebar-subscribe'
+        });
+
         try {
             const existing = JSON.parse(localStorage.getItem('gemsphere-email-leads') || '[]');
             existing.push({ email, source: 'blog-sidebar-subscribe', timestamp: new Date().toISOString() });

@@ -7,15 +7,39 @@
  * file, via any medium, is strictly prohibited.
  */
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import LocalizedLink from '../components/LocalizedLink';
 import { Rocket, MapPin, Mail, Phone, ShieldCheck, Award, Building2 } from 'lucide-react';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-hot-toast';
+import { submitLead } from '../utils/leadCapture';
 
 const Footer = () => {
     const { t } = useTranslation();
+    const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleSubscribe = async (e) => {
+        e.preventDefault();
+        if (!email) return;
+        setLoading(true);
+        try {
+            const res = await submitLead({ email, source: 'footer-subscribe' });
+            if (res.success) {
+                toast.success(t('footer.subscribeSuccess', 'Subscribed successfully!'));
+                setEmail('');
+            } else {
+                toast.error(res.error || t('footer.subscribeError', 'Failed to subscribe.'));
+            }
+        } catch (err) {
+            toast.error(t('footer.subscribeError', 'Failed to subscribe.'));
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <footer className="bg-brand-deeper pt-24 pb-12 border-t border-brand-border relative overflow-hidden">
             {/* Background Accent */}
@@ -46,16 +70,23 @@ const Footer = () => {
                         
                         <div className="mb-8">
                             <h4 className="text-xs font-bold uppercase tracking-widest text-text-tertiary mb-3">{t('footer.subscribe', 'Subscribe to Insights')}</h4>
-                            <div className="flex gap-2">
+                            <form onSubmit={handleSubscribe} className="flex gap-2">
                                 <input 
                                     type="email" 
+                                    required
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     placeholder={t('footer.subscribePlaceholder', 'Enter your email')} 
                                     className="glass-subtle border-brand-border rounded-lg px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-brand-cyan w-full transition-colors"
                                 />
-                                <button className="bg-brand-cyan text-[#0f172a] px-4 py-2.5 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
-                                    {t('footer.subscribeButton', 'Subscribe')}
+                                <button 
+                                    type="submit"
+                                    disabled={loading}
+                                    className="bg-brand-cyan text-[#0f172a] px-4 py-2.5 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 cursor-pointer"
+                                >
+                                    {loading ? '...' : t('footer.subscribeButton', 'Subscribe')}
                                 </button>
-                            </div>
+                            </form>
                         </div>
 
                         <div className="flex gap-3">

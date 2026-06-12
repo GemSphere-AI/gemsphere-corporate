@@ -12,6 +12,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, ArrowRight, Sparkles, Check } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
+import { submitLead } from '../utils/leadCapture';
 
 export default function InlineLeadCapture({
     headline = "Schedule a Call",
@@ -21,11 +22,14 @@ export default function InlineLeadCapture({
     const [email, setEmail] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email) return;
 
-        // Store the lead locally
+        // Submit lead to backend / local offline queue
+        await submitLead({ email, source: 'inline-lead-capture' });
+
+        // Store the lead locally for redundancy
         try {
             const existing = JSON.parse(localStorage.getItem('gemsphere-email-leads') || '[]');
             existing.push({ email, source: 'inline-lead-capture', timestamp: new Date().toISOString() });

@@ -11,6 +11,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, BookOpen, Check, Download, FileText, Mail, Search, Sparkles, X } from 'lucide-react';
+import { submitLead } from '../utils/leadCapture';
 
 const RESOURCE_ITEMS = [
     {
@@ -65,9 +66,17 @@ export default function Resources() {
         });
     }, [searchQuery, selectedCategory]);
 
-    const handleDownloadSubmit = (e) => {
+    const handleDownloadSubmit = async (e) => {
         e.preventDefault();
         if (!name || !email || !company) return;
+
+        // Submit lead to backend / local offline queue
+        await submitLead({
+            name,
+            email,
+            company,
+            source: `resource-download-${selectedResource.id}`
+        });
 
         try {
             const existing = JSON.parse(localStorage.getItem('gemsphere-email-leads') || '[]');
@@ -91,9 +100,15 @@ export default function Resources() {
         }, 3000);
     };
 
-    const handleSidebarSubscribe = (e) => {
+    const handleSidebarSubscribe = async (e) => {
         e.preventDefault();
         if (!sidebarEmail) return;
+
+        // Submit lead to backend / local offline queue
+        await submitLead({
+            email: sidebarEmail,
+            source: 'resources-sidebar-subscribe'
+        });
 
         try {
             const existing = JSON.parse(localStorage.getItem('gemsphere-email-leads') || '[]');

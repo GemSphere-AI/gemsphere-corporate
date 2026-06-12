@@ -12,6 +12,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, Sparkles } from 'lucide-react';
 import LocalizedLink from './LocalizedLink';
+import { submitLead } from '../utils/leadCapture';
 
 const STORAGE_KEY = 'gemsphere-exit-intent-shown';
 
@@ -54,11 +55,14 @@ export default function ExitIntentPopup() {
         return () => document.removeEventListener('mouseleave', handleMouseLeave);
     }, [handleMouseLeave]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email) return;
 
-        // Store the lead locally
+        // Submit lead to backend / local offline queue
+        await submitLead({ email, source: 'exit-intent' });
+
+        // Store the lead locally for redundancy
         try {
             const existing = JSON.parse(localStorage.getItem('gemsphere-email-leads') || '[]');
             existing.push({ email, source: 'exit-intent', timestamp: new Date().toISOString() });

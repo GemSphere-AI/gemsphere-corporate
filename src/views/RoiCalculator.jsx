@@ -11,6 +11,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Calculator, Check, DollarSign, Download, Sparkles } from 'lucide-react';
+import { submitLead } from '../utils/leadCapture';
 
 export default function RoiCalculator() {
     const [softwareSpend, setSoftwareSpend] = useState(150000);
@@ -40,9 +41,18 @@ export default function RoiCalculator() {
         }).format(val);
     };
 
-    const handleDownload = (e) => {
+    const handleDownload = async (e) => {
         e.preventDefault();
         if (!email || !name || !company) return;
+
+        // Submit lead to backend / local offline queue
+        await submitLead({
+            name,
+            email,
+            company,
+            source: 'roi-calculator-report',
+            message: `ROI Metrics: Software Spend: $${softwareSpend}, Employees: ${employeeCount}, Hourly Cost: $${hourlyCost}/hr, Manual Hours/week: ${manualHours}, Projected Annual Savings: $${totalAnnualSavings}`
+        });
 
         try {
             const existing = JSON.parse(localStorage.getItem('gemsphere-email-leads') || '[]');
