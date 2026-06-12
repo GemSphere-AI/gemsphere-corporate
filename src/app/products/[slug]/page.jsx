@@ -9,34 +9,34 @@
 import ProductCategory from '../../../views/ProductCategory';
 import ProductDetail from '../../../views/ProductDetail';
 import { PRODUCT_ECOSYSTEM, slugify } from '../../../data/productEcosystem';
-import { generateCompositeSlugs, getSEOContent, parseCompositeSlug } from '../../../data/seoRegistry';
+import { generateCompositeSlugs, getSEOContent, parseCompositeSlug, COUNTRIES_MAP } from '../../../data/seoRegistry';
 
 export function generateStaticParams() {
-    const params = [];
+    const slugs = new Set();
     
     // Add categories
     PRODUCT_ECOSYSTEM.categories.forEach((cat) => {
-        params.push({ slug: cat.id });
+        slugs.add(cat.id);
         
         // Add modules
         cat.modules.forEach((mod) => {
-            params.push({ slug: slugify(mod.name) });
+            slugs.add(slugify(mod.name));
         });
     });
 
     // Add explicit aliases (e.g. crm, retail, billing, booking)
     const aliases = ['crm', 'retail', 'billing', 'booking'];
     aliases.forEach((alias) => {
-        params.push({ slug: alias });
+        slugs.add(alias);
     });
 
     // Add dynamic composite programmatic SEO slugs
     const seoSlugs = generateCompositeSlugs('products');
     seoSlugs.forEach((slugStr) => {
-        params.push({ slug: slugStr });
+        slugs.add(slugStr);
     });
 
-    return params;
+    return Array.from(slugs).map(slug => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {
@@ -99,6 +99,7 @@ export async function generateMetadata({ params }) {
     return {
         title,
         description,
+        keywords: seoContent?.targetKeywords || [],
         alternates: {
             canonical: `/products/${slug}`
         },
@@ -148,8 +149,8 @@ export default async function Page({ params }) {
     }
 
     // SoftwareApplication Schema
-    let productName = seoContent?.h1 || "GemSphere Enterprise SaaS";
-    let productDesc = seoContent?.description || "Enterprise SaaS Solutions by GemSphere";
+    let productName = seoContent?.h1 || "GemSphere Enterprise Solutions";
+    let productDesc = seoContent?.description || "Custom Enterprise Solutions by GemSphere";
     
     if (!seoContent) {
         let category = PRODUCT_ECOSYSTEM.categories.find(c => c.id === slug);
@@ -174,6 +175,10 @@ export default async function Page({ params }) {
         }
     }
 
+    const parsing = parseCompositeSlug(slug);
+    const countryData = parsing?.country ? COUNTRIES_MAP[parsing.country] : null;
+    const localCurrencyCode = countryData?.currency || "USD";
+
     schemas.push({
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -184,13 +189,14 @@ export default async function Page({ params }) {
         "offers": {
             "@type": "Offer",
             "price": "0",
-            "priceCurrency": "USD",
+            "priceCurrency": localCurrencyCode,
             "description": "Contact for custom enterprise pricing"
         }
     });
 
     // Determine whether to show ProductCategory or ProductDetail
-    let isCategoryOnly = PRODUCT_ECOSYSTEM.categories.some(c => c.id === slug);
+    let isCategoryOnly = PRODUCT_ECOSYSTEM.categories.some(c => c.id === slug) ||
+                         (parsing && (parsing.product === 'commerce' || parsing.product === 'hospitality') && parsing.type !== 'comparison');
     
     return (
         <>

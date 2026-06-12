@@ -7,7 +7,7 @@
  * file, via any medium, is strictly prohibited.
  */
 "use client";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 const BookingForm = dynamic(() => import('../components/BookingForm'), {
   ssr: false,
@@ -16,6 +16,18 @@ const BookingForm = dynamic(() => import('../components/BookingForm'), {
 import ScrollReveal from '../components/ScrollReveal';
 
 const Demo = () => {
+    const [isFlagshipDemo, setIsFlagshipDemo] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            const select = params.get('select');
+            if (select && (select.includes('gemsphere-commerce') || select.includes('gemsphere-hospitality'))) {
+                setIsFlagshipDemo(true);
+            }
+        }
+    }, []);
+
     return (
         <div className="min-h-screen relative flex items-center justify-center pt-32 pb-24 overflow-hidden">
             {/* Background decorative gradients */}
@@ -26,10 +38,18 @@ const Demo = () => {
                 {/* Header Section */}
                 <ScrollReveal direction="down" className="text-center mb-10 max-w-2xl">
                     <h1 className="text-4xl md:text-6xl font-black font-display tracking-tight text-white mb-6">
-                        Experience the <span className="text-gradient">Power of GemSphere.</span>
+                        {isFlagshipDemo ? (
+                            <>Explore our <span className="text-gradient">Flagship Solutions.</span></>
+                        ) : (
+                            <>Experience the <span className="text-gradient">Power of GemSphere.</span></>
+                        )}
                     </h1>
                     <p className="text-lg text-text-secondary leading-relaxed">
-                        Fill out the form below to schedule a live, personalized walk-through of the platform capabilities with our solution engineers.
+                        {isFlagshipDemo ? (
+                            "Schedule a personalized walkthrough of GemSphere Commerce and Hospitality with our solution engineers."
+                        ) : (
+                            "Fill out the form below to schedule a live, personalized walk-through of the platform capabilities with our solution engineers."
+                        )}
                     </p>
                 </ScrollReveal>
 

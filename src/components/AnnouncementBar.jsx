@@ -16,9 +16,9 @@ import LocalizedLink from './LocalizedLink';
 const STORAGE_KEY = 'gemsphere-announcement-dismissed';
 
 export default function AnnouncementBar({
-    message = "GemSphere AI v2.4 is live — Autonomous Agents, Predictive Insights & more.",
-    ctaText = "See What's New",
-    ctaHref = "/products",
+    message = "Tired of software integration headaches? Experience the unified power of GemSphere Commerce and Hospitality.",
+    ctaText = "Schedule a Call",
+    ctaHref = "/demo?select=gemsphere-commerce,gemsphere-hospitality",
     variant = "gradient", // "gradient" | "cyan" | "indigo"
 }) {
     const [isVisible, setIsVisible] = useState(false);

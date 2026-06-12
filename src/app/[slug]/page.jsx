@@ -6,37 +6,40 @@
  * Unauthorized copying, modification, distribution, or use of this
  * file, via any medium, is strictly prohibited.
  */
-import ProductComparison from '../../../views/ProductComparison';
-import { generateCompositeSlugs, getSEOContent, COMPETITORS_MAP, CUSTOM_COMPARISONS } from '../../../data/seoRegistry';
+import GuideGeoTemplate from '../../views/GuideGeoTemplate';
+import { generateCompositeSlugs, getSEOContent } from '../../data/seoRegistry';
 
 export function generateStaticParams() {
-    const comparisonSlugs = generateCompositeSlugs('comparisons');
-    return comparisonSlugs.map((slugStr) => ({
-        slug: slugStr
-    }));
+    const slugs = new Set();
+    
+    // Add GEO pages (Tier 4)
+    generateCompositeSlugs('geo').forEach(s => slugs.add(s));
+    
+    // Add Guide pages (Problem-focused)
+    generateCompositeSlugs('guides').forEach(s => slugs.add(s));
+
+    return Array.from(slugs).map(slug => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
     const seoContent = getSEOContent(slug);
-    let title = 'GemSphere vs Competitors | Enterprise Architectural Comparison';
-    let description = 'Compare GemSphere composable single-tenant infrastructure with monolithic software suites.';
     
-    if (seoContent && seoContent.title !== 'Enterprise Software Solutions') {
-        title = seoContent.title;
-        description = seoContent.description;
-    }
+    const title = seoContent?.title || 'GemSphere Technologies — Custom Solutions';
+    const description = seoContent?.description || 'Learn how GemSphere Technologies engineers custom software solutions.';
 
     return {
         title,
         description,
+        keywords: seoContent?.targetKeywords || [],
         alternates: {
-            canonical: `/compare/${slug}`
+            canonical: `/${slug}`
         },
         openGraph: {
             title,
             description,
-            type: 'website',
+            type: 'article',
+            url: `https://gemsphere.ai/${slug}`,
             images: [
                 {
                     url: '/og-image.jpg',
@@ -57,36 +60,38 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
     const { slug } = await params;
-    
-    let competitorKey = '';
-    if (CUSTOM_COMPARISONS[slug]) {
-        competitorKey = CUSTOM_COMPARISONS[slug].compKey;
-    } else {
-        competitorKey = slug.replace('gemsphere-vs-', '');
-    }
-
-    const compInfo = COMPETITORS_MAP[competitorKey];
     const seoContent = getSEOContent(slug);
     
     const schemas = [];
+
     if (seoContent) {
-        // SoftwareApplication Schema
+        // TechArticle / Article Schema
         schemas.push({
             "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": `GemSphere vs ${compInfo?.name || competitorKey} Technical Comparison`,
-            "operatingSystem": "All (Cloud-Based)",
-            "applicationCategory": "BusinessApplication",
+            "@type": "TechArticle",
+            "headline": seoContent.h1,
             "description": seoContent.description,
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD",
-                "description": "Contact for custom enterprise pricing"
+            "inLanguage": "en",
+            "provider": {
+                "@type": "Organization",
+                "name": "GemSphere Technologies",
+                "url": "https://gemsphere.ai"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "GemSphere Technologies",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://gemsphere.ai/logo.png"
+                }
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://gemsphere.ai/${slug}`
             }
         });
-        
-        // FAQ Schema
+
+        // FAQPage Schema
         if (seoContent.faqs && seoContent.faqs.length > 0) {
             schemas.push({
                 "@context": "https://schema.org",
@@ -102,7 +107,7 @@ export default async function Page({ params }) {
             });
         }
     }
-    
+
     return (
         <>
             {schemas.map((schema, index) => (
@@ -112,7 +117,7 @@ export default async function Page({ params }) {
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
                 />
             ))}
-            <ProductComparison competitorKey={competitorKey} />
+            <GuideGeoTemplate slug={slug} />
         </>
     );
 }

@@ -9,8 +9,17 @@ import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
 import Breadcrumbs from '../components/Breadcrumbs';
 import RelatedLinks from '../components/RelatedLinks';
 import TrustBadges from '../components/TrustBadges';
+import CommerceView from '../components/CommerceView';
+import HospitalityView from '../components/HospitalityView';
 
 export default function ProductCategory({ categoryId }) {
+    if (categoryId === 'commerce' || categoryId.startsWith('commerce-')) {
+        return <CommerceView categoryId={categoryId} />;
+    }
+    if (categoryId === 'hospitality' || categoryId.startsWith('hospitality-')) {
+        return <HospitalityView categoryId={categoryId} />;
+    }
+
     const category = PRODUCT_ECOSYSTEM.categories.find(c => c.id === categoryId);
     if (!category) return null;
 

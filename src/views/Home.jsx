@@ -9,6 +9,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import LocalizedLink from '../components/LocalizedLink';
 import { REGISTER_URL } from '../utils/apiConfig';
 import { useParams, useRouter } from 'next/navigation';
@@ -27,7 +28,6 @@ import MarqueeRow from '../components/MarqueeRow';
 import SectionHeading from '../components/SectionHeading';
 import ProductCard from '../components/ProductCard';
 import ClientLogos from '../components/ClientLogos';
-import InlineLeadCapture from '../components/InlineLeadCapture';
 import FAQSection from '../components/FAQSection';
 import dynamic from 'next/dynamic';
 
@@ -72,7 +72,7 @@ const Home = () => {
                         <div className="lg:col-span-7 text-left flex flex-col items-start">
                             <ScrollReveal direction="up" delay={0.1}>
                                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-subtle text-text-primary text-xs font-semibold uppercase tracking-[0.2em] mb-8">
-                                    <Sparkles size={14} className="text-brand-cyan" /> {t('nav.platform', 'Unified Digital Enterprise Platform')}
+                                    <Sparkles size={14} className="text-brand-cyan" /> {t('home.heroBadge', 'Custom Enterprise Engineering')}
                                 </div>
                             </ScrollReveal>
                             
@@ -123,10 +123,13 @@ const Home = () => {
                                     <div className="absolute inset-0 bg-gradient-to-tr from-brand-cyan/20 via-brand-indigo/30 to-purple-500/20 rounded-[24px] rotate-2 blur-lg group-hover:rotate-4 transition-transform duration-500" />
                                     
                                     <div className="absolute inset-0 bg-brand-card border border-brand-border/60 hover:border-brand-cyan/40 rounded-[24px] flex items-center justify-center overflow-hidden shadow-2xl transition-colors duration-300">
-                                        <img 
+                                        <Image 
                                             src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/hero_dashboard_mockup.png`} 
-                                            alt="GemSphere Dashboard Mockup" 
-                                            className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700"
+                                            alt="GemSphere Dashboard Mockup"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 500px"
+                                            priority
+                                            className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700"
                                         />
                                         
                                         {/* Subtle overlay gradient */}
@@ -142,7 +145,7 @@ const Home = () => {
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-brand-border">
                             {[
                                 { val: 'Global', label: 'Countries Served' },
-                                { val: '30+', label: 'Enterprise Capabilities' },
+                                { val: '50+', label: 'Enterprise Capabilities' },
                                 { val: '99.99%', label: 'Uptime SLA' },
                                 { val: '24/7', label: 'Global Support' }
                             ].map((kpi, i) => (
@@ -217,8 +220,8 @@ const Home = () => {
                 <div className="container mx-auto px-6 max-w-7xl">
                     <SectionHeading 
                         badge="The Ecosystem"
-                        title="30+ Enterprise Capabilities."
-                        titleHighlight="One Intelligent Platform."
+                        title="50+ Enterprise Capabilities."
+                        titleHighlight="Custom-Engineered for You."
                         subtitle={PRODUCT_ECOSYSTEM.stats.description}
                     />
 
@@ -286,10 +289,12 @@ const Home = () => {
                                     
                                     <div className="absolute inset-0 bg-brand-card border border-brand-border/60 hover:border-brand-cyan/40 rounded-[40px] flex items-center justify-center overflow-hidden transition-colors duration-300">
                                         {/* High-fidelity generated image */}
-                                        <img 
+                                        <Image 
                                             src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/neural_engine_spotlight.png`} 
-                                            alt="GemSphere Neural Network Engine" 
-                                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                            alt="GemSphere Neural Network Engine"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 500px"
+                                            className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                                         />
                                         
                                         {/* Premium overlay metrics cards */}
@@ -319,8 +324,6 @@ const Home = () => {
                 </div>
             </section>
 
-            <InlineLeadCapture />
-
             {/* 5. GLOBAL PRESENCE */}
             <section className="section-padding relative">
                 <div className="container mx-auto px-6 max-w-7xl">
@@ -349,7 +352,7 @@ const Home = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                         {[
                             { title: 'Modular by Design', desc: 'Start with what you need today. Add modules seamlessly as your business grows — no rip-and-replace migrations.' },
-                            { title: 'Single Data Model', desc: 'All 30+ capabilities share one unified data layer. No more data silos, sync issues, or brittle integrations.' },
+                            { title: 'Single Data Model', desc: 'All 50+ capabilities share one unified data layer. No more data silos, sync issues, or brittle integrations.' },
                             { title: 'Global-Ready', desc: 'Multi-currency, multi-language, and multi-region compliance built into every module from day one.' },
                         ].map((item, i) => (
                             <ScrollReveal key={i} direction="up" delay={i * 0.1}>
@@ -434,7 +437,7 @@ const Home = () => {
                             <span className="text-gradient">digital future?</span>
                         </h2>
                         <p className="text-xl text-text-secondary mb-12 max-w-2xl mx-auto">
-                            Join the world's most advanced enterprises orchestrating their growth on the GemSphere platform.
+                            Join the world's most advanced enterprises engineering their growth with GemSphere.
                         </p>
                         
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

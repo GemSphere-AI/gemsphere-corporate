@@ -8,6 +8,7 @@
  */
 "use client";
 import React from 'react';
+import Image from 'next/image';
 import LocalizedLink from '../components/LocalizedLink';
 import { Rocket, MapPin, Mail, Phone, ShieldCheck, Award, Building2 } from 'lucide-react';
 import { PRODUCT_ECOSYSTEM } from '../data/productEcosystem';
@@ -27,9 +28,11 @@ const Footer = () => {
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-3 mb-6">
                             <div className="w-12 h-12 flex items-center justify-center relative">
-                                <img 
+                                <Image 
                                     src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/logo-icon.png`} 
                                     alt="GemSphere" 
+                                    width={48}
+                                    height={48}
                                     className="w-full h-full object-contain" 
                                 />
                             </div>

@@ -14,8 +14,8 @@ import { Mail, ArrowRight, Sparkles, Check } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 
 export default function InlineLeadCapture({
-    headline = "Get the Enterprise AI Playbook",
-    subtitle = "A comprehensive guide to deploying AI across commerce, supply chain, and operations at global scale. Free for engineering leaders.",
+    headline = "Schedule a Call",
+    subtitle = "Schedule a 1-on-1 technical walkthrough with our solutions team. Let's discuss your requirements and how we can fulfill your business pain points.",
     className = '',
 }) {
     const [email, setEmail] = useState('');
@@ -53,7 +53,7 @@ export default function InlineLeadCapture({
                                 {/* Left: Content */}
                                 <div className="lg:col-span-7">
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-[10px] font-black uppercase tracking-widest mb-4">
-                                        <Sparkles size={12} /> Free Resource
+                                        <Sparkles size={12} /> Flagship Solutions
                                     </div>
                                     <h3 className="text-2xl md:text-3xl font-black text-text-primary font-display tracking-tight mb-3">
                                         {headline}
@@ -65,10 +65,10 @@ export default function InlineLeadCapture({
                                     {/* Bullet points */}
                                     <div className="flex flex-wrap gap-x-6 gap-y-2">
                                         {[
-                                            'AI Strategy Blueprint',
-                                            'ROI Models & Templates',
-                                            'Vendor Comparison Matrix',
-                                            'Implementation Roadmap'
+                                            'Custom Platform Demo',
+                                            'Bespoke Theme Layouts',
+                                            '0% Transaction Fee Structure',
+                                            'Bespoke Custom Coding'
                                         ].map((item, i) => (
                                             <div key={i} className="flex items-center gap-2 text-xs text-text-tertiary font-semibold">
                                                 <div className="w-1 h-1 rounded-full bg-brand-cyan" />
@@ -89,8 +89,8 @@ export default function InlineLeadCapture({
                                             <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
                                                 <Check size={24} className="text-emerald-400" />
                                             </div>
-                                            <h4 className="text-lg font-bold text-text-primary mb-1">You&apos;re In!</h4>
-                                            <p className="text-xs text-text-tertiary">Check your inbox for the playbook.</p>
+                                            <h4 className="text-lg font-bold text-text-primary mb-1">Thank you!</h4>
+                                            <p className="text-xs text-text-tertiary">Our solutions team will contact you shortly to schedule a call.</p>
                                         </motion.div>
                                     ) : (
                                         <form onSubmit={handleSubmit} className="space-y-3">
@@ -109,10 +109,10 @@ export default function InlineLeadCapture({
                                                 type="submit"
                                                 className="w-full btn-primary py-3.5 text-sm font-black flex items-center justify-center gap-2"
                                             >
-                                                Download Free Playbook <ArrowRight size={16} />
+                                                Schedule a Call <ArrowRight size={16} />
                                             </button>
                                             <p className="text-[10px] text-text-muted text-center">
-                                                No spam. Unsubscribe anytime.
+                                                By submitting, you agree to our privacy policy.
                                             </p>
                                         </form>
                                     )}

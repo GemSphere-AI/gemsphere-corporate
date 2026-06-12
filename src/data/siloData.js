@@ -211,7 +211,7 @@ export const SILO_DATA = {
         'retail': {
             title: 'E-commerce & Smart Retail Solutions',
             subtitle: 'Omnichannel commerce platforms powering global retail ecosystems.',
-            description: 'GemSphere Technologies provides full-stack retail and e-commerce platforms designed for the global market. Our unified operating system seamlessly synchronizes physical brick-and-mortar storefronts with digital commerce engines in real-time using our <a href="/products/pos-system" class="text-brand-cyan hover:underline font-semibold">Smart POS System</a>, enabling cashier-less checkouts, multi-location inventory syncing, and automated sourcing.',
+            description: 'GemSphere Technologies provides full-stack retail and e-commerce platforms designed for the global market. We build and integrate custom solutions that seamlessly synchronize physical brick-and-mortar storefronts with digital commerce engines in real-time using our <a href="/products/pos-system" class="text-brand-cyan hover:underline font-semibold">Smart POS System</a> architecture, enabling cashier-less checkouts, multi-location inventory syncing, and automated sourcing.',
             features: [
                 'Omnichannel Retail Engines',
                 'AI-Driven Personalization & Recommendations',
@@ -387,21 +387,21 @@ export const SILO_DATA = {
     },
     product: {
         'retail-pos': {
-            title: 'GemSphere Omni-Retail',
-            subtitle: 'Unified POS and E-commerce engine.',
-            description: 'A complete retail operating system that synchronizes physical stores with digital storefronts in real-time.',
+            title: 'Omni-Retail Custom Integration',
+            subtitle: 'Bespoke POS and E-commerce integration architecture.',
+            description: 'We design and build custom retail systems that synchronize physical stores with digital storefronts in real-time.',
             features: ['Live Inventory Sync', 'Mobile POS', 'Omnichannel Orders']
         },
         'hospitality-suite': {
-            title: 'Hospitality Plus',
-            subtitle: 'Smart dining and reservation management.',
-            description: 'Digital-first hospitality tools for restaurants, hotels, and event spaces.',
+            title: 'Hospitality Custom Orchestration',
+            subtitle: 'Tailored dining and reservation management systems.',
+            description: 'Bespoke digital-first hospitality systems engineered for restaurants, hotels, and event spaces.',
             features: ['Table Management', 'QR Ordering', 'Kitchen Display System']
         },
         'growth-crm': {
-            title: 'GemSphere CRM',
-            subtitle: 'Sales automation for high-growth teams.',
-            description: 'Close deals faster with AI-driven lead scoring and automated follow-up workflows.',
+            title: 'CRM & Sales Custom Engineering',
+            subtitle: 'Sales automation engineered for high-growth teams.',
+            description: 'Custom CRM platforms with tailored integrations, AI-driven lead scoring, and automated follow-up workflows.',
             features: ['Pipeline Tracking', 'Lead Scoring', 'Automated Marketing']
         }
     },

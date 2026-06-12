@@ -9,6 +9,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import LocalizedLink from '../components/LocalizedLink';
 import { Menu, X, Rocket, ChevronDown, ChevronRight, Sun, Moon } from 'lucide-react';
 import { getAbsoluteUrl } from '@GemSphere-AI/ui-kit';
@@ -110,10 +111,13 @@ const Header = () => {
                         <div className="w-11 h-11 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 relative">
                             {/* Logo Glow */}
                             <div className="absolute inset-0 bg-brand-cyan/25 rounded-full filter blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <img 
+                            <Image 
                                 src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/logo-icon.png`} 
                                 alt="GemSphere" 
+                                width={44}
+                                height={44}
                                 className="w-full h-full object-contain relative z-10" 
+                                priority
                             />
                         </div>
                         <div className="flex flex-col">

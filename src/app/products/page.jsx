@@ -11,7 +11,7 @@ import Products from '../../views/Products';
 export async function generateMetadata({ params }) {
   
   return {
-    title: 'Enterprise Product Ecosystem — 30+ Unified Modules',
+    title: 'Enterprise Product Ecosystem — 50+ Unified Modules',
     description: "Explore GemSphere's modular enterprise product ecosystem: Commerce, Supply Chain, Finance, HR, AI/ML, and more — all on one composable platform.",
     alternates: {
             canonical: '/products'

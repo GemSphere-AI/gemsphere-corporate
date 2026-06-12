@@ -32,17 +32,17 @@ export const metadata = {
     default: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
     template: '%s | GemSphere Technologies',
   },
-  description: 'GemSphere Technologies is a global AI-powered enterprise software company delivering 28+ unified digital platform modules across Commerce, Supply Chain, Finance, Operations, AI, and Collaboration for 170+ countries.',
+  description: 'GemSphere Technologies is a global AI-powered enterprise engineering company delivering 50+ modular capabilities across Commerce, Supply Chain, Finance, Operations, AI, and Collaboration for 170+ countries.',
   metadataBase: new URL('https://gemsphere.ai'),
   keywords: [
     'enterprise software', 'digital transformation', 'AI platform',
     'commerce platform', 'supply chain management', 'ERP software',
-    'SaaS enterprise', 'cloud ERP', 'business automation',
-    'GemSphere', 'enterprise AI', 'modular platform',
+    'custom enterprise engineering', 'cloud ERP', 'business automation',
+    'GemSphere', 'enterprise AI', 'modular engineering',
   ],
   openGraph: {
     title: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
-    description: 'Premium AI + Enterprise Software + SaaS Transformation Partner. 30+ enterprise capabilities. One unified digital ecosystem. Serving 170+ countries.',
+    description: 'Premium AI, Enterprise SaaS, & Custom Software Engineering Partner. 50+ enterprise capabilities. One unified digital ecosystem. Serving 170+ countries.',
     type: 'website',
     locale: 'en_US',
     url: 'https://gemsphere.ai',
@@ -59,7 +59,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
-    description: 'Premium AI + Enterprise Software + SaaS Transformation Partner. 30+ enterprise capabilities. Serving 170+ countries.',
+    description: 'Premium AI, Enterprise SaaS, & Custom Software Engineering Partner. 50+ enterprise capabilities. Serving 170+ countries.',
     creator: '@GemSphereAI',
     images: ['/og-image.jpg'],
   },
@@ -72,6 +72,13 @@ export const metadata = {
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://gemsphere.ai',
+    languages: {
+      'en-US': 'https://gemsphere.ai/en-us',
+      'de-DE': 'https://gemsphere.ai/de',
     },
   },
 };
@@ -146,6 +153,7 @@ export default async function RootLayout({ children, params }) {
           src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js"
           id="chatbot"
           strategy="lazyOnload"
+          environmentId="d0804337-75d7-e516-874e-c28f97bb5ed0"
           data-environment-id="d0804337-75d7-e516-874e-c28f97bb5ed0"
           crossOrigin="anonymous"
         />
@@ -153,7 +161,11 @@ export default async function RootLayout({ children, params }) {
       <body>
         <ClientProviders>
           <GoogleAnalytics />
-          <AnnouncementBar />
+          <AnnouncementBar 
+            message="Tired of software integration headaches? Experience the unified power of GemSphere Commerce and Hospitality."
+            ctaText="Schedule a Call"
+            ctaHref="/demo?select=gemsphere-commerce,gemsphere-hospitality"
+          />
           {children}
           <FloatingCTA />
           <FloatingWhatsApp />

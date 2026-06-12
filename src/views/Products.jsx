@@ -63,7 +63,7 @@ const Products = () => {
                                 <span className="text-gradient">Digital Ecosystem.</span>
                             </h1>
                             <p className="text-xl text-text-secondary mb-10 leading-relaxed max-w-3xl mx-auto">
-                                30+ enterprise capabilities built on a shared data model. Adopt what you need today, seamlessly scale to full capabilities tomorrow.
+                                50+ enterprise capabilities built on a shared data model. Adopt what you need today, seamlessly scale to full capabilities tomorrow.
                             </p>
                             <MagneticButton href="/demo" className="btn-primary">
                                 Speak to an Architect <ArrowRight size={18} />

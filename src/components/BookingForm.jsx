@@ -20,7 +20,9 @@ import { getEndpointUrl, DEFAULT_TENANT } from '../utils/apiConfig';
 import { queueOfflineSubmission } from '../utils/offlineSync';
 
 const SERVICE_OPTIONS = [
-    { id: 'ecommerce-supply-chain', label: 'E-commerce & Supply Chain', icon: '🛒' },
+    { id: 'gemsphere-commerce', label: 'GemSphere Commerce', icon: '🛒' },
+    { id: 'gemsphere-hospitality', label: 'GemSphere Hospitality', icon: '🏨' },
+    { id: 'ecommerce-supply-chain', label: 'E-commerce & Supply Chain', icon: '📦' },
     { id: 'ai-ml', label: 'AI & ML Solutions', icon: '🤖' },
     { id: 'enterprise-dev', label: 'Enterprise Software', icon: '⚡' },
     { id: 'saas', label: 'SaaS Products', icon: '☁️' },
@@ -128,9 +130,15 @@ const BookingForm = ({ countryContext = '' }) => {
             const params = new URLSearchParams(window.location.search);
             const queryTenant = params.get('tenant') || params.get('ref') || '';
             const resolved = queryTenant || DEFAULT_TENANT;
-            if (resolved) {
-                setFormData(prev => ({ ...prev, targetTenant: resolved }));
-            }
+            
+            const selectParams = params.get('select');
+            const initialServices = selectParams ? selectParams.split(',') : [];
+            
+            setFormData(prev => ({ 
+                ...prev, 
+                targetTenant: resolved,
+                services: initialServices.length > 0 ? initialServices : prev.services
+            }));
         }
     }, []);
 

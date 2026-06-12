@@ -62,7 +62,7 @@ export const generateOrganizationSchema = () => {
     "alternateName": "GemSphere",
     "url": baseUrl,
     "logo": `${baseUrl}/logo.png`,
-    "description": "Premium AI + Enterprise Software + SaaS Transformation Partner.",
+    "description": "Premium AI, Enterprise SaaS & Custom Software Engineering Partner.",
     "foundingDate": "2024",
     "numberOfEmployees": {
       "@type": "QuantitativeValue",
@@ -75,7 +75,7 @@ export const generateOrganizationSchema = () => {
       "Cloud Engineering",
       "Supply Chain Management",
       "E-Commerce Platforms",
-      "SaaS Product Development"
+      "Custom Platform Development"
     ],
     "sameAs": [
       "https://www.linkedin.com/company/gem-sphere-ai/",

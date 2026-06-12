@@ -18,11 +18,11 @@ import { generateFAQSchema } from '../utils/schemaGenerators';
 const HOMEPAGE_FAQS = [
     {
         q: "What is GemSphere Technologies?",
-        a: "GemSphere Technologies is a global AI-powered enterprise software company delivering 30+ unified digital platform modules across Commerce, Supply Chain, Finance, Operations, AI, and Collaboration for businesses in over 170 countries."
+        a: "GemSphere Technologies is a global AI-powered enterprise software company delivering 50+ unified digital platform modules across Commerce, Supply Chain, Finance, Operations, AI, and Collaboration for businesses in over 170 countries."
     },
     {
         q: "How many modules does the GemSphere platform include?",
-        a: "The GemSphere platform contains 30+ modular capabilities spanning CRM, ERP, E-commerce, Warehousing, Procurement, Analytics, and generative AI agents. You can start with a single module and scale seamlessly."
+        a: "The GemSphere platform contains 50+ modular capabilities spanning CRM, ERP, E-commerce, Warehousing, Procurement, Analytics, and generative AI agents. You can start with a single module and scale seamlessly."
     },
     {
         q: "Is GemSphere suitable for enterprise-scale operations?",
@@ -38,7 +38,7 @@ const HOMEPAGE_FAQS = [
     },
     {
         q: "Is there a free trial available?",
-        a: "Yes, you can register for a developer-sandbox free trial directly on our platform, or schedule a free 15-minute architecture design consultation with our enterprise integration team."
+        a: "Because we custom-engineer layouts and features for each enterprise client individually, we do not provide a generic, standardized trial. Instead, we configure a dedicated sandbox environment tailored specifically to your operational scale and requirements. Let's schedule a call to discuss your business objectives and design a trial that addresses your exact pain points."
     }
 ];
 

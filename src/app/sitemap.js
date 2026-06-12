@@ -1,5 +1,6 @@
 import { PRODUCT_ECOSYSTEM, slugify } from '../data/productEcosystem';
-import { generateCompositeSlugs } from '../data/seoRegistry';
+import { generateCompositeSlugs, GEO_MAP, GUIDES_MAP, INDUSTRIES_MAP } from '../data/seoRegistry';
+import { BLOG_POSTS } from '../data/blogData';
 
 export const dynamic = 'force-static';
 
@@ -9,7 +10,11 @@ export async function generateSitemaps() {
     { id: 'pages' },
     { id: 'products' },
     { id: 'services' },
-    { id: 'comparisons' }
+    { id: 'comparisons' },
+    { id: 'geo' },
+    { id: 'guides' },
+    { id: 'industries' },
+    { id: 'blog' }
   ];
 }
 
@@ -32,6 +37,8 @@ export default function sitemap({ id }) {
       { path: '/ai-solutions', changeFreq: 'weekly', priority: 0.9 },
       { path: '/blog', changeFreq: 'daily', priority: 0.7 },
       { path: '/demo', changeFreq: 'monthly', priority: 0.8 },
+      { path: '/roi-calculator', changeFreq: 'monthly', priority: 0.7 },
+      { path: '/resources', changeFreq: 'weekly', priority: 0.6 },
       { path: '/privacy', changeFreq: 'yearly', priority: 0.3 },
       { path: '/terms', changeFreq: 'yearly', priority: 0.3 },
       { path: '/security', changeFreq: 'monthly', priority: 0.6 },
@@ -66,6 +73,27 @@ export default function sitemap({ id }) {
     const comparisonSlugs = generateCompositeSlugs('comparisons');
     routes = comparisonSlugs.map((slugStr) => ({
       path: `/compare/${slugStr}`, changeFreq: 'weekly', priority: 0.75
+    }));
+  } else if (id === 'geo') {
+    // GEO pages — highest-value programmatic SEO pages (best-* slugs)
+    const geoSlugs = generateCompositeSlugs('geo');
+    routes = geoSlugs.map((slugStr) => ({
+      path: `/${slugStr}`, changeFreq: 'weekly', priority: 0.85
+    }));
+  } else if (id === 'guides') {
+    // Problem-focused guide pages (how-to-build-* slugs)
+    const guideSlugs = generateCompositeSlugs('guides');
+    routes = guideSlugs.map((slugStr) => ({
+      path: `/${slugStr}`, changeFreq: 'monthly', priority: 0.80
+    }));
+  } else if (id === 'industries') {
+    // Industry vertical pages
+    routes = Object.keys(INDUSTRIES_MAP).map((indKey) => ({
+      path: `/industries/${indKey}`, changeFreq: 'monthly', priority: 0.80
+    }));
+  } else if (id === 'blog') {
+    routes = BLOG_POSTS.map((post) => ({
+      path: `/blog/${post.id}`, changeFreq: 'monthly', priority: 0.60
     }));
   }
 

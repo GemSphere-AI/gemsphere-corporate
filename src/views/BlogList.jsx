@@ -14,13 +14,17 @@ import { ArrowRight, Calendar, Search, Mail, Sparkles, Check } from 'lucide-reac
 
 const CATEGORIES = [
     'All',
+    'AI & Automation',
     'AI & Retail',
     'Engineering',
     'Business Intelligence',
+    'E-commerce',
+    'Logistics',
     'Supply Chain',
     'Security',
     'Hospitality',
-    'Digital Transformation'
+    'Digital Transformation',
+    'SaaS'
 ];
 
 const BlogList = () => {

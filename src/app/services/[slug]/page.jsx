@@ -9,20 +9,22 @@
 import PillarPageTemplate from '../../../views/PillarPageTemplate';
 import { PRODUCT_ECOSYSTEM } from '../../../data/productEcosystem';
 import { SILO_DATA } from '../../../data/siloData';
-import { generateCompositeSlugs, getSEOContent } from '../../../data/seoRegistry';
+import { generateCompositeSlugs, getSEOContent, parseCompositeSlug, COUNTRIES_MAP } from '../../../data/seoRegistry';
 
 export function generateStaticParams() {
-    const params = PRODUCT_ECOSYSTEM.services.map((srv) => ({
-        slug: srv.slug,
-    }));
+    const slugs = new Set();
+    
+    PRODUCT_ECOSYSTEM.services.forEach((srv) => {
+        slugs.add(srv.slug);
+    });
 
     // Add dynamic composite programmatic SEO service slugs
     const seoSlugs = generateCompositeSlugs('services');
     seoSlugs.forEach((slugStr) => {
-        params.push({ slug: slugStr });
+        slugs.add(slugStr);
     });
 
-    return params;
+    return Array.from(slugs).map(slug => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {
@@ -49,6 +51,7 @@ export async function generateMetadata({ params }) {
     return {
         title,
         description,
+        keywords: seoContent?.targetKeywords || [],
         alternates: {
             canonical: `/services/${slug}`
         },
@@ -98,9 +101,14 @@ export default async function Page({ params }) {
     }
 
     // Service Schema
+    const parsing = parseCompositeSlug(slug);
+    const countryData = parsing?.country ? COUNTRIES_MAP[parsing.country] : null;
+    const localCountry = countryData ? countryData.name : '';
+
     let serviceName = seoContent?.h1 || "GemSphere Business Services";
     let serviceDesc = seoContent?.description || "Enterprise Software and Consulting Services by GemSphere";
-    schemas.push({
+    
+    const serviceSchema = {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": serviceName,
@@ -111,7 +119,16 @@ export default async function Page({ params }) {
             "url": "https://www.gemsphere.ai"
         },
         "description": serviceDesc
-    });
+    };
+
+    if (localCountry) {
+        serviceSchema.areaServed = {
+            "@type": "Country",
+            "name": localCountry
+        };
+    }
+
+    schemas.push(serviceSchema);
 
     return (
         <>

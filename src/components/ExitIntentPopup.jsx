@@ -10,7 +10,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight, BookOpen, Sparkles } from 'lucide-react';
+import { X, ArrowRight, Sparkles } from 'lucide-react';
 import LocalizedLink from './LocalizedLink';
 
 const STORAGE_KEY = 'gemsphere-exit-intent-shown';
@@ -126,38 +126,38 @@ export default function ExitIntentPopup() {
                                     >
                                         <Sparkles size={28} className="text-emerald-400" />
                                     </motion.div>
-                                    <h3 className="text-2xl font-black text-text-primary mb-2 font-display">You&apos;re In!</h3>
-                                    <p className="text-text-secondary text-sm">Check your inbox for the Enterprise AI Playbook.</p>
+                                    <h3 className="text-2xl font-black text-text-primary mb-2 font-display">Thank You!</h3>
+                                    <p className="text-text-secondary text-sm">We'll reach out shortly to schedule your demo. Check your inbox for updates.</p>
                                 </div>
                             ) : (
                                 /* Form state */
                                 <div className="relative z-10">
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-cyan/20 to-brand-indigo/20 flex items-center justify-center border border-brand-cyan/20">
-                                            <BookOpen size={22} className="text-brand-cyan" />
+                                            <Sparkles size={22} className="text-brand-cyan" />
                                         </div>
                                         <div>
                                             <h3 className="text-xl font-black text-text-primary font-display leading-tight">
                                                 Before You Go...
                                             </h3>
                                             <p className="text-xs text-text-muted font-semibold uppercase tracking-wider mt-0.5">
-                                                Free Enterprise Resource
+                                                Flagship Solutions
                                             </p>
                                         </div>
                                     </div>
 
                                     <p className="text-text-secondary text-sm leading-relaxed mb-6">
-                                        Download our <strong className="text-text-primary">Enterprise AI Playbook</strong> — 
-                                        a comprehensive guide to deploying AI across commerce, supply chain, and operations at scale.
+                                        Explore our flagship enterprise products — <strong className="text-text-primary">GemSphere Commerce</strong> and <strong className="text-text-primary">GemSphere Hospitality</strong>. 
+                                        Schedule a free 15-minute consultation to see how they can transform your operations.
                                     </p>
 
                                     {/* Benefits list */}
                                     <div className="grid grid-cols-2 gap-2 mb-6">
                                         {[
-                                            'AI Strategy Framework',
-                                            'ROI Calculation Models',
-                                            'Implementation Roadmap',
-                                            'Vendor Selection Guide'
+                                            'GemSphere Commerce Platform',
+                                            'GemSphere Hospitality Core',
+                                            'Omnichannel Retail Integrations',
+                                            'Reservations & Booking Systems'
                                         ].map((item, i) => (
                                             <div key={i} className="flex items-center gap-2 text-xs text-text-tertiary font-semibold">
                                                 <div className="w-1.5 h-1.5 rounded-full bg-brand-cyan shrink-0" />
@@ -179,7 +179,7 @@ export default function ExitIntentPopup() {
                                             type="submit"
                                             className="w-full btn-primary py-3.5 text-sm font-black uppercase tracking-wider flex items-center justify-center gap-2"
                                         >
-                                            Download Free Playbook <ArrowRight size={16} />
+                                            Schedule a Call <ArrowRight size={16} />
                                         </button>
                                     </form>
 

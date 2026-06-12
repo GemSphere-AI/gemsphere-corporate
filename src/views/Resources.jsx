@@ -14,14 +14,6 @@ import { ArrowRight, BookOpen, Check, Download, FileText, Mail, Search, Sparkles
 
 const RESOURCE_ITEMS = [
     {
-        id: 'enterprise-ai-playbook',
-        title: 'The Enterprise AI Playbook',
-        description: 'A comprehensive engineering blueprint for scaling generative AI agents, fine-tuning large language models, and securing vector databases in enterprise networks.',
-        type: 'Ebook / Guide',
-        category: 'AI',
-        downloadCount: '2.4k'
-    },
-    {
         id: 'legacy-erp-migration-checklist',
         title: 'ERP Migration Architecture Blueprint',
         description: 'A step-by-step technical checklist and microservice bridge architectural guide for migrating core financial ledger applications to cloud-native platforms.',
@@ -38,9 +30,9 @@ const RESOURCE_ITEMS = [
         downloadCount: '1.2k'
     },
     {
-        id: 'saas-vendor-security-audit-sheet',
+        id: 'enterprise-vendor-security-audit-sheet',
         title: '2026 Enterprise Vendor Security Audit Checklist',
-        description: 'A formal compliance spreadsheet and question matrix covering SOC2 Type II, GDPR data residency, ISO 27001, and Zero-Trust identity controls for auditing external SaaS vendors.',
+        description: 'A formal compliance spreadsheet and question matrix covering SOC2 Type II, GDPR data residency, ISO 27001, and Zero-Trust identity controls for auditing external enterprise software and platform vendors.',
         type: 'Audit Spreadsheet',
         category: 'Security',
         downloadCount: '3.1k'

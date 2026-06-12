@@ -77,8 +77,28 @@ export const triggerTeamsChat = (e) => {
         if (btn) {
             btn.click();
         } else {
-            // Fallback: if script is not fully loaded, redirect to support contact
-            window.location.href = '/contact/';
+            // If the script is registered but not fully initialized/loaded yet, poll for the button
+            const script = document.getElementById('chatbot');
+            if (script && !window.__teamsChatLoading) {
+                window.__teamsChatLoading = true;
+                let attempts = 0;
+                const interval = setInterval(() => {
+                    const retryBtn = document.querySelector('.chatclient-button');
+                    attempts++;
+                    if (retryBtn) {
+                        clearInterval(interval);
+                        window.__teamsChatLoading = false;
+                        retryBtn.click();
+                    } else if (attempts >= 15) { // Try for 3 seconds (15 * 200ms)
+                        clearInterval(interval);
+                        window.__teamsChatLoading = false;
+                        window.location.href = '/contact/';
+                    }
+                }, 200);
+            } else if (!window.__teamsChatLoading) {
+                // If script doesn't exist at all, fallback immediately
+                window.location.href = '/contact/';
+            }
         }
     }
 };
