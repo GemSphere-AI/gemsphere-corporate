@@ -92,7 +92,7 @@ const Header = () => {
         { name: t('nav.about', 'Company'), href: '/about' },
     ];
 
-    const isHome = pathname === '/' || pathname === '/en-us' || pathname === '/en-us/' || pathname === '/de-de' || pathname === '/de-de/';
+    const isHome = pathname === '/' || /^\/(en|de|fr|es|ja)\/?$/.test(pathname);
 
     return (
         <>

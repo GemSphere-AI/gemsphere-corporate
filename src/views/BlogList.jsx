@@ -10,8 +10,15 @@
 import React, { useState, useMemo } from 'react';
 import LocalizedLink from '../components/LocalizedLink';
 import { BLOG_POSTS } from '../data/blogData';
-import { ArrowRight, Calendar, Search, Mail, Sparkles, Check } from 'lucide-react';
+import { ArrowRight, Calendar, Clock, Search, Mail, Sparkles, Check } from 'lucide-react';
 import { submitLead } from '../utils/leadCapture';
+import { useTranslation } from 'react-i18next';
+
+/** Calculate reading time in minutes from article content */
+const getReadingTime = (content = '') => {
+    const wordCount = content.trim().split(/\s+/).length;
+    return Math.max(1, Math.ceil(wordCount / 200));
+};
 
 const CATEGORIES = [
     'All',
@@ -29,6 +36,7 @@ const CATEGORIES = [
 ];
 
 const BlogList = () => {
+    const { t } = useTranslation();
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [visibleCount, setVisibleCount] = useState(6);
@@ -154,12 +162,15 @@ const BlogList = () => {
                                                 <span className="px-2 py-0.5 rounded bg-brand-indigo/10 border border-brand-indigo/20 text-brand-indigo dark:text-brand-cyan text-[10px] font-black uppercase tracking-wider">
                                                     {post.category}
                                                 </span>
-                                                <time 
-                                                    dateTime={new Date(post.date).toISOString().split('T')[0]} 
+                                                <time
+                                                    dateTime={new Date(post.date).toISOString().split('T')[0]}
                                                     className="flex items-center gap-1 text-[10px] text-text-muted font-bold uppercase tracking-wider"
                                                 >
                                                     <Calendar size={12} /> {post.date}
                                                 </time>
+                                                <span className="flex items-center gap-1 text-[10px] text-text-muted font-bold uppercase tracking-wider">
+                                                    <Clock size={12} /> {t('blog.readingTime', '{{minutes}} min read', { minutes: getReadingTime(post.content) })}
+                                                </span>
                                             </div>
                                             <h3 className="text-lg font-black text-text-primary mb-3 group-hover:text-brand-cyan transition-colors line-clamp-2 font-display">
                                                 {post.title}

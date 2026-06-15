@@ -144,7 +144,7 @@ const Home = () => {
                     <ScrollReveal direction="up" delay={0.5} className="mt-20 pt-10 border-t border-brand-border">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-brand-border">
                             {[
-                                { val: 'Global', label: 'Countries Served' },
+                                { val: '170+', label: 'Countries Served' },
                                 { val: '50+', label: 'Enterprise Capabilities' },
                                 { val: '99.99%', label: 'Uptime SLA' },
                                 { val: '24/7', label: 'Global Support' }

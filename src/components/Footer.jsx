@@ -77,6 +77,7 @@ const Footer = () => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder={t('footer.subscribePlaceholder', 'Enter your email')} 
+                                    aria-label={t('footer.subscribePlaceholder', 'Enter your email to subscribe to GemSphere insights')}
                                     className="glass-subtle border-brand-border rounded-lg px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-brand-cyan w-full transition-colors"
                                 />
                                 <button 
@@ -196,7 +197,7 @@ const Footer = () => {
                 </div>
                 
                 <div className="mt-8 text-center text-xs text-text-muted">
-                    {t('footer.copyright', '© 2026 GemSphere Technologies Private Limited. All rights reserved.', { year: 2026 })}
+                    {t('footer.copyright', '© {{year}} GemSphere Technologies Private Limited. All rights reserved.', { year: new Date().getFullYear() })}
                 </div>
             </div>
         </footer>

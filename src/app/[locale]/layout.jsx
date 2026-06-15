@@ -11,6 +11,11 @@ import Script from 'next/script';
 import ClientProviders from '../../components/ClientProviders';
 import { generateOrganizationSchema, generateWebSiteSchema } from '../../utils/schemaGenerators';
 import { Inter, Outfit } from 'next/font/google';
+import FloatingCTA from '../../components/FloatingCTA';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp';
+import AnnouncementBar from '../../components/AnnouncementBar';
+import ExitIntentPopup from '../../components/ExitIntentPopup';
+import GoogleAnalytics from '../../components/GoogleAnalytics';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -26,78 +31,80 @@ const outfit = Outfit({
   variable: '--font-outfit',
 });
 
-export const metadata = {
-  applicationName: 'GemSphere Technologies',
-  title: {
-    default: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
-    template: '%s | GemSphere Technologies',
-  },
-  description: 'GemSphere Technologies is a global AI-powered enterprise engineering company delivering 50+ modular capabilities across Commerce, Supply Chain, Finance, Operations, AI, and Collaboration for 170+ countries.',
-  metadataBase: new URL('https://gemsphere.ai'),
-  keywords: [
-    'enterprise software', 'digital transformation', 'AI platform',
-    'commerce platform', 'supply chain management', 'ERP software',
-    'custom enterprise engineering', 'cloud ERP', 'business automation',
-    'GemSphere', 'enterprise AI', 'modular engineering',
-  ],
-  openGraph: {
-    title: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
-    description: 'Premium AI, Enterprise SaaS, & Custom Software Engineering Partner. 50+ enterprise capabilities. One unified digital ecosystem. Serving 170+ countries.',
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://gemsphere.ai',
-    siteName: 'GemSphere Technologies',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
-      },
+const LOCALES = ['en', 'de', 'fr', 'es', 'ja'];
+
+/**
+ * generateMetadata — runs per-request, sets correct canonical and full hreflang
+ * alternates so Google ranks each locale in its intended country.
+ */
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const lang = locale || 'en';
+  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN
+    ? `https://${process.env.NEXT_PUBLIC_DOMAIN}`
+    : 'https://gemsphere.ai';
+
+  const languages = {};
+  LOCALES.forEach((l) => { languages[l] = `${baseUrl}/${l}/`; });
+  languages['x-default'] = `${baseUrl}/en/`;
+
+  return {
+    applicationName: 'GemSphere Technologies',
+    title: {
+      default: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
+      template: '%s | GemSphere Technologies',
+    },
+    description: 'GemSphere Technologies is a global AI-powered enterprise engineering company delivering 50+ modular capabilities across Commerce, Supply Chain, Finance, Operations, AI, and Collaboration for 170+ countries.',
+    metadataBase: new URL(baseUrl),
+    keywords: [
+      'enterprise software', 'digital transformation', 'AI platform',
+      'commerce platform', 'supply chain management', 'ERP software',
+      'custom enterprise engineering', 'cloud ERP', 'business automation',
+      'GemSphere', 'enterprise AI', 'modular engineering',
     ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
-    description: 'Premium AI, Enterprise SaaS, & Custom Software Engineering Partner. 50+ enterprise capabilities. Serving 170+ countries.',
-    creator: '@GemSphereAI',
-    images: ['/og-image.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    openGraph: {
+      title: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
+      description: 'Premium AI, Enterprise SaaS, & Custom Software Engineering Partner. 50+ enterprise capabilities. One unified digital ecosystem. Serving 170+ countries.',
+      type: 'website',
+      locale: lang === 'de' ? 'de_DE' : lang === 'fr' ? 'fr_FR' : lang === 'es' ? 'es_ES' : lang === 'ja' ? 'ja_JP' : 'en_US',
+      url: `${baseUrl}/${lang}/`,
+      siteName: 'GemSphere Technologies',
+      images: [
+        {
+          url: '/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
+      description: 'Premium AI, Enterprise SaaS, & Custom Software Engineering Partner. 50+ enterprise capabilities. Serving 170+ countries.',
+      creator: '@GemSphereAI',
+      images: ['/og-image.jpg'],
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-  alternates: {
-    canonical: 'https://gemsphere.ai',
-    languages: {
-      'en-US': 'https://gemsphere.ai/en-us',
-      'de-DE': 'https://gemsphere.ai/de',
+    alternates: {
+      canonical: `${baseUrl}/${lang}/`,
+      languages,
     },
-  },
-};
-
-import FloatingCTA from '../../components/FloatingCTA';
-import FloatingWhatsApp from '../../components/FloatingWhatsApp';
-import AnnouncementBar from '../../components/AnnouncementBar';
-import ExitIntentPopup from '../../components/ExitIntentPopup';
-import GoogleAnalytics from '../../components/GoogleAnalytics';
-
+  };
+}
 
 export function generateStaticParams() {
-  return [
-    { locale: 'en' },
-    { locale: 'de' },
-    { locale: 'fr' },
-    { locale: 'es' },
-    { locale: 'ja' }
-  ];
+  return LOCALES.map((locale) => ({ locale }));
 }
 
 export default async function RootLayout({ children, params }) {

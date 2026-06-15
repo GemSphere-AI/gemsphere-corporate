@@ -49,7 +49,21 @@ export const generateWebSiteSchema = () => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "GemSphere Technologies",
-    "url": baseUrl
+    "url": baseUrl,
+    "sameAs": [
+      "https://www.linkedin.com/company/gem-sphere-ai/",
+      "https://x.com/GemSphereAI",
+      "https://www.facebook.com/people/GemSphere-AI/61581897367281/",
+      "https://www.instagram.com/gemsphereai/"
+    ],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${baseUrl}/en/blog?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
   };
 };
 
@@ -63,7 +77,7 @@ export const generateOrganizationSchema = () => {
     "url": baseUrl,
     "logo": `${baseUrl}/logo.png`,
     "description": "Premium AI, Enterprise SaaS & Custom Software Engineering Partner.",
-    "foundingDate": "2024",
+    "foundingDate": "2025",
     "numberOfEmployees": {
       "@type": "QuantitativeValue",
       "value": "50+"
@@ -97,9 +111,59 @@ export const generateOrganizationSchema = () => {
       "contactType": "sales",
       "email": "Contact@gemsphere.ai",
       "telephone": "+91-789-258-5801",
-      "availableLanguage": "English"
+      "availableLanguage": ["English", "German", "French", "Spanish", "Japanese"]
     }
   };
+};
+
+/**
+ * generateJobPostingSchema — enables Google for Jobs rich results.
+ * Pass a job object with { role, team, loc, type, description, datePosted, validThrough }.
+ */
+export const generateJobPostingSchema = (jobs) => {
+  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN ? `https://${process.env.NEXT_PUBLIC_DOMAIN}` : 'https://gemsphere.ai';
+  return jobs.map((job) => ({
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "title": job.role,
+    "description": job.description || `${job.role} position at GemSphere Technologies. Team: ${job.team}. Join us to build enterprise-scale AI and software platforms.`,
+    "identifier": {
+      "@type": "PropertyValue",
+      "name": "GemSphere Technologies",
+      "value": job.id || job.role.toLowerCase().replace(/\s+/g, '-')
+    },
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "GemSphere Technologies Private Limited",
+      "sameAs": baseUrl,
+      "logo": `${baseUrl}/logo.png`
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "addressCountry": "IN"
+      }
+    },
+    "applicantLocationRequirements": {
+      "@type": "Country",
+      "name": "Worldwide"
+    },
+    "jobLocationType": "TELECOMMUTE",
+    "employmentType": "FULL_TIME",
+    "datePosted": job.datePosted || "2026-06-01",
+    "validThrough": job.validThrough || "2026-12-31",
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "unitText": "YEAR"
+      }
+    }
+  }));
 };
 
 export const generateBlogPostingSchema = (post) => {
