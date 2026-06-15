@@ -213,10 +213,30 @@ export const SILO_DATA = {
             subtitle: 'Omnichannel commerce platforms powering global retail ecosystems.',
             description: 'GemSphere Technologies provides full-stack retail and e-commerce platforms designed for the global market. We build and integrate custom solutions that seamlessly synchronize physical brick-and-mortar storefronts with digital commerce engines in real-time using our <a href="/products/pos-system" class="text-brand-cyan hover:underline font-semibold">Smart POS System</a> architecture, enabling cashier-less checkouts, multi-location inventory syncing, and automated sourcing.',
             features: [
-                'Omnichannel Retail Engines',
-                'AI-Driven Personalization & Recommendations',
-                'Real-time Multi-location Inventory Sync',
-                'Localized Payment & Tax Compliance Engines'
+                {
+                    title: 'Omnichannel Checkout Orchestration',
+                    desc: 'Unified POS linking physical stores with headless e-commerce, offering cashier-less checkout, instant cart recovery, and mobile sync.'
+                },
+                {
+                    title: 'Real-time Inventory & Catalog Sync',
+                    desc: 'Multi-location stock levels, stock transfer requests, and instant product updates synchronized with sub-second latency.'
+                },
+                {
+                    title: 'AI-Driven Customer Personalization',
+                    desc: 'Predict next-best product recommendations, dynamic loyalty tier calculations, and automated promo engines processing event telemetry.'
+                },
+                {
+                    title: 'Localized Tax & Payment Gateway Compliance',
+                    desc: 'Pre-configured VAT/GST tax compliance matching regional legal parameters, integrated with Stripe, Adyen, and local banking APIs.'
+                },
+                {
+                    title: 'Programmatic Vendor Sourcing',
+                    desc: 'Automated purchase order dispatches triggered by low-stock thresholds, complete with supplier scorecards and delivery timelines.'
+                },
+                {
+                    title: 'Unified Customer Data Platform (CDP)',
+                    desc: '360-degree customer profiling, consolidating online behavior, offline purchases, and support tickets into secure single-tenant databases.'
+                }
             ],
             keywords: 'smart retail solutions, omnichannel e-commerce platform, POS integration',
             faqs: [
@@ -323,10 +343,30 @@ export const SILO_DATA = {
             subtitle: 'Guest experience, contactless ordering, and kitchen orchestration.',
             description: 'Modernize guest services, dining halls, and event spaces with contactless QR ordering, real-time table seating planners, and cloud-based Kitchen Display Systems (KDS). GemSphere links Front-of-House guest services with Back-of-House operations using our <a href="/products/booking" class="text-brand-cyan hover:underline font-semibold">Booking & Reservations System</a>.',
             features: [
-                'Tableside QR Ordering & Digital Catalogs',
-                'Kitchen Display System (KDS) Queue Planners',
-                'Multi-Property Seat & Booking Centralizers',
-                'Front-of-House POS & Split-Billing Integrations'
+                {
+                    title: 'Tableside QR Ordering & Digital Menus',
+                    desc: 'Table-specific QR codes for guest self-ordering, real-time modifier selection, automated allergy filters, and payment links.'
+                },
+                {
+                    title: 'Kitchen Display System (KDS) Queue Planner',
+                    desc: 'Real-time order routing, prep timers, table grouping, and color-coded priority stages to coordinate kitchen and front-of-house.'
+                },
+                {
+                    title: 'Multi-Property Booking & Room Integrations',
+                    desc: 'Live interactive floor-plan editors, dynamic waitlists with automated SMS notifications, and central reservation books mapping hotel room logs.'
+                },
+                {
+                    title: 'Frictionless Split-Billing & POS Stations',
+                    desc: 'Support for mixed cash/card splits, item-by-item billing division, automatic gratuity calculators, and offline DB syncing.'
+                },
+                {
+                    title: 'Property Management System (PMS) Connection',
+                    desc: 'Seamless synchronization of room service orders, billing folios, check-in kiosk registers, and smart door locks status through secure open APIs.'
+                },
+                {
+                    title: 'Ingredient Waste & Inventory Forecasts',
+                    desc: 'Track daily food waste, monitor ingredient safety stocks, and automatically calculate recipe cost metrics integrated with your hospitality ERP.'
+                }
             ],
             keywords: 'hospitality software, QR restaurant ordering, KDS scheduling, restaurant POS',
             faqs: [
@@ -345,10 +385,30 @@ export const SILO_DATA = {
             subtitle: 'Guest experience, contactless ordering, and kitchen orchestration.',
             description: 'Modernize guest services, dining halls, and event spaces with contactless QR ordering, real-time table seating planners, and cloud-based Kitchen Display Systems (KDS). GemSphere links Front-of-House guest services with Back-of-House operations using our <a href="/products/booking" class="text-brand-cyan hover:underline font-semibold">Booking & Reservations System</a>.',
             features: [
-                'Tableside QR Ordering & Digital Catalogs',
-                'Kitchen Display System (KDS) Queue Planners',
-                'Multi-Property Seat & Booking Centralizers',
-                'Front-of-House POS & Split-Billing Integrations'
+                {
+                    title: 'Tableside QR Ordering & Digital Menus',
+                    desc: 'Table-specific QR codes for guest self-ordering, real-time modifier selection, automated allergy filters, and payment links.'
+                },
+                {
+                    title: 'Kitchen Display System (KDS) Queue Planner',
+                    desc: 'Real-time order routing, prep timers, table grouping, and color-coded priority stages to coordinate kitchen and front-of-house.'
+                },
+                {
+                    title: 'Multi-Property Booking & Room Integrations',
+                    desc: 'Live interactive floor-plan editors, dynamic waitlists with automated SMS notifications, and central reservation books mapping hotel room logs.'
+                },
+                {
+                    title: 'Frictionless Split-Billing & POS Stations',
+                    desc: 'Support for mixed cash/card splits, item-by-item billing division, automatic gratuity calculators, and offline DB syncing.'
+                },
+                {
+                    title: 'Property Management System (PMS) Connection',
+                    desc: 'Seamless synchronization of room service orders, billing folios, check-in kiosk registers, and smart door locks status through secure open APIs.'
+                },
+                {
+                    title: 'Ingredient Waste & Inventory Forecasts',
+                    desc: 'Track daily food waste, monitor ingredient safety stocks, and automatically calculate recipe cost metrics integrated with your hospitality ERP.'
+                }
             ],
             keywords: 'hospitality software, QR restaurant ordering, KDS scheduling, restaurant POS',
             faqs: [

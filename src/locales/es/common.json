@@ -162,7 +162,13 @@
     "subscribe": "Suscribirse a novedades",
     "subscribePlaceholder": "Ingrese su correo electrónico",
     "subscribeButton": "Suscribirse",
-    "getInTouch": "Contacto"
+    "getInTouch": "Contacto",
+    "products": "Productos",
+    "crmPlatform": "Plataforma CRM",
+    "posSystem": "Sistema POS Inteligente",
+    "billingPlatform": "Plataforma de Facturación",
+    "erpSystem": "Núcleo ERP Ecosystem",
+    "aiChatbots": "Chatbots de IA"
   },
   "common": {
     "loading": "Cargando...",

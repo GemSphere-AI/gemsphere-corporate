@@ -162,7 +162,13 @@
     "subscribe": "Insights abonnieren",
     "subscribePlaceholder": "E-Mail-Adresse eingeben",
     "subscribeButton": "Abonnieren",
-    "getInTouch": "Kontakt aufnehmen"
+    "getInTouch": "Kontakt aufnehmen",
+    "products": "Produkte",
+    "crmPlatform": "CRM-Plattform",
+    "posSystem": "Smart-POS-System",
+    "billingPlatform": "Abrechnungsplattform",
+    "erpSystem": "Ecosystem ERP Core",
+    "aiChatbots": "KI-Chatbots"
   },
   "common": {
     "loading": "Wird geladen...",

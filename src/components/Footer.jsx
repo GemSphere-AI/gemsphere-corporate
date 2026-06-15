@@ -114,17 +114,35 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Platform Columns */}
+                    {/* Products Columns */}
                     <div className="lg:col-span-1">
-                        <h4 className="text-sm font-bold text-text-primary mb-6">{t('nav.platform', 'Platform')}</h4>
+                        <h4 className="text-sm font-bold text-text-primary mb-6">{t('footer.products', 'Products')}</h4>
                         <ul className="space-y-4">
-                            {PRODUCT_ECOSYSTEM.categories.slice(0, 5).map((cat, i) => (
-                                <li key={i}>
-                                    <LocalizedLink href={`/products/${cat.id}`} className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
-                                        {cat.name}
-                                    </LocalizedLink>
-                                </li>
-                            ))}
+                            <li>
+                                <LocalizedLink href="/products/crm-platform" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
+                                    {t('footer.crmPlatform', 'CRM Platform')}
+                                </LocalizedLink>
+                            </li>
+                            <li>
+                                <LocalizedLink href="/products/pos-system" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
+                                    {t('footer.posSystem', 'Smart POS System')}
+                                </LocalizedLink>
+                            </li>
+                            <li>
+                                <LocalizedLink href="/products/billing-platform" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
+                                    {t('footer.billingPlatform', 'Billing Platform')}
+                                </LocalizedLink>
+                            </li>
+                            <li>
+                                <LocalizedLink href="/products/erp-system" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
+                                    {t('footer.erpSystem', 'Ecosystem ERP Core')}
+                                </LocalizedLink>
+                            </li>
+                            <li>
+                                <LocalizedLink href="/products/ai-chatbots" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
+                                    {t('footer.aiChatbots', 'AI Chatbots')}
+                                </LocalizedLink>
+                            </li>
                         </ul>
                     </div>
 

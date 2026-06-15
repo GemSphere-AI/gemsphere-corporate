@@ -107,8 +107,8 @@ const About = () => {
                 </div>
             </section>
 
-            {/* LEADERSHIP TEAM */}
-            <section className="py-24 relative">
+            {/* LEADERSHIP TEAM - Hidden for now */}
+            {/* <section className="py-24 relative">
                 <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand-indigo/5 rounded-full blur-[150px] -z-10" />
                 <div className="container mx-auto px-6 max-w-7xl">
                     <SectionHeading
@@ -121,7 +121,6 @@ const About = () => {
                         {LEADERSHIP.map((person, i) => (
                             <ScrollReveal key={i} direction="up" delay={i * 0.12}>
                                 <div className="glass-card p-8 rounded-[32px] group hover:border-brand-cyan/30 transition-all duration-300 h-full flex flex-col">
-                                    {/* Avatar */}
                                     <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${person.color} flex items-center justify-center mb-6 text-pure-white text-2xl font-black font-display shadow-lg`}>
                                         {person.initials}
                                     </div>
@@ -144,7 +143,7 @@ const About = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* GLOBAL OFFICES */}
             <section className="py-24 relative border-t border-brand-border bg-brand-deeper">

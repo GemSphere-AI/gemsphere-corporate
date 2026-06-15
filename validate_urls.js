@@ -8,14 +8,18 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dns from 'dns';
+
+dns.setDefaultResultOrder('ipv4first');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Batch size to prevent socket exhaustion or server overload
-const BATCH_SIZE = 500;
+const BATCH_SIZE = 50;
 
-async function checkUrl(url) {
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+async function checkUrl(url, retryCount = 1) {
     const startTime = Date.now();
     try {
         const controller = new AbortController();
@@ -33,6 +37,10 @@ async function checkUrl(url) {
         const latency = Date.now() - startTime;
         return { url, status: response.status, ok: response.ok, latency };
     } catch (err) {
+        if (retryCount > 0) {
+            await delay(300);
+            return checkUrl(url, retryCount - 1);
+        }
         const latency = Date.now() - startTime;
         return { url, status: 0, ok: false, error: err.message, latency };
     }
@@ -84,6 +92,8 @@ async function main() {
         const checkedCount = i + batch.length;
         const pct = ((checkedCount / urls.length) * 100).toFixed(1);
         process.stdout.write(`Progress: ${checkedCount}/${urls.length} checked (${pct}%) | Broken: ${broken.length}\r`);
+
+        await delay(100);
     }
 
     const duration = ((Date.now() - start) / 1000).toFixed(2);

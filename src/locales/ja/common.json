@@ -162,7 +162,13 @@
     "subscribe": "インサイトを購読",
     "subscribePlaceholder": "メールアドレスを入力",
     "subscribeButton": "購読する",
-    "getInTouch": "お問い合わせ"
+    "getInTouch": "お問い合わせ",
+    "products": "製品",
+    "crmPlatform": "CRMプラットフォーム",
+    "posSystem": "スマートPOSシステム",
+    "billingPlatform": "請求プラットフォーム",
+    "erpSystem": "Ecosystem ERPコア",
+    "aiChatbots": "AIチャットボット"
   },
   "common": {
     "loading": "読み込み中...",

@@ -4,7 +4,16 @@ import { generateCompositeSlugs } from './src/data/seoRegistry.js';
 import { BLOG_POSTS } from './src/data/blogData.js';
 
 const domain = 'https://gemsphere.ai';
+const locales = ['en', 'de', 'fr', 'es', 'ja'];
 const urls = [];
+
+// Helper to push localized URLs for all 5 target languages
+const addLocalizedUrl = (p) => {
+  locales.forEach(locale => {
+    const cleanPath = p === '/' ? '' : p;
+    urls.push(`${domain}/${locale}${cleanPath}`);
+  });
+};
 
 // 1. Core pages
 const corePages = [
@@ -24,61 +33,61 @@ const corePages = [
   '/security',
   '/cookie-policy',
 ];
-corePages.forEach(p => urls.push(domain + p));
+corePages.forEach(p => addLocalizedUrl(p));
 
 // 2. Blog posts
 BLOG_POSTS.forEach(post => {
-  urls.push(domain + `/blog/${post.id}`);
+  addLocalizedUrl(`/blog/${post.id}`);
 });
 
 // 3. Comparisons
 const comparisonSlugs = generateCompositeSlugs('comparisons');
 comparisonSlugs.forEach(slug => {
-  urls.push(domain + `/compare/${slug}`);
+  addLocalizedUrl(`/compare/${slug}`);
 });
 
 // 4. Industries
 PRODUCT_ECOSYSTEM.industries.forEach(ind => {
-  urls.push(domain + `/industries/${ind.slug}`);
+  addLocalizedUrl(`/industries/${ind.slug}`);
 });
 
 // 5. Services
 PRODUCT_ECOSYSTEM.services.forEach(srv => {
-  urls.push(domain + `/services/${srv.slug}`);
+  addLocalizedUrl(`/services/${srv.slug}`);
 });
 const serviceSlugs = generateCompositeSlugs('services');
 serviceSlugs.forEach(slug => {
-  urls.push(domain + `/services/${slug}`);
+  addLocalizedUrl(`/services/${slug}`);
 });
 
 // 6. Products
 PRODUCT_ECOSYSTEM.categories.forEach(cat => {
-  urls.push(domain + `/products/${cat.id}`);
+  addLocalizedUrl(`/products/${cat.id}`);
   cat.modules.forEach(mod => {
-    urls.push(domain + `/products/${slugify(mod.name)}`);
+    addLocalizedUrl(`/products/${slugify(mod.name)}`);
   });
 });
 const productSlugs = generateCompositeSlugs('products');
 productSlugs.forEach(slug => {
-  urls.push(domain + `/products/${slug}`);
+  addLocalizedUrl(`/products/${slug}`);
 });
 
 // 7. GEO Pages (Tier 4)
 const geoSlugs = generateCompositeSlugs('geo');
 geoSlugs.forEach(slug => {
-  urls.push(domain + `/${slug}`);
+  addLocalizedUrl(`/${slug}`);
 });
 
 // 8. Guides (Problem-focused)
 const guideSlugs = generateCompositeSlugs('guides');
 guideSlugs.forEach(slug => {
-  urls.push(domain + `/${slug}`);
+  addLocalizedUrl(`/${slug}`);
 });
 
 // Write to files
 fs.writeFileSync('all_urls.txt', urls.join('\n'), 'utf-8');
 
-const localUrls = urls.map(u => u.replace('https://gemsphere.ai', 'http://localhost:3000'));
+const localUrls = urls.map(u => u.replace('https://gemsphere.ai', 'http://localhost'));
 fs.writeFileSync('urls_local.txt', localUrls.join('\n'), 'utf-8');
 
 fs.writeFileSync('urls_production.txt', urls.join('\n'), 'utf-8');

@@ -17,13 +17,17 @@ export default function PillarPageTemplate({ type, slug }) {
     
     // Parse composite slug
     const parsing = parseCompositeSlug(slug);
-    const isProgrammatic = parsing.type !== 'unknown';
+    let isProgrammatic = parsing.type !== 'unknown';
     
     let resolvedSlug = slug;
     if (isProgrammatic) {
         const s = parsing.service || parsing.industry;
         if (s === 'custom-software-development') resolvedSlug = 'software-development';
-        else resolvedSlug = s;
+        else if (s) resolvedSlug = s;
+        else {
+            resolvedSlug = slug;
+            isProgrammatic = false;
+        }
     }
 
     const dataList = type === 'Industry' ? PRODUCT_ECOSYSTEM.industries : PRODUCT_ECOSYSTEM.services;
@@ -148,16 +152,24 @@ export default function PillarPageTemplate({ type, slug }) {
 
                             {siloDetails?.features && (
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                                    {siloDetails.features.map((feat, idx) => (
-                                        <ScrollReveal key={idx} delay={idx * 0.08}>
-                                            <div className="glass-card p-6 h-full border-brand-border/50 hover:border-brand-cyan/30 transition-all hover:-translate-y-1">
-                                                <div className="flex gap-4">
-                                                    <CheckCircle2 className="text-brand-cyan shrink-0" size={24} />
-                                                    <span className="text-text-secondary font-bold leading-relaxed">{feat}</span>
+                                    {siloDetails.features.map((feat, idx) => {
+                                        const isObject = typeof feat === 'object' && feat !== null;
+                                        const title = isObject ? feat.title : feat;
+                                        const desc = isObject ? feat.desc : null;
+                                        return (
+                                            <ScrollReveal key={idx} delay={idx * 0.08}>
+                                                <div className="glass-card p-6 h-full border-brand-border/50 hover:border-brand-cyan/30 transition-all hover:-translate-y-1">
+                                                    <div className="flex gap-4 items-start">
+                                                        <CheckCircle2 className="text-brand-cyan shrink-0 mt-1" size={24} />
+                                                        <div className="flex flex-col">
+                                                            <span className="text-text-primary font-bold leading-normal text-lg">{title}</span>
+                                                            {desc && <p className="text-text-secondary text-sm mt-2 leading-relaxed">{desc}</p>}
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </ScrollReveal>
-                                    ))}
+                                            </ScrollReveal>
+                                        );
+                                    })}
                                 </div>
                             )}
 
