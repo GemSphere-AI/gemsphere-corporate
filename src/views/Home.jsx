@@ -48,7 +48,7 @@ const Home = () => {
     const { t } = useTranslation();
     const params = useParams();
     const router = useRouter();
-    const lang = params?.lang || 'en-us';
+    const lang = params?.locale || 'en';
     return (
         <main className="min-h-screen">
 

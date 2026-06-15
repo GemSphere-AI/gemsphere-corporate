@@ -10,7 +10,7 @@
 
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+import LocalizedLink from './LocalizedLink';
 
 
 const MagneticButton = ({ children, className = '', onClick, href, as = 'button', strength = 0.3, ...props }) => {
@@ -29,7 +29,7 @@ const MagneticButton = ({ children, className = '', onClick, href, as = 'button'
         setPosition({ x: 0, y: 0 });
     };
 
-    const MotionTag = href ? motion(Link) : motion.button;
+    const MotionTag = href ? motion(LocalizedLink) : motion.button;
 
     return (
         <MotionTag

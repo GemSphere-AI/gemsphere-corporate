@@ -47,7 +47,32 @@
   },
   "contact": {
     "title": "Kontaktieren Sie uns",
-    "subtitle": "Treten Sie mit unserem Team in Verbindung",
+    "subtitle": "Egal, ob Sie eine maßgeschneiderte Enterprise-Architektur, eine Demo unserer KI-Plattform oder globalen technischen Support benötigen – wir helfen Ihnen gerne.",
+    "letsBuild": "Lassen Sie uns das",
+    "nextBigThing": "nächste große Ding bauen.",
+    "stats": {
+      "integrations": "API-Integrationen",
+      "response": "Mittlere Antwortzeit",
+      "timezones": "Zeitzonen"
+    },
+    "sales": {
+      "title": "Globaler Vertrieb",
+      "desc": "Sprechen Sie mit einem Enterprise-Architekten über Ihre Anforderungen."
+    },
+    "support": {
+      "title": "Technischer Support",
+      "desc": "Support rund um die Uhr für Bestandskunden unserer Enterprise-Plattform.",
+      "action": "Support-Portal öffnen"
+    },
+    "partner": {
+      "title": "Partner-Netzwerk",
+      "desc": "Werden Sie Teil unseres globalen Netzwerks von Systemintegratoren."
+    },
+    "hq": {
+      "title": "Globaler Hauptsitz",
+      "location": "Bengaluru, Indien",
+      "desc": "Wir sind weltweit tätig und haben unseren physischen Hauptsitz in Bengaluru (Indien) sowie verteilte Vertriebs- und Entwicklungsteams rund um den Globus."
+    },
     "name": "Ihr Name",
     "email": "Ihre E-Mail",
     "message": "Ihre Nachricht",

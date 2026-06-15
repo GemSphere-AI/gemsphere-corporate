@@ -10,6 +10,7 @@
 import React from 'react';
 import LocalizedLink from '../components/LocalizedLink';
 import { LOGIN_URL } from '../utils/apiConfig';
+import { useTranslation } from 'react-i18next';
 
 
 import { Mail, Phone, MapPin, MessageSquare, ArrowRight, Building2, Globe2, Zap, Users, Clock } from 'lucide-react';
@@ -21,6 +22,7 @@ const BookingForm = dynamic(() => import('../components/BookingForm'), {
 import ScrollReveal from '../components/ScrollReveal';
 
 const Contact = () => {
+    const { t } = useTranslation();
     return (
         <div className="min-h-screen">
 
@@ -37,11 +39,11 @@ const Contact = () => {
                             <ScrollReveal direction="right">
                                 <div className="mb-14">
                                     <h1 className="text-5xl md:text-7xl font-black font-display tracking-tight mb-8 text-white leading-tight">
-                                        Let&apos;s Build the <br />
-                                        <span className="text-gradient">Next Big Thing.</span>
+                                        {t('contact.letsBuild', "Let's Build the")} <br />
+                                        <span className="text-gradient">{t('contact.nextBigThing', "Next Big Thing.")}</span>
                                     </h1>
                                     <p className="text-xl text-text-secondary leading-relaxed max-w-lg">
-                                        Whether you need a custom enterprise architecture, a demo of our AI platform, or global technical support — we&apos;re here to help.
+                                        {t('contact.subtitle', "Whether you need a custom enterprise architecture, a demo of our AI platform, or global technical support — we're here to help.")}
                                     </p>
                                 </div>
                             </ScrollReveal>
@@ -50,9 +52,9 @@ const Contact = () => {
                             <ScrollReveal direction="right" delay={0.15}>
                                 <div className="grid grid-cols-3 gap-4 mb-12">
                                     {[
-                                        { value: '200+', label: 'Enterprise Clients', icon: Users },
-                                        { value: '<4h', label: 'Avg. Response', icon: Clock },
-                                        { value: '15+', label: 'Timezones', icon: Globe2 },
+                                        { value: '200+', label: t('contact.stats.integrations', 'API Integrations'), icon: Zap },
+                                        { value: '<4h', label: t('contact.stats.response', 'Avg. Response'), icon: Clock },
+                                        { value: '15+', label: t('contact.stats.timezones', 'Timezones'), icon: Globe2 },
                                     ].map((stat, i) => (
                                         <div key={i} className="text-center p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
                                             <stat.icon size={16} className="text-brand-cyan mx-auto mb-2" />
@@ -67,22 +69,22 @@ const Contact = () => {
                                 {[
                                     { 
                                         icon: Building2, 
-                                        title: 'Global Sales', 
-                                        desc: 'Talk to an enterprise architect about your needs.', 
+                                        title: t('contact.sales.title', 'Global Sales'), 
+                                        desc: t('contact.sales.desc', 'Talk to an enterprise architect about your needs.'), 
                                         action: 'enterprise@gemsphere.ai',
                                         link: 'mailto:enterprise@gemsphere.ai'
                                     },
                                     { 
                                         icon: MessageSquare, 
-                                        title: 'Technical Support', 
-                                        desc: '24/7 support for existing enterprise platform clients.', 
-                                        action: 'Go to Support Portal',
+                                        title: t('contact.support.title', 'Technical Support'), 
+                                        desc: t('contact.support.desc', '24/7 support for existing enterprise platform clients.'), 
+                                        action: t('contact.support.action', 'Go to Support Portal'),
                                         link: LOGIN_URL
                                     },
                                     { 
                                         icon: Globe2, 
-                                        title: 'Partner Network', 
-                                        desc: 'Join our global network of system integrators.', 
+                                        title: t('contact.partner.title', 'Partner Network'), 
+                                        desc: t('contact.partner.desc', 'Join our global network of system integrators.'), 
                                         action: 'partners@gemsphere.ai',
                                         link: 'mailto:partners@gemsphere.ai'
                                     }
@@ -112,12 +114,12 @@ const Contact = () => {
                                             <MapPin size={20} />
                                         </div>
                                         <div>
-                                            <h4 className="text-base font-bold text-white">Visit our Global HQ</h4>
-                                            <p className="text-xs text-brand-indigo font-semibold">Bengaluru, India</p>
+                                            <h4 className="text-base font-bold text-white">{t('contact.hq.title', 'Visit our Global HQ')}</h4>
+                                            <p className="text-xs text-brand-indigo font-semibold">{t('contact.hq.location', 'Bengaluru, India')}</p>
                                         </div>
                                     </div>
                                     <p className="text-text-secondary text-sm">
-                                        We operate globally with our physical headquarters in Bengaluru (India), alongside distributed sales and engineering teams operating across the globe.
+                                        {t('contact.hq.desc', 'We operate globally with our physical headquarters in Bengaluru (India), alongside distributed sales and engineering teams operating across the globe.')}
                                     </p>
                                 </div>
                             </ScrollReveal>

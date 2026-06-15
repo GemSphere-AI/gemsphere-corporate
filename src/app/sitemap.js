@@ -119,11 +119,25 @@ export default function sitemap({ id }) {
     }
   }
 
-  return uniqueRoutes.map((route) => ({
-    url: `${baseUrl}${route.path}`,
-    lastModified: buildDate,
-    changeFrequency: route.changeFreq,
-    priority: route.priority,
-  }));
+  return uniqueRoutes.flatMap((route) => {
+    return ['en', 'de', 'fr', 'es', 'ja'].map((locale) => {
+      const pathWithLocale = route.path === '/' ? `/${locale}/` : `/${locale}${route.path}`;
+      return {
+        url: `${baseUrl}${pathWithLocale}`,
+        lastModified: buildDate,
+        changeFrequency: route.changeFreq,
+        priority: route.priority,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en${route.path}`,
+            de: `${baseUrl}/de${route.path}`,
+            fr: `${baseUrl}/fr${route.path}`,
+            es: `${baseUrl}/es${route.path}`,
+            ja: `${baseUrl}/ja${route.path}`,
+          }
+        }
+      };
+    });
+  });
 }
 

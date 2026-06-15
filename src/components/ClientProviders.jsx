@@ -24,16 +24,22 @@ import { syncOfflineSubmissions, hasOfflineSubmissions } from '../utils/offlineS
 export default function ClientProviders({ children }) {
     const pathname = usePathname();
     const params = useParams();
-    const lang = params?.lang;
+    const locale = params?.locale;
 
     useEffect(() => {
-        if (lang) {
-            const mappedLang = lang;
+        const supported = ['en', 'de', 'fr', 'es', 'ja'];
+        if (locale) {
+            if (!supported.includes(locale.toLowerCase())) {
+                const cleanPath = window.location.pathname;
+                window.location.replace(`/en${cleanPath}`);
+                return;
+            }
+            const mappedLang = locale;
             if (i18n.language !== mappedLang) {
                 i18n.changeLanguage(mappedLang);
             }
         }
-    }, [lang]);
+    }, [locale]);
 
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {

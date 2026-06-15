@@ -8,14 +8,27 @@
  */
 "use client";
 
-import React from 'react';
+import React, { forwardRef } from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
+const LocalizedLink = forwardRef(({ href, children, className, ...props }, ref) => {
+    const params = useParams();
+    const locale = params?.locale || 'en';
 
-export default function LocalizedLink({ href, children, className, ...props }) {
+    // Only localize absolute internal paths (starting with / and not external links)
+    const isInternal = href && href.startsWith('/') && !href.startsWith('//');
+    const localizedHref = isInternal 
+        ? (href === '/' ? `/${locale}/` : `/${locale}${href}`) 
+        : href;
+
     return (
-        <Link href={href} className={className} {...props}>
+        <Link href={localizedHref} className={className} ref={ref} {...props}>
             {children}
         </Link>
     );
-}
+});
+
+LocalizedLink.displayName = 'LocalizedLink';
+
+export default LocalizedLink;

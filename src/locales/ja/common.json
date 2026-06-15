@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "about": "企業情報",
+    "contact": "お問い合わせ",
+    "services": "サービス",
+    "industries": "業界",
+    "blog": "ブログ",
+    "getStarted": "無料トライアル",
+    "learnMore": "詳細を見る",
+    "platform": "プラットフォーム",
+    "signIn": "サインイン",
+    "contactSales": "営業に相談",
+    "chatWhatsApp": "WhatsAppでチャット"
+  },
+  "home": {
+    "heroTitle": "インテリジェントなデジタルエンタープライズの構築。",
+    "heroSubtitle": "カスタムエンタープライズソフトウェア：コマース、サプライチェーン、財務、AI運用のためのテーラーメイドのデジタルシステムを設計、構築、展開します。",
+    "ctaPrimary": "無料トライアル開始",
+    "ctaSecondary": "無料デモを予約",
+    "trustedBy": "世界中の企業に信頼されています",
+    "whyChoose": "GemSphereを選ぶ理由",
+    "products": "モジュール式ブループリント",
+    "testimonials": "導入事例",
+    "testimonialsBadge": "導入事例",
+    "testimonialsTitle": "モダンな企業に信頼されています。",
+    "testimonialsSubtitle": "世界中の組織がどのようにGemSphereで事業を拡大しているかをご覧ください。",
+    "heroBadge": "カスタムエンタープライズエンジニアリング",
+    "submitTestimonial": "体験を共有する",
+    "submitTestimonialHeader": "お客様の声を投稿する",
+    "testimonialDescription": "GemSphereのエンジニアリングチームとの協力体験を共有してください。",
+    "labelRating": "評価",
+    "labelRole": "職種 / 役職",
+    "labelCompany": "会社名",
+    "labelQuote": "お客様の声",
+    "buttonSubmitting": "送信中...",
+    "buttonSubmit": "お客様の声を送信",
+    "successSubmitTitle": "ありがとうございます！",
+    "submitSuccessMsg": "お客様の声が正常に送信されました。"
+  },
+  "about": {
+    "title": "GemSphereについて",
+    "mission": "ミッション",
+    "vision": "ビジョン",
+    "team": "チーム紹介",
+    "values": "バリュー"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "カスタムエンタープライズアーキテクチャ、AIプラットフォームのデモ、またはグローバルな技術サポートが必要な場合、いつでもお手伝いいたします。",
+    "letsBuild": "次の大きな挑戦を",
+    "nextBigThing": "共に創り上げましょう。",
+    "stats": {
+      "integrations": "API連携",
+      "response": "平均応答時間",
+      "timezones": "対応タイムゾーン"
+    },
+    "sales": {
+      "title": "グローバル営業",
+      "desc": "お客様の要件について、エンタープライズアーキテクトにご相談ください。"
+    },
+    "support": {
+      "title": "技術サポート",
+      "desc": "既存のエンタープライズプラットフォーム顧客向けの24時間365日のサポートを提供します。",
+      "action": "サポートポータルへ移動"
+    },
+    "partner": {
+      "title": "パートナーネットワーク",
+      "desc": "システムインテグレーターのグローバルネットワークにご参加ください。"
+    },
+    "hq": {
+      "title": "グローバル本社",
+      "location": "インド・ベンガルール",
+      "desc": "インドのベンガルールに物理的な本社を置き、世界中に分散した営業およびエンジニアリングチームを配置してグローバルに展開しています。"
+    },
+    "name": "お名前",
+    "email": "メールアドレス",
+    "message": "メッセージ",
+    "send": "メッセージを送信",
+    "success": "メッセージが送信されました！",
+    "office": "オフィス所在地",
+    "phone": "電話番号",
+    "emailLabel": "メール"
+  },
+  "blog": {
+    "title": "ブログ",
+    "readMore": "続きを読む",
+    "published": "{{date}} に公開",
+    "author": "著者: {{name}}",
+    "categories": "カテゴリー",
+    "search": "記事を検索..."
+  },
+  "global": {
+    "title": "{{country}} における GemSphere",
+    "description": "{{country}} 内の企業向けのカスタムエンタープライズソフトウェアおよびAIエンジニアリングソリューション。",
+    "localPartners": "現地のパートナー",
+    "getStarted": "{{country}} で開始する"
+  },
+  "footer": {
+    "brand": "GemSphere",
+    "description": "インテリジェントなデジタルエンタープライズの構築。グローバルコマースとサプライチェーンのためのカスタムソフトウェア、システム統合、AIコンサルティング。",
+    "quickLinks": "クイックリンク",
+    "support": "サポート",
+    "legal": "法的通知",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsConditions": "利用規約",
+    "copyright": "© {{year}} GemSphere Technologies Pvt. Ltd. All rights reserved.",
+    "subscribe": "インサイトを購読",
+    "subscribePlaceholder": "メールアドレスを入力",
+    "subscribeButton": "購読する",
+    "getInTouch": "お問い合わせ"
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました",
+    "learnMore": "詳細を見る",
+    "getStarted": "始める",
+    "contactUs": "お問い合わせ"
+  }
+}

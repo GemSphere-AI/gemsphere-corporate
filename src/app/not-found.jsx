@@ -20,13 +20,25 @@ export default function NotFound() {
     const [isRedirecting, setIsRedirecting] = useState(false);
 
     useEffect(() => {
-        const locales = ['en-us', 'de-de', 'en-ae', 'en-gb', 'en-in'];
+        const supportedLocales = ['en', 'de', 'fr', 'es', 'ja'];
         const parts = pathname.split('/').filter(Boolean);
         
-        if (parts.length > 0 && locales.includes(parts[0].toLowerCase())) {
-            const flatPath = '/' + parts.slice(1).join('/');
+        if (parts.length === 0 || !supportedLocales.includes(parts[0].toLowerCase())) {
+            let detectedLang = 'en';
+            if (typeof localStorage !== 'undefined') {
+                const saved = localStorage.getItem('gemsphere-preferred-language');
+                if (saved) {
+                    detectedLang = saved;
+                } else if (typeof navigator !== 'undefined') {
+                    const browserLang = navigator.language.split('-')[0];
+                    if (supportedLocales.includes(browserLang)) {
+                        detectedLang = browserLang;
+                    }
+                }
+            }
+            const cleanPath = pathname.startsWith('/') ? pathname : '/' + pathname;
             setIsRedirecting(true);
-            router.replace(flatPath);
+            router.replace(`/${detectedLang}${cleanPath}`);
         }
     }, [pathname, router]);
 

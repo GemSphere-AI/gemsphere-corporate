@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact",
+    "services": "Services",
+    "industries": "Secteurs",
+    "blog": "Blog",
+    "getStarted": "Essai gratuit",
+    "learnMore": "En savoir plus",
+    "platform": "Plateforme",
+    "signIn": "Se connecter",
+    "contactSales": "Parler à l'équipe",
+    "chatWhatsApp": "Discuter sur WhatsApp"
+  },
+  "home": {
+    "heroTitle": "Concevoir des entreprises numériques intelligentes.",
+    "heroSubtitle": "Ingénierie logicielle sur mesure : nous concevons, construisons et déployons des systèmes numériques personnalisés pour le commerce, la chaîne logistique, la finance et l'IA.",
+    "ctaPrimary": "Essai gratuit",
+    "ctaSecondary": "Réserver une démo gratuite",
+    "trustedBy": "Reconnu par les entreprises du monde entier",
+    "whyChoose": "Pourquoi GemSphere ?",
+    "products": "Blueprints modulaires",
+    "testimonials": "Témoignages",
+    "testimonialsBadge": "Témoignages",
+    "testimonialsTitle": "Reconnu par les entreprises modernes.",
+    "testimonialsSubtitle": "Découvrez comment les entreprises mondiales développent leurs opérations avec GemSphere.",
+    "heroBadge": "Ingénierie d'Entreprise sur Mesure",
+    "submitTestimonial": "Partagez votre expérience",
+    "submitTestimonialHeader": "Écrire un témoignage",
+    "testimonialDescription": "Partagez votre expérience de collaboration avec les équipes d'ingénierie de GemSphere.",
+    "labelRating": "Évaluation",
+    "labelRole": "Titre du poste / Rôle",
+    "labelCompany": "Nom de l'entreprise",
+    "labelQuote": "Votre témoignage",
+    "buttonSubmitting": "Envoi en cours...",
+    "buttonSubmit": "Soumettre le témoignage",
+    "successSubmitTitle": "Merci !",
+    "submitSuccessMsg": "Votre témoignage a été soumis avec succès."
+  },
+  "about": {
+    "title": "À propos de GemSphere",
+    "mission": "Notre mission",
+    "vision": "Notre vision",
+    "team": "Notre équipe",
+    "values": "Nos valeurs"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Que vous ayez besoin d'une architecture d'entreprise personnalisée, d'une démonstration de notre plateforme d'IA ou d'un support technique mondial, nous sommes là pour vous aider.",
+    "letsBuild": "Bâtissons le",
+    "nextBigThing": "prochain grand projet.",
+    "stats": {
+      "integrations": "Intégrations API",
+      "response": "Temps de réponse moyen",
+      "timezones": "Fuseaux horaires"
+    },
+    "sales": {
+      "title": "Ventes mondiales",
+      "desc": "Parlez de vos besoins à un architecte d'entreprise."
+    },
+    "support": {
+      "title": "Support technique",
+      "desc": "Support 24/7 pour les clients actuels de la plateforme d'entreprise.",
+      "action": "Aller au portail de support"
+    },
+    "partner": {
+      "title": "Réseau de partenaires",
+      "desc": "Rejoignez notre réseau mondial d'intégrateurs de systèmes."
+    },
+    "hq": {
+      "title": "Visitez notre siège mondial",
+      "location": "Bengaluru, Inde",
+      "desc": "Nous opérons à l'échelle mondiale avec notre siège social physique à Bengaluru (Inde), ainsi que des équipes de vente et d'ingénierie réparties dans le monde entier."
+    },
+    "name": "Votre nom",
+    "email": "Votre e-mail",
+    "message": "Votre message",
+    "send": "Envoyer le message",
+    "success": "Message envoyé avec succès !",
+    "office": "Notre bureau",
+    "phone": "Téléphone",
+    "emailLabel": "E-mail"
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Lire la suite",
+    "published": "Publié le {{date}}",
+    "author": "Par {{name}}",
+    "categories": "Catégories",
+    "search": "Rechercher des articles..."
+  },
+  "global": {
+    "title": "GemSphere en {{country}}",
+    "description": "Solutions logicielles d'entreprise personnalisées et d'ingénierie de l'IA pour les entreprises en {{country}}.",
+    "localPartners": "Partenaires locaux",
+    "getStarted": "Commencer en {{country}}"
+  },
+  "footer": {
+    "brand": "GemSphere",
+    "description": "Concevoir des entreprises numériques intelligentes. Ingénierie logicielle personnalisée, intégration et conseil en IA pour le commerce mondial et les chaînes logistiques.",
+    "quickLinks": "Liens rapides",
+    "support": "Support",
+    "legal": "Mentions légales",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsConditions": "Conditions générales",
+    "copyright": "© {{year}} GemSphere Technologies Pvt. Ltd. Tous droits réservés.",
+    "subscribe": "S'abonner aux actualités",
+    "subscribePlaceholder": "Entrez votre e-mail",
+    "subscribeButton": "S'abonner",
+    "getInTouch": "Contactez-nous"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "learnMore": "En savoir plus",
+    "getStarted": "Commencer",
+    "contactUs": "Contactez-nous"
+  }
+}
