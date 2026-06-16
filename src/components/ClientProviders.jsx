@@ -31,7 +31,39 @@ export default function ClientProviders({ children }) {
         if (locale) {
             if (!supported.includes(locale.toLowerCase())) {
                 const cleanPath = window.location.pathname;
-                window.location.replace(`/en${cleanPath}`);
+                const segments = cleanPath.split('/').filter(Boolean);
+                const cleanedSegments = [];
+                let originalLocale = null;
+                
+                for (const segment of segments) {
+                    const lowerSegment = segment.toLowerCase();
+                    const isLocalePattern = /^[a-z]{2}(?:-[a-z]{2})?$/.test(lowerSegment);
+                    if (isLocalePattern) {
+                        if (supported.includes(lowerSegment)) {
+                            originalLocale = lowerSegment;
+                        }
+                    } else {
+                        cleanedSegments.push(segment);
+                    }
+                }
+                
+                let detectedLang = originalLocale || 'en';
+                try {
+                    const saved = localStorage.getItem('gemsphere-preferred-language');
+                    if (saved && supported.includes(saved)) {
+                        detectedLang = saved;
+                    }
+                } catch {}
+
+                let finalPath = `/${detectedLang}/${cleanedSegments.join('/')}`;
+                if (finalPath !== `/${detectedLang}/` && !finalPath.endsWith('/')) {
+                    const filename = cleanedSegments[cleanedSegments.length - 1] || '';
+                    if (!filename.includes('.')) {
+                        finalPath += '/';
+                    }
+                }
+                
+                window.location.replace(finalPath);
                 return;
             }
             const mappedLang = locale;

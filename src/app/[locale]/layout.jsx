@@ -100,6 +100,9 @@ export async function generateMetadata({ params }) {
       canonical: `${baseUrl}/${lang}/`,
       languages,
     },
+    icons: {
+      icon: '/favicon.ico',
+    },
   };
 }
 
@@ -113,6 +116,7 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang={lang} className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         
         {/* Organization Schema Injection */}
         <script

@@ -23,11 +23,36 @@ export default function NotFound() {
         const supportedLocales = ['en', 'de', 'fr', 'es', 'ja'];
         const parts = pathname.split('/').filter(Boolean);
         
-        if (parts.length === 0 || !supportedLocales.includes(parts[0].toLowerCase())) {
-            let detectedLang = 'en';
+        const cleanedSegments = [];
+        let originalLocale = null;
+        let hasUnsupportedOrDuplicateLocale = false;
+
+        for (const segment of parts) {
+            const lowerSegment = segment.toLowerCase();
+            const isLocalePattern = /^[a-z]{2}(?:-[a-z]{2})?$/.test(lowerSegment);
+            if (isLocalePattern) {
+                if (supportedLocales.includes(lowerSegment)) {
+                    if (!originalLocale) {
+                        originalLocale = lowerSegment;
+                    } else {
+                        // Duplicate supported locale
+                        hasUnsupportedOrDuplicateLocale = true;
+                    }
+                } else {
+                    // Unsupported locale (like en-in, en-us)
+                    hasUnsupportedOrDuplicateLocale = true;
+                }
+            } else {
+                cleanedSegments.push(segment);
+            }
+        }
+
+        let detectedLang = originalLocale;
+        if (!detectedLang) {
+            detectedLang = 'en';
             if (typeof localStorage !== 'undefined') {
                 const saved = localStorage.getItem('gemsphere-preferred-language');
-                if (saved) {
+                if (saved && supportedLocales.includes(saved)) {
                     detectedLang = saved;
                 } else if (typeof navigator !== 'undefined') {
                     const browserLang = navigator.language.split('-')[0];
@@ -36,9 +61,24 @@ export default function NotFound() {
                     }
                 }
             }
-            const cleanPath = pathname.startsWith('/') ? pathname : '/' + pathname;
+        }
+
+        // Reconstruct the clean, flat localized path
+        let finalPath = `/${detectedLang}/${cleanedSegments.join('/')}`;
+        if (finalPath !== `/${detectedLang}/` && !finalPath.endsWith('/')) {
+            const filename = cleanedSegments[cleanedSegments.length - 1] || '';
+            if (!filename.includes('.')) {
+                finalPath += '/';
+            }
+        }
+
+        // Determine if route repair/redirection is required
+        const isRootOrMissingLocale = parts.length === 0 || !supportedLocales.includes(parts[0].toLowerCase());
+        const needsRedirect = hasUnsupportedOrDuplicateLocale || isRootOrMissingLocale;
+
+        if (needsRedirect && pathname !== finalPath && pathname !== finalPath.slice(0, -1)) {
             setIsRedirecting(true);
-            router.replace(`/${detectedLang}${cleanPath}`);
+            router.replace(finalPath);
         }
     }, [pathname, router]);
 
