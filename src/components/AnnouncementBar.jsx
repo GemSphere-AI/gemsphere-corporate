@@ -8,7 +8,7 @@
  */
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sparkles, ArrowRight } from 'lucide-react';
 import LocalizedLink from './LocalizedLink';
@@ -22,6 +22,7 @@ export default function AnnouncementBar({
     variant = "gradient", // "gradient" | "cyan" | "indigo"
 }) {
     const [isVisible, setIsVisible] = useState(false);
+    const containerRef = useRef(null);
 
     useEffect(() => {
         // Check if user has previously dismissed this announcement
@@ -34,6 +35,27 @@ export default function AnnouncementBar({
             setIsVisible(true);
         }
     }, []);
+
+    useEffect(() => {
+        if (!isVisible || !containerRef.current) {
+            document.documentElement.style.setProperty('--announcement-height', '0px');
+            return;
+        }
+
+        const observer = new ResizeObserver((entries) => {
+            for (let entry of entries) {
+                const height = entry.target.offsetHeight;
+                document.documentElement.style.setProperty('--announcement-height', `${height}px`);
+            }
+        });
+
+        observer.observe(containerRef.current);
+
+        return () => {
+            observer.disconnect();
+            document.documentElement.style.setProperty('--announcement-height', '0px');
+        };
+    }, [isVisible]);
 
     const handleDismiss = () => {
         setIsVisible(false);
@@ -53,6 +75,7 @@ export default function AnnouncementBar({
         <AnimatePresence>
             {isVisible && (
                 <motion.div
+                    ref={containerRef}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}

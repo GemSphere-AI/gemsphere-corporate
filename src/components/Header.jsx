@@ -28,35 +28,11 @@ const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [megaMenuOpen, setMegaMenuOpen] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
-    const [headerTop, setHeaderTop] = useState(0);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    useEffect(() => {
-        const updateHeaderTop = () => {
-            const bar = document.getElementById('announcement-bar');
-            if (bar && bar.offsetHeight > 0) {
-                setHeaderTop(bar.offsetHeight);
-            } else {
-                setHeaderTop(0);
-            }
-        };
-
-        updateHeaderTop();
-        window.addEventListener('resize', updateHeaderTop);
-        window.addEventListener('announcementDismissed', updateHeaderTop);
-
-        const timer = setTimeout(updateHeaderTop, 150);
-
-        return () => {
-            window.removeEventListener('resize', updateHeaderTop);
-            window.removeEventListener('announcementDismissed', updateHeaderTop);
-            clearTimeout(timer);
-        };
     }, []);
 
     useEffect(() => {
@@ -102,7 +78,7 @@ const Header = () => {
                     ? 'h-[80px] bg-gradient-to-b from-[#ffffff]/95 to-[#ffffff]/90 dark:from-[#0a0f1e]/95 dark:to-[#030712]/90 backdrop-blur-2xl border-b border-brand-cyan/20 shadow-[0_10px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.35)]' 
                     : 'h-[100px] bg-transparent'
                 }`}
-                style={{ top: `${scrolled ? 0 : headerTop}px` }}
+                style={{ top: scrolled ? '0px' : 'var(--announcement-height, 0px)' }}
             >
                 {/* Top glowing gradient accent line */}
                 {(!isHome || scrolled || megaMenuOpen) && (

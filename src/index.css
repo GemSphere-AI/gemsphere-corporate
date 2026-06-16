@@ -8,6 +8,7 @@
    ────────────────────────────────────────────────────────── */
 
 :root {
+  --announcement-height: 0px;
   /* LIGHT MODE (Default) */
   --brand-dark: #f8fafc;
   --brand-deeper: #f1f5f9;
