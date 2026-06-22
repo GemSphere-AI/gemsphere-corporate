@@ -126,7 +126,7 @@ export default function CookieConsent() {
                                 Cookie Policy
                             </LocalizedLink>{' '}
                             and{' '}
-                            <LocalizedLink href="/privacy-policy" className="text-brand-indigo dark:text-brand-cyan hover:underline font-medium">
+                            <LocalizedLink href="/privacy" className="text-brand-indigo dark:text-brand-cyan hover:underline font-medium">
                                 Privacy Policy
                             </LocalizedLink>{' '}
                             for more details.
