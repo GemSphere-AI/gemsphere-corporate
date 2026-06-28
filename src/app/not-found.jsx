@@ -20,12 +20,6 @@ export default function NotFound() {
     const [isRedirecting, setIsRedirecting] = useState(false);
 
     useEffect(() => {
-        if (pathname.includes('/delete-account')) {
-            setIsRedirecting(true);
-            window.location.href = '/delete-account';
-            return;
-        }
-
         const supportedLocales = ['en', 'de', 'fr', 'es', 'ja'];
         const parts = pathname.split('/').filter(Boolean);
         
