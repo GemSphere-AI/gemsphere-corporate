@@ -7,31 +7,19 @@
  * file, via any medium, is strictly prohibited.
  */
 
+import { SITE_CONFIG } from '../config/siteConfig';
+
 /**
- * Centered API Configuration for GemSphere Corporate Website.
- * Use this file to modify base domains, request endpoints, and tenant contexts.
+ * Centered API & External Navigation Configuration.
+ * Sourced directly from unified master configuration (SITE_CONFIG).
  */
 
-// 1. CONFIGURE BASE API DOMAIN HERE
-// Toggle between gemsphere.ai, gemsphere.in, localhost, or environment variables
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://gemsphere.in';
+// 1. BASE API DOMAIN & CONTEXTS
+export const API_BASE_URL = SITE_CONFIG.api.baseUrl;
+export const DEFAULT_TENANT = SITE_CONFIG.api.defaultTenant;
 
-// 2. CONFIGURE DEFAULT TENANT IDENTIFIER HERE
-// Specifies which tenant target gets associated with public form leads / requests
-export const DEFAULT_TENANT = process.env.NEXT_PUBLIC_TARGET_TENANT || 'system';
-
-// 3. CONFIGURE ENDPOINT PATHS HERE
-export const ENDPOINTS = {
-    // GET: Retrieves list of testimonials (database records)
-    // POST: Submits a new customer testimonial
-    testimonials: '/v1/testimonials',
-
-    // POST: Submits a trial / demo booking request (leads)
-    demoRequest: '/api/v1/public/leads/demo-request',
-
-    // POST: Tenant trial onboarding/registration request
-    trialRegistration: '/identity/auth/discovery/register'
-};
+// 2. CONFIGURE ENDPOINT PATHS HERE
+export const ENDPOINTS = SITE_CONFIG.api.endpoints;
 
 /**
  * Utility function to get the absolute URL for any endpoint.
@@ -41,16 +29,15 @@ export const ENDPOINTS = {
 export const getEndpointUrl = (name) => {
     const path = ENDPOINTS[name];
     if (!path) {
-        throw new Error(`Endpoint "${name}" is not configured in apiConfig.js`);
+        throw new Error(`Endpoint "${name}" is not configured in siteConfig.js`);
     }
     return `${API_BASE_URL}${path}`;
 };
 
-// 4. CONFIGURE PLATFORM URLS (DYNAMIC OR STATIC)
-export const LOGIN_URL = 'https://gemsphere.in/login';
-export const REGISTER_URL = 'https://gemsphere.in/register';
-export const WHATSAPP_LINK = 'https://wa.me/917892585801'; // Replace with company's WhatsApp number
-
+// 3. CONFIGURE PLATFORM & PORTAL URLS
+export const LOGIN_URL = SITE_CONFIG.portal.loginUrl;
+export const REGISTER_URL = SITE_CONFIG.portal.registerUrl;
+export const WHATSAPP_LINK = SITE_CONFIG.contact.whatsapp.link;
 
 export const GLOBAL_ROUTES = [
     '/login',
@@ -121,5 +108,3 @@ export const triggerTeamsChat = (e) => {
         }
     }
 };
-
-

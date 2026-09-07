@@ -3,6 +3,8 @@
  * All rights reserved.
  */
 
+import { SITE_CONFIG } from '../config/siteConfig';
+
 /**
  * robots.js — Next.js App Router robots.txt generator.
  * Tells crawlers which paths to index and where to find sitemaps.
@@ -11,9 +13,7 @@
 export const dynamic = 'force-static';
 
 export default function robots() {
-  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN
-    ? `https://${process.env.NEXT_PUBLIC_DOMAIN}`
-    : 'https://gemsphere.ai';
+  const baseUrl = SITE_CONFIG.brand.getBaseUrl();
 
   return {
     rules: [
@@ -36,6 +36,7 @@ export default function robots() {
       `${baseUrl}/sitemap/guides.xml`,
       `${baseUrl}/sitemap/industries.xml`,
       `${baseUrl}/sitemap/blog.xml`,
+      `${baseUrl}/sitemap/authors.xml`,
     ],
     host: baseUrl,
   };

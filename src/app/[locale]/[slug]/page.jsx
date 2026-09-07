@@ -8,6 +8,7 @@
  */
 import GuideGeoTemplate from '../../../views/GuideGeoTemplate';
 import { generateCompositeSlugs, getSEOContent } from '../../../data/seoRegistry';
+import { getCanonicalAndHreflang, ACTIVE_LOCALES, getBaseUrl } from '../../../utils/seoHelpers';
 
 export function generateStaticParams() {
     const slugs = new Set();
@@ -18,10 +19,8 @@ export function generateStaticParams() {
     // Add Guide pages (Problem-focused)
     generateCompositeSlugs('guides').forEach(s => slugs.add(s));
 
-    const locales = ['en', 'de', 'fr', 'es', 'ja'];
     const paramsList = [];
-    
-    locales.forEach(locale => {
+    ACTIVE_LOCALES.forEach(locale => {
         Array.from(slugs).forEach(slug => {
             paramsList.push({ locale, slug });
         });
@@ -31,7 +30,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-    const { slug } = await params;
+    const { slug, locale } = await params;
+    const { canonical, languages } = getCanonicalAndHreflang(`/${slug}`, locale);
     const seoContent = getSEOContent(slug);
     
     const title = seoContent?.title || 'GemSphere Technologies — Custom Solutions';
@@ -42,13 +42,14 @@ export async function generateMetadata({ params }) {
         description,
         keywords: seoContent?.targetKeywords || [],
         alternates: {
-            canonical: `/${slug}`
+            canonical,
+            languages
         },
         openGraph: {
             title,
             description,
             type: 'article',
-            url: `https://gemsphere.ai/${slug}`,
+            url: canonical,
             images: [
                 {
                     url: '/og-image.jpg',
@@ -68,8 +69,10 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-    const { slug } = await params;
+    const { slug, locale } = await params;
     const seoContent = getSEOContent(slug);
+    const baseUrl = getBaseUrl();
+    const pageCanonical = `${baseUrl}/${locale}/${slug}/`;
     
     const schemas = [];
 
@@ -80,23 +83,27 @@ export default async function Page({ params }) {
             "@type": "TechArticle",
             "headline": seoContent.h1,
             "description": seoContent.description,
-            "inLanguage": "en",
+            "inLanguage": locale,
+            "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": ["h1", ".executive-summary", ".guide-takeaways"]
+            },
             "provider": {
                 "@type": "Organization",
                 "name": "GemSphere Technologies",
-                "url": "https://gemsphere.ai"
+                "url": baseUrl
             },
             "publisher": {
                 "@type": "Organization",
                 "name": "GemSphere Technologies",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://gemsphere.ai/logo.png"
+                    "url": `${baseUrl}/logo.png`
                 }
             },
             "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": `https://gemsphere.ai/${slug}`
+                "@id": pageCanonical
             }
         });
 

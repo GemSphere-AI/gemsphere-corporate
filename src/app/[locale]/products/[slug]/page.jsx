@@ -10,6 +10,8 @@ import ProductCategory from '../../../../views/ProductCategory';
 import ProductDetail from '../../../../views/ProductDetail';
 import { PRODUCT_ECOSYSTEM, slugify } from '../../../../data/productEcosystem';
 import { generateCompositeSlugs, getSEOContent, parseCompositeSlug, COUNTRIES_MAP } from '../../../../data/seoRegistry';
+import { getCanonicalAndHreflang, ACTIVE_LOCALES } from '../../../../utils/seoHelpers';
+import { generateMobileApplicationSchema } from '../../../../utils/schemaGenerators';
 
 export function generateStaticParams() {
     const slugs = new Set();
@@ -36,9 +38,8 @@ export function generateStaticParams() {
         slugs.add(slugStr);
     });
 
-    const locales = ['en', 'de', 'fr', 'es', 'ja'];
     const paramsList = [];
-    locales.forEach(locale => {
+    ACTIVE_LOCALES.forEach(locale => {
         Array.from(slugs).forEach(slug => {
             paramsList.push({ locale, slug });
         });
@@ -48,7 +49,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-    const { slug } = await params;
+    const { slug, locale } = await params;
+    const { canonical, languages } = getCanonicalAndHreflang(`/products/${slug}`, locale);
     
     // Check if it's in programmatic SEO database
     const seoContent = getSEOContent(slug);
@@ -109,12 +111,14 @@ export async function generateMetadata({ params }) {
         description,
         keywords: seoContent?.targetKeywords || [],
         alternates: {
-            canonical: `/products/${slug}`
+            canonical,
+            languages
         },
         openGraph: {
             title,
             description,
             type: 'website',
+            url: canonical,
             images: [
                 {
                     url: '/og-image.jpg',
@@ -201,6 +205,11 @@ export default async function Page({ params }) {
             "description": "Contact for custom enterprise pricing"
         }
     });
+
+    // Inject MobileApplication schema for Android POS / Commerce / Retail products
+    if (slug.includes('pos') || slug.includes('retail') || slug.includes('commerce') || slug.includes('restaurant')) {
+        schemas.push(generateMobileApplicationSchema());
+    }
 
     // Determine whether to show ProductCategory or ProductDetail
     let isCategoryOnly = PRODUCT_ECOSYSTEM.categories.some(c => c.id === slug) ||

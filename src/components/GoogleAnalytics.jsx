@@ -10,8 +10,9 @@
 
 import { useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { SITE_CONFIG } from '../config/siteConfig';
 
-const GA_MEASUREMENT_ID = 'G-4EWTL1GRQG';
+const GA_MEASUREMENT_ID = SITE_CONFIG.analytics.gaMeasurementId;
 
 /**
  * GoogleAnalytics — Client component that tracks pageviews on SPA route changes.

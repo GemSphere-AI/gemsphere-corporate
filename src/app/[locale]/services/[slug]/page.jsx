@@ -10,6 +10,7 @@ import PillarPageTemplate from '../../../../views/PillarPageTemplate';
 import { PRODUCT_ECOSYSTEM } from '../../../../data/productEcosystem';
 import { SILO_DATA } from '../../../../data/siloData';
 import { generateCompositeSlugs, getSEOContent, parseCompositeSlug, COUNTRIES_MAP } from '../../../../data/seoRegistry';
+import { getCanonicalAndHreflang, ACTIVE_LOCALES, getBaseUrl } from '../../../../utils/seoHelpers';
 
 export function generateStaticParams() {
     const slugs = new Set();
@@ -24,9 +25,8 @@ export function generateStaticParams() {
         slugs.add(slugStr);
     });
 
-    const locales = ['en', 'de', 'fr', 'es', 'ja'];
     const paramsList = [];
-    locales.forEach(locale => {
+    ACTIVE_LOCALES.forEach(locale => {
         Array.from(slugs).forEach(slug => {
             paramsList.push({ locale, slug });
         });
@@ -36,7 +36,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-    const { slug } = await params;
+    const { slug, locale } = await params;
+    const { canonical, languages } = getCanonicalAndHreflang(`/services/${slug}`, locale);
     const seoContent = getSEOContent(slug);
     let title = '';
     let description = '';
@@ -61,12 +62,14 @@ export async function generateMetadata({ params }) {
         description,
         keywords: seoContent?.targetKeywords || [],
         alternates: {
-            canonical: `/services/${slug}`
+            canonical,
+            languages
         },
         openGraph: {
             title,
             description,
             type: 'website',
+            url: canonical,
             images: [
                 {
                     url: '/og-image.jpg',
@@ -116,6 +119,7 @@ export default async function Page({ params }) {
     let serviceName = seoContent?.h1 || "GemSphere Business Services";
     let serviceDesc = seoContent?.description || "Enterprise Software and Consulting Services by GemSphere";
     
+    const baseUrl = getBaseUrl();
     const serviceSchema = {
         "@context": "https://schema.org",
         "@type": "Service",
@@ -124,7 +128,7 @@ export default async function Page({ params }) {
         "provider": {
             "@type": "LocalBusiness",
             "name": "GemSphere Technologies",
-            "url": "https://www.gemsphere.ai"
+            "url": baseUrl
         },
         "description": serviceDesc
     };

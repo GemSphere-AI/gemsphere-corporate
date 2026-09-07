@@ -9,7 +9,7 @@
 "use client";
 import React from 'react';
 import LocalizedLink from '../components/LocalizedLink';
-import { LOGIN_URL } from '../utils/apiConfig';
+import { SITE_CONFIG } from '../config/siteConfig';
 import { useTranslation } from 'react-i18next';
 
 
@@ -52,9 +52,9 @@ const Contact = () => {
                             <ScrollReveal direction="right" delay={0.15}>
                                 <div className="grid grid-cols-3 gap-4 mb-12">
                                     {[
-                                        { value: '200+', label: t('contact.stats.integrations', 'API Integrations'), icon: Zap },
-                                        { value: '<4h', label: t('contact.stats.response', 'Avg. Response'), icon: Clock },
-                                        { value: '15+', label: t('contact.stats.timezones', 'Timezones'), icon: Globe2 },
+                                        { value: 'API-First', label: t('contact.stats.integrations', 'Architecture'), icon: Zap },
+                                        { value: 'Fast', label: t('contact.stats.response', 'Response Times'), icon: Clock },
+                                        { value: 'Global', label: t('contact.stats.timezones', 'Reach'), icon: Globe2 },
                                     ].map((stat, i) => (
                                         <div key={i} className="text-center p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
                                             <stat.icon size={16} className="text-brand-cyan mx-auto mb-2" />
@@ -71,22 +71,22 @@ const Contact = () => {
                                         icon: Building2, 
                                         title: t('contact.sales.title', 'Global Sales'), 
                                         desc: t('contact.sales.desc', 'Talk to an enterprise architect about your needs.'), 
-                                        action: 'enterprise@gemsphere.ai',
-                                        link: 'mailto:enterprise@gemsphere.ai'
+                                        action: SITE_CONFIG.contact.salesEmail,
+                                        link: `mailto:${SITE_CONFIG.contact.salesEmail}`
                                     },
                                     { 
                                         icon: MessageSquare, 
                                         title: t('contact.support.title', 'Technical Support'), 
                                         desc: t('contact.support.desc', '24/7 support for existing enterprise platform clients.'), 
                                         action: t('contact.support.action', 'Go to Support Portal'),
-                                        link: LOGIN_URL
+                                        link: SITE_CONFIG.portal.loginUrl
                                     },
                                     { 
                                         icon: Globe2, 
                                         title: t('contact.partner.title', 'Partner Network'), 
                                         desc: t('contact.partner.desc', 'Join our global network of system integrators.'), 
-                                        action: 'partners@gemsphere.ai',
-                                        link: 'mailto:partners@gemsphere.ai'
+                                        action: SITE_CONFIG.contact.partnersEmail,
+                                        link: `mailto:${SITE_CONFIG.contact.partnersEmail}`
                                     }
                                 ].map((item, i) => (
                                     <ScrollReveal key={i} direction="right" delay={0.2 + (i * 0.1)}>
@@ -115,11 +115,11 @@ const Contact = () => {
                                         </div>
                                         <div>
                                             <h4 className="text-base font-bold text-white">{t('contact.hq.title', 'Visit our Global HQ')}</h4>
-                                            <p className="text-xs text-brand-indigo font-semibold">{t('contact.hq.location', 'Bengaluru, India')}</p>
+                                            <p className="text-xs text-brand-indigo font-semibold">{t('contact.hq.location', `${SITE_CONFIG.contact.address.city}, ${SITE_CONFIG.contact.address.country}`)}</p>
                                         </div>
                                     </div>
                                     <p className="text-text-secondary text-sm">
-                                        {t('contact.hq.desc', 'We operate globally with our physical headquarters in Bengaluru (India), alongside distributed sales and engineering teams operating across the globe.')}
+                                        {t('contact.hq.desc', `We operate globally with our physical headquarters in ${SITE_CONFIG.contact.address.city} (${SITE_CONFIG.contact.address.country}), alongside distributed sales and engineering teams operating across the globe.`)}
                                     </p>
                                 </div>
                             </ScrollReveal>

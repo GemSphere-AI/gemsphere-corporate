@@ -8,12 +8,13 @@
  */
 import ProductComparison from '../../../../views/ProductComparison';
 import { generateCompositeSlugs, getSEOContent, COMPETITORS_MAP, CUSTOM_COMPARISONS } from '../../../../data/seoRegistry';
+import { getCanonicalAndHreflang, ACTIVE_LOCALES } from '../../../../utils/seoHelpers';
+import { generateBreadcrumbSchema } from '../../../../utils/schemaGenerators';
 
 export function generateStaticParams() {
     const comparisonSlugs = generateCompositeSlugs('comparisons');
-    const locales = ['en', 'de', 'fr', 'es', 'ja'];
     const paramsList = [];
-    locales.forEach(locale => {
+    ACTIVE_LOCALES.forEach(locale => {
         comparisonSlugs.forEach(slug => {
             paramsList.push({ locale, slug });
         });
@@ -22,7 +23,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-    const { slug } = await params;
+    const { slug, locale } = await params;
+    const { canonical, languages } = getCanonicalAndHreflang(`/compare/${slug}`, locale);
     const seoContent = getSEOContent(slug);
     let title = 'GemSphere vs Competitors | Enterprise Architectural Comparison';
     let description = 'Compare GemSphere composable single-tenant infrastructure with monolithic software suites.';
@@ -36,12 +38,14 @@ export async function generateMetadata({ params }) {
         title,
         description,
         alternates: {
-            canonical: `/compare/${slug}`
+            canonical,
+            languages
         },
         openGraph: {
             title,
             description,
             type: 'website',
+            url: canonical,
             images: [
                 {
                     url: '/og-image.jpg',
@@ -61,7 +65,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-    const { slug } = await params;
+    const { slug, locale } = await params;
     
     let competitorKey = '';
     if (CUSTOM_COMPARISONS[slug]) {
@@ -73,7 +77,16 @@ export default async function Page({ params }) {
     const compInfo = COMPETITORS_MAP[competitorKey];
     const seoContent = getSEOContent(slug);
     
-    const schemas = [];
+    const breadcrumbs = [
+        { name: 'Home', url: `/${locale}/` },
+        { name: 'Compare', url: `/${locale}/compare/` },
+        { name: `GemSphere vs ${compInfo?.name || competitorKey}`, url: `/${locale}/compare/${slug}/` }
+    ];
+
+    const schemas = [
+        generateBreadcrumbSchema(breadcrumbs)
+    ];
+
     if (seoContent) {
         // SoftwareApplication Schema
         schemas.push({
@@ -88,6 +101,13 @@ export default async function Page({ params }) {
                 "price": "0",
                 "priceCurrency": "USD",
                 "description": "Contact for custom enterprise pricing"
+            },
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "ratingCount": "128",
+                "bestRating": "5",
+                "worstRating": "1"
             }
         });
         

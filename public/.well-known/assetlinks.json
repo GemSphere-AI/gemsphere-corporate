@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.gemsphere.pos",
+      "sha256_cert_fingerprints": [
+        "14:6D:E9:7D:0F:52:AB:E3:64:12:35:E8:D3:5B:3C:D0:6B:4A:2A:44:A2:4E:9F:8A:2F:3C:99:4D:12:3A:45:67"
+      ]
+    }
+  }
+]

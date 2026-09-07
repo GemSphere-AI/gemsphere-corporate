@@ -12,6 +12,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import ScrollReveal from '../components/ScrollReveal';
 import { ShieldAlert, Info, Trash2, ShieldCheck, History } from 'lucide-react';
+import { SITE_CONFIG } from '../config/siteConfig';
 
 const DeleteAccountForm = dynamic(() => import('../components/DeleteAccountForm'), {
     ssr: false,
@@ -32,7 +33,7 @@ const DeleteAccount = () => {
                         Delete Your <span className="text-gradient">Account.</span>
                     </h1>
                     <p className="text-lg text-text-secondary leading-relaxed">
-                        We value your privacy. In compliance with Google Play and Apple App Store policies, you can request permanent deletion of your account and all associated personal data below.
+                        We value your privacy. In compliance with {SITE_CONFIG.mobileApp.storeName} developer policies, you can request permanent deletion of your account and all associated personal data below.
                     </p>
                 </ScrollReveal>
 

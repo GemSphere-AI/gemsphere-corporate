@@ -1,26 +1,61 @@
-# GemSphere Technologies
+# GemSphere Technologies Private Limited
 
 > https://gemsphere.ai
 
-GemSphere Technologies is a next-generation enterprise-grade software and AI platform provider. We build unified, composable digital ecosystems spanning commerce, logistics, finance, business operations, and custom AI development.
+GemSphere Technologies Private Limited is a global AI-powered enterprise software engineering and custom digital platform provider. We design, build, and deploy unified, composable digital ecosystems spanning commerce, logistics, finance, business operations, and custom AI development for organizations across 170+ countries.
 
-## Core Products & Solutions
+## Entity Information
+- **Legal Entity**: GemSphere Technologies Private Limited
+- **Brand**: GemSphere.ai
+- **Headquarters**: Bengaluru, Karnataka, India
+- **Global Availability**: 170+ countries
+- **Supported Locales**: English (en / x-default), German (de), French (fr), Spanish (es), Japanese (ja), Arabic (ar - RTL), Brazilian Portuguese (pt-br)
+- **Mobile Distribution**: Android client available via Google Play Store (`com.gemsphere.pos`)
+- **Syndication & Feeds**: RSS 2.0 Feed available at https://gemsphere.ai/feed.xml
+- **Asset Links Verification**: Google Digital Asset Links at https://gemsphere.ai/.well-known/assetlinks.json
 
-- [Commerce & Retail](https://gemsphere.ai/products/e-commerce-platform) - Omnichannel POS, payment processing, cataloging, promotions, and marketplace platforms.
-- [Supply Chain & Logistics](https://gemsphere.ai/products/supply-chain-management) - Strategic sourcing, warehouse management (WMS), route optimization (TMS), and demand planning.
-- [Finance & Accounting](https://gemsphere.ai/products/accounting-engine) - Multi-tenant billing engines, general ledger, global tax compliance, and automated reconciliation.
-- [Operations & Marketing](https://gemsphere.ai/products/crm-platform) - Enterprise Resource Planning (ERP), CRM systems, lead routing, and workflow automation.
-- [AI & Analytics](https://gemsphere.ai/products/predictive-analytics) - Custom conversational agents, recommendation engines, and predictive analytics.
-- [Platform Services](https://gemsphere.ai/products/api-gateway) - API gateways, single sign-on (SSO/IAM), audit logging, and global search services.
+## Core Products & Composable Modules (50+ Architectural Blueprints)
 
-## Professional Services
+- [Commerce & Smart Retail POS](https://gemsphere.ai/en/products/commerce/) - Omnichannel retail checkout, high-throughput POS, real-time inventory synchronization, catalog management, and automated tax compliance.
+- [Supply Chain & Logistics](https://gemsphere.ai/en/products/supply-chain/) - Strategic sourcing, Warehouse Management (WMS), Transportation Management (TMS), and automated fleet telemetry.
+- [Finance, Billing & Books](https://gemsphere.ai/en/products/finance/) - Enterprise cloud accounting, multi-entity general ledger, recurring subscription billing, and GST/VAT compliance engines.
+- [Operations & CRM](https://gemsphere.ai/en/products/operations/) - Single-tenant enterprise CRM, automated sales pipelines, workforce management, and enterprise resource planning (ERP).
+- [Hospitality & Restaurant Management](https://gemsphere.ai/en/products/hospitality/) - Cloud Hotel PMS, table reservations, Kitchen Display Systems (KDS), and contactless QR ordering.
+- [Enterprise AI & Autonomous Agents](https://gemsphere.ai/en/ai-solutions/) - Private Retrieval-Augmented Generation (RAG) pipelines, domain-specific LLM fine-tuning, and autonomous business workflow agents.
+- [EduSphere Campus ERP](https://gemsphere.ai/en/products/edusphere/) - Student Information Systems (SIS), automated fee collection, and university administrative orchestration.
 
-- [AI & Machine Learning Solutions](https://gemsphere.ai/services/ai-solutions) - Fine-tuning proprietary/open-source LLMs, building NLP pipelines, and computer vision models.
-- [Enterprise Software Engineering](https://gemsphere.ai/services/software-development) - High-performance backend architectures built on Domain-Driven Design (DDD) principles.
-- [Cloud & Multi-Cloud Engineering](https://gemsphere.ai/services/cloud-engineering) - Multi-cloud setup, container orchestration, CI/CD pipelines, and DevOps automation.
-- [SaaS Product Engineering](https://gemsphere.ai/services/saas-products) - Designing secure, multi-tenant software architectures with logical/physical boundaries.
+## Enterprise Solutions Architecture
 
-## Key Technical Specs
-- **Architecture**: Composable microservices with single-tenant secure boundaries for AI workloads.
-- **Compliance**: HIPAA ready, PCI-DSS ready, GDPR compliant.
-- **DDD Standards**: Enforced bounded contexts separating core domains like Billing, Orders, and Identity.
+- [Enterprise Digital Transformation](https://gemsphere.ai/en/solutions/enterprise-digital-transformation/) - Phased legacy monolith modernization using the Strangler Fig pattern, event-driven microservices, and zero-downtime cutover.
+- [Omnichannel Retail Infrastructure](https://gemsphere.ai/en/solutions/omnichannel-retail-infrastructure/) - Sub-second barcode scan-to-receipt checkout throughput, offline-first SQLite POS sync, and zero transaction commissions.
+- [Private Cloud Migration](https://gemsphere.ai/en/solutions/private-cloud-migration/) - 100% dedicated single-tenant VPC deployments, eliminating multi-tenant noisy-neighbor risks and ensuring strict GDPR/BDSG compliance.
+- [Intelligent Business Automation](https://gemsphere.ai/en/solutions/intelligent-business-automation/) - Multi-step autonomous AI agents, Model Context Protocol (MCP) servers, and private enterprise RAG pipelines with zero public data retention.
+
+## Professional Engineering Services
+
+- [Custom Enterprise Software Development](https://gemsphere.ai/en/services/custom-software-development/) - High-throughput backend architectures built with strict Domain-Driven Design (DDD).
+- [Microservices & Cloud Migration](https://gemsphere.ai/en/services/microservices-development/) - Decoupling legacy monolithic codebases into resilient, independently scalable microservices.
+- [Enterprise AI & LLM Engineering](https://gemsphere.ai/en/services/ai-consulting/) - Secure, single-tenant enterprise generative AI workflows and model fine-tuning.
+- [Application Modernization & DevOps](https://gemsphere.ai/en/services/application-modernization/) - Full-stack cloud engineering, continuous integration (CI/CD), and automated telemetry.
+
+## Verified Technical Leadership & Authors (E-E-A-T)
+
+- [Dr. Arun Sharma](https://gemsphere.ai/en/authors/arun-sharma/) - Chief Technology Officer & Principal AI Architect (Distributed Systems, Private RAG, DDD Architecture).
+- [Sophia Chen](https://gemsphere.ai/en/authors/sophia-chen/) - VP of Enterprise Solutions Architecture (Omnichannel Retail, Offline POS Sync, ERP Data Migration).
+- [Marcus Vance](https://gemsphere.ai/en/authors/marcus-vance/) - Principal Cloud & Security Architect (Zero-Trust Security, SOC 2 Type II, HIPAA & ISO 27001 Readiness).
+- [Priya Nair](https://gemsphere.ai/en/authors/priya-nair/) - Director of Machine Learning & Knowledge Systems (Generative Engine Optimization, Semantic Search, Agentic Workflows).
+
+## Key Architectural & Compliance Specifications
+- **Data Isolation**: Single-tenant database isolation models ensuring zero customer data leakage.
+- **Architectural Paradigm**: Strict Domain-Driven Design (DDD) with decoupled bounded contexts (Billing, Inventory, Identity, AI).
+- **Compliance Readiness**: Engineered to support SOC 2 Type II, HIPAA, ISO/IEC 27001, and EU GDPR compliance frameworks.
+- **Mobile Client**: Native Android application distributed exclusively via Google Play Store (Package: `com.gemsphere.pos`).
+
+## Official Contact & Verification
+- Website: https://gemsphere.ai/en/
+- Corporate Email: Contact@gemsphere.ai
+- Global Phone: +91-789-258-5801
+- Registered Office: Garuda BHIVE Workspace, BTM Layout, Bengaluru, Karnataka, 560076, India
+- LinkedIn: https://www.linkedin.com/company/gem-sphere-ai/
+- GitHub: https://github.com/GemSphere-AI
+- Google Play Store: https://play.google.com/store/apps/details?id=com.gemsphere.pos

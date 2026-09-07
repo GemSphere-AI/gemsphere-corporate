@@ -2,6 +2,7 @@
 import React from 'react';
 import LocalizedLink from '../components/LocalizedLink';
 import ScrollReveal from '../components/ScrollReveal';
+import { SITE_CONFIG } from '../config/siteConfig';
 
 const Security = () => {
     return (
@@ -10,7 +11,7 @@ const Security = () => {
                 <div className="container mx-auto px-6 max-w-4xl">
                     <ScrollReveal direction="up">
                         <h1 className="text-4xl md:text-5xl font-black font-display tracking-tight mb-4 text-text-primary">Security Overview</h1>
-                        <p className="text-text-tertiary text-sm mb-12">Last Updated: April 2025</p>
+                        <p className="text-text-tertiary text-sm mb-12">Last Updated: September 2026</p>
                     </ScrollReveal>
 
                     <div className="prose-custom space-y-8 text-text-secondary leading-relaxed">
@@ -57,7 +58,7 @@ const Security = () => {
                             <section className="glass-card p-8 rounded-2xl">
                                 <h2 className="text-xl font-bold text-text-primary mb-3">6. Report a Vulnerability</h2>
                                 <p className="mb-2">If you believe you have discovered a security vulnerability in our platform, please report it immediately.</p>
-                                <p>Email: <LocalizedLink href="mailto:security@gemsphere.ai" className="text-brand-cyan hover:underline">security@gemsphere.ai</LocalizedLink></p>
+                                <p>Email: <LocalizedLink href={`mailto:${SITE_CONFIG.contact.securityEmail}`} className="text-brand-cyan hover:underline">{SITE_CONFIG.contact.securityEmail}</LocalizedLink></p>
                             </section>
                         </ScrollReveal>
                     </div>

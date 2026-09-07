@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { WHATSAPP_LINK } from '../utils/apiConfig';
+import { SITE_CONFIG } from '../config/siteConfig';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 export default function FloatingWhatsApp() {
     const [isVisible, setIsVisible] = useState(false);
@@ -36,9 +37,10 @@ export default function FloatingWhatsApp() {
                     style={{ filter: 'drop-shadow(0 4px 20px rgba(37, 211, 102, 0.35))' }}
                 >
                     <motion.a
-                        href={WHATSAPP_LINK}
+                        href={SITE_CONFIG.contact.whatsapp.link}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackWhatsAppClick()}
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
                         whileHover={{ scale: 1.05 }}

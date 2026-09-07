@@ -10,6 +10,7 @@
 import React from 'react';
 import LocalizedLink from '../components/LocalizedLink';
 import ScrollReveal from '../components/ScrollReveal';
+import { SITE_CONFIG } from '../config/siteConfig';
 
 const PrivacyPolicy = () => {
     return (
@@ -29,11 +30,11 @@ const PrivacyPolicy = () => {
                                     GemSphere Technologies Private Limited ("GemSphere AI," "we," "our," or "us") is committed to protecting your privacy. This Privacy Policy governs the data collection, processing, and storage practices for:
                                 </p>
                                 <ul className="list-disc pl-6 space-y-2 mb-3">
-                                    <li>Our corporate website located at <LocalizedLink href="https://www.gemsphere.ai" className="text-brand-cyan hover:underline">www.gemsphere.ai</LocalizedLink>.</li>
-                                    <li>Our software platforms, API portals, and the <strong className="text-text-primary">GemSphere Commerce</strong> mobile application (available on the Google Play Store).</li>
+                                    <li>Our corporate website located at <LocalizedLink href={SITE_CONFIG.brand.getBaseUrl()} className="text-brand-cyan hover:underline">{SITE_CONFIG.brand.domain}</LocalizedLink>.</li>
+                                    <li>Our software platforms, API portals, and the <strong className="text-text-primary">GemSphere Commerce</strong> mobile application (available on the {SITE_CONFIG.mobileApp.storeName}).</li>
                                 </ul>
                                 <p>
-                                    This policy has been updated to fully align with global data protection regulations, including the European Union's General Data Protection Regulation (<strong className="text-text-primary">GDPR</strong>) and Google Play Store App Developer Policies.
+                                    This policy has been updated to fully align with global data protection regulations, including the European Union's General Data Protection Regulation (<strong className="text-text-primary">GDPR</strong>) and {SITE_CONFIG.mobileApp.storeName} App Developer Policies.
                                 </p>
                             </section>
                         </ScrollReveal>
@@ -44,13 +45,13 @@ const PrivacyPolicy = () => {
                                 <p>
                                     The Data Controller responsible for processing your personal data is:
                                     <br />
-                                    <strong className="text-text-primary">GemSphere Technologies Private Limited</strong>
+                                    <strong className="text-text-primary">{SITE_CONFIG.brand.legalName}</strong>
                                     <br />
-                                    Garuda BHIVE Workspace, BTM Layout, Bengaluru, Karnataka 560076, India.
+                                    {SITE_CONFIG.contact.address.fullFormatted}
                                     <br />
-                                    CIN: U62011KA2025PTC211975
+                                    CIN: {SITE_CONFIG.brand.cin}
                                     <br />
-                                    Inquiries regarding this policy or data protection can be sent directly to <LocalizedLink href="mailto:Contact@gemsphere.ai" className="text-brand-cyan hover:underline">Contact@gemsphere.ai</LocalizedLink>.
+                                    Inquiries regarding this policy or data protection can be sent directly to <LocalizedLink href={`mailto:${SITE_CONFIG.contact.email}`} className="text-brand-cyan hover:underline">{SITE_CONFIG.contact.email}</LocalizedLink>.
                                 </p>
                             </section>
                         </ScrollReveal>
@@ -152,7 +153,7 @@ const PrivacyPolicy = () => {
                                 </p>
                                 <ul className="list-disc pl-6 space-y-2 mb-4">
                                     <li>Submitting a request inside the Account Settings screen of the <strong className="text-text-primary">GemSphere Commerce</strong> mobile application.</li>
-                                    <li>Sending an email directly to <LocalizedLink href="mailto:Contact@gemsphere.ai" className="text-brand-cyan hover:underline font-bold">Contact@gemsphere.ai</LocalizedLink> with the subject line "Account Deletion Request".</li>
+                                    <li>Sending an email directly to <LocalizedLink href={`mailto:${SITE_CONFIG.contact.email}`} className="text-brand-cyan hover:underline font-bold">{SITE_CONFIG.contact.email}</LocalizedLink> with the subject line "Account Deletion Request".</li>
                                 </ul>
                                 <p className="text-sm">
                                     Upon request, we will permanently delete or anonymize your personal information, unless we are legally required to retain specific transaction data for financial, tax, or local accounting compliance.
@@ -182,11 +183,11 @@ const PrivacyPolicy = () => {
                             <section className="glass-card p-8 rounded-2xl">
                                 <h2 className="text-xl font-bold text-text-primary mb-3">12. Contact Information</h2>
                                 <p className="mb-2">For any questions, clarifications, or to exercise your privacy rights, please reach out to us at:</p>
-                                <p><strong className="text-text-primary">GemSphere Technologies Private Limited</strong></p>
-                                <p>Garuda BHIVE Workspace, BTM Layout, Bengaluru, Karnataka 560076, India</p>
-                                <p>Email: <LocalizedLink href="mailto:Contact@gemsphere.ai" className="text-brand-cyan hover:underline">Contact@gemsphere.ai</LocalizedLink></p>
-                                <p>Phone: <LocalizedLink href="tel:+917892585801" className="text-brand-cyan hover:underline">+91 7892585801</LocalizedLink></p>
-                                <p className="text-text-muted text-xs mt-3">CIN: U62011KA2025PTC211975</p>
+                                <p><strong className="text-text-primary">{SITE_CONFIG.brand.legalName}</strong></p>
+                                <p>{SITE_CONFIG.contact.address.fullFormatted}</p>
+                                <p>Email: <LocalizedLink href={`mailto:${SITE_CONFIG.contact.email}`} className="text-brand-cyan hover:underline">{SITE_CONFIG.contact.email}</LocalizedLink></p>
+                                <p>Phone: <LocalizedLink href={SITE_CONFIG.contact.phoneTel} className="text-brand-cyan hover:underline">{SITE_CONFIG.contact.phoneDisplay}</LocalizedLink></p>
+                                <p className="text-text-muted text-xs mt-3">CIN: {SITE_CONFIG.brand.cin}</p>
                             </section>
                         </ScrollReveal>
                     </div>

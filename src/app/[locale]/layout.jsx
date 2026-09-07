@@ -10,12 +10,13 @@ import '../../index.css';
 import Script from 'next/script';
 import ClientProviders from '../../components/ClientProviders';
 import { generateOrganizationSchema, generateWebSiteSchema } from '../../utils/schemaGenerators';
-import { Inter, Outfit } from 'next/font/google';
+import { Inter, Outfit, Noto_Sans_Arabic } from 'next/font/google';
 import FloatingCTA from '../../components/FloatingCTA';
 import FloatingWhatsApp from '../../components/FloatingWhatsApp';
-import AnnouncementBar from '../../components/AnnouncementBar';
 import ExitIntentPopup from '../../components/ExitIntentPopup';
 import GoogleAnalytics from '../../components/GoogleAnalytics';
+import { ACTIVE_LOCALES, OG_LOCALE_MAP, getCanonicalAndHreflang } from '../../utils/seoHelpers';
+import { SITE_CONFIG } from '../../config/siteConfig';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -31,11 +32,16 @@ const outfit = Outfit({
   variable: '--font-outfit',
 });
 
-const LOCALES = ['en', 'de', 'fr', 'es', 'ja'];
+const notoSansArabic = Noto_Sans_Arabic({
+  subsets: ['arabic'],
+  weight: ['400', '600', '700'],
+  display: 'swap',
+  variable: '--font-noto-arabic',
+});
 
 /**
- * generateMetadata — runs per-request, sets correct canonical and full hreflang
- * alternates so Google ranks each locale in its intended country.
+ * generateMetadata — runs per-request, sets correct canonical and full reciprocal hreflang
+ * alternates across all 7 officially supported global enterprise locales.
  */
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -44,9 +50,7 @@ export async function generateMetadata({ params }) {
     ? `https://${process.env.NEXT_PUBLIC_DOMAIN}`
     : 'https://gemsphere.ai';
 
-  const languages = {};
-  LOCALES.forEach((l) => { languages[l] = `${baseUrl}/${l}/`; });
-  languages['x-default'] = `${baseUrl}/en/`;
+  const { canonical, languages } = getCanonicalAndHreflang('', lang);
 
   return {
     applicationName: 'GemSphere Technologies',
@@ -66,8 +70,8 @@ export async function generateMetadata({ params }) {
       title: 'GemSphere Technologies — Engineering Intelligent Digital Enterprises',
       description: 'Premium AI, Enterprise SaaS, & Custom Software Engineering Partner. 50+ enterprise capabilities. One unified digital ecosystem. Serving 170+ countries.',
       type: 'website',
-      locale: lang === 'de' ? 'de_DE' : lang === 'fr' ? 'fr_FR' : lang === 'es' ? 'es_ES' : lang === 'ja' ? 'ja_JP' : 'en_US',
-      url: `${baseUrl}/${lang}/`,
+      locale: OG_LOCALE_MAP[lang] || 'en_US',
+      url: canonical,
       siteName: 'GemSphere Technologies',
       images: [
         {
@@ -97,26 +101,44 @@ export async function generateMetadata({ params }) {
       },
     },
     alternates: {
-      canonical: `${baseUrl}/${lang}/`,
+      canonical,
       languages,
     },
     icons: {
       icon: '/favicon.ico',
     },
+    other: {
+      'google-play-app': `app-id=${SITE_CONFIG.mobileApp.packageName}`,
+      'al:android:package': SITE_CONFIG.mobileApp.packageName,
+      'al:android:app_name': SITE_CONFIG.mobileApp.appName,
+      'al:android:url': `${baseUrl}/en/products/pos-system/`,
+      'theme-color': '#030712',
+    },
   };
 }
 
 export function generateStaticParams() {
-  return LOCALES.map((locale) => ({ locale }));
+  return ACTIVE_LOCALES.map((locale) => ({ locale }));
 }
 
 export default async function RootLayout({ children, params }) {
   const { locale } = await params;
   const lang = locale || 'en';
+  const isRtl = lang === 'ar';
+
   return (
-    <html lang={lang} className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
+    <html
+      lang={lang}
+      dir={isRtl ? 'rtl' : 'ltr'}
+      className={`${inter.variable} ${outfit.variable} ${notoSansArabic.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="alternate" type="application/rss+xml" title="GemSphere Insights RSS Feed" href="/feed.xml" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
         {/* Organization Schema Injection */}
         <script
@@ -136,7 +158,7 @@ export default async function RootLayout({ children, params }) {
 
         {/* Google Analytics 4 — loaded via next/script for proper hydration */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-4EWTL1GRQG"
+          src={`https://www.googletagmanager.com/gtag/js?id=${SITE_CONFIG.analytics.gaMeasurementId}`}
           strategy="afterInteractive"
         />
         <Script
@@ -164,7 +186,7 @@ export default async function RootLayout({ children, params }) {
               });
               
               gtag('js', new Date());
-              gtag('config', 'G-4EWTL1GRQG', {
+              gtag('config', '${SITE_CONFIG.analytics.gaMeasurementId}', {
                 page_path: window.location.pathname,
               });
             `,
@@ -172,19 +194,27 @@ export default async function RootLayout({ children, params }) {
         />
         {/* Microsoft Customer Connect chatbot script */}
         <Script
-          src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js"
+          src={SITE_CONFIG.analytics.microsoftChatInitScript}
           id="chatbot"
           strategy="lazyOnload"
-          environmentId="d0804337-75d7-e516-874e-c28f97bb5ed0"
-          data-environment-id="d0804337-75d7-e516-874e-c28f97bb5ed0"
+          environmentId={SITE_CONFIG.analytics.microsoftCustomerConnectId}
+          data-environment-id={SITE_CONFIG.analytics.microsoftCustomerConnectId}
           data-hide-chat-button="true"
           crossOrigin="anonymous"
         />
       </head>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary-600 focus:text-white focus:rounded-md focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         <ClientProviders>
           <GoogleAnalytics />
-          {children}
+          <main id="main-content">
+            {children}
+          </main>
           <FloatingCTA />
           <FloatingWhatsApp />
           <ExitIntentPopup />

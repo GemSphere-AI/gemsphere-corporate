@@ -19,6 +19,8 @@ import TrustBadges from '../components/TrustBadges';
 import { PRODUCT_ECOSYSTEM, slugify } from '../data/productEcosystem';
 import { RICH_MODULES_DATA } from '../data/moduleDescriptions';
 import { parseCompositeSlug, getSEOContent, PRODUCTS_MAP, INDUSTRIES_MAP, COUNTRIES_MAP, COMPETITORS_MAP } from '../data/seoRegistry';
+import { SITE_CONFIG } from '../config/siteConfig';
+import { trackPlayStoreClick } from '../utils/analytics';
 
 export default function ProductDetail({ slug }) {
     const [activeFaqIndex, setActiveFaqIndex] = useState(null);
@@ -333,6 +335,39 @@ export default function ProductDetail({ slug }) {
                                             <LocalizedLink href={compareLink} className="glass-subtle w-full flex items-center justify-center py-3 font-bold border border-brand-border/40 mt-3 rounded-xl hover:bg-brand-border/60 transition-colors">
                                                 Compare Options <ArrowRight size={16} className="ml-2" />
                                             </LocalizedLink>
+                                        )}
+
+                                        {/* Google Play Store ASO Integration for POS / Retail / Commerce */}
+                                        {(slug.includes('pos') || slug.includes('retail') || slug.includes('commerce')) && (
+                                            <div className="glass-card p-5 border-brand-cyan/20 rounded-[24px] mt-5 text-left">
+                                                <div className="flex items-center gap-3 mb-2.5">
+                                                    <div className="w-9 h-9 rounded-xl bg-brand-cyan/15 flex items-center justify-center text-brand-cyan shrink-0">
+                                                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M3.609 1.814L13.792 12 3.61 22.186c-.368-.383-.61-.951-.61-1.686V3.5c0-.735.242-1.303.609-1.686zm11.235 11.238l2.583 2.583-11.458 6.55 8.875-9.133zm0-2.104L5.969 1.815l11.458 6.55-2.583 2.583zm1.488 1.052l3.434 1.963c.967.553.967 1.453 0 2.006l-3.434 1.963-2.072-2.072 2.072-1.86z"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div>
+                                                        <h4 className="font-bold text-xs text-text-primary">{SITE_CONFIG.mobileApp.appName}</h4>
+                                                        <div className="flex items-center gap-1.5 text-[11px] text-text-tertiary">
+                                                            <span className="text-amber-400 font-bold">★ {SITE_CONFIG.mobileApp.ratingValue}</span>
+                                                            <span>• {SITE_CONFIG.mobileApp.ratingCount} reviews</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p className="text-[11px] text-text-secondary leading-relaxed mb-3">
+                                                    Android client built for retail counters, mobile POS tablets, and automated receipt printing.
+                                                </p>
+                                                <a
+                                                    href={SITE_CONFIG.mobileApp.playStoreUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    onClick={() => trackPlayStoreClick({ moduleName: displayName })}
+                                                    className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-brand-cyan/15 border border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark font-bold text-xs transition-all duration-300 group cursor-pointer"
+                                                >
+                                                    <span>Install from {SITE_CONFIG.mobileApp.storeName}</span>
+                                                    <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+                                                </a>
+                                            </div>
                                         )}
                                     </div>
                                 </ScrollReveal>

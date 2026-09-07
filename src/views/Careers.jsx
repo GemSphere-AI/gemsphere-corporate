@@ -15,6 +15,7 @@ import SectionHeading from '../components/SectionHeading';
 import ScrollReveal from '../components/ScrollReveal';
 import MagneticButton from '../components/MagneticButton';
 import { generateJobPostingSchema } from '../utils/schemaGenerators';
+import { SITE_CONFIG } from '../config/siteConfig';
 
 const OPEN_ROLES = [
     {
@@ -166,7 +167,7 @@ const Careers = () => {
                             {t('careers.noFit', "Don't see a perfect fit? We're always looking for exceptional talent.")}
                         </p>
                         <LocalizedLink
-                            href="mailto:careers@gemsphere.ai"
+                            href={`mailto:${SITE_CONFIG.contact.careersEmail}`}
                             className="inline-flex items-center gap-2 text-brand-cyan font-bold hover:text-text-primary transition-colors"
                         >
                             {t('careers.sendResume', 'Send us your resume')} <ArrowRight size={16} />

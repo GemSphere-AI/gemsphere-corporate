@@ -17,8 +17,8 @@ import {
 import ScrollReveal from './ScrollReveal';
 
 /**
- * Industry badge icons used as client logo placeholders.
- * Replace with real client logo images when available.
+ * Industry icons representing target verticals.
+ * These are NOT client logos — they represent industries GemSphere serves.
  */
 const INDUSTRY_BADGES = [
     { icon: ShoppingCart, label: 'Global Retail', color: '#00d4ff' },
@@ -39,7 +39,7 @@ export default function ClientLogos({ className = '' }) {
             <div className="container mx-auto px-6 max-w-7xl">
                 <ScrollReveal direction="up" delay={0.1}>
                     <p className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-text-muted mb-8">
-                        Trusted by enterprises across industries
+                        Purpose-built for enterprise operations across industries
                     </p>
                 </ScrollReveal>
 

@@ -7,17 +7,34 @@
  * file, via any medium, is strictly prohibited.
  */
 import About from '../../../views/About';
+import { getCanonicalAndHreflang } from '../../../utils/seoHelpers';
 
 export async function generateMetadata({ params }) {
-  
+  const { locale } = await params;
+  const { canonical, languages } = getCanonicalAndHreflang('/about', locale);
   return {
-    title: 'About Us — Our Mission & Vision',
+    title: 'About Us — Our Mission & Vision | GemSphere Technologies',
     description: 'Learn about GemSphere Technologies — a global AI-powered enterprise software company founded to engineer intelligent digital enterprises across 170+ countries.',
     alternates: {
-            canonical: '/about'
-            }
+      canonical,
+      languages
+    },
+    openGraph: {
+      title: 'About Us — Our Mission & Vision | GemSphere Technologies',
+      description: 'Learn about GemSphere Technologies — a global AI-powered enterprise software company founded to engineer intelligent digital enterprises across 170+ countries.',
+      type: 'website',
+      url: canonical,
+      images: ['/og-image.jpg']
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'About Us — Our Mission & Vision | GemSphere Technologies',
+      description: 'Learn about GemSphere Technologies — a global AI-powered enterprise software company founded to engineer intelligent digital enterprises across 170+ countries.',
+      images: ['/og-image.jpg']
+    }
   };
 }
+
 export default function Page() {
   return <About />;
 }

@@ -72,3 +72,12 @@ User-agent: Bytespider
 Disallow: /
 
 Sitemap: https://gemsphere.ai/sitemap.xml
+Sitemap: https://gemsphere.ai/sitemap/pages.xml
+Sitemap: https://gemsphere.ai/sitemap/products.xml
+Sitemap: https://gemsphere.ai/sitemap/services.xml
+Sitemap: https://gemsphere.ai/sitemap/comparisons.xml
+Sitemap: https://gemsphere.ai/sitemap/geo.xml
+Sitemap: https://gemsphere.ai/sitemap/guides.xml
+Sitemap: https://gemsphere.ai/sitemap/industries.xml
+Sitemap: https://gemsphere.ai/sitemap/blog.xml
+Sitemap: https://gemsphere.ai/sitemap/authors.xml

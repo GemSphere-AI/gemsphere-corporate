@@ -7,13 +7,17 @@
  * file, via any medium, is strictly prohibited.
  */
 import DeleteAccount from '../../../views/DeleteAccount';
+import { getCanonicalAndHreflang } from '../../../utils/seoHelpers';
 
 export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const { canonical, languages } = getCanonicalAndHreflang('/delete-account', locale);
   return {
     title: 'Account Deletion Request | GemSphere Technologies',
-    description: 'Request permanent deletion of your account and associated personal data in compliance with Google Play Store and Apple App Store policies.',
+    description: 'Request permanent deletion of your account and associated personal data in compliance with Google Play Store data safety policies.',
     alternates: {
-      canonical: '/delete-account'
+      canonical,
+      languages
     }
   };
 }

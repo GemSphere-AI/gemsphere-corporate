@@ -9,11 +9,11 @@
 import PillarPageTemplate from '../../../../views/PillarPageTemplate';
 import { PRODUCT_ECOSYSTEM } from '../../../../data/productEcosystem';
 import { SILO_DATA } from '../../../../data/siloData';
+import { getCanonicalAndHreflang, ACTIVE_LOCALES } from '../../../../utils/seoHelpers';
 
 export function generateStaticParams() {
-    const locales = ['en', 'de', 'fr', 'es', 'ja'];
     const paramsList = [];
-    locales.forEach(locale => {
+    ACTIVE_LOCALES.forEach(locale => {
         PRODUCT_ECOSYSTEM.industries.forEach(ind => {
             paramsList.push({ locale, slug: ind.slug });
         });
@@ -22,15 +22,39 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-    const { slug } = await params;
+    const { slug, locale } = await params;
+    const { canonical, languages } = getCanonicalAndHreflang(`/industries/${slug}`, locale);
     const ind = PRODUCT_ECOSYSTEM.industries.find(i => i.slug === slug);
-    if (!ind) return { title: 'Industry Solutions | GemSphere Technologies' };
+    if (!ind) return { title: 'Industry Solutions | GemSphere Technologies', alternates: { canonical, languages } };
     const siloDetails = SILO_DATA.industry[slug];
+    const title = `${siloDetails?.title || ind.name} Industry Solutions | GemSphere`;
+    const description = siloDetails?.description || `Enterprise-grade ${ind.name.toLowerCase()} solutions powered by AI.`;
     return {
-        title: `${siloDetails?.title || ind.name} Industry Solutions | GemSphere`,
-        description: siloDetails?.description || `Enterprise-grade ${ind.name.toLowerCase()} solutions powered by AI.`,
+        title,
+        description,
         alternates: {
-            canonical: `/industries/${slug}`
+            canonical,
+            languages
+        },
+        openGraph: {
+            title,
+            description,
+            type: 'website',
+            url: canonical,
+            images: [
+                {
+                    url: '/og-image.jpg',
+                    width: 1200,
+                    height: 630,
+                    alt: title,
+                }
+            ]
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            images: ['/og-image.jpg']
         }
     };
 }

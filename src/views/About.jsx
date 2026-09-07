@@ -10,37 +10,14 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Users, Target, Rocket, Award, Globe, Building, Shield, Zap, Brain, Code2, Linkedin, Twitter } from 'lucide-react';
+import { Users, Target, Rocket, Award, Globe, Building, Shield, Zap, Brain, Code2 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import ScrollReveal from '../components/ScrollReveal';
 import LocalizedLink from '../components/LocalizedLink';
+import { SITE_CONFIG } from '../config/siteConfig';
 
-const LEADERSHIP = [
-    {
-        name: 'Vikram Narasimhan',
-        title: 'Chief Executive Officer & Co-Founder',
-        bio: 'Formerly at McKinsey & Infosys. 18+ years in enterprise digital transformation across APAC and Europe.',
-        linkedin: 'https://www.linkedin.com/company/gem-sphere-ai/',
-        initials: 'VN',
-        color: 'from-brand-cyan to-brand-indigo',
-    },
-    {
-        name: 'Priya Subramaniam',
-        title: 'Chief Technology Officer',
-        bio: 'Ex-Google Cloud principal architect. PhD in Distributed Systems from IIT Bombay. Builder of GemSphere\'s neural engine core.',
-        linkedin: 'https://www.linkedin.com/company/gem-sphere-ai/',
-        initials: 'PS',
-        color: 'from-brand-indigo to-brand-violet',
-    },
-    {
-        name: 'Marcus Hoffmann',
-        title: 'VP of Global Sales, EMEA',
-        bio: 'Former SAP and Oracle enterprise sales director. Led €200M+ in enterprise contract closures across Germany, UK, and France.',
-        linkedin: 'https://www.linkedin.com/company/gem-sphere-ai/',
-        initials: 'MH',
-        color: 'from-brand-violet to-brand-rose',
-    },
-];
+// Leadership team section — add real team members with genuine bios and photos when ready.
+// See corporate audit P0 recommendation: feature real founder(s) with authentic credentials.
 
 const About = () => {
     const { t } = useTranslation();
@@ -173,9 +150,9 @@ const About = () => {
                                 <h3 className="text-3xl font-bold text-text-primary mb-2">{t('about.hqCity', 'Bengaluru (HQ)')}</h3>
                                 <p className="text-brand-indigo font-semibold mb-6">{t('about.hqSubtitle', 'Global Headquarters & Physical Office')}</p>
                                 <p className="text-text-secondary leading-relaxed">
-                                    Garuda BHIVE Workspace,<br />
-                                    BTM Layout, Bengaluru,<br />
-                                    Karnataka 560076, India
+                                    {SITE_CONFIG.contact.address.street},<br />
+                                    {SITE_CONFIG.contact.address.city},<br />
+                                    {SITE_CONFIG.contact.address.state} {SITE_CONFIG.contact.address.postalCode}, {SITE_CONFIG.contact.address.country}
                                 </p>
                             </div>
                         </ScrollReveal>

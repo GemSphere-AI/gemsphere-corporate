@@ -7,15 +7,25 @@
  * file, via any medium, is strictly prohibited.
  */
 import React from 'react';
+import { getCanonicalAndHreflang } from '../../../utils/seoHelpers';
 
 export async function generateMetadata({ params }) {
-  
+  const { locale } = await params;
+  const { canonical, languages } = getCanonicalAndHreflang('/terms', locale);
   return {
     title: 'Terms of Service | GemSphere Technologies',
     description: 'Read the Terms of Service for using GemSphere Technologies products and services.',
     alternates: {
-            canonical: '/terms'
-            }
+      canonical,
+      languages
+    },
+    openGraph: {
+      title: 'Terms of Service | GemSphere Technologies',
+      description: 'Read the Terms of Service for using GemSphere Technologies products and services.',
+      type: 'website',
+      url: canonical,
+      images: ['/og-image.jpg']
+    }
   };
 }
 export default function TermsOfService() {

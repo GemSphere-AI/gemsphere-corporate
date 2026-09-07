@@ -104,13 +104,13 @@ const Home = () => {
                                     </MagneticButton>
                                 </div>
                                 
-                                {/* Micro social proof */}
+                                {/* Micro trust signals — verifiable facts only */}
                                 <p className="text-xs text-text-tertiary font-semibold mt-4 flex flex-wrap items-center gap-2">
-                                    <span>⭐ Rated 4.9/5 by enterprise teams</span>
-                                    <span className="text-text-muted">•</span>
                                     <span>🔒 No credit card required</span>
                                     <span className="text-text-muted">•</span>
-                                    <span>⚡ Setup in 5 minutes</span>
+                                    <span>☁️ Cloud-native architecture</span>
+                                    <span className="text-text-muted">•</span>
+                                    <span>⚡ Get started in minutes</span>
                                 </p>
                             </ScrollReveal>
                         </div>
@@ -144,10 +144,10 @@ const Home = () => {
                     <ScrollReveal direction="up" delay={0.5} className="mt-20 pt-10 border-t border-brand-border">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-brand-border">
                             {[
-                                { val: '170+', label: 'Countries Served' },
-                                { val: '50+', label: 'Enterprise Capabilities' },
-                                { val: '99.99%', label: 'Uptime SLA' },
-                                { val: '24/7', label: 'Global Support' }
+                                { val: '5+', label: 'Product Modules' },
+                                { val: 'API-First', label: 'Architecture' },
+                                { val: 'Cloud', label: 'Native Infrastructure' },
+                                { val: 'Multi-Tenant', label: 'By Design' }
                             ].map((kpi, i) => (
                                 <div key={i} className="px-4">
                                     <div className="text-3xl md:text-4xl font-black text-text-primary font-display mb-1">

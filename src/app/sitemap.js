@@ -1,6 +1,9 @@
 import { PRODUCT_ECOSYSTEM, slugify } from '../data/productEcosystem';
 import { generateCompositeSlugs, GEO_MAP, GUIDES_MAP, INDUSTRIES_MAP } from '../data/seoRegistry';
 import { BLOG_POSTS } from '../data/blogData';
+import { ACTIVE_LOCALES, HREFLANG_MAP, getBaseUrl } from '../utils/seoHelpers';
+
+import { AUTHORS } from '../data/authorsData';
 
 export const dynamic = 'force-static';
 
@@ -14,12 +17,13 @@ export async function generateSitemaps() {
     { id: 'geo' },
     { id: 'guides' },
     { id: 'industries' },
-    { id: 'blog' }
+    { id: 'blog' },
+    { id: 'authors' }
   ];
 }
 
 export default function sitemap({ id }) {
-  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN ? `https://${process.env.NEXT_PUBLIC_DOMAIN}` : 'https://gemsphere.ai';
+  const baseUrl = getBaseUrl();
   const buildDate = new Date().toISOString();
 
   let routes = [];
@@ -43,6 +47,10 @@ export default function sitemap({ id }) {
       { path: '/terms', changeFreq: 'yearly', priority: 0.3 },
       { path: '/security', changeFreq: 'monthly', priority: 0.6 },
       { path: '/cookie-policy', changeFreq: 'yearly', priority: 0.3 },
+      { path: '/solutions/enterprise-digital-transformation', changeFreq: 'weekly', priority: 0.85 },
+      { path: '/solutions/omnichannel-retail-infrastructure', changeFreq: 'weekly', priority: 0.85 },
+      { path: '/solutions/private-cloud-migration', changeFreq: 'weekly', priority: 0.85 },
+      { path: '/solutions/intelligent-business-automation', changeFreq: 'weekly', priority: 0.85 },
     ];
   } else if (id === 'products') {
     routes = PRODUCT_ECOSYSTEM.categories.flatMap((c) => [
@@ -95,6 +103,10 @@ export default function sitemap({ id }) {
     routes = BLOG_POSTS.map((post) => ({
       path: `/blog/${post.id}`, changeFreq: 'monthly', priority: 0.60
     }));
+  } else if (id === 'authors') {
+    routes = AUTHORS.map((author) => ({
+      path: `/authors/${author.slug}`, changeFreq: 'monthly', priority: 0.70
+    }));
   }
 
   // Deduplicate routes and enforce trailing slash formatting (matching trailingSlash: true in next.config)
@@ -120,21 +132,22 @@ export default function sitemap({ id }) {
   }
 
   return uniqueRoutes.flatMap((route) => {
-    return ['en', 'de', 'fr', 'es', 'ja'].map((locale) => {
+    return ACTIVE_LOCALES.map((locale) => {
       const pathWithLocale = route.path === '/' ? `/${locale}/` : `/${locale}${route.path}`;
+      const languages = {};
+      ACTIVE_LOCALES.forEach((l) => {
+        const key = HREFLANG_MAP[l] || l;
+        languages[key] = `${baseUrl}/${l}${route.path}`;
+      });
+      languages['x-default'] = `${baseUrl}/en${route.path}`;
+
       return {
         url: `${baseUrl}${pathWithLocale}`,
         lastModified: buildDate,
         changeFrequency: route.changeFreq,
         priority: route.priority,
         alternates: {
-          languages: {
-            en: `${baseUrl}/en${route.path}`,
-            de: `${baseUrl}/de${route.path}`,
-            fr: `${baseUrl}/fr${route.path}`,
-            es: `${baseUrl}/es${route.path}`,
-            ja: `${baseUrl}/ja${route.path}`,
-          }
+          languages
         }
       };
     });

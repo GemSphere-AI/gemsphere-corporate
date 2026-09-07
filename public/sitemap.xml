@@ -24,4 +24,7 @@
   <sitemap>
     <loc>https://gemsphere.ai/sitemap/blog.xml</loc>
   </sitemap>
+  <sitemap>
+    <loc>https://gemsphere.ai/sitemap/authors.xml</loc>
+  </sitemap>
 </sitemapindex>
