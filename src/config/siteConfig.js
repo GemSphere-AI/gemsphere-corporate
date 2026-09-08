@@ -41,14 +41,7 @@ export const SITE_CONFIG = {
     packageName: 'com.gemsphere.pos',
     appName: 'GemSphere Smart POS',
     ratingValue: '4.9',
-    ratingCount: '128',
-    ratingNumeric: 4.9,
-    ratingCountNumeric: 128,
-    version: '2.4.0',
-    fileSize: '28MB',
-    category: 'BusinessApplication',
-    price: '0',
-    priceCurrency: 'USD'
+    ratingCount: '120+'
   },
 
   // Media, Assets & Video Links (Centralized Hub)
@@ -101,7 +94,7 @@ export const SITE_CONFIG = {
     email: 'Contact@gemsphere.ai',
     supportEmail: 'support@gemsphere.ai',
     careersEmail: 'careers@gemsphere.ai',
-    salesEmail: 'enterprise@gemsphere.ai',
+    salesEmail: 'sales@gemsphere.ai',
     partnersEmail: 'partners@gemsphere.ai',
     securityEmail: 'security@gemsphere.ai',
     phone: '+91-789-258-5801',
@@ -133,27 +126,7 @@ export const SITE_CONFIG = {
     instagram: 'https://www.instagram.com/gemsphereai/',
     github: 'https://github.com/GemSphere-AI',
     youtube: 'https://www.youtube.com/@GemSphereAI',
-    blogger: 'https://gemsphereai.blogspot.com/',
-    getSameAsList: () => [
-      'https://www.linkedin.com/company/gem-sphere-ai/',
-      'https://x.com/GemSphereAI',
-      'https://www.facebook.com/people/GemSphere-AI/61581897367281/',
-      'https://www.instagram.com/gemsphereai/',
-      'https://github.com/GemSphere-AI',
-      'https://www.youtube.com/@GemSphereAI',
-      'https://gemsphereai.blogspot.com/',
-      'https://play.google.com/store/apps/details?id=com.gemsphere.pos'
-    ]
-  },
-
-  // SEO, GEO & Machine-Readable Endpoints
-  seo: {
-    feedUrl: 'https://gemsphere.ai/feed.xml',
-    sitemapUrl: 'https://gemsphere.ai/sitemap.xml',
-    llmsUrl: 'https://gemsphere.ai/llms.txt',
-    llmsFullUrl: 'https://gemsphere.ai/llms-full.txt',
-    manifestUrl: 'https://gemsphere.ai/manifest.json',
-    assetLinksUrl: 'https://gemsphere.ai/.well-known/assetlinks.json'
+    blogger: 'https://gemsphereai.blogspot.com/'
   },
 
   // Analytics & Third-Party Telemetry Keys
