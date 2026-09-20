@@ -505,6 +505,12 @@ export default function FloatingGiaChat() {
                 <img
                   src="/assets/gia-avatar.jpg"
                   alt="GIA AI Assistant"
+                  onError={(e) => {
+                    if (!e.currentTarget.dataset.retried) {
+                      e.currentTarget.dataset.retried = 'true';
+                      e.currentTarget.src = '/gia-avatar.jpg';
+                    }
+                  }}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 {/* Online pulse indicator */}
@@ -542,6 +548,12 @@ export default function FloatingGiaChat() {
                   <img
                     src="/assets/gia-avatar.jpg"
                     alt="GIA"
+                    onError={(e) => {
+                      if (!e.currentTarget.dataset.retried) {
+                        e.currentTarget.dataset.retried = 'true';
+                        e.currentTarget.src = '/gia-avatar.jpg';
+                      }
+                    }}
                     className="w-full h-full object-cover"
                   />
                   <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></span>
@@ -751,6 +763,12 @@ export default function FloatingGiaChat() {
                       <img
                         src="/assets/gia-avatar.jpg"
                         alt="GIA"
+                        onError={(e) => {
+                          if (!e.currentTarget.dataset.retried) {
+                            e.currentTarget.dataset.retried = 'true';
+                            e.currentTarget.src = '/gia-avatar.jpg';
+                          }
+                        }}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -857,6 +875,12 @@ export default function FloatingGiaChat() {
                     <img
                       src="/assets/gia-avatar.jpg"
                       alt="GIA"
+                      onError={(e) => {
+                        if (!e.currentTarget.dataset.retried) {
+                          e.currentTarget.dataset.retried = 'true';
+                          e.currentTarget.src = '/gia-avatar.jpg';
+                        }
+                      }}
                       className="w-full h-full object-cover"
                     />
                   </div>
