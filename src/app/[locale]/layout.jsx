@@ -11,7 +11,7 @@ import Script from 'next/script';
 import ClientProviders from '../../components/ClientProviders';
 import { generateOrganizationSchema, generateWebSiteSchema } from '../../utils/schemaGenerators';
 import { Inter, Outfit, Noto_Sans_Arabic } from 'next/font/google';
-import FloatingCTA from '../../components/FloatingCTA';
+import FloatingGiaChat from '../../components/FloatingGiaChat';
 import FloatingWhatsApp from '../../components/FloatingWhatsApp';
 import ExitIntentPopup from '../../components/ExitIntentPopup';
 import GoogleAnalytics from '../../components/GoogleAnalytics';
@@ -215,7 +215,7 @@ export default async function RootLayout({ children, params }) {
           <main id="main-content">
             {children}
           </main>
-          <FloatingCTA />
+          <FloatingGiaChat />
           <FloatingWhatsApp />
           <ExitIntentPopup />
         </ClientProviders>

@@ -123,14 +123,12 @@ const Footer = () => {
                             </a>
                         </div>
 
-                        {/* Official Google Play Store Badge */}
+                        {/* Official Google Play Store Badge -> Links to GemSphere Apps Hub */}
                         <div>
-                            <a 
-                                href={SITE_CONFIG.mobileApp.playStoreUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => trackPlayStoreClick({ moduleName: 'Footer' })}
-                                className="inline-flex items-center gap-3 px-4 py-2.5 rounded-xl glass-card border border-brand-border hover:border-brand-cyan/50 hover:bg-brand-cyan/10 transition-all duration-300 text-text-primary group"
+                            <LocalizedLink 
+                                href="/apps"
+                                className="inline-flex items-center gap-3 px-4 py-2.5 rounded-xl glass-card border border-brand-border hover:border-brand-cyan/50 hover:bg-brand-cyan/10 transition-all duration-300 text-text-primary group no-underline"
+                                title="Explore GemSphere Mobile & Device Applications"
                             >
                                 <svg className="w-5 h-5 text-brand-cyan shrink-0" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M3.609 1.814L13.792 12 3.61 22.186c-.368-.383-.61-.951-.61-1.686V3.5c0-.735.242-1.303.609-1.686zm11.235 11.238l2.583 2.583-11.458 6.55 8.875-9.133zm0-2.104L5.969 1.815l11.458 6.55-2.583 2.583zm1.488 1.052l3.434 1.963c.967.553.967 1.453 0 2.006l-3.434 1.963-2.072-2.072 2.072-1.86z"/>
@@ -139,7 +137,7 @@ const Footer = () => {
                                     <div className="text-[10px] uppercase font-semibold text-text-muted leading-none">GET IT ON</div>
                                     <div className="text-xs font-bold text-text-primary group-hover:text-brand-cyan transition-colors">{SITE_CONFIG.mobileApp.storeName}</div>
                                 </div>
-                            </a>
+                            </LocalizedLink>
                         </div>
                     </div>
 
@@ -147,6 +145,12 @@ const Footer = () => {
                     <div className="lg:col-span-1">
                         <h4 className="text-sm font-bold text-text-primary mb-6">{t('footer.products', 'Products')}</h4>
                         <ul className="space-y-4">
+                            <li>
+                                <LocalizedLink href="/apps" className="text-sm font-semibold text-brand-cyan hover:underline transition-colors flex items-center gap-1.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse"></span>
+                                    <span>{t('footer.mobileApps', 'Device & Mobile Apps')}</span>
+                                </LocalizedLink>
+                            </li>
                             <li>
                                 <LocalizedLink href="/products/crm-platform" className="text-sm text-text-secondary hover:text-brand-cyan transition-colors">
                                     {t('footer.crmPlatform', 'CRM Platform')}

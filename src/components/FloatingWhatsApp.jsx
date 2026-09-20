@@ -9,7 +9,17 @@ import { trackWhatsAppClick } from '../utils/analytics';
 export default function FloatingWhatsApp() {
     const [isVisible, setIsVisible] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    const [isGiaOpen, setIsGiaOpen] = useState(false);
     const { t } = useTranslation();
+
+    // Hide WhatsApp button when GIA Assistant is active
+    useEffect(() => {
+        const handleGiaState = (e) => {
+            setIsGiaOpen(Boolean(e.detail?.isOpen));
+        };
+        window.addEventListener('gia:state', handleGiaState);
+        return () => window.removeEventListener('gia:state', handleGiaState);
+    }, []);
 
     // Show after scrolling down 300px
     useEffect(() => {
@@ -27,13 +37,13 @@ export default function FloatingWhatsApp() {
 
     return (
         <AnimatePresence>
-            {isVisible && (
+            {isVisible && !isGiaOpen && (
                 <motion.div
                     initial={{ opacity: 0, scale: 0.5, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.5, y: 20 }}
                     transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                    className="fixed bottom-[7.5rem] right-6 z-[100]"
+                    className="fixed bottom-[7.5rem] right-6 z-[80]"
                     style={{ filter: 'drop-shadow(0 4px 20px rgba(37, 211, 102, 0.35))' }}
                 >
                     <motion.a

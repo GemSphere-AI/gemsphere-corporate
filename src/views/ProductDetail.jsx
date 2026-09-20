@@ -21,9 +21,11 @@ import { RICH_MODULES_DATA } from '../data/moduleDescriptions';
 import { parseCompositeSlug, getSEOContent, PRODUCTS_MAP, INDUSTRIES_MAP, COUNTRIES_MAP, COMPETITORS_MAP } from '../data/seoRegistry';
 import { SITE_CONFIG } from '../config/siteConfig';
 import { trackPlayStoreClick } from '../utils/analytics';
+import AppDownloadModal from '../components/AppDownloadModal';
 
 export default function ProductDetail({ slug }) {
     const [activeFaqIndex, setActiveFaqIndex] = useState(null);
+    const [selectedAppForModal, setSelectedAppForModal] = useState(null);
     
     // Parse composite slug
     const parsing = parseCompositeSlug(slug);
@@ -44,6 +46,11 @@ export default function ProductDetail({ slug }) {
         else if (p === 'ai-chatbot') resolvedSlug = 'ai-chatbots';
         else resolvedSlug = p;
     }
+
+    // Match companion device or terminal app from SITE_CONFIG.apps
+    const companionApp = SITE_CONFIG.apps?.find(app => 
+        app.productSlugs?.some(s => slug?.toLowerCase().includes(s) || (resolvedSlug && resolvedSlug.toLowerCase().includes(s)))
+    );
 
     // Find the category or module using resolvedSlug
     let category = null;
@@ -337,9 +344,9 @@ export default function ProductDetail({ slug }) {
                                             </LocalizedLink>
                                         )}
 
-                                        {/* Google Play Store ASO Integration for POS / Retail / Commerce */}
-                                        {(slug.includes('pos') || slug.includes('retail') || slug.includes('commerce')) && (
-                                            <div className="glass-card p-5 border-brand-cyan/20 rounded-[24px] mt-5 text-left">
+                                        {/* Companion Device / Mobile App Integration */}
+                                        {companionApp && (
+                                            <div className="glass-card p-5 border-brand-cyan/20 rounded-[24px] mt-5 text-left shadow-lg">
                                                 <div className="flex items-center gap-3 mb-2.5">
                                                     <div className="w-9 h-9 rounded-xl bg-brand-cyan/15 flex items-center justify-center text-brand-cyan shrink-0">
                                                         <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -347,26 +354,43 @@ export default function ProductDetail({ slug }) {
                                                         </svg>
                                                     </div>
                                                     <div>
-                                                        <h4 className="font-bold text-xs text-text-primary">{SITE_CONFIG.mobileApp.appName}</h4>
+                                                        <h4 className="font-bold text-xs text-text-primary">{companionApp.appName}</h4>
                                                         <div className="flex items-center gap-1.5 text-[11px] text-text-tertiary">
-                                                            <span className="text-amber-400 font-bold">★ {SITE_CONFIG.mobileApp.ratingValue}</span>
-                                                            <span>• {SITE_CONFIG.mobileApp.ratingCount} reviews</span>
+                                                            <span className="text-amber-400 font-bold">★ {companionApp.ratingValue}</span>
+                                                            <span>• {companionApp.ratingCount} reviews</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <p className="text-[11px] text-text-secondary leading-relaxed mb-3">
-                                                    Android client built for retail counters, mobile POS tablets, and automated receipt printing.
+                                                    {companionApp.tagline}
                                                 </p>
-                                                <a
-                                                    href={SITE_CONFIG.mobileApp.playStoreUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    onClick={() => trackPlayStoreClick({ moduleName: displayName })}
-                                                    className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-brand-cyan/15 border border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark font-bold text-xs transition-all duration-300 group cursor-pointer"
-                                                >
-                                                    <span>Install from {SITE_CONFIG.mobileApp.storeName}</span>
-                                                    <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
-                                                </a>
+                                                <div className="space-y-2">
+                                                    <a
+                                                        href={companionApp.playStoreUrl}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        onClick={() => trackPlayStoreClick({ moduleName: displayName })}
+                                                        className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-brand-cyan/15 border border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark font-bold text-xs transition-all duration-300 group cursor-pointer no-underline"
+                                                    >
+                                                        <span>Install from Google Play</span>
+                                                        <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+                                                    </a>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setSelectedAppForModal(companionApp)}
+                                                        className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-text-secondary hover:text-white font-semibold text-[11px] transition-all cursor-pointer"
+                                                    >
+                                                        <span>Enterprise APK Sideload</span>
+                                                    </button>
+                                                </div>
+                                                <div className="mt-3 pt-2.5 border-t border-brand-border/40 text-center">
+                                                    <LocalizedLink
+                                                        href="/apps"
+                                                        className="text-[11px] text-brand-cyan hover:underline font-semibold"
+                                                    >
+                                                        View all GemSphere Device Apps →
+                                                    </LocalizedLink>
+                                                </div>
                                             </div>
                                         )}
                                     </div>
@@ -379,6 +403,13 @@ export default function ProductDetail({ slug }) {
             </section>
 
             <RelatedLinks type="products" currentId={module ? slug : category.id} />
+
+            {/* Sideload & Download Modal */}
+            <AppDownloadModal
+                app={selectedAppForModal}
+                isOpen={Boolean(selectedAppForModal)}
+                onClose={() => setSelectedAppForModal(null)}
+            />
         </div>
     );
 }

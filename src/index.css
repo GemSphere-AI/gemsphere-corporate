@@ -49,6 +49,48 @@
    * ALL automatically theme-aware across every page.
    */
   --adaptive-white: #0f172a;
+
+  /* ── GIA CENTRALIZED THEME TOKENS (LIGHT MODE) ── */
+  --gia-window-bg: #ffffff;
+  --gia-window-border: #e2e8f0;
+  --gia-window-shadow: 0 25px 70px -15px rgba(15, 23, 42, 0.2), 0 0 30px rgba(6, 182, 212, 0.12);
+  --gia-header-bg: #f8fafc;
+  --gia-header-border: #e2e8f0;
+  --gia-header-title: #0f172a;
+  --gia-header-subtitle: #64748b;
+  --gia-body-bg: #f8fafc;
+  --gia-drawer-bg: #ffffff;
+  --gia-drawer-border: #e2e8f0;
+  --gia-drawer-title: #0f172a;
+  --gia-drawer-text: #475569;
+  --gia-card-bg: #ffffff;
+  --gia-card-border: #cbd5e1;
+  --gia-card-title: #0f172a;
+  --gia-card-text: #475569;
+  --gia-input-bg: #ffffff;
+  --gia-input-border: #cbd5e1;
+  --gia-input-text: #0f172a;
+  --gia-input-placeholder: #94a3b8;
+  --gia-input-focus-border: #0891b2;
+  --gia-bubble-bot-bg: #ffffff;
+  --gia-bubble-bot-border: #e2e8f0;
+  --gia-bubble-bot-text: #0f172a;
+  --gia-bubble-bot-strong: #0369a1;
+  --gia-bubble-bot-link: #0d9488;
+  --gia-bubble-user-bg: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  --gia-bubble-user-text: #ffffff;
+  --gia-timestamp-bot: #64748b;
+  --gia-timestamp-user: rgba(255, 255, 255, 0.85);
+  --gia-chip-bar-bg: #f1f5f9;
+  --gia-chip-bar-border: #e2e8f0;
+  --gia-chip-bg: #ffffff;
+  --gia-chip-border: #cbd5e1;
+  --gia-chip-text: #1e293b;
+  --gia-chip-hover-bg: #ecfeff;
+  --gia-chip-hover-border: #06b6d4;
+  --gia-footer-bg: #ffffff;
+  --gia-footer-border: #e2e8f0;
+  --gia-footer-text: #64748b;
 }
 
 .dark {
@@ -87,6 +129,48 @@
 
   /* In dark mode, white is genuine white */
   --adaptive-white: #ffffff;
+
+  /* ── GIA CENTRALIZED THEME TOKENS (DARK MODE) ── */
+  --gia-window-bg: linear-gradient(180deg, #090e1a 0%, #0d1527 100%);
+  --gia-window-border: rgba(6, 182, 212, 0.3);
+  --gia-window-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.9), 0 0 35px rgba(6, 182, 212, 0.3);
+  --gia-header-bg: rgba(15, 23, 42, 0.95);
+  --gia-header-border: rgba(255, 255, 255, 0.08);
+  --gia-header-title: #ffffff;
+  --gia-header-subtitle: #94a3b8;
+  --gia-body-bg: #090e1a;
+  --gia-drawer-bg: #0b1329;
+  --gia-drawer-border: rgba(6, 182, 212, 0.3);
+  --gia-drawer-title: #ffffff;
+  --gia-drawer-text: #94a3b8;
+  --gia-card-bg: #0f172a;
+  --gia-card-border: rgba(6, 182, 212, 0.4);
+  --gia-card-title: #ffffff;
+  --gia-card-text: #94a3b8;
+  --gia-input-bg: #070c18;
+  --gia-input-border: #334155;
+  --gia-input-text: #ffffff;
+  --gia-input-placeholder: #64748b;
+  --gia-input-focus-border: #22d3ee;
+  --gia-bubble-bot-bg: #0f172a;
+  --gia-bubble-bot-border: #1e293b;
+  --gia-bubble-bot-text: #f8fafc;
+  --gia-bubble-bot-strong: #38bdf8;
+  --gia-bubble-bot-link: #34d399;
+  --gia-bubble-user-bg: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  --gia-bubble-user-text: #ffffff;
+  --gia-timestamp-bot: #94a3b8;
+  --gia-timestamp-user: rgba(255, 255, 255, 0.85);
+  --gia-chip-bar-bg: #070c18;
+  --gia-chip-bar-border: rgba(255, 255, 255, 0.06);
+  --gia-chip-bg: #1e293b;
+  --gia-chip-border: #334155;
+  --gia-chip-text: #e2e8f0;
+  --gia-chip-hover-bg: rgba(6, 182, 212, 0.15);
+  --gia-chip-hover-border: rgba(6, 182, 212, 0.5);
+  --gia-footer-bg: rgba(15, 23, 42, 0.95);
+  --gia-footer-border: rgba(255, 255, 255, 0.08);
+  --gia-footer-text: #94a3b8;
 }
 
 @theme {
@@ -434,4 +518,110 @@ img.chatclient-button,
 .chatclient-loader {
   display: none !important;
 }
+
+/* ── GIA CENTRALIZED THEME UTILITIES (Controlled from one place) ── */
+.gia-window {
+  background: var(--gia-window-bg) !important;
+  border-color: var(--gia-window-border) !important;
+  box-shadow: var(--gia-window-shadow) !important;
+}
+
+.gia-header {
+  background: var(--gia-header-bg) !important;
+  border-color: var(--gia-header-border) !important;
+}
+.gia-header-title {
+  color: var(--gia-header-title) !important;
+}
+.gia-header-subtitle {
+  color: var(--gia-header-subtitle) !important;
+}
+
+.gia-body {
+  background: var(--gia-body-bg) !important;
+}
+
+.gia-drawer {
+  background: var(--gia-drawer-bg) !important;
+  border-color: var(--gia-drawer-border) !important;
+}
+.gia-drawer-title {
+  color: var(--gia-drawer-title) !important;
+}
+.gia-drawer-text {
+  color: var(--gia-drawer-text) !important;
+}
+
+.gia-card {
+  background: var(--gia-card-bg) !important;
+  border-color: var(--gia-card-border) !important;
+}
+.gia-card-title {
+  color: var(--gia-card-title) !important;
+}
+.gia-card-text {
+  color: var(--gia-card-text) !important;
+}
+
+.gia-field {
+  background: var(--gia-input-bg) !important;
+  border-color: var(--gia-input-border) !important;
+  color: var(--gia-input-text) !important;
+}
+.gia-field:focus {
+  border-color: var(--gia-input-focus-border) !important;
+}
+.gia-field::placeholder {
+  color: var(--gia-input-placeholder) !important;
+}
+
+.gia-bubble-bot {
+  background: var(--gia-bubble-bot-bg) !important;
+  border-color: var(--gia-bubble-bot-border) !important;
+  color: var(--gia-bubble-bot-text) !important;
+}
+.gia-bubble-bot p {
+  color: var(--gia-bubble-bot-text) !important;
+}
+.gia-bubble-bot strong {
+  color: var(--gia-bubble-bot-strong) !important;
+}
+.gia-bubble-bot a {
+  color: var(--gia-bubble-bot-link) !important;
+}
+
+.gia-bubble-user {
+  background: var(--gia-bubble-user-bg) !important;
+  color: var(--gia-bubble-user-text) !important;
+}
+
+.gia-time-bot {
+  color: var(--gia-timestamp-bot) !important;
+}
+.gia-time-user {
+  color: var(--gia-timestamp-user) !important;
+}
+
+.gia-chip-bar {
+  background: var(--gia-chip-bar-bg) !important;
+  border-color: var(--gia-chip-bar-border) !important;
+}
+.gia-chip {
+  background: var(--gia-chip-bg) !important;
+  border-color: var(--gia-chip-border) !important;
+  color: var(--gia-chip-text) !important;
+}
+.gia-chip:hover {
+  background: var(--gia-chip-hover-bg) !important;
+  border-color: var(--gia-chip-hover-border) !important;
+}
+
+.gia-footer {
+  background: var(--gia-footer-bg) !important;
+  border-color: var(--gia-footer-border) !important;
+}
+.gia-footer-text {
+  color: var(--gia-footer-text) !important;
+}
+
 
