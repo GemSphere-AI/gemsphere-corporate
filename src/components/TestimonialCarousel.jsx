@@ -36,7 +36,8 @@ const TestimonialCarousel = ({ testimonials = [], autoPlay = true, interval = 60
             try {
                 const url = getEndpointUrl('testimonials');
                 const res = await fetch(url);
-                if (res.ok) {
+                const contentType = res.headers.get('content-type');
+                if (res.ok && contentType && contentType.includes('application/json')) {
                     const data = await res.json();
                     if (Array.isArray(data) && data.length > 0) {
                         baseList = data;

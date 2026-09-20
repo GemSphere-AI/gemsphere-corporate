@@ -39,10 +39,15 @@ const QUICK_PROMPTS = [
 ];
 
 export default function FloatingGiaChat() {
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [visitorIdentified, setVisitorIdentified] = useState(false);
   const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Synchronize with corporate site theme (light vs dark mode)
   useEffect(() => {
@@ -460,6 +465,10 @@ export default function FloatingGiaChat() {
       );
     });
   };
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <>
