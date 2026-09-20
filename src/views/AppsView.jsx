@@ -43,6 +43,26 @@ const CATEGORY_ICONS = {
   'Casual & Multiplayer': Sparkles
 };
 
+/** Small helper component: renders app.icon with fallback to Smartphone on error */
+function AppIcon({ app }) {
+  const [failed, setFailed] = useState(false);
+
+  if (!app.icon || failed) {
+    return <Smartphone size={28} />;
+  }
+
+  return (
+    <img
+      src={app.icon}
+      alt={app.appName}
+      className="w-full h-full object-cover rounded-xl"
+      loading="lazy"
+      referrerPolicy="no-referrer"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 export default function AppsView() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedAppForModal, setSelectedAppForModal] = useState(null);
@@ -129,18 +149,7 @@ export default function AppsView() {
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 rounded-2xl bg-brand-cyan/15 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan shadow-md shrink-0 group-hover:scale-105 transition-transform overflow-hidden p-1.5">
-                        {app.icon ? (
-                          <img
-                            src={app.icon}
-                            alt={app.appName}
-                            className="w-full h-full object-cover rounded-xl"
-                            onError={(e) => {
-                              e.currentTarget.style.display = 'none';
-                            }}
-                          />
-                        ) : (
-                          <Smartphone size={28} />
-                        )}
+                        <AppIcon app={app} />
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-1">
@@ -203,7 +212,7 @@ export default function AppsView() {
                   {/* Direct APK Sideload & Enterprise Download Modal */}
                   <button
                     onClick={() => setSelectedAppForModal(app)}
-                    className="w-full sm:w-1/2 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-all duration-300 cursor-pointer border border-slate-700 shadow-sm"
+                    className="w-full sm:w-1/2 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-pure-white font-bold text-xs transition-all duration-300 cursor-pointer border border-slate-700 shadow-sm"
                   >
                     <Download size={15} className="text-teal-400" />
                     <span>Enterprise APK & Setup</span>
