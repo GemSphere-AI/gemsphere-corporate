@@ -542,9 +542,9 @@ export default function FloatingGiaChat() {
             className="gia-window fixed bottom-6 right-6 z-[9999] w-[94vw] sm:w-[430px] h-[650px] max-h-[89vh] flex flex-col rounded-3xl overflow-hidden border shadow-2xl transition-colors duration-300"
           >
             {/* Header */}
-            <div className="gia-header relative px-4 py-3.5 border-b flex items-center justify-between transition-colors">
-              <div className="flex items-center gap-3">
-                <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.5)] shrink-0">
+            <div className="gia-header relative px-4 py-3 border-b flex items-center justify-between transition-colors">
+              <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] shrink-0">
                   <img
                     src="/assets/gia-avatar.jpg"
                     alt="GIA"
@@ -556,11 +556,11 @@ export default function FloatingGiaChat() {
                     }}
                     className="w-full h-full object-cover"
                   />
-                  <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></span>
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></span>
                 </div>
-                <div>
-                  <h3 className="gia-header-title text-base font-extrabold tracking-wide">GIA</h3>
-                  <p className="gia-header-subtitle text-[11px] flex items-center gap-1.5 font-medium">
+                <div className="min-w-0">
+                  <h3 className="gia-header-title text-sm sm:text-base font-extrabold tracking-wide leading-tight">GIA</h3>
+                  <p className="gia-header-subtitle text-[11px] flex items-center gap-1.5 font-medium whitespace-nowrap">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
                     GemSphere Intelligence
                   </p>
@@ -568,41 +568,25 @@ export default function FloatingGiaChat() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex items-center gap-1.5">
-                {/* Live WhatsApp Quick Connect */}
-                <a
-                  href={SITE_CONFIG.contact.whatsapp.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`p-1.5 rounded-xl border transition-all text-xs font-semibold flex items-center gap-1 px-2.5 shadow-sm no-underline cursor-pointer ${
-                    isDark
-                      ? 'border-emerald-500/40 bg-emerald-500/15 text-emerald-300 hover:bg-emerald-500/25'
-                      : 'border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
-                  }`}
-                  title="Chat on WhatsApp"
-                >
-                  <MessageCircle className="w-3.5 h-3.5 text-emerald-500" />
-                  <span className="hidden sm:inline">WhatsApp</span>
-                </a>
-
+              <div className="flex items-center gap-1.5 shrink-0">
                 {/* Connect / Inquire Lead Form */}
                 <button
                   onClick={() => setShowInquiryForm(!showInquiryForm)}
-                  className={`p-1.5 rounded-xl border transition-all duration-200 text-xs font-semibold flex items-center gap-1 px-2.5 cursor-pointer ${
+                  className={`px-3 py-1.5 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-all duration-200 cursor-pointer shadow-sm ${
                     showInquiryForm
-                      ? isDark ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300' : 'bg-cyan-100 border-cyan-400 text-cyan-900'
-                      : isDark ? 'bg-slate-800/80 border-slate-700 text-slate-200 hover:border-cyan-400/50' : 'bg-white border-slate-200 text-slate-700 hover:border-cyan-400/50'
+                      ? 'bg-cyan-500 text-white border-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.4)]'
+                      : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-transparent hover:from-cyan-400 hover:to-blue-500 hover:shadow-md'
                   }`}
                   title="Request Enterprise Consultation"
                 >
-                  <UserCheck className="w-3.5 h-3.5 text-cyan-500" />
-                  <span className="hidden sm:inline">Connect</span>
+                  <UserCheck className="w-3.5 h-3.5 text-white" />
+                  <span>Connect</span>
                 </button>
 
                 {/* Restart Chat */}
                 <button
                   onClick={resetChat}
-                  className={`p-2 rounded-xl transition-colors cursor-pointer ${
+                  className={`p-1.5 sm:p-2 rounded-xl transition-colors cursor-pointer ${
                     isDark ? 'hover:bg-slate-800/80 text-slate-400 hover:text-white' : 'hover:bg-slate-200/80 text-slate-500 hover:text-slate-900'
                   }`}
                   title="Restart Conversation"
@@ -613,7 +597,7 @@ export default function FloatingGiaChat() {
                 {/* Close Chat */}
                 <button
                   onClick={() => setIsOpen(false)}
-                  className={`p-2 rounded-xl transition-colors cursor-pointer ${
+                  className={`p-1.5 sm:p-2 rounded-xl transition-colors cursor-pointer ${
                     isDark ? 'hover:bg-slate-800/80 text-slate-400 hover:text-white' : 'hover:bg-slate-200/80 text-slate-500 hover:text-slate-900'
                   }`}
                   title="Close GIA"
