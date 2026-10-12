@@ -257,7 +257,7 @@ export const generateJobPostingSchema = (jobs) => {
     "validThrough": job.validThrough || "2026-12-31",
     "baseSalary": {
       "@type": "MonetaryAmount",
-      "currency": "INR",
+      "currency": job.currency || "USD",
       "value": {
         "@type": "QuantitativeValue",
         "unitText": "YEAR"
