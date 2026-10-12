@@ -22,7 +22,9 @@ GemSphere Technologies Private Limited is a global AI-powered enterprise softwar
 - [Operations & CRM](https://gemsphere.ai/en/products/operations/) - Single-tenant enterprise CRM, automated sales pipelines, workforce management, and enterprise resource planning (ERP).
 - [Hospitality & Restaurant Management](https://gemsphere.ai/en/products/hospitality/) - Cloud Hotel PMS, table reservations, Kitchen Display Systems (KDS), and contactless QR ordering.
 - [Enterprise AI & Autonomous Agents](https://gemsphere.ai/en/ai-solutions/) - Private Retrieval-Augmented Generation (RAG) pipelines, domain-specific LLM fine-tuning, and autonomous business workflow agents.
-- [EduSphere Campus ERP](https://gemsphere.ai/en/products/edusphere/) - Student Information Systems (SIS), automated fee collection, and university administrative orchestration.
+- [GemSphere Campus ERP](https://gemsphere.ai/en/products/campus/) - Student Information Systems (SIS), automated fee collection, and university administrative orchestration.
+- [GemSphere Work](https://gemsphere.ai/en/products/work/) - Next-generation sprint planning, issue tracking, dependency graph management, and execution intelligence.
+- [GemSphere People](https://gemsphere.ai/en/products/people/) - Global workforce management, compliant payroll, document vault, and contractor lifecycle automation.
 
 ## Enterprise Solutions Architecture
 
