@@ -105,7 +105,8 @@ export async function generateMetadata({ params }) {
       languages,
     },
     icons: {
-      icon: '/favicon.ico',
+      icon: '/favicon.png',
+      apple: '/favicon.png',
     },
     other: {
       'google-play-app': `app-id=${SITE_CONFIG.mobileApp.packageName}`,
@@ -134,7 +135,8 @@ export default async function RootLayout({ children, params }) {
       suppressHydrationWarning
     >
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="alternate" type="application/rss+xml" title="GemSphere Insights RSS Feed" href="/feed.xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
