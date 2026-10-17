@@ -10,7 +10,7 @@ import '../../index.css';
 import Script from 'next/script';
 import ClientProviders from '../../components/ClientProviders';
 import { generateOrganizationSchema, generateWebSiteSchema } from '../../utils/schemaGenerators';
-import { Inter, Outfit, Noto_Sans_Arabic } from 'next/font/google';
+import { Inter, Outfit } from 'next/font/google';
 import FloatingGiaChat from '../../components/FloatingGiaChat';
 import FloatingWhatsApp from '../../components/FloatingWhatsApp';
 import ExitIntentPopup from '../../components/ExitIntentPopup';
@@ -30,13 +30,6 @@ const outfit = Outfit({
   weight: ['300', '400', '500', '600', '700', '800', '900'],
   display: 'swap',
   variable: '--font-outfit',
-});
-
-const notoSansArabic = Noto_Sans_Arabic({
-  subsets: ['arabic'],
-  weight: ['400', '600', '700'],
-  display: 'swap',
-  variable: '--font-noto-arabic',
 });
 
 /**
@@ -131,7 +124,7 @@ export default async function RootLayout({ children, params }) {
     <html
       lang={lang}
       dir={isRtl ? 'rtl' : 'ltr'}
-      className={`${inter.variable} ${outfit.variable} ${notoSansArabic.variable}`}
+      className={`${inter.variable} ${outfit.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -141,6 +134,10 @@ export default async function RootLayout({ children, params }) {
         <link rel="alternate" type="application/rss+xml" title="GemSphere Insights RSS Feed" href="/feed.xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap"
+        />
         
         {/* Organization Schema Injection */}
         <script
